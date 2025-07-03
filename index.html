@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Academic Website</title>
+    <title>Stardust-math_Personal Academic Website</title>
     <style>
         body, html {
             margin: 0;
@@ -23,19 +23,14 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        #cover.visible {
             opacity: 1;
-            transition: opacity 1s ease-in-out;
         }
         #cover.hidden {
             opacity: 0;
-            pointer-events: none;
-        }
-        #canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             pointer-events: none;
         }
         #resume {
@@ -147,9 +142,7 @@
     </style>
 </head>
 <body>
-    <div id="cover">
-        <canvas id="canvas"></canvas>
-    </div>
+    <div id="cover"></div>
     <div id="resume">
         <div class="container">
             <h1>John Doe</h1>
@@ -193,74 +186,22 @@
     <script>
         const cover = document.getElementById('cover');
         const resume = document.getElementById('resume');
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 100;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.opacity = Math.random() * 0.5 + 0.3;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.size > 0.2) this.size -= 0.05;
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-            }
-            draw() {
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                if (particles[i].size <= 0.2) {
-                    particles.splice(i, 1);
-                    i--;
-                    particles.push(new Particle());
-                }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        // 添加封面出现动画
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                cover.classList.add('visible');
+            }, 100); // 延迟100ms以确保页面加载完成
         });
 
+        // 点击封面切换到简历页面
         cover.addEventListener('click', () => {
             cover.classList.add('hidden');
             setTimeout(() => {
                 cover.style.display = 'none';
                 resume.classList.add('visible');
                 document.body.style.overflow = 'auto';
-            }, 1000);
+            }, 1500); // 与CSS中的transition时间匹配
         });
     </script>
 </body>
