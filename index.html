@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stardust-math_Personal Academic Website</title>
+    <title>Personal Academic Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -32,6 +33,20 @@
         #cover.hidden {
             opacity: 0;
             pointer-events: none;
+        }
+        #slogan {
+            position: absolute;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+        }
+        #slogan.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         #resume {
             display: none;
@@ -142,7 +157,9 @@
     </style>
 </head>
 <body>
-    <div id="cover"></div>
+    <div id="cover">
+        <div id="slogan">Turn this imperfect story into the way we hope it to be</div>
+    </div>
     <div id="resume">
         <div class="container">
             <h1>John Doe</h1>
@@ -186,11 +203,15 @@
     <script>
         const cover = document.getElementById('cover');
         const resume = document.getElementById('resume');
+        const slogan = document.getElementById('slogan');
 
-        // 添加封面出现动画
+        // 添加封面和标语动画
         window.addEventListener('load', () => {
             setTimeout(() => {
                 cover.classList.add('visible');
+                setTimeout(() => {
+                    slogan.classList.add('visible');
+                }, 1500); // 在封面动画完成后触发标语动画
             }, 100); // 延迟100ms以确保页面加载完成
         });
 
