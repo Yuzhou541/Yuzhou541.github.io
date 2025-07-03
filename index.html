@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Academic Website</title>
+    <title>Stardust-math_Personal Academic Website</title>
     <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Georgia', serif;
             overflow: hidden;
             transition: background-color 0.5s ease;
             background-color: #f1f3f5;
@@ -72,7 +72,7 @@
         }
         #resume {
             display: none;
-            padding: 80px 20px;
+            padding: 40px 20px;
             background: linear-gradient(rgba(241, 243, 245, 0.9), rgba(241, 243, 245, 0.9)), url('https://www.transparenttextures.com/patterns/paper-fibers.png');
             min-height: 100vh;
             overflow-y: auto;
@@ -87,94 +87,74 @@
             max-width: 900px;
             margin: 0 auto;
             background: #ffffff;
-            padding: 50px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-top: 1px solid #000;
         }
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
-        }
-        h1 {
-            color: #2c3e50;
+        .resume-heading {
             font-size: 2.8em;
+            font-variant: small-caps;
             text-align: center;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            color: #2c3e50;
+            margin-bottom: 10px;
         }
         .contact-info {
             text-align: center;
-            margin-bottom: 40px;
-            font-size: 1.1em;
+            margin-bottom: 20px;
+            font-size: 1em;
             color: #34495e;
-            font-style: italic;
-            background: rgba(52, 152, 219, 0.1);
-            padding: 10px;
-            border-radius: 8px;
         }
         h2 {
+            font-variant: small-caps;
             color: #2c3e50;
-            font-size: 1.6em;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #3498db;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: #2ecc71;
-            transition: width 0.3s ease;
-        }
-        h2:hover {
-            color: #3498db;
-        }
-        h2:hover::after {
-            width: 100px;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #000;
         }
         .section {
-            background: #f9fbfc;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .subheading {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.05em;
+            margin-bottom: 8px;
+        }
+        .subheading-title {
+            font-weight: bold;
+            color: #3498db;
+        }
+        .subsubheading {
+            font-style: italic;
+            font-size: 0.95em;
+            color: #34495e;
         }
         ul {
-            padding-left: 25px;
+            padding-left: 20px;
             margin: 0;
+            list-style-type: disc;
         }
         li {
-            font-size: 1.05em;
+            font-size: 1em;
             color: #34495e;
-            line-height: 1.9;
-            margin-bottom: 12px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        ul li::marker {
+            font-size: 0.6em;
         }
         .highlight {
             color: #3498db;
             font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        .highlight:hover {
-            color: #2ecc71;
         }
     </style>
 </head>
@@ -183,43 +163,86 @@
         <div id="avatar-frame">
             <img src="./avatar.jpg" alt="Profile Avatar">
         </div>
-        <div id="slogan">Turn this imperfect story into the way we hope it to be</div>
+        <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
     </div>
     <div id="resume">
         <div class="container">
-            <h1>John Doe</h1>
-            <p class="contact-info">Email: john.doe@example.com | Phone: +1-123-456-7890 | Address: Beijing, China</p>
+            <div class="resume-heading">Jinghao Chen</div>
+            <p class="contact-info">
+                Hefei Anhui, 230026<br>
+                Email: chenjinghao@mail.ustc.edu.cn<br>
+                Tel: +86 18806590966
+            </p>
             
             <div class="section">
                 <h2>Education</h2>
+                <div class="subheading">
+                    <span class="subheading-title">University of Science and Technology of China</span>
+                    <span>Expected June 2027</span>
+                </div>
+                <div class="subsubheading">Bachelor of Science</div>
                 <ul>
-                    <li><span class="highlight">Tsinghua University</span>, Ph.D. in Computer Science, 2018 - 2023</li>
-                    <li><span class="highlight">Peking University</span>, B.Sc. in Computer Science, 2014 - 2018</li>
+                    <li>GPA: 3.42/4.3</li>
+                    <li>Ranking: 98/205 in major of mathematics in the first school year</li>
+                    <li>Related Courses: Mathematical Analysis -- 90; Symbolic Computing Software -- A+ (&gt;95); Probability and Mathematical Statistics -- 94</li>
                 </ul>
             </div>
             
             <div class="section">
-                <h2>Research Interests</h2>
+                <h2>Honors and Awards</h2>
                 <ul>
-                    <li>Artificial Intelligence and Machine Learning</li>
-                    <li>Natural Language Processing</li>
-                    <li>Computer Vision</li>
+                    <li>“Zhang Zongzhi Sci-Tech Scholarship” (About top 20% in School of Mathematical Sciences)</li>
+                    <li>“Outstanding Freshman Scholarship (Grade 2)”</li>
+                    <li>“Excellent Thesis Award” of “2024 4th International Conference on Logistics System, Traffic and Transportation (LSTT 2024)”</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Research Experience</h2>
+                <div class="subheading">
+                    <span class="subheading-title">2024 Summer iHUB Research Program</span>
+                    <span>July – August 2024</span>
+                </div>
+                <div class="subsubheading">About operational research led by Justin Holmer from Brown University, Shanghai</div>
+                <ul>
+                    <li>Served as the leader of a four-member group, conducted the research of logistics traffic configuration problem and got an A+ grade in the integrated survey rated by Professor Justin.</li>
+                </ul>
+                <div class="subheading">
+                    <span class="subheading-title">Delivery at International Conferences</span>
+                    <span>September – December 2024</span>
+                </div>
+                <div class="subsubheading">“2024 4th International Conference on Logistics System, Traffic and Transportation”, Guangzhou</div>
+                <ul>
+                    <li>Submitted “Taxicab Boarding Point Optimization Problem based on Integer Programming” to the 2024 4th International Conference on Logistics System, Traffic and Transportation and got accepted. Then attended this conference on December 7, 2024 and got the “Excellent Thesis Award”.</li>
+                </ul>
+                <div class="subheading">
+                    <span class="subheading-title">Comparison between Ship-then-shop Model and Traditional Model</span>
+                    <span>September 2024 – Present</span>
+                </div>
+                <div class="subsubheading">Cooperating with Jiancheng Lv and Xiaobei Shen</div>
+                <ul>
+                    <li>Read relevant essays about the emerging ship-then-shop model, consider the decision problem of monopoly conditions influenced by purchase intention and forecasting ability, and wrote a draft.</li>
                 </ul>
             </div>
             
             <div class="section">
                 <h2>Publications</h2>
-                <ul>
-                    <li>John Doe, Jane Smith. "Applications of Deep Learning in Image Recognition," <i>Journal of Computer Science</i>, 2022</li>
-                    <li>John Doe, Michael Brown. "Novel Approaches in Natural Language Processing," <i>Journal of Artificial Intelligence</i>, 2021</li>
-                </ul>
+                <div class="subheading">
+                    <span>“Taxicab Boarding Point Optimization Problem based on Integer Programming”</span>
+                    <span>Accepted</span>
+                </div>
+                <div class="subheading">
+                    <span>“Prediction and Purchase Intention Analysis of Ship-Then-Shop Model under Monopoly Conditions”</span>
+                    <span>Unpublished</span>
+                </div>
             </div>
             
             <div class="section">
-                <h2>Work Experience</h2>
+                <h2>Additional Information</h2>
                 <ul>
-                    <li><span class="highlight">Tech Corp</span>, Research Scientist, 2023 - Present</li>
-                    <li><span class="highlight">AI Research Institute</span>, Research Intern, 2020 - 2022</li>
+                    <li><strong>Computer Skills:</strong> Mathematica (1 yr), Python (4 yr), C (1 yr), LaTeX (Proficient)</li>
+                    <li><strong>Languages:</strong> Chinese (Native), English (Fluent)</li>
+                    <li><strong>Hobbies:</strong> Playing Bamboo Flute, Swimming, Singing</li>
                 </ul>
             </div>
         </div>
