@@ -11,8 +11,6 @@
             padding: 0;
             height: 100%;
             font-family: 'Georgia', serif;
-            overflow: hidden;
-            transition: background-color 0.5s ease;
             background-color: #f1f3f5;
         }
         #cover {
@@ -26,15 +24,6 @@
             align-items: center;
             gap: 20px;
             cursor: pointer;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-        }
-        #cover.visible {
-            opacity: 1;
-        }
-        #cover.hidden {
-            opacity: 0;
-            pointer-events: none;
         }
         #avatar-frame {
             width: 150px;
@@ -42,13 +31,6 @@
             border-radius: 50%;
             border: 3px solid white;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: opacity 2s ease-in-out, transform 2s ease-in-out;
-        }
-        #avatar-frame.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         #avatar-frame img {
             width: 100%;
@@ -62,13 +44,6 @@
             font-weight: 400;
             letter-spacing: 1px;
             text-align: center;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: opacity 2s ease-in-out, transform 2s ease-in-out;
-        }
-        #name.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         #slogan {
             color: white;
@@ -77,13 +52,6 @@
             font-weight: 400;
             letter-spacing: 1px;
             text-align: center;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: opacity 2s ease-in-out, transform 2s ease-in-out;
-        }
-        #slogan.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         #resume {
             display: none;
@@ -91,19 +59,15 @@
             background: linear-gradient(rgba(241, 243, 245, 0.9), rgba(241, 243, 245, 0.9)), url('https://www.transparenttextures.com/patterns/paper-fibers.png');
             min-height: 100vh;
             overflow-y: auto;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
         }
         #resume.visible {
             display: block;
-            opacity: 1;
         }
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: #ffffff;
             padding: 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             border-top: 1px solid #000;
         }
         .resume-heading {
@@ -131,12 +95,6 @@
         .section {
             padding: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .subheading {
             display: flex;
@@ -219,7 +177,7 @@
                 <ul>
                     <li>“Zhang Zongzhi Sci-Tech Scholarship”</li>
                     <li>“Outstanding Freshman Scholarship (Grade 2)”</li>
-                    <li>Honorable Mention, Mathematical Contest in Modeling<sup>&reg;</sup> (MCM), Problem B, 2025</li>
+                    <li>Honorable Mention, Mathematical Contest in Modeling<sup>®</sup> (MCM), Problem B, 2025</li>
                 </ul>
             </div>
 
@@ -281,30 +239,12 @@
     <script>
         const cover = document.getElementById('cover');
         const resume = document.getElementById('resume');
-        const slogan = document.getElementById('slogan');
-        const avatarFrame = document.getElementById('avatar-frame');
-        const name = document.getElementById('name');
-
-        // 添加封面、头像、名称和标语动画
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                cover.classList.add('visible');
-                setTimeout(() => {
-                    avatarFrame.classList.add('visible');
-                    name.classList.add('visible');
-                    slogan.classList.add('visible');
-                }, 1500); // 在封面动画完成后触发头像、名称和标语动画
-            }, 100); // 延迟100ms以确保页面加载完成
-        });
 
         // 点击封面切换到简历页面
         cover.addEventListener('click', () => {
-            cover.classList.add('hidden');
-            setTimeout(() => {
-                cover.style.display = 'none';
-                resume.classList.add('visible');
-                document.body.style.overflow = 'auto';
-            }, 1500); // 与CSS中的transition时间匹配
+            cover.style.display = 'none';
+            resume.style.display = 'block';
+            document.body.style.overflow = 'auto';
         });
     </script>
 </body>
