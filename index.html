@@ -202,6 +202,9 @@ body.dark-mode h2,
 body.dark-mode .resume-heading {
   color: #ffffff;
 }
+body.dark-mode h2 {
+  border-bottom: 1px solid #666; /* 将细线变为浅灰色 */
+}
 body.dark-mode li,
 body.dark-mode .subsubheading,
 body.dark-mode .contact-info {
@@ -308,7 +311,6 @@ const toggleBtn = document.getElementById('toggle-btn');
 
 // 页面加载动画和自动切换
 window.addEventListener('load', () => {
-  // 根据北京时间自动切换模式
   const now = new Date();
   const beijingHour = (now.getUTCHours() + 8) % 24;
   if (beijingHour >= 18 || beijingHour < 6) {
@@ -325,7 +327,6 @@ window.addEventListener('load', () => {
     }, 1500);
   }, 100);
 });
-// 点击封面切换到简历
 cover.addEventListener('click', () => {
   cover.classList.add('hidden');
   setTimeout(() => {
@@ -334,7 +335,6 @@ cover.addEventListener('click', () => {
     document.body.style.overflow = 'auto';
   }, 1500);
 });
-// 手动切换
 toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
 });
