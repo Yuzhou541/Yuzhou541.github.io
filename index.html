@@ -168,10 +168,6 @@ li {
 ul li::marker {
   font-size: 0.6em;
 }
-.highlight {
-  color: #3498db;
-  font-weight: bold;
-}
 a.download-link {
   color: #3498db;
   text-decoration: none;
@@ -199,22 +195,18 @@ body.dark-mode .container {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   border-top: 1px solid #444;
 }
-/* 保留 subheading-title 为蓝色 */
 body.dark-mode .subheading-title {
   color: #3498db;
 }
-/* 其他标题白色 */
 body.dark-mode h2,
 body.dark-mode .resume-heading {
   color: #ffffff;
 }
-/* 正文副标题等柔和灰色 */
 body.dark-mode li,
 body.dark-mode .subsubheading,
 body.dark-mode .contact-info {
   color: #cccccc;
 }
-/* 链接仍为浅蓝色 */
 body.dark-mode a.download-link {
   color: #90caf9;
 }
@@ -279,8 +271,8 @@ body.dark-mode a.download-link {
         <span class="subheading-title">Teaching assistant of "Probability Theory and Mathematical Statistics"</span>
         <span>Expected September 2025 – January 2026</span>
       </div>
-      <div class="subsubheading">Compile the reference answers for "Probability Theory and Mathematical Statistics" (by Baiqi Miu and Weiping Zhang)</div>
-      <a class="download-link" href="./Reference_Answer_of_''Probability_Theory_and_Mathematical_Statistics''_(by Baiqi Miu and Weiping Zhang).pdf" download>Click here to download: Reference Answer</a>
+      <div class="subsubheading">Compile the reference answers for "Probability Theory and Mathematical Statistics"</div>
+      <a class="download-link" href="#" download>Click here to download: Reference Answer</a>
     </div>
     <div class="section">
       <h2>Research Projects</h2>
@@ -297,11 +289,11 @@ body.dark-mode a.download-link {
     <div class="section">
       <h2>Additional Skills/Information</h2>
       <ul>
-        <li><strong>Computer Skills:</strong> Mathematica (Proficient), Python (4 yr), C (2 yr), LaTeX (Proficient)</li>
-        <li><strong>Languages:</strong> Chinese (Native), English (Fluent)</li>
-        <li><strong>Hobbies:</strong> Playing Bamboo Flute, Swimming, Singing</li>
+        <li><strong>Computer Skills:</strong> Mathematica, Python, C, LaTeX</li>
+        <li><strong>Languages:</strong> Chinese, English</li>
+        <li><strong>Hobbies:</strong> Bamboo Flute, Swimming, Singing</li>
         <li><strong>Reflections and Essays:</strong> Stardust Meditations</li>
-        <a class="download-link" href="./Stardust_Meditations.pdf" download>Click here to download: Stardust Meditations</a>
+        <a class="download-link" href="#" download>Click here to download: Stardust Meditations</a>
       </ul>
     </div>
   </div>
@@ -313,7 +305,17 @@ const slogan = document.getElementById('slogan');
 const avatarFrame = document.getElementById('avatar-frame');
 const name = document.getElementById('name');
 const toggleBtn = document.getElementById('toggle-btn');
+
+// 页面加载动画和自动切换
 window.addEventListener('load', () => {
+  // 根据北京时间自动切换模式
+  const now = new Date();
+  const beijingHour = (now.getUTCHours() + 8) % 24;
+  if (beijingHour >= 18 || beijingHour < 6) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
   setTimeout(() => {
     cover.classList.add('visible');
     setTimeout(() => {
@@ -323,6 +325,7 @@ window.addEventListener('load', () => {
     }, 1500);
   }, 100);
 });
+// 点击封面切换到简历
 cover.addEventListener('click', () => {
   cover.classList.add('hidden');
   setTimeout(() => {
@@ -331,6 +334,7 @@ cover.addEventListener('click', () => {
     document.body.style.overflow = 'auto';
   }, 1500);
 });
+// 手动切换
 toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
 });
