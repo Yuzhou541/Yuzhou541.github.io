@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stardust-math_Personal Academic Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -54,6 +54,21 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        #name {
+            color: white;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+        }
+        #name.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         #slogan {
             color: white;
@@ -163,6 +178,7 @@
         <div id="avatar-frame">
             <img src="./avatar.jpg" alt="Profile Avatar">
         </div>
+        <div id="name">Stardust</div>
         <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
     </div>
     <div id="resume">
@@ -184,14 +200,14 @@
                 <ul>
                     <li>GPA: 3.41/4.3</li>
                     <li>Ranking: 98/205 in major of mathematics in the first school year</li>
-                    <li>Related Courses: Mathematical Analysis -- 90; Symbolic Computing Software -- A+ (&gt;95); Probability and Mathematical Statistics -- 94</li>
+                    <li>Related Courses: Mathematical Analysis -- 90; Symbolic Computing Software -- A+ (>95); Probability and Mathematical Statistics -- 94</li>
                 </ul>
             </div>
             
             <div class="section">
                 <h2>Honors and Awards</h2>
                 <ul>
-                    <li>“Zhang Zongzhi Sci-Tech Scholarship” (About top 20% in School of Mathematical Sciences)</li>
+                    <li>“Zhang Zongzhi Sci-Tech Scholarship” (About top 20% ruler School of Mathematical Sciences)</li>
                     <li>“Outstanding Freshman Scholarship (Grade 2)”</li>
                 </ul>
             </div>
@@ -204,7 +220,7 @@
                 </div>
                 <div class="subsubheading">Cooperating with Xiaobei Shen, Jiancheng Lv and Qi Cheng</div>
                 <ul>
-                    <li>Read relevant essays about the emerging ship-then-shop model, consider the decision problem of monopoly conditions influenced by purchase intention and forecasting ability, and wrote a draft.</li>
+                    <li>Read relevant essays about the emerging ship-then-shop model, consider the decision problem of monopoly conditions influenced by purchase intention and forecasting ability, and wrote a draft.</，且>
                 </ul>
             </div>
             
@@ -232,15 +248,17 @@
         const resume = document.getElementById('resume');
         const slogan = document.getElementById('slogan');
         const avatarFrame = document.getElementById('avatar-frame');
+        const name = document.getElementById('name');
 
-        // 添加封面、头像和标语动画
+        // 添加封面、头像、名称和标语动画
         window.addEventListener('load', () => {
             setTimeout(() => {
                 cover.classList.add('visible');
                 setTimeout(() => {
                     avatarFrame.classList.add('visible');
+                    name.classList.add('visible');
                     slogan.classList.add('visible');
-                }, 1500); // 在封面动画完成后触发头像和标语动画
+                }, 1500); // 在封面动画完成后触发头像、名称和标语动画
             }, 100); // 延迟100ms以确保页面加载完成
         });
 
