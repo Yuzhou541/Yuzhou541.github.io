@@ -250,19 +250,6 @@
     z-index: 9999;
     white-space: nowrap;
   }
-  /* 天气显示器样式 */
-  #weather {
-    position: fixed;
-    top: 45px; /* 在clock下方 */
-    left: 15px;
-    background-color: rgba(52, 152, 219, 0.9);
-    color: white;
-    padding: 6px 10px;
-    border-radius: 5px;
-    font-size: 0.9em;
-    z-index: 9999;
-    white-space: nowrap;
-  }
 </style>
 </head>
 <body>
@@ -276,8 +263,7 @@
 
   <div id="resume">
     <button id="toggle-btn">Toggle Dark/Light</button>
-    <div id="clock">Loading time...</div>
-    <div id="weather">Loading weather...</div>
+    <div id="clock"></div>
 
     <div class="container">
       <div class="resume-heading">Jinghao Chen</div>
@@ -368,149 +354,115 @@
     </div>
   </div>
 
-<script>
-  const cover = document.getElementById('cover');
-  const resume = document.getElementById('resume');
-  const slogan = document.getElementById('slogan');
-  const avatarFrame = document.getElementById('avatar-frame');
-  const name = document.getElementById('name');
-  const toggleBtn = document.getElementById('toggle-btn');
-  const clock = document.getElementById('clock');
-  const weatherDiv = document.getElementById('weather');
+  <script>
+    const cover = document.getElementById('cover');
+    const resume = document.getElementById('resume');
+    const slogan = document.getElementById('slogan');
+    const avatarFrame = document.getElementById('avatar-frame');
+    const name = document.getElementById('name');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const clock = document.getElementById('clock');
 
-  const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY'; // 替换为你的OpenWeatherMap API Key
-
-  // 页面加载时封面动画
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      cover.classList.add('visible');
+    // 页面加载时封面动画
+    window.addEventListener('load', () => {
       setTimeout(() => {
-        avatarFrame.classList.add('visible');
-        name.classList.add('visible');
-        slogan.classList.add('visible');
-      }, 1500);
-    }, 100);
+        cover.classList.add('visible');
+        setTimeout(() => {
+          avatarFrame.classList.add('visible');
+          name.classList.add('visible');
+          slogan.classList.add('visible');
+        }, 1500);
+      }, 100);
 
-    // 读取本地存储的主题
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
+      // 先尝试读取本地存储的主题偏好
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        if (savedTheme === 'dark') {
+          document.body.classList.add('dark-mode');
+        } else {
+          document.body.classList.remove('dark-mode');
+        }
       } else {
-        document.body.classList.remove('dark-mode');
+        // 无本地存储，自动根据北京时间切换
+        autoThemeByBeijingTime();
       }
-    } else {
-      // 根据北京时间自动切换
-      autoThemeByBeijingTime();
-    }
-    updateToggleBtnText();
-    startClock();
-    loadWeather();
-  });
+      updateToggleBtnText();
+      startClock();
+    });
 
-  // 点击封面切换简历页面
-  cover.addEventListener('click', () => {
-    cover.classList.add('hidden');
-    setTimeout(() => {
-      cover.style.display = 'none';
-      resume.classList.add('visible');
-      document.body.style.overflow = 'auto';
-    }, 1500);
-  });
+    // 点击封面切换简历页面
+    cover.addEventListener('click', () => {
+      cover.classList.add('hidden');
+      setTimeout(() => {
+        cover.style.display = 'none';
+        resume.classList.add('visible');
+        document.body.style.overflow = 'auto';
+      }, 1500);
+    });
 
-  // 暗黑模式切换按钮事件
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    updateToggleBtnText();
-  });
+    // 切换暗黑模式按钮事件
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateToggleBtnText();
+    });
 
-  function updateToggleBtnText() {
-    if (document.body.classList.contains('dark-mode')) {
-      toggleBtn.textContent = 'Switch to Light Mode';
-    } else {
-      toggleBtn.textContent = 'Switch to Dark Mode';
-    }
-  }
-
-  // 根据北京时间自动设置主题
-  function autoThemeByBeijingTime() {
-    try {
-      const now = new Date();
-      // 转为北京时间 UTC+8
-      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-      const beijingTime = new Date(utc + 8 * 3600000);
-      const hour = beijingTime.getHours();
-
-      if (hour >= 18 || hour < 6) {
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
+    function updateToggleBtnText() {
+      if (document.body.classList.contains('dark-mode')) {
+        toggleBtn.textContent = 'Switch to Light Mode';
       } else {
+        toggleBtn.textContent = 'Switch to Dark Mode';
+      }
+    }
+
+    // 根据北京时间自动设置主题
+    function autoThemeByBeijingTime() {
+      try {
+        const now = new Date();
+        // 转换为北京时间：UTC+8
+        const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+        const beijingTime = new Date(utc + 8 * 3600000);
+        const hour = beijingTime.getHours();
+
+        if (hour >= 18 || hour < 6) {
+          document.body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.body.classList.remove('dark-mode');
+          localStorage.setItem('theme', 'light');
+        }
+      } catch (e) {
+        // 若出错，默认浅色
         document.body.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
       }
-    } catch {
-      document.body.classList.remove('dark-mode');
-      localStorage.setItem('theme', 'light');
-    }
-  }
-
-  // 时钟功能，显示国家码 + 时区 + 时:分
-  function startClock() {
-    updateClock();
-    setInterval(updateClock, 1000);
-  }
-
-  function updateClock() {
-    const now = new Date();
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    const countryCode = timeZone.includes('/') ? timeZone.split('/')[0].slice(0, 2).toUpperCase() : 'XX';
-    const timeZoneName = now.toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ').pop();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const mins = now.getMinutes().toString().padStart(2, '0');
-    clock.textContent = `${countryCode} ${timeZoneName} - ${hours}:${mins}`;
-  }
-
-  // 加载天气信息
-  function loadWeather() {
-    if (!navigator.geolocation) {
-      weatherDiv.textContent = 'Geolocation not supported';
-      return;
     }
 
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        fetchWeather(lat, lon);
-      },
-      err => {
-        weatherDiv.textContent = 'Location permission denied';
-        console.warn(err);
-      }
-    );
-  }
+    // 时钟显示，显示国家代码 + 时区 + 时:分
+    function startClock() {
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
 
-  // 调用天气API
-  function fetchWeather(lat, lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.main && data.weather) {
-          const temp = data.main.temp.toFixed(1);
-          const desc = data.weather[0].description;
-          const city = data.name;
-          weatherDiv.textContent = `${city}: ${temp}°C, ${desc}`;
-        } else {
-          weatherDiv.textContent = 'Weather info unavailable';
-        }
-      })
-      .catch(err => {
-        weatherDiv.textContent = 'Weather info unavailable';
-        console.error(err);
-      });
-  }
-</script>
+    function updateClock() {
+      const now = new Date();
+
+      // 取用户时区缩写（比较复杂，简化处理）
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
+      // 简化国家代码：取时区前两字母大写（如 Asia/Shanghai => AS）
+      const countryCode = timeZone.includes('/') ? timeZone.split('/')[0].slice(0, 2).toUpperCase() : 'XX';
+
+      // 获取时区缩写
+      const timeZoneName = now.toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ').pop();
+
+      // 时分
+      const hours = now.getHours().toString().padStart(2, '0');
+      const mins = now.getMinutes().toString().padStart(2, '0');
+
+      clock.textContent = `${countryCode} ${timeZoneName} - ${hours}:${mins}`;
+    }
+  </script>
 </body>
 </html>
