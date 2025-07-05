@@ -70,6 +70,39 @@
     height: 40px;
   }
   
+  /* Ripple effect */
+  .ripple {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(52, 152, 219, 0.5);
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s ease-out;
+  }
+  
+  @keyframes ripple {
+    to {
+      transform: translate(-50%, -50%) scale(4);
+      opacity: 0;
+    }
+  }
+  
+  /* Cover cursor style */
+  #cover .cursor-inner {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  #cover .cursor-outer {
+    width: 20px;
+    height: 20px;
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  
   /* Hide cursor on touch devices */
   @media (hover: none) {
     .custom-cursor {
@@ -677,12 +710,24 @@
         cursorInner.style.top = `${positions.mouseY}px`;
       });
       
-      // Click effect
-      document.addEventListener('mousedown', () => {
+      // Click effect and ripple
+      document.addEventListener('mousedown', (e) => {
         cursorInner.classList.add('click');
         if (!document.body.classList.contains('dark-mode')) {
           cursorOuter.classList.add('click');
         }
+        
+        // Create ripple effect
+        const ripple = document.createElement('div');
+        ripple.classList.add('ripple');
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        
+        // Remove ripple after animation completes
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
       });
       
       document.addEventListener('mouseup', () => {
@@ -708,6 +753,28 @@
             cursorOuter.classList.remove('hover');
           }
         });
+      });
+      
+      // Special cursor for cover
+      const cover = document.getElementById('cover');
+      cover.addEventListener('mouseenter', () => {
+        cursorInner.style.width = '10px';
+        cursorInner.style.height = '10px';
+        cursorInner.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+        
+        cursorOuter.style.width = '20px';
+        cursorOuter.style.height = '20px';
+        cursorOuter.style.borderColor = 'rgba(255, 255, 255, 0.7)';
+      });
+      
+      cover.addEventListener('mouseleave', () => {
+        cursorInner.style.width = '';
+        cursorInner.style.height = '';
+        cursorInner.style.backgroundColor = '';
+        
+        cursorOuter.style.width = '';
+        cursorOuter.style.height = '';
+        cursorOuter.style.borderColor = '';
       });
     });
 
