@@ -41,19 +41,20 @@
   }
   
   .cursor-outer {
-    border: 2px solid #333; /* Darker color for light mode */
+    display: none; /* Hidden by default in light mode */
+    border: 2px solid #333;
     background-color: transparent;
     width: 30px;
     height: 30px;
   }
   
   .cursor-inner {
-    background-color: #333; /* Darker color for light mode */
+    background-color: #333; /* Dark color for light mode */
   }
   
   /* Dark mode cursor adjustments */
   body.dark-mode .cursor-outer {
-    display: none; /* Hide outer ring in dark mode */
+    display: none; /* Keep outer ring hidden in dark mode too */
   }
   
   body.dark-mode .cursor-inner {
@@ -83,6 +84,10 @@
     animation: ripple 0.6s ease-out;
   }
   
+  body.dark-mode .ripple {
+    background-color: rgba(106, 48, 147, 0.5); /* Purple matching button in dark mode */
+  }
+  
   @keyframes ripple {
     to {
       transform: translate(-50%, -50%) scale(4);
@@ -90,17 +95,13 @@
     }
   }
   
-  /* Cover cursor style */
+  /* Cover cursor style - now same as normal */
   #cover .cursor-inner {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
+    /* Same as normal cursor */
   }
   
   #cover .cursor-outer {
-    width: 20px;
-    height: 20px;
-    border-color: rgba(255, 255, 255, 0.7);
+    /* Same as normal cursor */
   }
   
   /* Hide cursor on touch devices */
@@ -713,9 +714,6 @@
       // Click effect and ripple
       document.addEventListener('mousedown', (e) => {
         cursorInner.classList.add('click');
-        if (!document.body.classList.contains('dark-mode')) {
-          cursorOuter.classList.add('click');
-        }
         
         // Create ripple effect
         const ripple = document.createElement('div');
@@ -732,9 +730,6 @@
       
       document.addEventListener('mouseup', () => {
         cursorInner.classList.remove('click');
-        if (!document.body.classList.contains('dark-mode')) {
-          cursorOuter.classList.remove('click');
-        }
       });
       
       // Hover effects
@@ -742,39 +737,11 @@
       hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
           cursorInner.classList.add('hover');
-          if (!document.body.classList.contains('dark-mode')) {
-            cursorOuter.classList.add('hover');
-          }
         });
         
         el.addEventListener('mouseleave', () => {
           cursorInner.classList.remove('hover');
-          if (!document.body.classList.contains('dark-mode')) {
-            cursorOuter.classList.remove('hover');
-          }
         });
-      });
-      
-      // Special cursor for cover
-      const cover = document.getElementById('cover');
-      cover.addEventListener('mouseenter', () => {
-        cursorInner.style.width = '10px';
-        cursorInner.style.height = '10px';
-        cursorInner.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-        
-        cursorOuter.style.width = '20px';
-        cursorOuter.style.height = '20px';
-        cursorOuter.style.borderColor = 'rgba(255, 255, 255, 0.7)';
-      });
-      
-      cover.addEventListener('mouseleave', () => {
-        cursorInner.style.width = '';
-        cursorInner.style.height = '';
-        cursorInner.style.backgroundColor = '';
-        
-        cursorOuter.style.width = '';
-        cursorOuter.style.height = '';
-        cursorOuter.style.borderColor = '';
       });
     });
 
