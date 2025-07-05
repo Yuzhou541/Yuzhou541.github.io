@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -370,7 +370,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* 高级主题切换按钮 */
+  /* Enhanced Theme Toggle Button */
   #toggle-btn {
     position: fixed;
     top: 20px;
@@ -431,17 +431,17 @@
     font-size: 1.2em;
   }
 
-  /* 黑暗模式下的按钮样式 */
+  /* Dark mode button styling */
   body.dark-mode #toggle-btn {
-    background: linear-gradient(145deg, #555, #333);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #6a3093, #4a148c);
+    box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
 
   body.dark-mode #toggle-btn::before {
-    background: linear-gradient(145deg, #333, #555);
+    background: linear-gradient(145deg, #4a148c, #6a3093);
   }
 
-  /* 高级时钟设计 */
+  /* Enhanced Clock Design */
   #clock {
     position: fixed;
     top: 20px;
@@ -468,28 +468,28 @@
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
   }
 
-  /* 黑暗模式下的时钟样式 */
+  /* Dark mode clock styling */
   body.dark-mode #clock {
-    background: rgba(30, 30, 30, 0.9);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: rgba(106, 48, 147, 0.9);
+    box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
 </style>
 </head>
 <body>
-  <div id="cover" role="button" aria-label="点击查看简历">
+  <div id="cover" role="button" aria-label="Click to view resume">
     <div id="avatar-frame">
-      <img src="./avatar.jpg" alt="个人头像" loading="lazy" />
+      <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
     </div>
     <div id="name">Stardust</div>
     <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
-    <div id="scroll-hint">滚动</div>
+    <div id="scroll-hint">Scroll</div>
   </div>
 
   <div id="resume">
     <button id="toggle-btn">
       <span>
         <i>🌙</i>
-        深色模式
+        Dark Mode
       </span>
     </button>
     <div id="clock">GMT+8 00:00</div>
@@ -698,7 +698,7 @@
       toggleBtn.innerHTML = `
         <span>
           <i>${isDark ? '☀️' : '🌙'}</i>
-          ${isDark ? "浅色模式" : "深色模式"}
+          ${isDark ? "Light Mode" : "Dark Mode"}
         </span>
       `;
     }
