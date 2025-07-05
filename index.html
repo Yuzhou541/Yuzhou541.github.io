@@ -596,18 +596,15 @@
 
     function updateClock() {
       const now = new Date();
-      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
-      const countryCode = timeZone.includes("/")
-        ? timeZone.split("/")[0].slice(0, 2).toUpperCase()
-        : "XX";
       const timeZoneName = now
         .toLocaleTimeString("en-us", { timeZoneName: "short" })
         .split(" ")
         .pop();
       const hours = now.getHours().toString().padStart(2, "0");
       const mins = now.getMinutes().toString().padStart(2, "0");
-      clock.textContent = `${countryCode} ${timeZoneName} - ${hours}:${mins}`;
+      clock.textContent = `${timeZoneName} - ${hours}:${mins}`;
     }
+
   </script>
 </body>
 </html>
