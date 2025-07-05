@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Stardust-math_Personal Academic Website</title>
+<title>Stardust-math_个人学术网站</title>
 <link
   href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap"
   rel="stylesheet"
@@ -370,53 +370,129 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* Theme Toggle Button */
+  /* 高级主题切换按钮 */
   #toggle-btn {
     position: fixed;
-    top: 15px;
-    right: 15px;
-    padding: 8px 12px;
-    background-color: #3498db;
+    top: 20px;
+    right: 20px;
+    width: 120px;
+    height: 50px;
+    background: linear-gradient(145deg, #3498db, #2980b9);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 0.9em;
     z-index: 9999;
-    transition: background-color 0.3s ease;
-  }
-  #toggle-btn:hover {
-    background-color: #2980b9;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
 
-  /* Clock */
+  #toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+  }
+
+  #toggle-btn:active {
+    transform: translateY(1px);
+  }
+
+  #toggle-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #2980b9, #3498db);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  #toggle-btn:hover::before {
+    opacity: 1;
+  }
+
+  #toggle-btn span {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #toggle-btn i {
+    font-style: normal;
+    font-size: 1.2em;
+  }
+
+  /* 黑暗模式下的按钮样式 */
+  body.dark-mode #toggle-btn {
+    background: linear-gradient(145deg, #555, #333);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  body.dark-mode #toggle-btn::before {
+    background: linear-gradient(145deg, #333, #555);
+  }
+
+  /* 高级时钟设计 */
   #clock {
     position: fixed;
-    top: 15px;
-    left: 15px;
-    background-color: rgba(52, 152, 219, 0.9);
+    top: 20px;
+    left: 20px;
+    background: rgba(52, 152, 219, 0.9);
     color: white;
-    padding: 6px 10px;
-    border-radius: 5px;
-    font-size: 0.9em;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 1em;
     z-index: 9999;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    transition: all 0.4s ease;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  #clock:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+  }
+
+  /* 黑暗模式下的时钟样式 */
+  body.dark-mode #clock {
+    background: rgba(30, 30, 30, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
 </style>
 </head>
 <body>
-  <div id="cover" role="button" aria-label="Click to view resume">
+  <div id="cover" role="button" aria-label="点击查看简历">
     <div id="avatar-frame">
-      <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
+      <img src="./avatar.jpg" alt="个人头像" loading="lazy" />
     </div>
     <div id="name">Stardust</div>
     <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
-    <div id="scroll-hint">Scroll</div>
+    <div id="scroll-hint">滚动</div>
   </div>
 
   <div id="resume">
-    <button id="toggle-btn">Toggle Dark/Light</button>
-    <div id="clock"></div>
+    <button id="toggle-btn">
+      <span>
+        <i>🌙</i>
+        深色模式
+      </span>
+    </button>
+    <div id="clock">GMT+8 00:00</div>
     <div class="container">
       <div class="resume-heading">Jinghao Chen</div>
       <p class="contact-info">
@@ -618,9 +694,13 @@
     });
 
     function updateToggleBtnText() {
-      toggleBtn.textContent = document.body.classList.contains("dark-mode")
-        ? "Switch to Light Mode"
-        : "Switch to Dark Mode";
+      const isDark = document.body.classList.contains("dark-mode");
+      toggleBtn.innerHTML = `
+        <span>
+          <i>${isDark ? '☀️' : '🌙'}</i>
+          ${isDark ? "浅色模式" : "深色模式"}
+        </span>
+      `;
     }
 
     function applyTheme(theme) {
@@ -659,7 +739,7 @@
         .pop();
       const hours = now.getHours().toString().padStart(2, "0");
       const mins = now.getMinutes().toString().padStart(2, "0");
-      clock.textContent = `${timeZoneName} - ${hours}:${mins}`;
+      clock.textContent = `${timeZoneName} ${hours}:${mins}`;
     }
   </script>
 </body>
