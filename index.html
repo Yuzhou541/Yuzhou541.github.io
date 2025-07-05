@@ -1,36 +1,31 @@
+怎么把下面的封面改的更高级：
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Stardust-math_Personal Academic Website</title>
 <link
   href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap"
   rel="stylesheet"
 />
 <style>
-  /* 基础样式，去掉body和html的overflow:hidden，改成封面专属滚动锁定 */
+  /* Reset & 基础 */
   body,
   html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: "Georgia", serif;
+    overflow: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
     background-color: #f1f3f5;
     color: #000;
   }
 
-  /* 封面时禁用页面滚动（用class控制） */
-  body.cover-active {
-    overflow: hidden;
-  }
-
   /* 封面整体 */
   #cover {
-    position: fixed; /* fixed改成fixed，确保覆盖全屏 */
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: 100vh;
     background: url("./cover.jpg") no-repeat center center/cover;
@@ -42,18 +37,24 @@
     cursor: pointer;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
-    z-index: 1000; /* 盖住简历内容 */
+    /* 文字上层 z-index */
+    z-index: 10;
   }
 
+  /* 遮罩层：半透明黑 + 模糊 */
   #cover::before {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
-    z-index: 1;
+    z-index: 11;
   }
 
+  /* 背景动态渐变叠加层 */
   #cover::after {
     content: "";
     position: absolute;
@@ -65,7 +66,7 @@
     );
     mix-blend-mode: screen;
     pointer-events: none;
-    z-index: 2;
+    z-index: 12;
     opacity: 0.6;
     animation: gradientShift 20s ease infinite;
   }
@@ -80,6 +81,7 @@
     }
   }
 
+  /* 显示隐藏控制 */
   #cover.visible {
     opacity: 1;
   }
@@ -88,34 +90,28 @@
     pointer-events: none;
   }
 
-  /* 2. 头像光晕升级 */
+  /* 头像框及光晕 */
   #avatar-frame {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.9);
-    overflow: visible;
-    box-shadow:
-      0 0 20px rgba(52, 152, 219, 0.8),
-      0 0 40px rgba(155, 89, 182, 0.6);
-    animation: pulseGlow 4s ease-in-out infinite;
-    transition: transform 0.6s ease;
-    z-index: 10;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    overflow: hidden;
     opacity: 0;
     transform: translateY(100px);
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+    z-index: 20;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    animation: pulse 3s infinite;
   }
-  @keyframes pulseGlow {
+  @keyframes pulse {
     0%,
     100% {
-      box-shadow:
-        0 0 20px rgba(52, 152, 219, 0.8),
-        0 0 40px rgba(155, 89, 182, 0.6);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     }
     50% {
-      box-shadow:
-        0 0 30px rgba(52, 152, 219, 1),
-        0 0 60px rgba(155, 89, 182, 0.9);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
     }
   }
   #avatar-frame.visible {
@@ -127,39 +123,24 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 50%;
   }
 
-  /* 3. 文字动画微调 */
+  /* 名字和标语 */
   #name,
   #slogan {
     position: relative;
-    z-index: 10;
+    z-index: 20;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.5s ease, transform 1.5s ease;
-    will-change: transform, opacity;
+    transform: translateY(100px);
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
     text-align: center;
     max-width: 90vw;
     word-break: break-word;
   }
-  #name.visible {
-    opacity: 1;
-    transform: translateY(0);
-    animation: floatUp 4s ease-in-out infinite alternate;
-  }
+  #name.visible,
   #slogan.visible {
     opacity: 1;
     transform: translateY(0);
-    animation: floatUp 5s ease-in-out infinite alternate 0.5s;
-  }
-  @keyframes floatUp {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-8px);
-    }
   }
 
   #name {
@@ -167,6 +148,7 @@
     font-family: "Great Vibes", cursive;
     font-size: 2em;
     letter-spacing: 1px;
+    /* 多重阴影增强立体感 */
     text-shadow:
       0 0 8px rgba(255, 255, 255, 0.7),
       0 0 12px rgba(255, 255, 255, 0.5),
@@ -176,44 +158,56 @@
     color: white;
     font-family: "Allura", cursive;
     font-size: 2.5em;
+    /* 多重阴影，突出文字 */
     text-shadow:
       0 0 6px rgba(0, 0, 0, 0.7),
       0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /* 4. 滚动提示改进 */
+  /* 修改后的箭头样式 */
   #scroll-hint {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.85);
-    user-select: none;
-    cursor: default;
     position: absolute;
-    bottom: 25px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10;
+    color: white;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    animation: bounce 2s infinite;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: bounce 2.5s infinite;
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+    z-index: 20;
+    user-select: none;
+    pointer-events: none;
   }
-  #scroll-hint.visible {
-    opacity: 0.85;
-  }
-  #scroll-hint svg {
-    margin-top: 6px;
-    width: 24px;
+  
+  #scroll-hint::after {
+    content: "";
+    display: block;
+    width: 16px;
     height: 24px;
-    stroke: rgba(255, 255, 255, 0.85);
-    stroke-width: 2;
-    fill: none;
-    animation: scrollArrow 2.5s infinite;
+    border: 1.5px solid white;
+    border-radius: 8px;
+    margin-top: 8px;
   }
+  
+  #scroll-hint::before {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 6px;
+    background: white;
+    border-radius: 1.5px;
+    position: absolute;
+    top: 28px;
+    animation: scroll 2s infinite;
+  }
+  
   @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
       transform: translateY(0) translateX(-50%);
@@ -225,32 +219,19 @@
       transform: translateY(-5px) translateX(-50%);
     }
   }
-  @keyframes scrollArrow {
+  
+  @keyframes scroll {
     0% {
-      transform: translateY(0);
       opacity: 1;
+      transform: translateY(0);
     }
     100% {
-      transform: translateY(12px);
       opacity: 0;
+      transform: translateY(10px);
     }
   }
 
-  /* 响应式字体调整 */
-  @media (max-width: 600px) {
-    #name {
-      font-size: 1.6em !important;
-    }
-    #slogan {
-      font-size: 1.8em !important;
-    }
-    #avatar-frame {
-      width: 120px;
-      height: 120px;
-    }
-  }
-
-  /* 简历页面 */
+  /* 以下全部保留你原代码，不做改动 */
   #resume {
     display: none;
     padding: 40px 20px;
@@ -354,7 +335,6 @@
     margin-left: 20px;
   }
 
-  /* 暗黑模式 */
   body.dark-mode {
     background-color: #121212;
     color: #ffffff;
@@ -393,7 +373,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* 主题切换按钮样式保持你之前样式 */
+  /* 主题切换按钮 */
   #toggle-btn {
     position: fixed;
     top: 15px;
@@ -405,15 +385,14 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9em;
-    z-index: 1100;
+    z-index: 9999;
     transition: background-color 0.3s ease;
-    box-shadow: 0 2px 6px rgba(52, 152, 219, 0.8);
   }
   #toggle-btn:hover {
     background-color: #2980b9;
   }
 
-  /* 实时时钟样式 */
+  /* 时钟 */
   #clock {
     position: fixed;
     top: 15px;
@@ -423,24 +402,19 @@
     padding: 6px 10px;
     border-radius: 5px;
     font-size: 0.9em;
-    z-index: 1100;
+    z-index: 9999;
     white-space: nowrap;
-    user-select: none;
   }
 </style>
 </head>
-<body class="cover-active">
+<body>
   <div id="cover" role="button" aria-label="Click to view resume">
     <div id="avatar-frame">
       <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
     </div>
     <div id="name">Stardust</div>
     <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
-    <div id="scroll-hint">Scroll
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <polyline points="6 9 12 15 18 9" />
-      </svg>
-    </div>
+    <div id="scroll-hint">Scroll</div>
   </div>
 
   <div id="resume">
@@ -506,103 +480,135 @@
           <span class="subheading-title"></span>
           <span>September 2024 – Present</span>
         </div>
-        <div class="subsubheading">
-          Large Language Models (LLMs) in Education and Their Risks
+        <div class="subsubheading">Cooperating with </div>
+        <ul><li></li></ul>
+        <div class="subheading">
+          <span class="subheading-title"></span>
+          <span>July 2025 – Present</span>
         </div>
-        <ul>
-          <li>Risk analysis of ChatGPT in educational environments.</li>
-          <li>
-            Investigation on AI detection methods for academic integrity
-            maintenance.
-          </li>
-        </ul>
+        <div class="subsubheading">Cooperating with </div>
+        <ul><li></li></ul>
+        <div class="subheading">
+          <span class="subheading-title"></span>
+          <span>July 2025 – Present</span>
+        </div>
+        <div class="subsubheading">Cooperating with </div>
+        <ul><li></li></ul>
       </div>
       <div class="section">
-        <h2>Languages</h2>
+        <h2>Publications</h2>
+      </div>
+      <div class="section">
+        <h2>Additional Skills/Information</h2>
         <ul>
-          <li>Chinese: native speaker</li>
-          <li>English: TOEFL iBT 109</li>
+          <li>
+            <strong>Computer Skills:</strong> Mathematica (Proficient), Python (4
+            yr), C (2 yr), LaTeX (Proficient)
+          </li>
+          <li><strong>Languages:</strong> Chinese (Native), English (Fluent)</li>
+          <li><strong>Hobbies:</strong> Playing Bamboo Flute, Swimming, Singing</li>
+          <li><strong>Reflections and Essays: </strong>''Stardust Meditations''</li>
+          <a class="download-link" href="./Stardust_Meditations.pdf" download
+            >Click here to download: Stardust Meditations</a
+          >
         </ul>
       </div>
     </div>
   </div>
 
-<script>
-  // 页面载入时，检测系统主题首选项，动态设置暗黑模式
-  function applySystemTheme() {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (prefersDark) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }
-
-  // 监听系统主题切换事件，自动更新
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (e.matches) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  });
-
-  applySystemTheme();
-
-  // 封面元素渐显
-  function showCoverElements() {
-    document.getElementById("avatar-frame").classList.add("visible");
-    setTimeout(() => {
-      document.getElementById("name").classList.add("visible");
-    }, 400);
-    setTimeout(() => {
-      document.getElementById("slogan").classList.add("visible");
-    }, 800);
-    setTimeout(() => {
-      document.getElementById("scroll-hint").classList.add("visible");
-    }, 1200);
-  }
-
-  // 页面加载时显示封面内容
-  window.addEventListener("load", () => {
-    const cover = document.getElementById("cover");
-    cover.classList.add("visible");
-    showCoverElements();
-  });
-
-  // 点击封面进入简历页面，封面淡出，简历显现
-  document.getElementById("cover").addEventListener("click", () => {
+  <script>
     const cover = document.getElementById("cover");
     const resume = document.getElementById("resume");
-    cover.classList.add("hidden");
-    // 解锁滚动，显示简历
-    document.body.classList.remove("cover-active");
-    setTimeout(() => {
-      cover.style.display = "none";
-      resume.classList.add("visible");
-    }, 1500);
-  });
-
-  // 暗黑/浅色模式切换按钮
-  const toggleBtn = document.getElementById("toggle-btn");
-  toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-  });
-
-  // 实时显示本地时间（小时:分:秒，24小时制）
-  function updateClock() {
+    const avatarFrame = document.getElementById("avatar-frame");
+    const name = document.getElementById("name");
+    const slogan = document.getElementById("slogan");
+    const toggleBtn = document.getElementById("toggle-btn");
     const clock = document.getElementById("clock");
-    const now = new Date();
-    const options = {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-    };
-    clock.textContent = now.toLocaleTimeString([], options);
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
-</script>
+    const scrollHint = document.getElementById("scroll-hint");
+
+    // 封面渐进显示
+    function showCoverElements() {
+      avatarFrame.classList.add("visible");
+      setTimeout(() => {
+        name.classList.add("visible");
+      }, 400);
+      setTimeout(() => {
+        slogan.classList.add("visible");
+      }, 800);
+      setTimeout(() => {
+        scrollHint.style.opacity = "1";
+      }, 1200);
+    }
+
+    window.addEventListener("load", () => {
+      cover.classList.add("visible");
+      showCoverElements();
+      autoThemeByLocalTime();
+      updateToggleBtnText();
+      startClock();
+    });
+
+    // 点击封面切换到简历
+    cover.addEventListener("click", () => {
+      cover.classList.add("hidden");
+      setTimeout(() => {
+        cover.style.display = "none";
+        resume.classList.add("visible");
+        document.body.style.overflow = "auto";
+      }, 1500);
+      // 封面元素隐藏
+      avatarFrame.classList.remove("visible");
+      name.classList.remove("visible");
+      slogan.classList.remove("visible");
+      scrollHint.style.opacity = "0";
+    });
+
+    // 主题切换按钮逻辑
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      updateToggleBtnText();
+    });
+
+    function updateToggleBtnText() {
+      toggleBtn.textContent = document.body.classList.contains("dark-mode")
+        ? "Switch to Light Mode"
+        : "Switch to Dark Mode";
+    }
+
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    }
+
+    // 根据本地时间自动设置主题
+    function autoThemeByLocalTime() {
+      const hour = new Date().getHours();
+      applyTheme(hour >= 18 || hour < 6 ? "dark" : "light");
+    }
+
+    // 时钟显示功能
+    function startClock() {
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+      const countryCode = timeZone.includes("/")
+        ? timeZone.split("/")[0].slice(0, 2).toUpperCase()
+        : "XX";
+      const timeZoneName = now
+        .toLocaleTimeString("en-us", { timeZoneName: "short" })
+        .split(" ")
+        .pop();
+      const hours = now.getHours().toString().padStart(2, "0");
+      const mins = now.getMinutes().toString().padStart(2, "0");
+      clock.textContent = `${countryCode} ${timeZoneName} - ${hours}:${mins}`;
+    }
+  </script>
 </body>
 </html>
