@@ -21,6 +21,63 @@
     color: #000;
   }
 
+  /* Custom Cursor Styles */
+  * {
+    cursor: none !important;
+  }
+  
+  .custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: 
+      transform 0.15s ease,
+      width 0.2s ease,
+      height 0.2s ease,
+      background-color 0.5s ease;
+  }
+  
+  .cursor-outer {
+    border: 2px solid;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .cursor-inner {
+    background-color: #121212; /* Dark color for light mode */
+  }
+  
+  body.dark-mode .cursor-inner {
+    background-color: #f8f9fa; /* Light color for dark mode */
+  }
+  
+  /* Cursor states */
+  .custom-cursor.click {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  
+  .custom-cursor.hover {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Hide cursor on touch devices */
+  @media (hover: none) {
+    .custom-cursor {
+      display: none;
+    }
+    
+    * {
+      cursor: auto !important;
+    }
+  }
+
   /* Cover Container */
   #cover {
     position: fixed;
@@ -482,6 +539,10 @@
 </style>
 </head>
 <body>
+  <!-- Custom Cursor Elements -->
+  <div class="custom-cursor cursor-outer"></div>
+  <div class="custom-cursor cursor-inner"></div>
+
   <div id="cover" role="button" aria-label="Click to view resume">
     <div id="avatar-frame">
       <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
@@ -596,6 +657,53 @@
   </div>
 
   <script>
+    // Custom cursor functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const cursorOuter = document.querySelector('.cursor-outer');
+      const cursorInner = document.querySelector('.cursor-inner');
+      const positions = { mouseX: 0, mouseY: 0 };
+      
+      // Track cursor position
+      document.addEventListener('mousemove', (e) => {
+        positions.mouseX = e.clientX;
+        positions.mouseY = e.clientY;
+        
+        cursorOuter.style.left = `${positions.mouseX}px`;
+        cursorOuter.style.top = `${positions.mouseY}px`;
+        
+        // Inner cursor follows with slight delay
+        setTimeout(() => {
+          cursorInner.style.left = `${positions.mouseX}px`;
+          cursorInner.style.top = `${positions.mouseY}px`;
+        }, 50);
+      });
+      
+      // Click effect
+      document.addEventListener('mousedown', () => {
+        cursorOuter.classList.add('click');
+        cursorInner.classList.add('click');
+      });
+      
+      document.addEventListener('mouseup', () => {
+        cursorOuter.classList.remove('click');
+        cursorInner.classList.remove('click');
+      });
+      
+      // Hover effects
+      const hoverElements = document.querySelectorAll('a, button, [role="button"], #cover');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorOuter.classList.add('hover');
+          cursorInner.classList.add('hover');
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          cursorOuter.classList.remove('hover');
+          cursorInner.classList.remove('hover');
+        });
+      });
+    });
+
     const cover = document.getElementById("cover");
     const resume = document.getElementById("resume");
     const avatarFrame = document.getElementById("avatar-frame");
