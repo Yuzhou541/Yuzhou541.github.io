@@ -1,3 +1,4 @@
+能不能把简历页面的切换按钮和时钟分别变得更高级：
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -370,96 +371,37 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* Theme Toggle Button - 高级样式 */
+  /* Theme Toggle Button */
   #toggle-btn {
     position: fixed;
     top: 15px;
     right: 15px;
-    padding: 10px 18px;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    padding: 8px 12px;
+    background-color: #3498db;
     color: white;
     border: none;
-    border-radius: 30px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    font-weight: 600;
-    box-shadow:
-      0 4px 6px rgba(101, 41, 255, 0.4),
-      0 0 12px rgba(101, 41, 255, 0.7);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition:
-      background 0.3s ease,
-      box-shadow 0.3s ease,
-      transform 0.15s ease;
+    font-size: 0.9em;
     z-index: 9999;
-    user-select: none;
+    transition: background-color 0.3s ease;
   }
   #toggle-btn:hover {
-    background: linear-gradient(135deg, #7e34ff, #4a87ff);
-    box-shadow:
-      0 6px 10px rgba(126, 52, 255, 0.7),
-      0 0 18px rgba(126, 52, 255, 0.9);
-    transform: scale(1.05);
-  }
-  #toggle-btn:active {
-    transform: scale(0.95);
+    background-color: #2980b9;
   }
 
-  /* 按钮图标 - 太阳 */
-  #toggle-btn[data-theme="light"] .icon {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow:
-      0 -6px 0 #fff,
-      0 6px 0 #fff,
-      6px 0 0 #fff,
-      -6px 0 0 #fff,
-      4.2px 4.2px 0 #fff,
-      -4.2px 4.2px 0 #fff,
-      4.2px -4.2px 0 #fff,
-      -4.2px -4.2px 0 #fff;
-  }
-
-  /* 按钮图标 - 月亮 */
-  #toggle-btn[data-theme="dark"] .icon {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: inset -4px 0 0 0 #6a11cb;
-    clip-path: circle(50% at 35% 50%);
-  }
-
-  /* Clock - 高级样式 */
+  /* Clock */
   #clock {
     position: fixed;
     top: 15px;
     left: 15px;
-    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    background-color: rgba(52, 152, 219, 0.9);
     color: white;
-    padding: 8px 14px;
-    border-radius: 25px;
-    font-size: 1em;
-    font-weight: 600;
-    box-shadow:
-      0 4px 8px rgba(37, 117, 252, 0.7),
-      0 0 20px rgba(101, 41, 255, 0.8);
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
     z-index: 9999;
     white-space: nowrap;
-    user-select: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
-    transition: box-shadow 0.3s ease;
-  }
-  #clock:hover {
-    box-shadow:
-      0 6px 12px rgba(37, 117, 252, 0.9),
-      0 0 28px rgba(101, 41, 255, 1);
   }
 </style>
 </head>
@@ -474,10 +416,7 @@
   </div>
 
   <div id="resume">
-    <button id="toggle-btn" data-theme="light" aria-label="Toggle dark or light theme">
-      <span class="icon"></span>
-      <span class="text">Light Mode</span>
-    </button>
+    <button id="toggle-btn">Toggle Dark/Light</button>
     <div id="clock"></div>
     <div class="container">
       <div class="resume-heading">Jinghao Chen</div>
@@ -527,104 +466,202 @@
         </div>
         <a
           class="download-link"
-          href="./Reference_Answer_of_''Probability_Theory_and_Mathematical_Statistics''.pdf"
-          target="_blank"
-          >PDF Download</a
+          href="./Reference_Answer_of_''Probability_Theory_and_Mathematical_Statistics''_(by Baiqi_Miu_and_Weiping_Zhang).pdf"
+          download
+          >Click here to download: Reference Answer of
+          "Probability Theory and Mathematical Statistics"</a
         >
       </div>
       <div class="section">
+        <h2>Research Projects</h2>
+        <div class="subheading">
+          <span class="subheading-title"></span>
+          <span>September 2024 – Present</span>
+        </div>
+        <div class="subsubheading">Cooperating with </div>
+        <ul><li></li></ul>
+        <div class="subheading">
+          <span class="subheading-title"></span>
+          <span>July 2025 – Present</span>
+        </div>
+        <div class="subsubheading">Cooperating with </div>
+        <ul><li></li></ul>
+        <div class="subheading">
+          <span class="subheading-title"></span>
+          <span>July 2025 – Present</span>
+        </div>
+        <div class="subsubheading">Cooperating with </div>
+        <ul><li></li></ul>
+      </div>
+      <div class="section">
         <h2>Publications</h2>
+      </div>
+      <div class="section">
+        <h2>Additional Skills/Information</h2>
         <ul>
           <li>
-            Chen Jinghao, Jiang Yaqi. Properties of Solutions of Monotone
-            Iterative Systems for Stochastic Differential Equations with
-            Jumps. <i>Submitted</i>
+            <strong>Computer Skills:</strong> Mathematica (Proficient), Python (4
+            yr), C (2 yr), LaTeX (Proficient)
           </li>
-        </ul>
-      </div>
-      <div class="section">
-        <h2>Research Interests</h2>
-        <ul>
-          <li>Probability and stochastic processes</li>
-          <li>Stochastic differential equations with jumps</li>
-          <li>Mathematical finance and stochastic control</li>
-          <li>Mathematical optimization</li>
-          <li>Artificial intelligence</li>
-        </ul>
-      </div>
-      <div class="section">
-        <h2>Technical Skills</h2>
-        <ul>
-          <li>Programming: C++, Python, MATLAB</li>
-          <li>Tools: Git, LaTeX, Visual Studio Code</li>
-          <li>Data Science: Machine learning basics, Data visualization</li>
-        </ul>
-      </div>
-      <div class="section">
-        <h2>Projects</h2>
-        <ul>
-          <li>Developed a stochastic simulation model for financial markets.</li>
-          <li>Implemented machine learning algorithms for pattern recognition.</li>
-          <li>Contributed to open-source mathematical libraries.</li>
+          <li><strong>Languages:</strong> Chinese (Native), English (Fluent)</li>
+          <li><strong>Hobbies:</strong> Playing Bamboo Flute, Swimming, Singing</li>
+          <li><strong>Reflections and Essays: </strong>''Stardust Meditations''</li>
+          <a class="download-link" href="./Stardust_Meditations.pdf" download
+            >Click here to download: Stardust Meditations</a
+          >
         </ul>
       </div>
     </div>
   </div>
 
-<script>
-  const cover = document.getElementById("cover");
-  const avatarFrame = document.getElementById("avatar-frame");
-  const nameEl = document.getElementById("name");
-  const slogan = document.getElementById("slogan");
-  const scrollHint = document.getElementById("scroll-hint");
-  const resume = document.getElementById("resume");
-  const toggleBtn = document.getElementById("toggle-btn");
-  const clock = document.getElementById("clock");
+  <script>
+    const cover = document.getElementById("cover");
+    const resume = document.getElementById("resume");
+    const avatarFrame = document.getElementById("avatar-frame");
+    const name = document.getElementById("name");
+    const slogan = document.getElementById("slogan");
+    const toggleBtn = document.getElementById("toggle-btn");
+    const clock = document.getElementById("clock");
+    const scrollHint = document.getElementById("scroll-hint");
 
-  // 显示Cover元素渐变效果
-  window.onload = () => {
-    setTimeout(() => {
-      cover.classList.add("visible");
+    let coverHidden = false;
+    let touchStartY = 0;
+    let wheelTimeout = null;
+
+    // Show cover elements with staggered animation
+    function showCoverElements() {
       avatarFrame.classList.add("visible");
-      nameEl.classList.add("visible");
-      slogan.classList.add("visible");
-    }, 300);
-  };
+      setTimeout(() => {
+        name.classList.add("visible");
+      }, 400);
+      setTimeout(() => {
+        slogan.classList.add("visible");
+      }, 800);
+      setTimeout(() => {
+        scrollHint.style.opacity = "1";
+      }, 1200);
+    }
 
-  // 点击封面显示简历
-  cover.addEventListener("click", () => {
-    cover.classList.remove("visible");
-    cover.classList.add("hidden");
-    setTimeout(() => {
-      cover.style.display = "none";
-      resume.classList.add("visible");
+    // Hide cover and show resume
+    function hideCover() {
+      if (coverHidden) return;
+      
+      cover.classList.add("hidden");
+      setTimeout(() => {
+        cover.style.display = "none";
+        resume.classList.add("visible");
+        document.body.style.overflow = "auto";
+        coverHidden = true;
+      }, 1500);
+      
+      avatarFrame.classList.remove("visible");
+      name.classList.remove("visible");
+      slogan.classList.remove("visible");
+      scrollHint.style.opacity = "0";
+    }
+
+    // Initialize on load
+    window.addEventListener("load", () => {
+      cover.classList.add("visible");
+      showCoverElements();
+      autoThemeByLocalTime();
       updateToggleBtnText();
-    }, 1200);
-  });
+      startClock();
+    });
 
-  // 主题切换
-  toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    updateToggleBtnText();
-  });
+    // Click to hide cover
+    cover.addEventListener("click", hideCover);
 
-  function updateToggleBtnText() {
-    const isDark = document.body.classList.contains("dark-mode");
-    toggleBtn.dataset.theme = isDark ? "dark" : "light";
-    toggleBtn.querySelector(".text").textContent = isDark ? "Dark Mode" : "Light Mode";
-  }
+    // Wheel scroll to hide cover
+    window.addEventListener("wheel", (e) => {
+      if (coverHidden) return;
+      
+      // Only respond to downward scroll
+      if (e.deltaY > 0) {
+        // Clear any pending timeout
+        if (wheelTimeout) clearTimeout(wheelTimeout);
+        
+        // Set a small delay to prevent accidental triggers
+        wheelTimeout = setTimeout(() => {
+          hideCover();
+        }, 100);
+      }
+    });
 
-  // 实时更新时钟
-  function updateClock() {
-    const now = new Date();
-    // 时分秒，保证两位数
-    const h = String(now.getHours()).padStart(2, "0");
-    const m = String(now.getMinutes()).padStart(2, "0");
-    const s = String(now.getSeconds()).padStart(2, "0");
-    clock.textContent = `${h}:${m}:${s}`;
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-</script>
+    // Touch support for mobile devices
+    window.addEventListener("touchstart", (e) => {
+      if (coverHidden) return;
+      touchStartY = e.touches[0].clientY;
+    });
+
+    window.addEventListener("touchmove", (e) => {
+      if (coverHidden) return;
+      
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchY - touchStartY;
+      
+      // Only respond to upward swipe (since we're scrolling down)
+      if (deltaY < -30) { // Threshold to prevent accidental triggers
+        hideCover();
+      }
+    });
+
+    // Theme toggle functionality
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      updateToggleBtnText();
+      
+      // Save preference to localStorage
+      localStorage.setItem(
+        'themePreference', 
+        document.body.classList.contains("dark-mode") ? 'dark' : 'light'
+      );
+    });
+
+    function updateToggleBtnText() {
+      toggleBtn.textContent = document.body.classList.contains("dark-mode")
+        ? "Switch to Light Mode"
+        : "Switch to Dark Mode";
+    }
+
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    }
+
+    // Auto theme based on time or saved preference
+    function autoThemeByLocalTime() {
+      // Check for saved preference first
+      const savedTheme = localStorage.getItem('themePreference');
+      if (savedTheme) {
+        applyTheme(savedTheme);
+        return;
+      }
+      
+      // Fallback to time-based theme
+      const hour = new Date().getHours();
+      applyTheme(hour >= 18 || hour < 6 ? "dark" : "light");
+    }
+
+    // Clock functionality
+    function startClock() {
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const timeZoneName = now
+        .toLocaleTimeString("en-us", { timeZoneName: "short" })
+        .split(" ")
+        .pop();
+      const hours = now.getHours().toString().padStart(2, "0");
+      const mins = now.getMinutes().toString().padStart(2, "0");
+      clock.textContent = `${timeZoneName} - ${hours}:${mins}`;
+    }
+  </script>
 </body>
 </html>
