@@ -2,29 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Stardust-math_Personal Academic Website</title>
 <link
   href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap"
   rel="stylesheet"
 />
 <style>
-  /* Reset & 基础 */
+  /* 基础样式，去掉body和html的overflow:hidden，改成封面专属滚动锁定 */
   body,
   html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: "Georgia", serif;
-    overflow: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
     background-color: #f1f3f5;
     color: #000;
   }
 
+  /* 封面时禁用页面滚动（用class控制） */
+  body.cover-active {
+    overflow: hidden;
+  }
+
   /* 封面整体 */
   #cover {
-    position: relative;
+    position: fixed; /* fixed改成fixed，确保覆盖全屏 */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
     background: url("./cover.jpg") no-repeat center center/cover;
@@ -36,24 +42,18 @@
     cursor: pointer;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
-    /* 文字上层 z-index */
-    z-index: 10;
+    z-index: 1000; /* 盖住简历内容 */
   }
 
-  /* 遮罩层：半透明黑 + 模糊 */
   #cover::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
-    z-index: 11;
+    z-index: 1;
   }
 
-  /* 背景动态渐变叠加层 */
   #cover::after {
     content: "";
     position: absolute;
@@ -65,7 +65,7 @@
     );
     mix-blend-mode: screen;
     pointer-events: none;
-    z-index: 12;
+    z-index: 2;
     opacity: 0.6;
     animation: gradientShift 20s ease infinite;
   }
@@ -80,7 +80,6 @@
     }
   }
 
-  /* 显示隐藏控制 */
   #cover.visible {
     opacity: 1;
   }
@@ -102,12 +101,13 @@
       0 0 40px rgba(155, 89, 182, 0.6);
     animation: pulseGlow 4s ease-in-out infinite;
     transition: transform 0.6s ease;
-    z-index: 20;
+    z-index: 10;
     opacity: 0;
     transform: translateY(100px);
   }
   @keyframes pulseGlow {
-    0%, 100% {
+    0%,
+    100% {
       box-shadow:
         0 0 20px rgba(52, 152, 219, 0.8),
         0 0 40px rgba(155, 89, 182, 0.6);
@@ -134,7 +134,7 @@
   #name,
   #slogan {
     position: relative;
-    z-index: 20;
+    z-index: 10;
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 1.5s ease, transform 1.5s ease;
@@ -167,7 +167,6 @@
     font-family: "Great Vibes", cursive;
     font-size: 2em;
     letter-spacing: 1px;
-    /* 多重阴影增强立体感 */
     text-shadow:
       0 0 8px rgba(255, 255, 255, 0.7),
       0 0 12px rgba(255, 255, 255, 0.5),
@@ -177,7 +176,6 @@
     color: white;
     font-family: "Allura", cursive;
     font-size: 2.5em;
-    /* 多重阴影，突出文字 */
     text-shadow:
       0 0 6px rgba(0, 0, 0, 0.7),
       0 0 10px rgba(0, 0, 0, 0.4);
@@ -196,7 +194,7 @@
     bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 20;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -252,7 +250,7 @@
     }
   }
 
-  /* 以下全部保留你原代码，不做改动 */
+  /* 简历页面 */
   #resume {
     display: none;
     padding: 40px 20px;
@@ -356,6 +354,7 @@
     margin-left: 20px;
   }
 
+  /* 暗黑模式 */
   body.dark-mode {
     background-color: #121212;
     color: #ffffff;
@@ -394,7 +393,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* 主题切换按钮 */
+  /* 主题切换按钮样式保持你之前样式 */
   #toggle-btn {
     position: fixed;
     top: 15px;
@@ -406,14 +405,15 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9em;
-    z-index: 9999;
+    z-index: 1100;
     transition: background-color 0.3s ease;
+    box-shadow: 0 2px 6px rgba(52, 152, 219, 0.8);
   }
   #toggle-btn:hover {
     background-color: #2980b9;
   }
 
-  /* 时钟 */
+  /* 实时时钟样式 */
   #clock {
     position: fixed;
     top: 15px;
@@ -423,12 +423,13 @@
     padding: 6px 10px;
     border-radius: 5px;
     font-size: 0.9em;
-    z-index: 9999;
+    z-index: 1100;
     white-space: nowrap;
+    user-select: none;
   }
 </style>
 </head>
-<body>
+<body class="cover-active">
   <div id="cover" role="button" aria-label="Click to view resume">
     <div id="avatar-frame">
       <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
@@ -505,20 +506,16 @@
           <span class="subheading-title"></span>
           <span>September 2024 – Present</span>
         </div>
-        <div class="subsubheading">Cooperating with </div>
-        <ul><li></li></ul>
-        <div class="subheading">
-          <span class="subheading-title"></span>
-          <span>July 2025 – Present</span>
+        <div class="subsubheading">
+          Large Language Models (LLMs) in Education and Their Risks
         </div>
-        <div class="subsubheading">Cooperating with </div>
-        <ul><li></li></ul>
-        <div class="subheading">
-          <span class="subheading-title"></span>
-          <span>July 2025 – Present</span>
-        </div>
-        <div class="subsubheading">Cooperating with </div>
-        <ul><li></li></ul>
+        <ul>
+          <li>Risk analysis of ChatGPT in educational environments.</li>
+          <li>
+            Investigation on AI detection methods for academic integrity
+            maintenance.
+          </li>
+        </ul>
       </div>
       <div class="section">
         <h2>Languages</h2>
@@ -531,6 +528,27 @@
   </div>
 
 <script>
+  // 页面载入时，检测系统主题首选项，动态设置暗黑模式
+  function applySystemTheme() {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (prefersDark) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }
+
+  // 监听系统主题切换事件，自动更新
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (e.matches) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  });
+
+  applySystemTheme();
+
   // 封面元素渐显
   function showCoverElements() {
     document.getElementById("avatar-frame").classList.add("visible");
@@ -557,19 +575,21 @@
     const cover = document.getElementById("cover");
     const resume = document.getElementById("resume");
     cover.classList.add("hidden");
+    // 解锁滚动，显示简历
+    document.body.classList.remove("cover-active");
     setTimeout(() => {
       cover.style.display = "none";
       resume.classList.add("visible");
     }, 1500);
   });
 
-  // 暗黑/浅色模式切换
+  // 暗黑/浅色模式切换按钮
   const toggleBtn = document.getElementById("toggle-btn");
   toggleBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
   });
 
-  // 实时显示本地时间
+  // 实时显示本地时间（小时:分:秒，24小时制）
   function updateClock() {
     const clock = document.getElementById("clock");
     const now = new Date();
