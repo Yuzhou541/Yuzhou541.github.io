@@ -9,7 +9,7 @@
   rel="stylesheet"
 />
 <style>
-  /* Reset & Base */
+  /* Reset & Base Styles */
   body,
   html {
     margin: 0;
@@ -21,7 +21,7 @@
     color: #000;
   }
 
-  /* Cover Container */
+  /* Cover Page Styles */
   #cover {
     position: fixed;
     width: 100%;
@@ -38,7 +38,6 @@
     z-index: 100;
   }
 
-  /* Cover Overlay Effects */
   #cover::before {
     content: "";
     position: absolute;
@@ -77,7 +76,6 @@
     }
   }
 
-  /* Visibility Controls */
   #cover.visible {
     opacity: 1;
   }
@@ -86,7 +84,7 @@
     pointer-events: none;
   }
 
-  /* Avatar Frame */
+  /* Avatar Styles */
   #avatar-frame {
     position: relative;
     width: 150px;
@@ -101,6 +99,7 @@
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     animation: pulse 3s infinite;
   }
+  
   @keyframes pulse {
     0%,
     100% {
@@ -110,10 +109,12 @@
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
     }
   }
+  
   #avatar-frame.visible {
     opacity: 1;
     transform: translateY(0);
   }
+  
   #avatar-frame img {
     width: 100%;
     height: 100%;
@@ -121,7 +122,7 @@
     display: block;
   }
 
-  /* Name and Slogan */
+  /* Text Styles */
   #name,
   #slogan {
     position: relative;
@@ -133,6 +134,7 @@
     max-width: 90vw;
     word-break: break-word;
   }
+  
   #name.visible,
   #slogan.visible {
     opacity: 1;
@@ -149,6 +151,7 @@
       0 0 12px rgba(255, 255, 255, 0.5),
       0 0 20px rgba(52, 152, 219, 0.8);
   }
+  
   #slogan {
     color: white;
     font-family: "Allura", cursive;
@@ -225,22 +228,21 @@
     }
   }
 
-  /* Resume Content */
+  /* Resume Page - Fixed Grey Area Issue */
   #resume {
     position: relative;
     z-index: 1;
     display: none;
-    padding: 40px 20px;
-    background: linear-gradient(
-        rgba(241, 243, 245, 0.9),
-        rgba(241, 243, 245, 0.9)
-      ),
-      url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    padding: 40px 0; /* Changed from 40px 20px */
+    background: #f1f3f5 url("https://www.transparenttextures.com/patterns/paper-fibers.png");
     min-height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
     overflow-y: auto;
     opacity: 0;
     transition: opacity 1s ease-in-out;
   }
+  
   #resume.visible {
     display: block;
     opacity: 1;
@@ -248,23 +250,27 @@
 
   .container {
     max-width: 900px;
+    min-height: calc(100vh - 80px);
     margin: 0 auto;
     background: #ffffff;
     padding: 30px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-top: 1px solid #000;
   }
+  
   .resume-heading {
     font-size: 2.8em;
     text-align: center;
     color: #2c3e50;
     margin-bottom: 10px;
   }
+  
   .contact-info {
     text-align: center;
     margin-bottom: 20px;
     color: #34495e;
   }
+  
   h2 {
     font-variant: small-caps;
     color: #2c3e50;
@@ -274,49 +280,59 @@
     padding-bottom: 5px;
     border-bottom: 1px solid #000;
   }
+  
   .section {
     padding: 15px;
     margin-bottom: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+  
   .section:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
+  
   .subheading {
     display: flex;
     justify-content: space-between;
     font-size: 1.05em;
     margin-bottom: 8px;
   }
+  
   .subheading-title {
     font-weight: bold;
     color: #3498db;
   }
+  
   .subsubheading {
     font-style: italic;
     font-size: 0.95em;
     color: #34495e;
   }
+  
   ul {
     padding-left: 20px;
     margin: 0;
     list-style-type: disc;
   }
+  
   li {
     font-size: 1em;
     color: #34495e;
     line-height: 1.5;
     margin-bottom: 8px;
   }
+  
   ul li::marker {
     font-size: 0.6em;
   }
+  
   .highlight {
     color: #3498db;
     font-weight: bold;
   }
+  
   a.download-link {
     color: #3498db;
     text-decoration: none;
@@ -324,53 +340,64 @@
     margin-top: 8px;
     display: inline-block;
   }
+  
   a.download-link:hover {
     text-decoration: underline;
   }
+  
   .email + .email {
     margin-left: 20px;
   }
 
-  /* Dark Mode */
+  /* Dark Mode Styles */
   body.dark-mode {
     background-color: #121212;
     color: #ffffff;
   }
+  
   body.dark-mode #resume {
-    background: linear-gradient(rgba(30, 30, 30, 0.9), rgba(30, 30, 30, 0.9));
+    background: #1e1e1e url("https://www.transparenttextures.com/patterns/paper-fibers.png");
   }
+  
   body.dark-mode .container {
     background: #1e1e1e;
     color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     border-top: 1px solid #444;
   }
+  
   body.dark-mode .subheading-title {
     color: #3498db;
   }
+  
   body.dark-mode h2,
   body.dark-mode .resume-heading {
     color: #ffffff;
   }
+  
   body.dark-mode h2 {
     border-bottom: 1px solid #666;
   }
+  
   body.dark-mode li,
   body.dark-mode .subsubheading,
   body.dark-mode .contact-info {
     color: #cccccc;
   }
+  
   body.dark-mode a.download-link {
     color: #90caf9;
   }
+  
   body.dark-mode .section {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
+  
   body.dark-mode .section:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* Theme Toggle Button */
+  /* UI Elements */
   #toggle-btn {
     position: fixed;
     top: 15px;
@@ -385,11 +412,11 @@
     z-index: 9999;
     transition: background-color 0.3s ease;
   }
+  
   #toggle-btn:hover {
     background-color: #2980b9;
   }
-
-  /* Clock */
+  
   #clock {
     position: fixed;
     top: 15px;
@@ -527,7 +554,7 @@
     let touchStartY = 0;
     let wheelTimeout = null;
 
-    // Show cover elements with staggered animation
+    // Show cover elements with animation
     function showCoverElements() {
       avatarFrame.classList.add("visible");
       setTimeout(() => {
@@ -575,12 +602,9 @@
     window.addEventListener("wheel", (e) => {
       if (coverHidden) return;
       
-      // Only respond to downward scroll
       if (e.deltaY > 0) {
-        // Clear any pending timeout
         if (wheelTimeout) clearTimeout(wheelTimeout);
         
-        // Set a small delay to prevent accidental triggers
         wheelTimeout = setTimeout(() => {
           hideCover();
         }, 100);
@@ -599,8 +623,7 @@
       const touchY = e.touches[0].clientY;
       const deltaY = touchY - touchStartY;
       
-      // Only respond to upward swipe (since we're scrolling down)
-      if (deltaY < -30) { // Threshold to prevent accidental triggers
+      if (deltaY < -30) {
         hideCover();
       }
     });
@@ -610,7 +633,6 @@
       document.body.classList.toggle("dark-mode");
       updateToggleBtnText();
       
-      // Save preference to localStorage
       localStorage.setItem(
         'themePreference', 
         document.body.classList.contains("dark-mode") ? 'dark' : 'light'
@@ -633,14 +655,12 @@
 
     // Auto theme based on time or saved preference
     function autoThemeByLocalTime() {
-      // Check for saved preference first
       const savedTheme = localStorage.getItem('themePreference');
       if (savedTheme) {
         applyTheme(savedTheme);
         return;
       }
       
-      // Fallback to time-based theme
       const hour = new Date().getHours();
       applyTheme(hour >= 18 || hour < 6 ? "dark" : "light");
     }
