@@ -35,9 +35,20 @@
     content: "";
     position: absolute;
     top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.2); /* 轻微暗化 */
     z-index: 1;
+  }
+  #blur-spot {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    z-index: 2;
   }
   #cover.visible { opacity: 1; }
   #cover.hidden { opacity: 0; pointer-events: none; }
@@ -52,7 +63,7 @@
     transform: translateY(100px);
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
     position: relative;
-    z-index: 2;
+    z-index: 3;
     box-shadow: 0 0 15px rgba(255,255,255,0.5);
     animation: pulse 3s infinite;
   }
@@ -69,7 +80,7 @@
 
   #name, #slogan {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     opacity: 0;
     transform: translateY(100px);
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
@@ -170,7 +181,6 @@
     margin-bottom: 8px;
   }
   ul li::marker { font-size: 0.6em; }
-  .highlight { color: #3498db; font-weight: bold; }
   a.download-link {
     color: #3498db;
     text-decoration: none;
@@ -224,6 +234,7 @@
 </head>
 <body>
 <div id="cover">
+  <div id="blur-spot"></div>
   <div id="avatar-frame"><img src="./avatar.jpg" alt="Profile Avatar"></div>
   <div id="name">Stardust</div>
   <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
@@ -240,7 +251,6 @@
       <span class="email">Email 2: stardust.math26@gmail.com</span><br/>
       Tel: +86 18806590966
     </p>
-
     <div class="section">
       <h2>Education</h2>
       <div class="subheading">
@@ -261,41 +271,25 @@
     <div class="section">
       <h2>Work Experience</h2>
       <div class="subheading">
-        <span class="subheading-title">Teaching assistant of "Probability Theory and Mathematical Statistics" led by Shuguang Zhang</span>
-        <span>Expected September 2025 – January 2026</span>
+        <span class="subheading-title">Teaching assistant of "Probability Theory and Mathematical Statistics"</span>
+        <span>Expected Sept 2025 – Jan 2026</span>
       </div>
-      <div class="subsubheading">Compile the reference answers for "Probability Theory and Mathematical Statistics" (Textbook by Baiqi Miu and Weiping Zhang)</div>
-      <a class="download-link" href="./Reference_Answer_of_''Probability_Theory_and_Mathematical_Statistics''_(by Baiqi Miu and Weiping Zhang).pdf" download>Click here to download: Reference Answer of "Probability Theory and Mathematical Statistics"</a>
+      <div class="subsubheading">Compile reference answers (Textbook by Baiqi Miu and Weiping Zhang)</div>
+      <a class="download-link" href="./Reference_Answer_of_''Probability_Theory_and_Mathematical_Statistics''_(by Baiqi Miu and Weiping Zhang).pdf" download>Click here to download: Reference Answer</a>
     </div>
     <div class="section">
       <h2>Research Projects</h2>
-      <div class="subheading">
-        <span class="subheading-title"></span>
-        <span>September 2024 – Present</span>
-      </div>
-      <div class="subsubheading">Cooperating with </div>
-      <ul><li></li></ul>
-      <div class="subheading">
-        <span class="subheading-title"></span>
-        <span>July 2025 – Present</span>
-      </div>
-      <div class="subsubheading">Cooperating with </div>
-      <ul><li></li></ul>
-      <div class="subheading">
-        <span class="subheading-title"></span>
-        <span>July 2025 – Present</span>
-      </div>
-      <div class="subsubheading">Cooperating with </div>
-      <ul><li></li></ul>
+      <div class="subheading"><span></span><span>Sept 2024 – Present</span></div>
+      <div class="subsubheading">Cooperating with</div><ul><li></li></ul>
+      <div class="subheading"><span></span><span>July 2025 – Present</span></div>
+      <div class="subsubheading">Cooperating with</div><ul><li></li></ul>
     </div>
-    <div class="section">
-      <h2>Publications</h2>
-    </div>
+    <div class="section"><h2>Publications</h2></div>
     <div class="section">
       <h2>Additional Skills/Information</h2>
       <ul>
-        <li><strong>Computer Skills:</strong> Mathematica (Proficient), Python (4 yr), C (2 yr), LaTeX (Proficient)</li>
-        <li><strong>Languages:</strong> Chinese (Native), English (Fluent)</li>
+        <li><strong>Computer Skills:</strong> Mathematica, Python, C, LaTeX</li>
+        <li><strong>Languages:</strong> Chinese, English</li>
         <li><strong>Hobbies:</strong> Playing Bamboo Flute, Swimming, Singing</li>
         <li><strong>Reflections and Essays: </strong>''Stardust Meditations''</li>
         <a class="download-link" href="./Stardust_Meditations.pdf" download>Click here to download: Stardust Meditations</a>
@@ -326,7 +320,6 @@ window.addEventListener('load', () => {
   updateToggleBtnText();
   startClock();
 });
-
 cover.addEventListener('click', () => {
   cover.classList.add('hidden');
   setTimeout(() => {
@@ -335,40 +328,30 @@ cover.addEventListener('click', () => {
     document.body.style.overflow = 'auto';
   }, 1500);
 });
-
 toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   updateToggleBtnText();
 });
-
 function updateToggleBtnText() {
   toggleBtn.textContent = document.body.classList.contains('dark-mode')
     ? 'Switch to Light Mode' : 'Switch to Dark Mode';
 }
-
-function applyTheme(theme) {
-  if (theme === 'dark') { document.body.classList.add('dark-mode'); }
-  else { document.body.classList.remove('dark-mode'); }
-}
-
 function autoThemeByLocalTime() {
   const hour = new Date().getHours();
-  applyTheme((hour >= 18 || hour < 6) ? 'dark' : 'light');
+  document.body.classList.toggle('dark-mode', hour >= 18 || hour < 6);
 }
-
 function startClock() {
   updateClock();
   setInterval(updateClock, 1000);
 }
-
 function updateClock() {
   const now = new Date();
-  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-  const countryCode = timeZone.includes('/') ? timeZone.split('/')[0].slice(0,2).toUpperCase() : 'XX';
-  const timeZoneName = now.toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ').pop();
-  const hours = now.getHours().toString().padStart(2,'0');
-  const mins = now.getMinutes().toString().padStart(2,'0');
-  clock.textContent = `${countryCode} ${timeZoneName} - ${hours}:${mins}`;
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+  const cc = tz.includes('/') ? tz.split('/')[0].slice(0,2).toUpperCase() : 'XX';
+  const tzName = now.toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ').pop();
+  const h = now.getHours().toString().padStart(2,'0');
+  const m = now.getMinutes().toString().padStart(2,'0');
+  clock.textContent = `${cc} ${tzName} - ${h}:${m}`;
 }
 </script>
 </body>
