@@ -375,7 +375,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 120px;
+    width: 140px;
     height: 50px;
     background: linear-gradient(145deg, #3498db, #2980b9);
     color: white;
@@ -489,7 +489,7 @@
     <button id="toggle-btn">
       <span>
         <i>🌙</i>
-        Dark Mode
+        Switch to Dark
       </span>
     </button>
     <div id="clock">GMT+8 00:00</div>
@@ -698,7 +698,7 @@
       toggleBtn.innerHTML = `
         <span>
           <i>${isDark ? '☀️' : '🌙'}</i>
-          ${isDark ? "Light Mode" : "Dark Mode"}
+          ${isDark ? "Switch to Light" : "Switch to Dark"}
         </span>
       `;
     }
