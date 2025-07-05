@@ -208,7 +208,7 @@
     color: #ffffff;
   }
   body.dark-mode h2 {
-    border-bottom: 1px solid #666; /* 细线浅灰 */
+    border-bottom: 1px solid #666;
   }
   body.dark-mode li,
   body.dark-mode .subsubheading,
@@ -379,17 +379,8 @@
       }, 1500);
     }, 100);
 
-    const savedTheme = localStorage.getItem('theme');
-    const userSet = localStorage.getItem('theme-set-by-user');
-    
-    // 只有当用户没有手动设置主题时，才根据时间自动切换
-    if (userSet !== 'true') {
-      autoThemeByLocalTime();
-    } else if (savedTheme) {
-      applyTheme(savedTheme);
-    }
-
-    autoThemeByLocalTimeLoop();
+    // 每次页面加载都根据当前时间自动设置主题
+    autoThemeByLocalTime();
     updateToggleBtnText();
     startClock();
   });
@@ -404,9 +395,8 @@
   });
 
   toggleBtn.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    localStorage.setItem('theme-set-by-user', 'true'); // 用户手动切换
+    // 只切换当前会话的主题，不保存任何设置
+    document.body.classList.toggle('dark-mode');
     updateToggleBtnText();
   });
 
@@ -426,28 +416,15 @@
     }
   }
 
-  // 根据本地时间自动切换
+  // 根据本地时间自动切换主题
   function autoThemeByLocalTime() {
     const now = new Date();
     const hour = now.getHours();
     if (hour >= 18 || hour < 6) {
       applyTheme('dark');
-      localStorage.setItem('theme', 'dark');
     } else {
       applyTheme('light');
-      localStorage.setItem('theme', 'light');
     }
-  }
-
-  // 每小时检测一次本地时间，仅当用户没手动设置时
-  function autoThemeByLocalTimeLoop() {
-    setInterval(() => {
-      const userSet = localStorage.getItem('theme-set-by-user');
-      if (userSet !== 'true') {
-        autoThemeByLocalTime();
-        updateToggleBtnText();
-      }
-    }, 60 * 60 * 1000);
   }
 
   function startClock() {
