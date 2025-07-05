@@ -33,24 +33,27 @@
     border-radius: 50%;
     pointer-events: none;
     z-index: 99999;
-    mix-blend-mode: difference;
     transform: translate(-50%, -50%);
     transition: 
       transform 0.15s ease,
       width 0.2s ease,
-      height 0.2s ease,
-      background-color 0.5s ease;
+      height 0.2s ease;
   }
   
   .cursor-outer {
-    border: 2px solid;
+    border: 2px solid #333; /* Darker color for light mode */
     background-color: transparent;
     width: 30px;
     height: 30px;
   }
   
   .cursor-inner {
-    background-color: #121212; /* Dark color for light mode */
+    background-color: #333; /* Darker color for light mode */
+  }
+  
+  /* Dark mode cursor adjustments */
+  body.dark-mode .cursor-outer {
+    display: none; /* Hide outer ring in dark mode */
   }
   
   body.dark-mode .cursor-inner {
@@ -670,36 +673,40 @@
         
         cursorOuter.style.left = `${positions.mouseX}px`;
         cursorOuter.style.top = `${positions.mouseY}px`;
-        
-        // Inner cursor follows with slight delay
-        setTimeout(() => {
-          cursorInner.style.left = `${positions.mouseX}px`;
-          cursorInner.style.top = `${positions.mouseY}px`;
-        }, 50);
+        cursorInner.style.left = `${positions.mouseX}px`;
+        cursorInner.style.top = `${positions.mouseY}px`;
       });
       
       // Click effect
       document.addEventListener('mousedown', () => {
-        cursorOuter.classList.add('click');
         cursorInner.classList.add('click');
+        if (!document.body.classList.contains('dark-mode')) {
+          cursorOuter.classList.add('click');
+        }
       });
       
       document.addEventListener('mouseup', () => {
-        cursorOuter.classList.remove('click');
         cursorInner.classList.remove('click');
+        if (!document.body.classList.contains('dark-mode')) {
+          cursorOuter.classList.remove('click');
+        }
       });
       
       // Hover effects
       const hoverElements = document.querySelectorAll('a, button, [role="button"], #cover');
       hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
-          cursorOuter.classList.add('hover');
           cursorInner.classList.add('hover');
+          if (!document.body.classList.contains('dark-mode')) {
+            cursorOuter.classList.add('hover');
+          }
         });
         
         el.addEventListener('mouseleave', () => {
-          cursorOuter.classList.remove('hover');
           cursorInner.classList.remove('hover');
+          if (!document.body.classList.contains('dark-mode')) {
+            cursorOuter.classList.remove('hover');
+          }
         });
       });
     });
