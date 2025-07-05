@@ -9,22 +9,21 @@
   rel="stylesheet"
 />
 <style>
-  /* Reset & 基础 */
+  /* Reset & Base */
   body,
   html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: "Georgia", serif;
-    overflow: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
     background-color: #f1f3f5;
     color: #000;
   }
 
-  /* 封面整体 */
+  /* Cover Container */
   #cover {
-    position: relative;
+    position: fixed;
     width: 100%;
     height: 100vh;
     background: url("./cover.jpg") no-repeat center center/cover;
@@ -36,11 +35,10 @@
     cursor: pointer;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
-    /* 文字上层 z-index */
-    z-index: 10;
+    z-index: 100;
   }
 
-  /* 遮罩层：半透明黑 + 模糊 */
+  /* Cover Overlay Effects */
   #cover::before {
     content: "";
     position: absolute;
@@ -53,7 +51,6 @@
     z-index: 11;
   }
 
-  /* 背景动态渐变叠加层 */
   #cover::after {
     content: "";
     position: absolute;
@@ -80,7 +77,7 @@
     }
   }
 
-  /* 显示隐藏控制 */
+  /* Visibility Controls */
   #cover.visible {
     opacity: 1;
   }
@@ -89,7 +86,7 @@
     pointer-events: none;
   }
 
-  /* 头像框及光晕 */
+  /* Avatar Frame */
   #avatar-frame {
     position: relative;
     width: 150px;
@@ -124,7 +121,7 @@
     display: block;
   }
 
-  /* 名字和标语 */
+  /* Name and Slogan */
   #name,
   #slogan {
     position: relative;
@@ -147,7 +144,6 @@
     font-family: "Great Vibes", cursive;
     font-size: 2em;
     letter-spacing: 1px;
-    /* 多重阴影增强立体感 */
     text-shadow:
       0 0 8px rgba(255, 255, 255, 0.7),
       0 0 12px rgba(255, 255, 255, 0.5),
@@ -157,13 +153,12 @@
     color: white;
     font-family: "Allura", cursive;
     font-size: 2.5em;
-    /* 多重阴影，突出文字 */
     text-shadow:
       0 0 6px rgba(0, 0, 0, 0.7),
       0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /* 修改后的箭头样式 */
+  /* Scroll Hint */
   #scroll-hint {
     position: absolute;
     bottom: 30px;
@@ -230,8 +225,10 @@
     }
   }
 
-  /* 以下全部保留你原代码，不做改动 */
+  /* Resume Content */
   #resume {
+    position: relative;
+    z-index: 1;
     display: none;
     padding: 40px 20px;
     background: linear-gradient(
@@ -334,6 +331,7 @@
     margin-left: 20px;
   }
 
+  /* Dark Mode */
   body.dark-mode {
     background-color: #121212;
     color: #ffffff;
@@ -372,7 +370,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* 主题切换按钮 */
+  /* Theme Toggle Button */
   #toggle-btn {
     position: fixed;
     top: 15px;
@@ -391,7 +389,7 @@
     background-color: #2980b9;
   }
 
-  /* 时钟 */
+  /* Clock */
   #clock {
     position: fixed;
     top: 15px;
@@ -525,7 +523,11 @@
     const clock = document.getElementById("clock");
     const scrollHint = document.getElementById("scroll-hint");
 
-    // 封面渐进显示
+    let coverHidden = false;
+    let touchStartY = 0;
+    let wheelTimeout = null;
+
+    // Show cover elements with staggered animation
     function showCoverElements() {
       avatarFrame.classList.add("visible");
       setTimeout(() => {
@@ -539,6 +541,25 @@
       }, 1200);
     }
 
+    // Hide cover and show resume
+    function hideCover() {
+      if (coverHidden) return;
+      
+      cover.classList.add("hidden");
+      setTimeout(() => {
+        cover.style.display = "none";
+        resume.classList.add("visible");
+        document.body.style.overflow = "auto";
+        coverHidden = true;
+      }, 1500);
+      
+      avatarFrame.classList.remove("visible");
+      name.classList.remove("visible");
+      slogan.classList.remove("visible");
+      scrollHint.style.opacity = "0";
+    }
+
+    // Initialize on load
     window.addEventListener("load", () => {
       cover.classList.add("visible");
       showCoverElements();
@@ -547,25 +568,53 @@
       startClock();
     });
 
-    // 点击封面切换到简历
-    cover.addEventListener("click", () => {
-      cover.classList.add("hidden");
-      setTimeout(() => {
-        cover.style.display = "none";
-        resume.classList.add("visible");
-        document.body.style.overflow = "auto";
-      }, 1500);
-      // 封面元素隐藏
-      avatarFrame.classList.remove("visible");
-      name.classList.remove("visible");
-      slogan.classList.remove("visible");
-      scrollHint.style.opacity = "0";
+    // Click to hide cover
+    cover.addEventListener("click", hideCover);
+
+    // Wheel scroll to hide cover
+    window.addEventListener("wheel", (e) => {
+      if (coverHidden) return;
+      
+      // Only respond to downward scroll
+      if (e.deltaY > 0) {
+        // Clear any pending timeout
+        if (wheelTimeout) clearTimeout(wheelTimeout);
+        
+        // Set a small delay to prevent accidental triggers
+        wheelTimeout = setTimeout(() => {
+          hideCover();
+        }, 100);
+      }
     });
 
-    // 主题切换按钮逻辑
+    // Touch support for mobile devices
+    window.addEventListener("touchstart", (e) => {
+      if (coverHidden) return;
+      touchStartY = e.touches[0].clientY;
+    });
+
+    window.addEventListener("touchmove", (e) => {
+      if (coverHidden) return;
+      
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchY - touchStartY;
+      
+      // Only respond to upward swipe (since we're scrolling down)
+      if (deltaY < -30) { // Threshold to prevent accidental triggers
+        hideCover();
+      }
+    });
+
+    // Theme toggle functionality
     toggleBtn.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
       updateToggleBtnText();
+      
+      // Save preference to localStorage
+      localStorage.setItem(
+        'themePreference', 
+        document.body.classList.contains("dark-mode") ? 'dark' : 'light'
+      );
     });
 
     function updateToggleBtnText() {
@@ -582,13 +631,21 @@
       }
     }
 
-    // 根据本地时间自动设置主题
+    // Auto theme based on time or saved preference
     function autoThemeByLocalTime() {
+      // Check for saved preference first
+      const savedTheme = localStorage.getItem('themePreference');
+      if (savedTheme) {
+        applyTheme(savedTheme);
+        return;
+      }
+      
+      // Fallback to time-based theme
       const hour = new Date().getHours();
       applyTheme(hour >= 18 || hour < 6 ? "dark" : "light");
     }
 
-    // 时钟显示功能
+    // Clock functionality
     function startClock() {
       updateClock();
       setInterval(updateClock, 1000);
@@ -604,7 +661,6 @@
       const mins = now.getMinutes().toString().padStart(2, "0");
       clock.textContent = `${timeZoneName} - ${hours}:${mins}`;
     }
-
   </script>
 </body>
 </html>
