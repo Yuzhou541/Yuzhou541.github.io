@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Stardust-math_Personal Academic Website</title>
-<link
-  href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap"
-  rel="stylesheet"
-/>
+<title>Stardust-math Academic Website</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap" rel="stylesheet" />
 <style>
-  /* Reset & Base */
+  /* Reset & Base Styles */
   body,
   html {
     margin: 0;
@@ -21,61 +18,112 @@
     color: #000;
   }
 
-  /* Custom Cursor Styles */
+  /* Enhanced 3D Cursor System */
   * {
     cursor: none !important;
   }
   
-  .custom-cursor {
+  .cursor-system {
     position: fixed;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
     transition: 
       transform 0.15s ease,
-      width 0.2s ease,
-      height 0.2s ease;
+      width 0.3s ease,
+      height 0.3s ease,
+      opacity 0.2s ease;
+    will-change: transform;
   }
   
-  .cursor-outer {
-    border: 2px solid #333; /* Darker color for light mode */
-    background-color: transparent;
-    width: 30px;
-    height: 30px;
+  /* 3D Main Cursor */
+  .cursor-3d {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 
+      0 0 0 1.5px #333,
+      2px 2px 4px rgba(0,0,0,0.2),
+      inset 0 0 8px rgba(255,255,255,0.5);
+    transform: perspective(500px) translateZ(10px);
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.1));
   }
   
-  .cursor-inner {
-    background-color: #333; /* Darker color for light mode */
+  /* Cover Page Small Cursor */
+  #cover .cursor-3d {
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 0 1px #333;
+    transform: perspective(500px) translateZ(5px);
+  }
+
+  /* 3D Outer Ring */
+  .cursor-ring {
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgba(52, 152, 219, 0.8);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    transform: perspective(500px) rotateX(60deg);
+    transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  }
+
+  /* Click Ripple Effect */
+  .cursor-ripple {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgba(52, 152, 219, 0.8);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  /* Hover States */
+  .hover .cursor-3d {
+    transform: perspective(500px) translateZ(15px) scale(1.2);
+    box-shadow: 
+      0 0 0 2px #333,
+      3px 3px 6px rgba(0,0,0,0.3),
+      inset 0 0 12px rgba(255,255,255,0.7);
   }
   
-  /* Dark mode cursor adjustments */
-  body.dark-mode .cursor-outer {
-    display: none; /* Hide outer ring in dark mode */
+  .hover .cursor-ring {
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+  }
+
+  /* Click State */
+  .click .cursor-3d {
+    transform: perspective(500px) translateZ(5px) scale(0.9);
+  }
+
+  /* Dark Mode Adaptations */
+  body.dark-mode .cursor-3d {
+    background: rgba(255,255,255,0.9);
+    box-shadow: 
+      0 0 0 1.5px #f8f9fa,
+      2px 2px 6px rgba(0,0,0,0.4),
+      inset 0 0 10px rgba(255,255,255,0.3);
   }
   
-  body.dark-mode .cursor-inner {
-    background-color: #f8f9fa; /* Light color for dark mode */
+  body.dark-mode .cursor-ring {
+    border-color: rgba(155, 89, 182, 0.8);
   }
-  
-  /* Cursor states */
-  .custom-cursor.click {
-    transform: translate(-50%, -50%) scale(0.8);
+
+  body.dark-mode .cursor-ripple {
+    border-color: rgba(155, 89, 182, 0.8);
   }
-  
-  .custom-cursor.hover {
-    width: 40px;
-    height: 40px;
-  }
-  
-  /* Hide cursor on touch devices */
+
+  /* Touch Device Fallback */
   @media (hover: none) {
-    .custom-cursor {
+    .cursor-system {
       display: none;
     }
-    
     * {
       cursor: auto !important;
     }
@@ -92,7 +140,6 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    cursor: pointer;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
     z-index: 100;
@@ -542,9 +589,9 @@
 </style>
 </head>
 <body>
-  <!-- Custom Cursor Elements -->
-  <div class="custom-cursor cursor-outer"></div>
-  <div class="custom-cursor cursor-inner"></div>
+  <!-- Enhanced 3D Cursor System -->
+  <div class="cursor-system cursor-3d"></div>
+  <div class="cursor-system cursor-ring"></div>
 
   <div id="cover" role="button" aria-label="Click to view resume">
     <div id="avatar-frame">
@@ -660,57 +707,115 @@
   </div>
 
   <script>
-    // Custom cursor functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const cursorOuter = document.querySelector('.cursor-outer');
-      const cursorInner = document.querySelector('.cursor-inner');
-      const positions = { mouseX: 0, mouseY: 0 };
-      
-      // Track cursor position
+    // Enhanced 3D Cursor Control System
+    document.addEventListener('DOMContentLoaded', () => {
+      const cursor3d = document.querySelector('.cursor-3d');
+      const cursorRing = document.querySelector('.cursor-ring');
+      const cover = document.getElementById('cover');
+      let mouseX = 0, mouseY = 0;
+      let ringAngle = 0;
+      let rippleCount = 0;
+      const maxRipples = 5;
+
+      // Cursor Position Update
+      const updateCursorPosition = () => {
+        cursor3d.style.left = `${mouseX}px`;
+        cursor3d.style.top = `${mouseY}px`;
+        cursorRing.style.left = `${mouseX}px`;
+        cursorRing.style.top = `${mouseY}px`;
+      };
+
+      // Mouse Movement Tracking
       document.addEventListener('mousemove', (e) => {
-        positions.mouseX = e.clientX;
-        positions.mouseY = e.clientY;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        updateCursorPosition();
+      });
+
+      // 3D Ring Rotation Animation
+      const animateRing = () => {
+        ringAngle += 0.5;
+        cursorRing.style.transform = `
+          perspective(500px) 
+          rotateX(60deg)
+          rotateZ(${ringAngle}deg)
+          translate(-50%, -50%)
+        `;
+        requestAnimationFrame(animateRing);
+      };
+      animateRing();
+
+      // Click Ripple Effect
+      document.addEventListener('click', (e) => {
+        if (rippleCount >= maxRipples) return;
         
-        cursorOuter.style.left = `${positions.mouseX}px`;
-        cursorOuter.style.top = `${positions.mouseY}px`;
-        cursorInner.style.left = `${positions.mouseX}px`;
-        cursorInner.style.top = `${positions.mouseY}px`;
+        rippleCount++;
+        const ripple = document.createElement('div');
+        ripple.className = 'cursor-system cursor-ripple';
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        
+        // Ripple Animation
+        setTimeout(() => {
+          ripple.style.transition = 'all 0.6s ease-out';
+          ripple.style.opacity = '0.6';
+          ripple.style.transform = 'scale(4)';
+        }, 10);
+        
+        // Cleanup
+        setTimeout(() => {
+          ripple.remove();
+          rippleCount--;
+        }, 600);
       });
-      
-      // Click effect
-      document.addEventListener('mousedown', () => {
-        cursorInner.classList.add('click');
-        if (!document.body.classList.contains('dark-mode')) {
-          cursorOuter.classList.add('click');
-        }
-      });
-      
-      document.addEventListener('mouseup', () => {
-        cursorInner.classList.remove('click');
-        if (!document.body.classList.contains('dark-mode')) {
-          cursorOuter.classList.remove('click');
-        }
-      });
-      
-      // Hover effects
-      const hoverElements = document.querySelectorAll('a, button, [role="button"], #cover');
-      hoverElements.forEach(el => {
+
+      // Interactive Elements
+      const interactiveElements = document.querySelectorAll(
+        'a, button, [role="button"], .section, .download-link'
+      );
+
+      // Hover Effects
+      const handleHover = (el) => {
         el.addEventListener('mouseenter', () => {
-          cursorInner.classList.add('hover');
-          if (!document.body.classList.contains('dark-mode')) {
-            cursorOuter.classList.add('hover');
+          cursor3d.classList.add('hover');
+          if (!cover.contains(el)) {
+            cursorRing.classList.add('hover');
           }
         });
         
         el.addEventListener('mouseleave', () => {
-          cursorInner.classList.remove('hover');
-          if (!document.body.classList.contains('dark-mode')) {
-            cursorOuter.classList.remove('hover');
-          }
+          cursor3d.classList.remove('hover');
+          cursorRing.classList.remove('hover');
         });
+      };
+
+      interactiveElements.forEach(handleHover);
+
+      // Click Effects
+      document.addEventListener('mousedown', () => {
+        cursor3d.classList.add('click');
+        cursorRing.classList.add('click');
+      });
+
+      document.addEventListener('mouseup', () => {
+        cursor3d.classList.remove('click');
+        cursorRing.classList.remove('click');
+      });
+
+      // Cover Page Cursor Behavior
+      cover.addEventListener('mouseenter', () => {
+        cursor3d.classList.add('cover-mode');
+        cursorRing.style.opacity = '0';
+      });
+
+      cover.addEventListener('mouseleave', () => {
+        cursor3d.classList.remove('cover-mode');
+        cursorRing.style.opacity = '1';
       });
     });
 
+    // Original Page Functionality
     const cover = document.getElementById("cover");
     const resume = document.getElementById("resume");
     const avatarFrame = document.getElementById("avatar-frame");
