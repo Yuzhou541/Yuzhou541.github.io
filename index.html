@@ -124,38 +124,6 @@
     display: block;
   }
 
-  /* 头像周围漂浮粒子容器 */
-  #avatar-particles {
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 21;
-  }
-  /* 单个粒子 */
-  .particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
-    animation: floatUp linear infinite;
-  }
-  @keyframes floatUp {
-    0% {
-      transform: translateY(0) translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-40px) translateX(10px);
-      opacity: 0;
-    }
-  }
-
   /* 名字和标语 */
   #name,
   #slogan {
@@ -195,65 +163,88 @@
       0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /* 高级箭头样式 */
+  /* 高级立体箭头样式 */
   #scroll-hint {
     position: absolute;
     bottom: 30px;
     z-index: 20;
     user-select: none;
     pointer-events: none;
-  }
-  
-  .scroll-down {
-    position: relative;
-    width: 24px;
-    height: 40px;
-    border: 2px solid rgba(255, 255, 255, 0.7);
-    border-radius: 12px;
+    width: 40px;
+    height: 60px;
     opacity: 0;
     transition: opacity 0.5s ease;
   }
   
-  .scroll-down::before {
+  .arrow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .arrow-line {
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%);
+  }
+  
+  .arrow-line.main {
+    height: 100%;
+    top: 0;
+  }
+  
+  .arrow-line.top {
+    height: 15px;
+    top: 0;
+    transform: translateX(-50%) rotate(-45deg);
+    transform-origin: top center;
+  }
+  
+  .arrow-line.bottom {
+    height: 15px;
+    bottom: 0;
+    transform: translateX(-50%) rotate(45deg);
+    transform-origin: bottom center;
+  }
+  
+  .arrow-slider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    transform: translateX(-50%);
+    animation: slideDown 2s infinite;
+  }
+  
+  .arrow-slider::before {
     content: '';
     position: absolute;
-    top: 8px;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    margin-left: -3px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    animation: scrollDown 2s infinite;
+    width: 100%;
+    height: 100%;
+    border-right: 2px solid rgba(255, 255, 255, 0.9);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+    transform: rotate(45deg);
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
   }
   
-  .scroll-down::after {
-    content: '';
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    margin-left: -3px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    opacity: 0.5;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-  }
-  
-  @keyframes scrollDown {
+  @keyframes slideDown {
     0% {
-      transform: translateY(0);
+      top: 0;
+      opacity: 0;
+    }
+    30% {
       opacity: 1;
     }
-    50% {
-      transform: translateY(10px);
-      opacity: 0.5;
+    70% {
+      opacity: 1;
     }
     100% {
-      transform: translateY(0);
-      opacity: 1;
+      top: 100%;
+      opacity: 0;
     }
   }
 
@@ -435,14 +426,18 @@
 </head>
 <body>
   <div id="cover" role="button" aria-label="Click to view resume">
-    <div id="avatar-particles"></div>
     <div id="avatar-frame">
       <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
     </div>
     <div id="name">Stardust</div>
     <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
     <div id="scroll-hint">
-      <div class="scroll-down"></div>
+      <div class="arrow-container">
+        <div class="arrow-line main"></div>
+        <div class="arrow-line top"></div>
+        <div class="arrow-line bottom"></div>
+        <div class="arrow-slider"></div>
+      </div>
     </div>
   </div>
 
@@ -551,10 +546,9 @@
     const avatarFrame = document.getElementById("avatar-frame");
     const name = document.getElementById("name");
     const slogan = document.getElementById("slogan");
-    const avatarParticles = document.getElementById("avatar-particles");
     const toggleBtn = document.getElementById("toggle-btn");
     const clock = document.getElementById("clock");
-    const scrollHint = document.querySelector(".scroll-down");
+    const scrollHint = document.getElementById("scroll-hint");
 
     // 封面渐进显示
     function showCoverElements() {
@@ -570,26 +564,9 @@
       }, 1200);
     }
 
-    // 生成头像周围漂浮粒子
-    function generateParticles() {
-      const particleCount = 8;
-      for (let i = 0; i < particleCount; i++) {
-        const p = document.createElement("div");
-        p.classList.add("particle");
-        // 粒子起始位置环绕头像中心 (90,90) + 随机偏移±30
-        p.style.top = 90 + (Math.random() - 0.5) * 60 + "px";
-        p.style.left = 90 + (Math.random() - 0.5) * 60 + "px";
-        // 动画时长3~6秒，随机错开
-        p.style.animationDuration = 3 + Math.random() * 3 + "s";
-        p.style.animationDelay = Math.random() * 3 + "s";
-        avatarParticles.appendChild(p);
-      }
-    }
-
     window.addEventListener("load", () => {
       cover.classList.add("visible");
       showCoverElements();
-      generateParticles();
       autoThemeByLocalTime();
       updateToggleBtnText();
       startClock();
