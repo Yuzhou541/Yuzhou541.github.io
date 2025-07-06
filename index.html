@@ -662,6 +662,23 @@
     transform: scale(1.2);
   }
 
+  /* Bilibili SVG Icon Styles */
+  .bilibili-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 15px;
+    fill: #FB7299;
+    transition: all 0.3s ease;
+  }
+
+  body.dark-mode .bilibili-icon {
+    fill: #FF9DB5;
+  }
+
+  .social-card:hover .bilibili-icon {
+    transform: scale(1.2);
+  }
+
   .social-title {
     font-size: 1.3rem;
     font-weight: bold;
@@ -728,6 +745,21 @@
     background: linear-gradient(90deg, #6a3093, #9b59b6);
   }
 
+  /* Social link divider */
+  .social-divider {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 5px;
+    color: #7f8c8d;
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+
+  body.dark-mode .social-divider {
+    color: #bdc3c7;
+  }
+
   /* Back button */
   .back-btn {
     position: fixed;
@@ -774,21 +806,6 @@
     display: flex;
     gap: 20px;
     z-index: 20;
-  }
-
-  /* Fixed social link divider alignment */
-  .social-divider {
-    display: inline-flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 2px;
-    color: #7f8c8d;
-    font-size: 1.2em;
-    vertical-align: middle;
-  }
-
-  body.dark-mode .social-divider {
-    color: #bdc3c7;
   }
 </style>
 </head>
@@ -934,7 +951,7 @@
           <div class="social-icon"><i class="fab fa-youtube"></i></div>
           <div class="social-title">YouTube</div>
           <div class="social-description">My video content and playlists</div>
-          <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+          <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
             <a href="https://www.youtube.com/channel/UCemKYMAMJk8FggZ5NI36i1Q" class="social-link" target="_blank">Channel</a>
             <span class="social-divider">/</span>
             <a href="https://www.youtube.com/@JinghaoChen-Stardust" class="social-link" target="_blank">Handle</a>
@@ -946,7 +963,7 @@
           <div class="social-icon"><i class="fab fa-tiktok"></i></div>
           <div class="social-title">TikTok (Chinese)</div>
           <div class="social-description">Short-form videos in Chinese</div>
-          <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+          <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
             <a href="https://www.douyin.com/user/MS4wLjABAAAAqb9M45SaGeb8yI28lL3lDFHm48c4kl32Xq7BfRk3I24" class="social-link" target="_blank">Link 1</a>
             <span class="social-divider">/</span>
             <a href="https://v.douyin.com/PzIS6mSXJGY/" class="social-link" target="_blank">Link 2</a>
@@ -977,9 +994,13 @@
           <a href="https://x.com/stardust_math" class="social-link" target="_blank">Profile</a>
         </div>
         
-        <!-- Bilibili Card -->
+        <!-- Bilibili Card - 使用SVG小电视图标 -->
         <div class="social-card">
-          <div class="social-icon"><i class="fas fa-play-circle"></i></div>
+          <svg class="bilibili-icon" viewBox="0 0 1024 1024" width="1em" height="1em">
+            <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" fill="currentColor"/>
+            <path d="M719.4 499.1c-3.2-4.4-9.7-4.4-12.9 0l-210 288c-3.2 4.4-0.9 10.9 4.8 10.9h424c5.7 0 8-6.5 4.8-10.9l-210-288z" fill="currentColor"/>
+            <path d="M369.3 515.7c-4.4-3.2-10.9-0.9-10.9 4.8v288c0 5.7 6.5 8 10.9 4.8l210-288c3.2-4.4 0.9-10.9-4.8-10.9H369.3z" fill="currentColor"/>
+          </svg>
           <div class="social-title">Bilibili</div>
           <div class="social-description">Chinese video platform for my content</div>
           <a href="https://space.bilibili.com/470364718" class="social-link" target="_blank">Channel</a>
