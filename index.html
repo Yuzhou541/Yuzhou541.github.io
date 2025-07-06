@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Stardust-math_Personal Academic Website</title>
 <link
-  href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Times+New+Roman&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap"
   rel="stylesheet"
 />
 <style>
@@ -243,32 +243,86 @@
       0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /* About button styling */
+  /* Enhanced About button styling */
   #about-btn {
     position: relative;
     z-index: 20;
     background: transparent;
     color: white;
-    border: 1px solid white;
-    padding: 10px 25px;
+    border: none;
+    padding: 12px 30px;
     font-family: "Times New Roman", Times, serif;
     font-style: italic;
     font-size: 1.2em;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     opacity: 0;
     transform: translateY(100px);
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
     margin-top: 20px;
+    overflow: hidden;
+    border-radius: 50px;
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.3),
+      0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  #about-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(5px);
+    z-index: -1;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+  }
+
+  #about-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 0.6s ease;
+  }
+
+  #about-btn:hover {
+    transform: translateY(0) scale(1.05);
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.5),
+      0 0 30px rgba(255, 255, 255, 0.2);
+  }
+
+  #about-btn:hover::before {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.1)
+    );
+  }
+
+  #about-btn:active::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(20);
+    transition: transform 0.8s ease, opacity 0.6s ease;
   }
 
   #about-btn.visible {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  #about-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
   }
 
   /* Resume content */
@@ -720,6 +774,9 @@
           cursorInner.classList.remove('hover');
         });
       });
+
+      // Initialize theme based on saved preference or time
+      initializeTheme();
     });
 
     // Page elements
@@ -770,34 +827,34 @@
     window.addEventListener("load", () => {
       cover.classList.add("visible");
       showCoverElements();
-      checkAndApplyTheme();
-      updateToggleBtnText();
       startClock();
     });
 
     // About button click handler
     aboutBtn.addEventListener("click", hideCover);
 
+    // Theme management functions
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('themePreference');
+      const currentHour = new Date().getHours();
+      const isNightTime = currentHour >= 18 || currentHour < 6;
+      
+      // Priority: saved preference > time-based > default light
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else {
+        applyTheme(isNightTime ? 'dark' : 'light');
+      }
+      updateToggleBtnText();
+    }
+
     // Theme toggle functionality
     toggleBtn.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
+      const newTheme = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
+      localStorage.setItem('themePreference', newTheme);
       updateToggleBtnText();
-      
-      localStorage.setItem(
-        'themePreference', 
-        document.body.classList.contains("dark-mode") ? 'dark' : 'light'
-      );
     });
-
-    function updateToggleBtnText() {
-      const isDark = document.body.classList.contains("dark-mode");
-      toggleBtn.innerHTML = `
-        <span>
-          <i>${isDark ? '☀️' : '🌙'}</i>
-          ${isDark ? "Switch to Light" : "Switch to Dark"}
-        </span>
-      `;
-    }
 
     function applyTheme(theme) {
       if (theme === "dark") {
@@ -807,18 +864,14 @@
       }
     }
 
-    // Set theme based on time or preference
-    function checkAndApplyTheme() {
-      const savedTheme = localStorage.getItem('themePreference');
-      if (savedTheme) {
-        applyTheme(savedTheme);
-        return;
-      }
-      
-      const now = new Date();
-      const hour = now.getHours();
-      const isNightTime = hour >= 18 || hour < 6;
-      applyTheme(isNightTime ? "dark" : "light");
+    function updateToggleBtnText() {
+      const isDark = document.body.classList.contains("dark-mode");
+      toggleBtn.innerHTML = `
+        <span>
+          <i>${isDark ? '☀️' : '🌙'}</i>
+          ${isDark ? "Switch to Light" : "Switch to Dark"}
+        </span>
+      `;
     }
 
     // Clock functionality
@@ -836,19 +889,6 @@
       const hours = now.getHours().toString().padStart(2, "0");
       const mins = now.getMinutes().toString().padStart(2, "0");
       clock.textContent = `${timeZoneName} ${hours}:${mins}`;
-      
-      // Update theme based on time if no preference is set
-      if (!localStorage.getItem('themePreference')) {
-        const hour = now.getHours();
-        const isNightTime = hour >= 18 || hour < 6;
-        if (isNightTime && !document.body.classList.contains("dark-mode")) {
-          document.body.classList.add("dark-mode");
-          updateToggleBtnText();
-        } else if (!isNightTime && document.body.classList.contains("dark-mode")) {
-          document.body.classList.remove("dark-mode");
-          updateToggleBtnText();
-        }
-      }
     }
   </script>
 </body>
