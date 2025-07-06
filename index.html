@@ -838,14 +838,16 @@
       const savedTheme = localStorage.getItem('themePreference');
       const currentHour = new Date().getHours();
       const isNightTime = currentHour >= 18 || currentHour < 6;
-      
+  
       // Priority: saved preference > time-based > default light
       if (savedTheme) {
         applyTheme(savedTheme);
       } else {
-        applyTheme(isNightTime ? 'dark' : 'light');
+        const theme = isNightTime ? 'dark' : 'light';
+        applyTheme(theme);
+        localStorage.setItem('themePreference', theme); // 保存初始决定
       }
-      updateToggleBtnText();
+    updateToggleBtnText();
     }
 
     // Theme toggle functionality
