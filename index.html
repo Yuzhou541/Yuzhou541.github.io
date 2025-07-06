@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Stardust-math_Personal Academic Website</title>
 <link
-  href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Times+New+Roman&display=swap"
   rel="stylesheet"
 />
 <style>
@@ -113,7 +113,6 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    cursor: pointer;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
     z-index: 100;
@@ -244,71 +243,32 @@
       0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /* Scroll indicator */
-  #scroll-hint {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 0.8rem;
-    opacity: 0.8;
-    animation: bounce 2s infinite;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 300;
+  /* About button styling */
+  #about-btn {
+    position: relative;
     z-index: 20;
-    user-select: none;
-    pointer-events: none;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 25px;
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+    margin-top: 20px;
   }
-  
-  #scroll-hint::after {
-    content: "";
-    display: block;
-    width: 16px;
-    height: 24px;
-    border: 1.5px solid white;
-    border-radius: 8px;
-    margin-top: 8px;
+
+  #about-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  #scroll-hint::before {
-    content: "";
-    display: block;
-    width: 3px;
-    height: 6px;
-    background: white;
-    border-radius: 1.5px;
-    position: absolute;
-    top: 28px;
-    animation: scroll 2s infinite;
-  }
-  
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0) translateX(-50%);
-    }
-    40% {
-      transform: translateY(-10px) translateX(-50%);
-    }
-    60% {
-      transform: translateY(-5px) translateX(-50%);
-    }
-  }
-  
-  @keyframes scroll {
-    0% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
+
+  #about-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
   }
 
   /* Resume content */
@@ -597,13 +557,13 @@
   <div class="custom-cursor cursor-outer"></div>
   <div class="custom-cursor cursor-inner"></div>
 
-  <div id="cover" role="button" aria-label="Click to view resume">
+  <div id="cover">
     <div id="avatar-frame">
       <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
     </div>
     <div id="name">Stardust</div>
     <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
-    <div id="scroll-hint">Scroll</div>
+    <button id="about-btn">About</button>
   </div>
 
   <div id="resume">
@@ -750,7 +710,7 @@
       });
       
       // Hover effects for interactive elements
-      const hoverElements = document.querySelectorAll('a, button, [role="button"], #cover');
+      const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn');
       hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
           cursorInner.classList.add('hover');
@@ -768,13 +728,11 @@
     const avatarFrame = document.getElementById("avatar-frame");
     const name = document.getElementById("name");
     const slogan = document.getElementById("slogan");
+    const aboutBtn = document.getElementById("about-btn");
     const toggleBtn = document.getElementById("toggle-btn");
     const clock = document.getElementById("clock");
-    const scrollHint = document.getElementById("scroll-hint");
 
     let coverHidden = false;
-    let touchStartY = 0;
-    let wheelTimeout = null;
 
     // Animate cover elements sequentially
     function showCoverElements() {
@@ -786,7 +744,7 @@
         slogan.classList.add("visible");
       }, 800);
       setTimeout(() => {
-        scrollHint.style.opacity = "1";
+        aboutBtn.classList.add("visible");
       }, 1200);
     }
 
@@ -805,50 +763,20 @@
       avatarFrame.classList.remove("visible");
       name.classList.remove("visible");
       slogan.classList.remove("visible");
-      scrollHint.style.opacity = "0";
+      aboutBtn.classList.remove("visible");
     }
 
     // Initialize page on load
     window.addEventListener("load", () => {
       cover.classList.add("visible");
       showCoverElements();
-      autoThemeByLocalTime();
+      checkAndApplyTheme();
       updateToggleBtnText();
       startClock();
     });
 
-    // Cover click handler
-    cover.addEventListener("click", hideCover);
-
-    // Scroll to hide cover
-    window.addEventListener("wheel", (e) => {
-      if (coverHidden) return;
-      
-      if (e.deltaY > 0) {
-        if (wheelTimeout) clearTimeout(wheelTimeout);
-        
-        wheelTimeout = setTimeout(() => {
-          hideCover();
-        }, 100);
-      }
-    });
-
-    // Touch support for mobile
-    window.addEventListener("touchstart", (e) => {
-      if (coverHidden) return;
-      touchStartY = e.touches[0].clientY;
-    });
-
-    window.addEventListener("touchmove", (e) => {
-      if (coverHidden) return;
-      
-      const touchY = e.touches[0].clientY;
-      const deltaY = touchY - touchStartY;
-      
-      if (deltaY < -30) {
-        hideCover();
-      }
-    });
+    // About button click handler
+    aboutBtn.addEventListener("click", hideCover);
 
     // Theme toggle functionality
     toggleBtn.addEventListener("click", () => {
@@ -880,15 +808,17 @@
     }
 
     // Set theme based on time or preference
-    function autoThemeByLocalTime() {
+    function checkAndApplyTheme() {
       const savedTheme = localStorage.getItem('themePreference');
       if (savedTheme) {
         applyTheme(savedTheme);
         return;
       }
       
-      const hour = new Date().getHours();
-      applyTheme(hour >= 18 || hour < 6 ? "dark" : "light");
+      const now = new Date();
+      const hour = now.getHours();
+      const isNightTime = hour >= 18 || hour < 6;
+      applyTheme(isNightTime ? "dark" : "light");
     }
 
     // Clock functionality
@@ -906,6 +836,19 @@
       const hours = now.getHours().toString().padStart(2, "0");
       const mins = now.getMinutes().toString().padStart(2, "0");
       clock.textContent = `${timeZoneName} ${hours}:${mins}`;
+      
+      // Update theme based on time if no preference is set
+      if (!localStorage.getItem('themePreference')) {
+        const hour = now.getHours();
+        const isNightTime = hour >= 18 || hour < 6;
+        if (isNightTime && !document.body.classList.contains("dark-mode")) {
+          document.body.classList.add("dark-mode");
+          updateToggleBtnText();
+        } else if (!isNightTime && document.body.classList.contains("dark-mode")) {
+          document.body.classList.remove("dark-mode");
+          updateToggleBtnText();
+        }
+      }
     }
   </script>
 </body>
