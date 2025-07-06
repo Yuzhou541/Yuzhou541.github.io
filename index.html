@@ -500,7 +500,7 @@
   }
 
   /* Theme toggle button */
-  #toggle-btn {
+  #toggle-btn, #toggle-btn-social {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -522,16 +522,16 @@
     padding: 0;
   }
 
-  #toggle-btn:hover {
+  #toggle-btn:hover, #toggle-btn-social:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
   }
 
-  #toggle-btn:active {
+  #toggle-btn:active, #toggle-btn-social:active {
     transform: translateY(1px);
   }
 
-  #toggle-btn::before {
+  #toggle-btn::before, #toggle-btn-social::before {
     content: '';
     position: absolute;
     top: 0;
@@ -543,11 +543,11 @@
     transition: opacity 0.4s ease;
   }
 
-  #toggle-btn:hover::before {
+  #toggle-btn:hover::before, #toggle-btn-social:hover::before {
     opacity: 1;
   }
 
-  #toggle-btn span {
+  #toggle-btn span, #toggle-btn-social span {
     position: relative;
     z-index: 1;
     display: flex;
@@ -560,24 +560,24 @@
     padding: 0 5px;
   }
 
-  #toggle-btn i {
+  #toggle-btn i, #toggle-btn-social i {
     font-style: normal;
     font-size: 1.2em;
     margin-right: 5px;
   }
 
   /* Dark mode button */
-  body.dark-mode #toggle-btn {
+  body.dark-mode #toggle-btn, body.dark-mode #toggle-btn-social {
     background: linear-gradient(145deg, #6a3093, #4a148c);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
 
-  body.dark-mode #toggle-btn::before {
+  body.dark-mode #toggle-btn::before, body.dark-mode #toggle-btn-social::before {
     background: linear-gradient(145deg, #4a148c, #6a3093);
   }
 
   /* Clock styling */
-  #clock {
+  #clock, #clock-social {
     position: fixed;
     top: 20px;
     left: 20px;
@@ -598,13 +598,13 @@
     letter-spacing: 1px;
   }
 
-  #clock:hover {
+  #clock:hover, #clock-social:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
   }
 
   /* Dark mode clock */
-  body.dark-mode #clock {
+  body.dark-mode #clock, body.dark-mode #clock-social {
     background: rgba(106, 48, 147, 0.9);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
@@ -745,6 +745,14 @@
     box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
     transition: all 0.3s ease;
     z-index: 100;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease;
+  }
+
+  .back-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .back-btn:hover {
@@ -766,6 +774,21 @@
     display: flex;
     gap: 20px;
     z-index: 20;
+  }
+
+  /* Fixed social link divider alignment */
+  .social-divider {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+    color: #7f8c8d;
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+
+  body.dark-mode .social-divider {
+    color: #bdc3c7;
   }
 </style>
 </head>
@@ -888,16 +911,20 @@
         </ul>
       </div>
     </div>
+    
+    <a href="#" class="back-btn" id="resume-back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
   </div>
 
   <div id="social">
-    <button id="toggle-btn">
+    <button id="toggle-btn-social">
       <span>
         <i>🌙</i>
         Switch to Dark
       </span>
     </button>
-    <div id="clock">GMT+8 00:00</div>
+    <div id="clock-social">GMT+8 00:00</div>
     <div class="container">
       <div class="social-heading">Connect With Me</div>
       
@@ -907,9 +934,9 @@
           <div class="social-icon"><i class="fab fa-youtube"></i></div>
           <div class="social-title">YouTube</div>
           <div class="social-description">My video content and playlists</div>
-          <div style="display: flex; gap: 10px; justify-content: center;">
+          <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
             <a href="https://www.youtube.com/channel/UCemKYMAMJk8FggZ5NI36i1Q" class="social-link" target="_blank">Channel</a>
-            <span style="color: #7f8c8d;">/</span>
+            <span class="social-divider">/</span>
             <a href="https://www.youtube.com/@JinghaoChen-Stardust" class="social-link" target="_blank">Handle</a>
           </div>
         </div>
@@ -919,9 +946,9 @@
           <div class="social-icon"><i class="fab fa-tiktok"></i></div>
           <div class="social-title">TikTok (Chinese)</div>
           <div class="social-description">Short-form videos in Chinese</div>
-          <div style="display: flex; gap: 10px; justify-content: center;">
+          <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
             <a href="https://www.douyin.com/user/MS4wLjABAAAAqb9M45SaGeb8yI28lL3lDFHm48c4kl32Xq7BfRk3I24" class="social-link" target="_blank">Link 1</a>
-            <span style="color: #7f8c8d;">/</span>
+            <span class="social-divider">/</span>
             <a href="https://v.douyin.com/PzIS6mSXJGY/" class="social-link" target="_blank">Link 2</a>
           </div>
         </div>
@@ -960,7 +987,7 @@
       </div>
     </div>
     
-    <a href="#" class="back-btn" id="back-btn">
+    <a href="#" class="back-btn" id="social-back-btn">
       <i class="fas fa-arrow-left"></i>
     </a>
   </div>
@@ -1030,8 +1057,11 @@
     const aboutBtn = document.getElementById("about-btn");
     const socialBtn = document.getElementById("social-btn");
     const toggleBtn = document.getElementById("toggle-btn");
+    const toggleBtnSocial = document.getElementById("toggle-btn-social");
     const clock = document.getElementById("clock");
-    const backBtn = document.getElementById("back-btn");
+    const clockSocial = document.getElementById("clock-social");
+    const resumeBackBtn = document.getElementById("resume-back-btn");
+    const socialBackBtn = document.getElementById("social-back-btn");
 
     let coverHidden = false;
     let currentPage = null;
@@ -1069,9 +1099,15 @@
         if (page === 'resume') {
           resume.classList.add("visible");
           currentPage = 'resume';
+          setTimeout(() => {
+            resumeBackBtn.classList.add("visible");
+          }, 500);
         } else if (page === 'social') {
           social.classList.add("visible");
           currentPage = 'social';
+          setTimeout(() => {
+            socialBackBtn.classList.add("visible");
+          }, 500);
         }
       }, 1500);
       
@@ -1088,9 +1124,11 @@
       cover.style.display = "flex";
       cover.classList.remove("hidden");
       
-      // Hide all pages
+      // Hide all pages and back buttons
       resume.classList.remove("visible");
       social.classList.remove("visible");
+      resumeBackBtn.classList.remove("visible");
+      socialBackBtn.classList.remove("visible");
       
       // Reset cover elements
       setTimeout(() => {
@@ -1109,7 +1147,8 @@
     // Button click handlers
     aboutBtn.addEventListener("click", () => showPage('resume'));
     socialBtn.addEventListener("click", () => showPage('social'));
-    backBtn.addEventListener("click", backToCover);
+    resumeBackBtn.addEventListener("click", backToCover);
+    socialBackBtn.addEventListener("click", backToCover);
 
     // Theme management functions
     function initializeTheme() {
@@ -1119,11 +1158,14 @@
       updateToggleBtnText();
     }
 
-    // Theme toggle functionality
-    toggleBtn.addEventListener("click", () => {
+    // Theme toggle functionality - now works for both buttons
+    toggleBtn.addEventListener("click", toggleTheme);
+    toggleBtnSocial.addEventListener("click", toggleTheme);
+
+    function toggleTheme() {
       document.body.classList.toggle("dark-mode");
       updateToggleBtnText();
-    });
+    }
 
     function applyTheme(theme) {
       if (theme === "dark") {
@@ -1135,15 +1177,25 @@
 
     function updateToggleBtnText() {
       const isDark = document.body.classList.contains("dark-mode");
+      const icon = isDark ? '☀️' : '🌙';
+      const text = isDark ? "Switch to Light" : "Switch to Dark";
+      
       toggleBtn.innerHTML = `
         <span>
-          <i>${isDark ? '☀️' : '🌙'}</i>
-          ${isDark ? "Switch to Light" : "Switch to Dark"}
+          <i>${icon}</i>
+          ${text}
+        </span>
+      `;
+      
+      toggleBtnSocial.innerHTML = `
+        <span>
+          <i>${icon}</i>
+          ${text}
         </span>
       `;
     }
 
-    // Clock functionality
+    // Clock functionality - now works for both clocks
     function startClock() {
       updateClock();
       setInterval(updateClock, 1000);
@@ -1157,7 +1209,10 @@
         .pop();
       const hours = now.getHours().toString().padStart(2, "0");
       const mins = now.getMinutes().toString().padStart(2, "0");
-      clock.textContent = `${timeZoneName} ${hours}:${mins}`;
+      const timeString = `${timeZoneName} ${hours}:${mins}`;
+      
+      clock.textContent = timeString;
+      clockSocial.textContent = timeString;
     }
   </script>
 </body>
