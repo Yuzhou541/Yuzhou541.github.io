@@ -8,6 +8,7 @@
   href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap"
   rel="stylesheet"
 />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   /* Base styles */
   body,
@@ -244,7 +245,7 @@
   }
 
   /* Enhanced About button styling - Made more compact and sophisticated */
-  #about-btn {
+  #about-btn, #social-btn {
     position: relative;
     z-index: 20;
     background: transparent;
@@ -268,7 +269,7 @@
     letter-spacing: 0.5px; /* Added letter spacing */
   }
 
-  #about-btn::before {
+  #about-btn::before, #social-btn::before {
     content: '';
     position: absolute;
     top: 0;
@@ -287,7 +288,7 @@
     border: 1px solid rgba(255, 255, 255, 0.15); /* Added subtle border */
   }
 
-  #about-btn::after {
+  #about-btn::after, #social-btn::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -301,7 +302,7 @@
     transition: all 0.6s ease;
   }
 
-  #about-btn:hover {
+  #about-btn:hover, #social-btn:hover {
     transform: translateY(0) scale(1.05);
     box-shadow: 
       0 0 0 1px rgba(255, 255, 255, 0.5),
@@ -309,7 +310,7 @@
     letter-spacing: 1px; /* Increased spacing on hover */
   }
 
-  #about-btn:hover::before {
+  #about-btn:hover::before, #social-btn:hover::before {
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.15),
@@ -317,19 +318,19 @@
     );
   }
 
-  #about-btn:active::after {
+  #about-btn:active::after, #social-btn:active::after {
     opacity: 1;
     transform: translate(-50%, -50%) scale(20);
     transition: transform 0.8s ease, opacity 0.6s ease;
   }
 
-  #about-btn.visible {
+  #about-btn.visible, #social-btn.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
   /* Resume content */
-  #resume {
+  #resume, #social {
     position: relative;
     z-index: 1;
     display: none;
@@ -345,7 +346,7 @@
     transition: opacity 1s ease-in-out;
   }
   
-  #resume.visible {
+  #resume.visible, #social.visible {
     display: block;
     opacity: 1;
   }
@@ -456,7 +457,7 @@
     color: #ffffff;
   }
   
-  body.dark-mode #resume {
+  body.dark-mode #resume, body.dark-mode #social {
     background: #121212;
   }
   
@@ -607,6 +608,165 @@
     background: rgba(106, 48, 147, 0.9);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
+
+  /* Social Page Specific Styles */
+  .social-heading {
+    font-size: 2.8em;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-family: "Great Vibes", cursive;
+    letter-spacing: 2px;
+  }
+
+  body.dark-mode .social-heading {
+    color: #ffffff;
+  }
+
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .social-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .social-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  body.dark-mode .social-card {
+    background: #2d2d2d;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .social-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #3498db;
+    transition: all 0.3s ease;
+  }
+
+  .social-card:hover .social-icon {
+    transform: scale(1.2);
+  }
+
+  .social-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+
+  body.dark-mode .social-title {
+    color: #ffffff;
+  }
+
+  .social-description {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+
+  body.dark-mode .social-description {
+    color: #bdc3c7;
+  }
+
+  .social-link {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #3498db;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  }
+
+  body.dark-mode .social-link {
+    background: #6a3093;
+  }
+
+  body.dark-mode .social-link:hover {
+    background: #4a148c;
+    box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
+  }
+
+  .social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    transition: all 0.3s ease;
+  }
+
+  .social-card:hover::before {
+    height: 10px;
+  }
+
+  body.dark-mode .social-card::before {
+    background: linear-gradient(90deg, #6a3093, #9b59b6);
+  }
+
+  /* Back button */
+  .back-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #3498db;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+
+  .back-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: #2980b9;
+  }
+
+  body.dark-mode .back-btn {
+    background: #6a3093;
+    box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
+  }
+
+  body.dark-mode .back-btn:hover {
+    background: #4a148c;
+  }
+
+  /* Button container on cover */
+  .cover-buttons {
+    display: flex;
+    gap: 20px;
+    z-index: 20;
+  }
 </style>
 </head>
 <body>
@@ -620,7 +780,10 @@
     </div>
     <div id="name">Stardust</div>
     <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
-    <button id="about-btn">About</button>
+    <div class="cover-buttons">
+      <button id="about-btn">About</button>
+      <button id="social-btn">Social</button>
+    </div>
   </div>
 
   <div id="resume">
@@ -727,6 +890,79 @@
     </div>
   </div>
 
+  <div id="social">
+    <button id="toggle-btn">
+      <span>
+        <i>🌙</i>
+        Switch to Dark
+      </span>
+    </button>
+    <div id="clock">GMT+8 00:00</div>
+    <div class="container">
+      <div class="social-heading">Connect With Me</div>
+      
+      <div class="social-grid">
+        <!-- YouTube Card -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fab fa-youtube"></i></div>
+          <div class="social-title">YouTube</div>
+          <div class="social-description">My video content on mathematics and more</div>
+          <div style="display: flex; gap: 10px; justify-content: center;">
+            <a href="https://www.youtube.com/channel/UCemKYMAMJk8FggZ5NI36i1Q" class="social-link" target="_blank">Channel</a>
+            <a href="https://www.youtube.com/@JinghaoChen-Stardust" class="social-link" target="_blank">Handle</a>
+          </div>
+        </div>
+        
+        <!-- TikTok Card -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fab fa-tiktok"></i></div>
+          <div class="social-title">TikTok (Chinese)</div>
+          <div class="social-description">Short-form videos in Chinese</div>
+          <div style="display: flex; gap: 10px; justify-content: center;">
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAqb9M45SaGeb8yI28lL3lDFHm48c4kl32Xq7BfRk3I24" class="social-link" target="_blank">Profile</a>
+            <a href="https://v.douyin.com/PzIS6mSXJGY/" class="social-link" target="_blank">Video</a>
+          </div>
+        </div>
+        
+        <!-- REDnote (Xiaohongshu) Card -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fas fa-book"></i></div>
+          <div class="social-title">REDnote (Xiaohongshu)</div>
+          <div class="social-description">Chinese lifestyle and knowledge sharing</div>
+          <a href="https://www.xiaohongshu.com/user/profile/64c696da000000000b005093" class="social-link" target="_blank">Visit Profile</a>
+        </div>
+        
+        <!-- Quora Card -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fab fa-quora"></i></div>
+          <div class="social-title">Quora</div>
+          <div class="social-description">My answers to various questions</div>
+          <a href="https://www.quora.com/profile/Jinghao-Chen-11/" class="social-link" target="_blank">Visit Profile</a>
+        </div>
+        
+        <!-- Twitter/X Card -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fab fa-twitter"></i></div>
+          <div class="social-title">X (Twitter)</div>
+          <div class="social-description">Thoughts and updates in 280 characters</div>
+          <a href="https://x.com/stardust_math" class="social-link" target="_blank">Follow Me</a>
+        </div>
+        
+        <!-- Bilibili Card -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fas fa-play-circle"></i></div>
+          <div class="social-title">Bilibili</div>
+          <div class="social-description">Chinese video platform for my content</div>
+          <a href="https://space.bilibili.com/470364718" class="social-link" target="_blank">Visit Channel</a>
+        </div>
+      </div>
+    </div>
+    
+    <a href="#" class="back-btn" id="back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+  </div>
+
   <script>
     // Initialize custom cursor
     document.addEventListener('DOMContentLoaded', function() {
@@ -767,7 +1003,7 @@
       });
       
       // Hover effects for interactive elements
-      const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn');
+      const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn, #social-btn');
       hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
           cursorInner.classList.add('hover');
@@ -785,14 +1021,18 @@
     // Page elements
     const cover = document.getElementById("cover");
     const resume = document.getElementById("resume");
+    const social = document.getElementById("social");
     const avatarFrame = document.getElementById("avatar-frame");
     const name = document.getElementById("name");
     const slogan = document.getElementById("slogan");
     const aboutBtn = document.getElementById("about-btn");
+    const socialBtn = document.getElementById("social-btn");
     const toggleBtn = document.getElementById("toggle-btn");
     const clock = document.getElementById("clock");
+    const backBtn = document.getElementById("back-btn");
 
     let coverHidden = false;
+    let currentPage = null;
 
     // Animate cover elements sequentially
     function showCoverElements() {
@@ -805,25 +1045,56 @@
       }, 800);
       setTimeout(() => {
         aboutBtn.classList.add("visible");
+        socialBtn.classList.add("visible");
       }, 1200);
     }
 
-    // Transition from cover to resume
-    function hideCover() {
-      if (coverHidden) return;
+    // Transition from cover to page
+    function showPage(page) {
+      if (coverHidden && currentPage === page) return;
       
       cover.classList.add("hidden");
       setTimeout(() => {
         cover.style.display = "none";
-        resume.classList.add("visible");
         document.body.style.overflow = "auto";
         coverHidden = true;
+        
+        // Hide all pages first
+        resume.classList.remove("visible");
+        social.classList.remove("visible");
+        
+        // Show the selected page
+        if (page === 'resume') {
+          resume.classList.add("visible");
+          currentPage = 'resume';
+        } else if (page === 'social') {
+          social.classList.add("visible");
+          currentPage = 'social';
+        }
       }, 1500);
       
       avatarFrame.classList.remove("visible");
       name.classList.remove("visible");
       slogan.classList.remove("visible");
       aboutBtn.classList.remove("visible");
+      socialBtn.classList.remove("visible");
+    }
+
+    // Back to cover
+    function backToCover() {
+      coverHidden = false;
+      cover.style.display = "flex";
+      cover.classList.remove("hidden");
+      
+      // Hide all pages
+      resume.classList.remove("visible");
+      social.classList.remove("visible");
+      
+      // Reset cover elements
+      setTimeout(() => {
+        cover.classList.add("visible");
+        showCoverElements();
+      }, 100);
     }
 
     // Initialize page on load
@@ -833,8 +1104,10 @@
       startClock();
     });
 
-    // About button click handler
-    aboutBtn.addEventListener("click", hideCover);
+    // Button click handlers
+    aboutBtn.addEventListener("click", () => showPage('resume'));
+    socialBtn.addEventListener("click", () => showPage('social'));
+    backBtn.addEventListener("click", backToCover);
 
     // Theme management functions
     function initializeTheme() {
