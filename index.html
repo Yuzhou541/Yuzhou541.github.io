@@ -835,26 +835,15 @@
 
     // Theme management functions
     function initializeTheme() {
-      const savedTheme = localStorage.getItem('themePreference');
       const currentHour = new Date().getHours();
       const isNightTime = currentHour >= 18 || currentHour < 6;
-  
-      // Priority: saved preference > time-based > default light
-      if (savedTheme) {
-        applyTheme(savedTheme);
-      } else {
-        const theme = isNightTime ? 'dark' : 'light';
-        applyTheme(theme);
-        localStorage.setItem('themePreference', theme); // 保存初始决定
-      }
-    updateToggleBtnText();
+      applyTheme(isNightTime ? 'dark' : 'light');
+      updateToggleBtnText();
     }
 
     // Theme toggle functionality
     toggleBtn.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
-      const newTheme = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
-      localStorage.setItem('themePreference', newTheme);
       updateToggleBtnText();
     });
 
