@@ -118,7 +118,7 @@
     z-index: 100;
   }
 
-  /* Cover overlay effects */
+  /* Cover overlay effects - Reduced blur from 5px to 3px */
   #cover::before {
     content: "";
     position: absolute;
@@ -127,7 +127,7 @@
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px);
     z-index: 11;
   }
 
@@ -243,17 +243,17 @@
       0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /* Enhanced About button styling */
+  /* Enhanced About button styling - Made more compact and sophisticated */
   #about-btn {
     position: relative;
     z-index: 20;
     background: transparent;
     color: white;
     border: none;
-    padding: 12px 30px;
+    padding: 10px 24px; /* Reduced padding */
     font-family: "Times New Roman", Times, serif;
     font-style: italic;
-    font-size: 1.2em;
+    font-size: 1.1em; /* Slightly smaller font */
     cursor: pointer;
     transition: all 0.4s ease;
     opacity: 0;
@@ -261,10 +261,11 @@
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
     margin-top: 20px;
     overflow: hidden;
-    border-radius: 50px;
+    border-radius: 30px; /* More subtle rounding */
     box-shadow: 
       0 0 0 1px rgba(255, 255, 255, 0.3),
-      0 0 20px rgba(255, 255, 255, 0.1);
+      0 0 15px rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.5px; /* Added letter spacing */
   }
 
   #about-btn::before {
@@ -279,10 +280,11 @@
       rgba(255, 255, 255, 0.1),
       rgba(255, 255, 255, 0.05)
     );
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px); /* Reduced blur */
     z-index: -1;
-    border-radius: 50px;
+    border-radius: 30px; /* Matches button radius */
     transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Added subtle border */
   }
 
   #about-btn::after {
@@ -303,7 +305,8 @@
     transform: translateY(0) scale(1.05);
     box-shadow: 
       0 0 0 1px rgba(255, 255, 255, 0.5),
-      0 0 30px rgba(255, 255, 255, 0.2);
+      0 0 25px rgba(255, 255, 255, 0.2);
+    letter-spacing: 1px; /* Increased spacing on hover */
   }
 
   #about-btn:hover::before {
