@@ -800,7 +800,7 @@
     z-index: 20;
   }
 
-  /* Toolkit page specific styles */
+  /* Toolkit page specific styles - 修改后的部分 */
   .toolkit-heading {
     font-size: 2.8em;
     text-align: center;
@@ -816,63 +816,98 @@
 
   .toolkit-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
     margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
   }
 
   .toolkit-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
     text-align: center;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 220px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   .toolkit-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   }
 
   body.dark-mode .toolkit-card {
     background: #2d2d2d;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.05);
   }
 
   .toolkit-icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: #3498db;
-    transition: all 0.3s ease;
-    width: 60px;
-    height: 60px;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: white;
+    transition: all 0.4s ease;
+    width: 70px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: rgba(52, 152, 219, 0.1);
+    border-radius: 20px;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    position: relative;
+    z-index: 1;
   }
 
   .toolkit-card:hover .toolkit-icon {
-    transform: scale(1.2);
-    background: rgba(52, 152, 219, 0.2);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+  }
+
+  .toolkit-icon i {
+    position: relative;
+    z-index: 2;
+  }
+
+  .toolkit-icon::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .toolkit-card:hover .toolkit-icon::after {
+    opacity: 1;
   }
 
   .toolkit-title {
     font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: #2c3e50;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
   }
 
   body.dark-mode .toolkit-title {
@@ -881,29 +916,41 @@
 
   .toolkit-link {
     display: inline-block;
-    padding: 8px 20px;
-    background: #3498db;
+    padding: 10px 25px;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
     color: white;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     margin-top: auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+
+  .toolkit-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #9b59b6, #3498db);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
   }
 
   .toolkit-link:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
   }
 
-  body.dark-mode .toolkit-link {
-    background: #6a3093;
-  }
-
-  body.dark-mode .toolkit-link:hover {
-    background: #4a148c;
-    box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
+  .toolkit-link:hover::before {
+    opacity: 1;
   }
 
   .toolkit-card::before {
@@ -914,212 +961,105 @@
     width: 100%;
     height: 5px;
     background: linear-gradient(90deg, #3498db, #9b59b6);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
   }
 
   .toolkit-card:hover::before {
-    height: 10px;
+    height: 8px;
+  }
+
+  .toolkit-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #9b59b6, #3498db);
+    transition: all 0.4s ease;
+    opacity: 0;
+  }
+
+  .toolkit-card:hover::after {
+    opacity: 1;
+    height: 8px;
+  }
+
+  /* Dark mode adjustments */
+  body.dark-mode .toolkit-title {
+    color: #ffffff;
   }
 
   body.dark-mode .toolkit-card::before {
     background: linear-gradient(90deg, #6a3093, #9b59b6);
   }
 
-  /* Custom icons for specific services */
-  .ustc-icon {
-    background-color: #b30000;
-    color: white;
+  body.dark-mode .toolkit-card::after {
+    background: linear-gradient(90deg, #9b59b6, #6a3093);
   }
 
-  .jw-icon {
-    background-color: #0056b3;
-    color: white;
+  body.dark-mode .toolkit-link {
+    background: linear-gradient(135deg, #6a3093, #9b59b6);
+    box-shadow: 0 5px 15px rgba(106, 48, 147, 0.3);
   }
 
-  .blackboard-icon {
-    background-color: #000;
-    color: white;
+  body.dark-mode .toolkit-link::before {
+    background: linear-gradient(135deg, #9b59b6, #6a3093);
   }
 
-  .email-icon {
-    background-color: #d44638;
-    color: white;
+  body.dark-mode .toolkit-link:hover {
+    box-shadow: 0 8px 25px rgba(106, 48, 147, 0.4);
   }
 
-  .icourse-icon {
-    background-color: #ff6b6b;
-    color: white;
+  body.dark-mode .toolkit-icon {
+    background: linear-gradient(135deg, #6a3093, #9b59b6);
+    box-shadow: 0 5px 15px rgba(106, 48, 147, 0.3);
   }
 
-  .hanhai-icon {
-    background-color: #1e88e5;
-    color: white;
+  body.dark-mode .toolkit-card:hover .toolkit-icon {
+    box-shadow: 0 8px 25px rgba(106, 48, 147, 0.4);
   }
 
-  .flyer-icon {
-    background-color: #6a3093;
-    color: white;
-  }
-
-  .software-icon {
-    background-color: #333;
-    color: white;
-  }
-
-  .deepseek-icon {
-    background-color: #1a73e8;
-    color: white;
-  }
-
-  .chatgpt-icon {
-    background-color: #10a37f;
-    color: white;
-  }
-
-  .grok-icon {
-    background-color: #6200ee;
-    color: white;
-  }
-
-  .scholar-icon {
-    background-color: #4285f4;
-    color: white;
-  }
-
-  .spotify-icon {
-    background-color: #1db954;
-    color: white;
-  }
-
-  .overleaf-icon {
-    background-color: #47a141;
-    color: white;
-  }
-
-  .jupyter-icon {
-    background-color: #f37626;
-    color: white;
-  }
-
-  .typing-icon {
-    background-color: #4a148c;
-    color: white;
-  }
-
-  .qwerty-icon {
-    background-color: #333;
-    color: white;
-  }
-
-  .icloud-icon {
-    background-color: #0071e3;
-    color: white;
-  }
-
-  .shanbay-icon {
-    background-color: #3eaf7c;
-    color: white;
-  }
-
-  .toefl-icon {
-    background-color: #ff5722;
-    color: white;
-  }
-
-  .english-icon {
-    background-color: #2196f3;
-    color: white;
-  }
-
-  .zlib-icon {
-    background-color: #4caf50;
-    color: white;
-  }
-
-  .matlab-icon {
-    background-color: #0076a8;
-    color: white;
-  }
-
-  .mathematica-icon {
-    background-color: #dd1100;
-    color: white;
-  }
-
-  .wolfram-icon {
-    background-color: #dd1100;
-    color: white;
-  }
-
-  .deepl-icon {
-    background-color: #0f2b46;
-    color: white;
-  }
-
-  .cnki-icon {
-    background-color: #e53935;
-    color: white;
-  }
-
-  .geogebra-icon {
-    background-color: #39a121;
-    color: white;
-  }
-
-  .lofter-icon {
-    background-color: #00bcd4;
-    color: white;
-  }
-
-  .xdf-icon {
-    background-color: #ff5252;
-    color: white;
-  }
-
-  .camscanner-icon {
-    background-color: #4caf50;
-    color: white;
-  }
-
-  .mars-icon {
-    background-color: #795548;
-    color: white;
-  }
-
-  .xmol-icon {
-    background-color: #1565c0;
-    color: white;
-  }
-
-  .ablesci-icon {
-    background-color: #5c6bc0;
-    color: white;
-  }
-
-  .sciencedirect-icon {
-    background-color: #ff8f00;
-    color: white;
-  }
-
-  .kaggle-icon {
-    background-color: #20beff;
-    color: white;
-  }
-
-  .csmr-icon {
-    background-color: #607d8b;
-    color: white;
-  }
-
-  .wind-icon {
-    background-color: #009688;
-    color: white;
-  }
-
-  .webofscience-icon {
-    background-color: #673ab7;
-    color: white;
-  }
+  /* Special icons colors */
+  .toolkit-icon.ustc-icon { background: linear-gradient(135deg, #b30000, #d40000); }
+  .toolkit-icon.jw-icon { background: linear-gradient(135deg, #0056b3, #0066cc); }
+  .toolkit-icon.blackboard-icon { background: linear-gradient(135deg, #000, #333); }
+  .toolkit-icon.email-icon { background: linear-gradient(135deg, #d44638, #e74c3c); }
+  .toolkit-icon.icourse-icon { background: linear-gradient(135deg, #ff6b6b, #ff7675); }
+  .toolkit-icon.hanhai-icon { background: linear-gradient(135deg, #1e88e5, #2196f3); }
+  .toolkit-icon.flyer-icon { background: linear-gradient(135deg, #6a3093, #9b59b6); }
+  .toolkit-icon.software-icon { background: linear-gradient(135deg, #333, #555); }
+  .toolkit-icon.deepseek-icon { background: linear-gradient(135deg, #1a73e8, #4285f4); }
+  .toolkit-icon.chatgpt-icon { background: linear-gradient(135deg, #10a37f, #1abc9c); }
+  .toolkit-icon.grok-icon { background: linear-gradient(135deg, #6200ee, #7c4dff); }
+  .toolkit-icon.scholar-icon { background: linear-gradient(135deg, #4285f4, #34a853); }
+  .toolkit-icon.spotify-icon { background: linear-gradient(135deg, #1db954, #1ed760); }
+  .toolkit-icon.overleaf-icon { background: linear-gradient(135deg, #47a141, #5cb85c); }
+  .toolkit-icon.jupyter-icon { background: linear-gradient(135deg, #f37626, #f39c12); }
+  .toolkit-icon.typing-icon { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+  .toolkit-icon.qwerty-icon { background: linear-gradient(135deg, #333, #555); }
+  .toolkit-icon.icloud-icon { background: linear-gradient(135deg, #0071e3, #5ac8fa); }
+  .toolkit-icon.shanbay-icon { background: linear-gradient(135deg, #3eaf7c, #4cd964); }
+  .toolkit-icon.toefl-icon { background: linear-gradient(135deg, #ff5722, #ff7043); }
+  .toolkit-icon.english-icon { background: linear-gradient(135deg, #2196f3, #64b5f6); }
+  .toolkit-icon.zlib-icon { background: linear-gradient(135deg, #4caf50, #66bb6a); }
+  .toolkit-icon.matlab-icon { background: linear-gradient(135deg, #0076a8, #0097a7); }
+  .toolkit-icon.mathematica-icon { background: linear-gradient(135deg, #dd1100, #ff3d00); }
+  .toolkit-icon.wolfram-icon { background: linear-gradient(135deg, #dd1100, #ff3d00); }
+  .toolkit-icon.deepl-icon { background: linear-gradient(135deg, #0f2b46, #1a365d); }
+  .toolkit-icon.cnki-icon { background: linear-gradient(135deg, #e53935, #f44336); }
+  .toolkit-icon.geogebra-icon { background: linear-gradient(135deg, #39a121, #4caf50); }
+  .toolkit-icon.lofter-icon { background: linear-gradient(135deg, #00bcd4, #00e5ff); }
+  .toolkit-icon.xdf-icon { background: linear-gradient(135deg, #ff5252, #ff6e6e); }
+  .toolkit-icon.camscanner-icon { background: linear-gradient(135deg, #4caf50, #66bb6a); }
+  .toolkit-icon.mars-icon { background: linear-gradient(135deg, #795548, #8d6e63); }
+  .toolkit-icon.xmol-icon { background: linear-gradient(135deg, #1565c0, #1976d2); }
+  .toolkit-icon.ablesci-icon { background: linear-gradient(135deg, #5c6bc0, #7986cb); }
+  .toolkit-icon.sciencedirect-icon { background: linear-gradient(135deg, #ff8f00, #ffa000); }
+  .toolkit-icon.kaggle-icon { background: linear-gradient(135deg, #20beff, #00b0ff); }
+  .toolkit-icon.csmr-icon { background: linear-gradient(135deg, #607d8b, #78909c); }
+  .toolkit-icon.wind-icon { background: linear-gradient(135deg, #009688, #26a69a); }
+  .toolkit-icon.webofscience-icon { background: linear-gradient(135deg, #673ab7, #7e57c2); }
 </style>
 </head>
 <body>
@@ -1313,7 +1253,7 @@
     </a>
   </div>
 
-  <!-- 工具包页 -->
+  <!-- 工具包页 - 修改后的部分 -->
   <div id="toolkit">
     <button id="toggle-btn-toolkit">
       <span>
