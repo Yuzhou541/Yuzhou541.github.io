@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  /* 基础样式 */
+  /* Base Styles */
   body, html {
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@
     color: #000;
   }
 
-  /* 自定义光标样式 */
+  /* Custom Cursor */
   * {
     cursor: none !important;
   }
@@ -49,12 +49,10 @@
     background-color: #333;
   }
   
-  /* 暗黑模式光标 */
   body.dark-mode .cursor-inner {
     background-color: #f8f9fa;
   }
   
-  /* 光标状态 */
   .custom-cursor.click {
     transform: translate(-50%, -50%) scale(0.8);
   }
@@ -64,7 +62,6 @@
     height: 40px;
   }
   
-  /* 涟漪效果 */
   .ripple {
     position: fixed;
     width: 20px;
@@ -88,7 +85,6 @@
     }
   }
   
-  /* 触摸设备支持 */
   @media (hover: none) {
     .custom-cursor {
       display: none;
@@ -99,7 +95,7 @@
     }
   }
 
-  /* 封面样式 */
+  /* Cover Page */
   #cover {
     position: fixed;
     width: 100%;
@@ -115,7 +111,6 @@
     z-index: 100;
   }
 
-  /* 封面遮罩效果 */
   #cover::before {
     content: "";
     position: absolute;
@@ -154,7 +149,6 @@
     }
   }
 
-  /* 封面可见性 */
   #cover.visible {
     opacity: 1;
   }
@@ -163,7 +157,6 @@
     pointer-events: none;
   }
 
-  /* 头像样式 */
   #avatar-frame {
     position: relative;
     width: 150px;
@@ -201,7 +194,6 @@
     display: block;
   }
 
-  /* 文本元素 */
   #name,
   #slogan {
     position: relative;
@@ -240,7 +232,7 @@
       0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /* 按钮样式 */
+  /* Cover Buttons */
   #about-btn, #social-btn, #toolkit-btn {
     position: relative;
     z-index: 20;
@@ -325,7 +317,7 @@
     transform: translateY(0);
   }
 
-  /* 简历内容 */
+  /* Pages Container */
   #resume, #social, #toolkit {
     position: relative;
     z-index: 1;
@@ -347,6 +339,7 @@
     opacity: 1;
   }
 
+  /* Common Container */
   .container {
     max-width: 900px;
     margin: 0 auto;
@@ -355,7 +348,197 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-top: 1px solid #000;
   }
+
+  /* Dark Mode */
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
   
+  body.dark-mode #resume, 
+  body.dark-mode #social, 
+  body.dark-mode #toolkit {
+    background: #121212;
+  }
+  
+  body.dark-mode .container {
+    background: #1e1e1e;
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    border-top: 1px solid #444;
+  }
+
+  /* Theme Toggle Buttons */
+  #toggle-btn, #toggle-btn-social, #toggle-btn-toolkit {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 170px;
+    height: 50px;
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9em;
+    z-index: 9999;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  #toggle-btn:hover, #toggle-btn-social:hover, #toggle-btn-toolkit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+  }
+
+  #toggle-btn:active, #toggle-btn-social:active, #toggle-btn-toolkit:active {
+    transform: translateY(1px);
+  }
+
+  #toggle-btn::before, 
+  #toggle-btn-social::before, 
+  #toggle-btn-toolkit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #2980b9, #3498db);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  #toggle-btn:hover::before, 
+  #toggle-btn-social:hover::before, 
+  #toggle-btn-toolkit:hover::before {
+    opacity: 1;
+  }
+
+  #toggle-btn span, 
+  #toggle-btn-social span, 
+  #toggle-btn-toolkit span {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 0 5px;
+  }
+
+  #toggle-btn i, 
+  #toggle-btn-social i, 
+  #toggle-btn-toolkit i {
+    font-style: normal;
+    font-size: 1.2em;
+    margin-right: 5px;
+  }
+
+  body.dark-mode #toggle-btn, 
+  body.dark-mode #toggle-btn-social, 
+  body.dark-mode #toggle-btn-toolkit {
+    background: linear-gradient(145deg, #6a3093, #4a148c);
+    box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
+  }
+
+  body.dark-mode #toggle-btn::before, 
+  body.dark-mode #toggle-btn-social::before, 
+  body.dark-mode #toggle-btn-toolkit::before {
+    background: linear-gradient(145deg, #4a148c, #6a3093);
+  }
+
+  /* Clock */
+  #clock, #clock-social, #clock-toolkit {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(52, 152, 219, 0.9);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 1em;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    transition: all 0.4s ease;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  #clock:hover, #clock-social:hover, #clock-toolkit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+  }
+
+  body.dark-mode #clock, 
+  body.dark-mode #clock-social, 
+  body.dark-mode #clock-toolkit {
+    background: rgba(106, 48, 147, 0.9);
+    box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
+  }
+
+  /* Back Button */
+  .back-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #3498db;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    transition: all 0.3s ease;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease;
+  }
+
+  .back-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .back-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: #2980b9;
+  }
+
+  body.dark-mode .back-btn {
+    background: #6a3093;
+    box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
+  }
+
+  body.dark-mode .back-btn:hover {
+    background: #4a148c;
+  }
+
+  /* Cover Buttons Container */
+  .cover-buttons {
+    display: flex;
+    gap: 20px;
+    z-index: 20;
+  }
+
+  /* Resume Page Styles */
   .resume-heading {
     font-size: 2.8em;
     text-align: center;
@@ -447,23 +630,6 @@
     margin-left: 20px;
   }
 
-  /* 暗黑模式样式 */
-  body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-  }
-  
-  body.dark-mode #resume, body.dark-mode #social, body.dark-mode #toolkit {
-    background: #121212;
-  }
-  
-  body.dark-mode .container {
-    background: #1e1e1e;
-    color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-    border-top: 1px solid #444;
-  }
-  
   body.dark-mode .subheading-title {
     color: #3498db;
   }
@@ -495,117 +661,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* 主题切换按钮 */
-  #toggle-btn, #toggle-btn-social, #toggle-btn-toolkit {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 170px;
-    height: 50px;
-    background: linear-gradient(145deg, #3498db, #2980b9);
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.9em;
-    z-index: 9999;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-  }
-
-  #toggle-btn:hover, #toggle-btn-social:hover, #toggle-btn-toolkit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
-  }
-
-  #toggle-btn:active, #toggle-btn-social:active, #toggle-btn-toolkit:active {
-    transform: translateY(1px);
-  }
-
-  #toggle-btn::before, #toggle-btn-social::before, #toggle-btn-toolkit::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(145deg, #2980b9, #3498db);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  #toggle-btn:hover::before, #toggle-btn-social:hover::before, #toggle-btn-toolkit:hover::before {
-    opacity: 1;
-  }
-
-  #toggle-btn span, #toggle-btn-social span, #toggle-btn-toolkit span {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Arial', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    padding: 0 5px;
-  }
-
-  #toggle-btn i, #toggle-btn-social i, #toggle-btn-toolkit i {
-    font-style: normal;
-    font-size: 1.2em;
-    margin-right: 5px;
-  }
-
-  /* 暗黑模式按钮 */
-  body.dark-mode #toggle-btn, body.dark-mode #toggle-btn-social, body.dark-mode #toggle-btn-toolkit {
-    background: linear-gradient(145deg, #6a3093, #4a148c);
-    box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
-  }
-
-  body.dark-mode #toggle-btn::before, body.dark-mode #toggle-btn-social::before, body.dark-mode #toggle-btn-toolkit::before {
-    background: linear-gradient(145deg, #4a148c, #6a3093);
-  }
-
-  /* 时钟样式 */
-  #clock, #clock-social, #clock-toolkit {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: rgba(52, 152, 219, 0.9);
-    color: white;
-    padding: 12px 18px;
-    border-radius: 25px;
-    font-size: 1em;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 140px;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-    transition: all 0.4s ease;
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-
-  #clock:hover, #clock-social:hover, #clock-toolkit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
-  }
-
-  /* 暗黑模式时钟 */
-  body.dark-mode #clock, body.dark-mode #clock-social, body.dark-mode #clock-toolkit {
-    background: rgba(106, 48, 147, 0.9);
-    box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
-  }
-
-  /* 社交页面特定样式 */
+  /* Social Page Styles */
   .social-heading {
     font-size: 2.8em;
     text-align: center;
@@ -658,7 +714,6 @@
     transform: scale(1.2);
   }
 
-  /* Bilibili SVG图标样式 */
   .bilibili-icon {
     width: 2.5rem;
     height: 2.5rem;
@@ -737,7 +792,6 @@
     background: linear-gradient(90deg, #6a3093, #9b59b6);
   }
 
-  /* 社交链接分隔符 */
   .social-divider {
     display: inline-flex;
     align-items: center;
@@ -752,55 +806,7 @@
     color: #bdc3c7;
   }
 
-  /* 返回按钮 */
-  .back-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: #3498db;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-    transition: all 0.3s ease;
-    z-index: 100;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease;
-  }
-
-  .back-btn.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .back-btn:hover {
-    transform: translateY(-5px) scale(1.1);
-    background: #2980b9;
-  }
-
-  body.dark-mode .back-btn {
-    background: #6a3093;
-    box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
-  }
-
-  body.dark-mode .back-btn:hover {
-    background: #4a148c;
-  }
-
-  /* 封面按钮容器 */
-  .cover-buttons {
-    display: flex;
-    gap: 20px;
-    z-index: 20;
-  }
-
-  /* Toolkit page specific styles */
+  /* Enhanced Toolkit Page Styles */
   .toolkit-heading {
     font-size: 2.8em;
     text-align: center;
@@ -814,65 +820,98 @@
     color: #ffffff;
   }
 
+  .toolkit-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
   .toolkit-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
     margin-top: 30px;
   }
 
   .toolkit-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    text-align: center;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 1px solid rgba(0,0,0,0.05);
   }
 
   .toolkit-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
   }
 
   body.dark-mode .toolkit-card {
     background: #2d2d2d;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255,255,255,0.05);
   }
 
-  .toolkit-icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: #3498db;
-    transition: all 0.3s ease;
-    width: 60px;
-    height: 60px;
+  .toolkit-icon-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .toolkit-icon-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    background: rgba(52, 152, 219, 0.1);
+    opacity: 0.1;
+    z-index: 1;
+  }
+
+  .toolkit-icon {
+    font-size: 2.5rem;
+    z-index: 2;
+    transition: all 0.3s ease;
   }
 
   .toolkit-card:hover .toolkit-icon {
     transform: scale(1.2);
-    background: rgba(52, 152, 219, 0.2);
   }
 
   .toolkit-title {
     font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: #2c3e50;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  .toolkit-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: #3498db;
+    transition: all 0.3s ease;
+  }
+
+  .toolkit-card:hover .toolkit-title::after {
+    width: 60px;
+    background: #9b59b6;
   }
 
   body.dark-mode .toolkit-title {
@@ -881,20 +920,40 @@
 
   .toolkit-link {
     display: inline-block;
-    padding: 8px 20px;
+    padding: 10px 24px;
     background: #3498db;
     color: white;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
-    margin-top: auto;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .toolkit-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   .toolkit-link:hover {
     background: #2980b9;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  }
+
+  .toolkit-link:hover::before {
+    opacity: 1;
   }
 
   body.dark-mode .toolkit-link {
@@ -912,222 +971,174 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 5px;
+    height: 4px;
     background: linear-gradient(90deg, #3498db, #9b59b6);
     transition: all 0.3s ease;
   }
 
   .toolkit-card:hover::before {
-    height: 10px;
+    height: 6px;
   }
 
   body.dark-mode .toolkit-card::before {
     background: linear-gradient(90deg, #6a3093, #9b59b6);
   }
 
+  .toolkit-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233498db'%3E%3Cpath d='M5 12h14M12 5l7 7-7 7'/%3E%3C/svg%3E") no-repeat center center;
+    opacity: 0.1;
+    transition: all 0.3s ease;
+  }
+
+  .toolkit-card:hover::after {
+    opacity: 0.3;
+    transform: translate(5px, -5px);
+  }
+
   /* Custom icons for specific services */
-  .ustc-icon {
-    background-color: #b30000;
-    color: white;
+  .ustc-icon-bg { background-color: #b30000; }
+  .ustc-icon { color: #b30000; }
+
+  .jw-icon-bg { background-color: #0056b3; }
+  .jw-icon { color: #0056b3; }
+
+  .blackboard-icon-bg { background-color: #000; }
+  .blackboard-icon { color: #000; }
+
+  .email-icon-bg { background-color: #d44638; }
+  .email-icon { color: #d44638; }
+
+  .icourse-icon-bg { background-color: #ff6b6b; }
+  .icourse-icon { color: #ff6b6b; }
+
+  .hanhai-icon-bg { background-color: #1e88e5; }
+  .hanhai-icon { color: #1e88e5; }
+
+  .flyer-icon-bg { background-color: #6a3093; }
+  .flyer-icon { color: #6a3093; }
+
+  .software-icon-bg { background-color: #333; }
+  .software-icon { color: #333; }
+
+  .deepseek-icon-bg { background-color: #1a73e8; }
+  .deepseek-icon { color: #1a73e8; }
+
+  .chatgpt-icon-bg { background-color: #10a37f; }
+  .chatgpt-icon { color: #10a37f; }
+
+  .grok-icon-bg { background-color: #6200ee; }
+  .grok-icon { color: #6200ee; }
+
+  .scholar-icon-bg { background-color: #4285f4; }
+  .scholar-icon { color: #4285f4; }
+
+  .spotify-icon-bg { background-color: #1db954; }
+  .spotify-icon { color: #1db954; }
+
+  .overleaf-icon-bg { background-color: #47a141; }
+  .overleaf-icon { color: #47a141; }
+
+  .jupyter-icon-bg { background-color: #f37626; }
+  .jupyter-icon { color: #f37626; }
+
+  .typing-icon-bg { background-color: #4a148c; }
+  .typing-icon { color: #4a148c; }
+
+  .qwerty-icon-bg { background-color: #333; }
+  .qwerty-icon { color: #333; }
+
+  .icloud-icon-bg { background-color: #0071e3; }
+  .icloud-icon { color: #0071e3; }
+
+  .shanbay-icon-bg { background-color: #3eaf7c; }
+  .shanbay-icon { color: #3eaf7c; }
+
+  .toefl-icon-bg { background-color: #ff5722; }
+  .toefl-icon { color: #ff5722; }
+
+  .english-icon-bg { background-color: #2196f3; }
+  .english-icon { color: #2196f3; }
+
+  .zlib-icon-bg { background-color: #4caf50; }
+  .zlib-icon { color: #4caf50; }
+
+  .matlab-icon-bg { background-color: #0076a8; }
+  .matlab-icon { color: #0076a8; }
+
+  .mathematica-icon-bg { background-color: #dd1100; }
+  .mathematica-icon { color: #dd1100; }
+
+  .wolfram-icon-bg { background-color: #dd1100; }
+  .wolfram-icon { color: #dd1100; }
+
+  .deepl-icon-bg { background-color: #0f2b46; }
+  .deepl-icon { color: #0f2b46; }
+
+  .cnki-icon-bg { background-color: #e53935; }
+  .cnki-icon { color: #e53935; }
+
+  .geogebra-icon-bg { background-color: #39a121; }
+  .geogebra-icon { color: #39a121; }
+
+  .lofter-icon-bg { background-color: #00bcd4; }
+  .lofter-icon { color: #00bcd4; }
+
+  .xdf-icon-bg { background-color: #ff5252; }
+  .xdf-icon { color: #ff5252; }
+
+  .camscanner-icon-bg { background-color: #4caf50; }
+  .camscanner-icon { color: #4caf50; }
+
+  .mars-icon-bg { background-color: #795548; }
+  .mars-icon { color: #795548; }
+
+  .xmol-icon-bg { background-color: #1565c0; }
+  .xmol-icon { color: #1565c0; }
+
+  .ablesci-icon-bg { background-color: #5c6bc0; }
+  .ablesci-icon { color: #5c6bc0; }
+
+  .sciencedirect-icon-bg { background-color: #ff8f00; }
+  .sciencedirect-icon { color: #ff8f00; }
+
+  .kaggle-icon-bg { background-color: #20beff; }
+  .kaggle-icon { color: #20beff; }
+
+  .csmr-icon-bg { background-color: #607d8b; }
+  .csmr-icon { color: #607d8b; }
+
+  .wind-icon-bg { background-color: #009688; }
+  .wind-icon { color: #009688; }
+
+  .webofscience-icon-bg { background-color: #673ab7; }
+  .webofscience-icon { color: #673ab7; }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .toolkit-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
-  .jw-icon {
-    background-color: #0056b3;
-    color: white;
-  }
-
-  .blackboard-icon {
-    background-color: #000;
-    color: white;
-  }
-
-  .email-icon {
-    background-color: #d44638;
-    color: white;
-  }
-
-  .icourse-icon {
-    background-color: #ff6b6b;
-    color: white;
-  }
-
-  .hanhai-icon {
-    background-color: #1e88e5;
-    color: white;
-  }
-
-  .flyer-icon {
-    background-color: #6a3093;
-    color: white;
-  }
-
-  .software-icon {
-    background-color: #333;
-    color: white;
-  }
-
-  .deepseek-icon {
-    background-color: #1a73e8;
-    color: white;
-  }
-
-  .chatgpt-icon {
-    background-color: #10a37f;
-    color: white;
-  }
-
-  .grok-icon {
-    background-color: #6200ee;
-    color: white;
-  }
-
-  .scholar-icon {
-    background-color: #4285f4;
-    color: white;
-  }
-
-  .spotify-icon {
-    background-color: #1db954;
-    color: white;
-  }
-
-  .overleaf-icon {
-    background-color: #47a141;
-    color: white;
-  }
-
-  .jupyter-icon {
-    background-color: #f37626;
-    color: white;
-  }
-
-  .typing-icon {
-    background-color: #4a148c;
-    color: white;
-  }
-
-  .qwerty-icon {
-    background-color: #333;
-    color: white;
-  }
-
-  .icloud-icon {
-    background-color: #0071e3;
-    color: white;
-  }
-
-  .shanbay-icon {
-    background-color: #3eaf7c;
-    color: white;
-  }
-
-  .toefl-icon {
-    background-color: #ff5722;
-    color: white;
-  }
-
-  .english-icon {
-    background-color: #2196f3;
-    color: white;
-  }
-
-  .zlib-icon {
-    background-color: #4caf50;
-    color: white;
-  }
-
-  .matlab-icon {
-    background-color: #0076a8;
-    color: white;
-  }
-
-  .mathematica-icon {
-    background-color: #dd1100;
-    color: white;
-  }
-
-  .wolfram-icon {
-    background-color: #dd1100;
-    color: white;
-  }
-
-  .deepl-icon {
-    background-color: #0f2b46;
-    color: white;
-  }
-
-  .cnki-icon {
-    background-color: #e53935;
-    color: white;
-  }
-
-  .geogebra-icon {
-    background-color: #39a121;
-    color: white;
-  }
-
-  .lofter-icon {
-    background-color: #00bcd4;
-    color: white;
-  }
-
-  .xdf-icon {
-    background-color: #ff5252;
-    color: white;
-  }
-
-  .camscanner-icon {
-    background-color: #4caf50;
-    color: white;
-  }
-
-  .mars-icon {
-    background-color: #795548;
-    color: white;
-  }
-
-  .xmol-icon {
-    background-color: #1565c0;
-    color: white;
-  }
-
-  .ablesci-icon {
-    background-color: #5c6bc0;
-    color: white;
-  }
-
-  .sciencedirect-icon {
-    background-color: #ff8f00;
-    color: white;
-  }
-
-  .kaggle-icon {
-    background-color: #20beff;
-    color: white;
-  }
-
-  .csmr-icon {
-    background-color: #607d8b;
-    color: white;
-  }
-
-  .wind-icon {
-    background-color: #009688;
-    color: white;
-  }
-
-  .webofscience-icon {
-    background-color: #673ab7;
-    color: white;
+  @media (max-width: 768px) {
+    .toolkit-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
 <body>
-  <!-- 光标元素 -->
+  <!-- Cursor Elements -->
   <div class="custom-cursor cursor-outer"></div>
   <div class="custom-cursor cursor-inner"></div>
 
-  <!-- 封面页 -->
+  <!-- Cover Page -->
   <div id="cover">
     <div id="avatar-frame">
       <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
@@ -1141,7 +1152,7 @@
     </div>
   </div>
 
-  <!-- 简历页 -->
+  <!-- Resume Page -->
   <div id="resume">
     <button id="toggle-btn">
       <span>
@@ -1233,7 +1244,7 @@
     </a>
   </div>
 
-  <!-- 社交页 -->
+  <!-- Social Page -->
   <div id="social">
     <button id="toggle-btn-social">
       <span>
@@ -1246,7 +1257,7 @@
       <div class="social-heading">Connect With Me</div>
       
       <div class="social-grid">
-        <!-- YouTube卡片 -->
+        <!-- YouTube Card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-youtube"></i></div>
           <div class="social-title">YouTube</div>
@@ -1258,7 +1269,7 @@
           </div>
         </div>
         
-        <!-- TikTok卡片 -->
+        <!-- TikTok Card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-tiktok"></i></div>
           <div class="social-title">TikTok (Chinese)</div>
@@ -1270,7 +1281,7 @@
           </div>
         </div>
         
-        <!-- REDnote (Xiaohongshu)卡片 -->
+        <!-- REDnote (Xiaohongshu) Card -->
         <div class="social-card">
           <div class="social-icon"><i class="fas fa-book"></i></div>
           <div class="social-title">REDnote</div>
@@ -1278,7 +1289,7 @@
           <a href="https://www.xiaohongshu.com/user/profile/64c696da000000000b005093" class="social-link" target="_blank">Profile</a>
         </div>
         
-        <!-- Quora卡片 -->
+        <!-- Quora Card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-quora"></i></div>
           <div class="social-title">Quora</div>
@@ -1286,7 +1297,7 @@
           <a href="https://www.quora.com/profile/Jinghao-Chen-11/" class="social-link" target="_blank">Profile</a>
         </div>
         
-        <!-- Twitter/X卡片 -->
+        <!-- Twitter/X Card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-twitter"></i></div>
           <div class="social-title">X (Twitter)</div>
@@ -1294,7 +1305,7 @@
           <a href="https://x.com/stardust_math" class="social-link" target="_blank">Profile</a>
         </div>
         
-        <!-- Bilibili卡片 -->
+        <!-- Bilibili Card -->
         <div class="social-card">
           <svg class="bilibili-icon" viewBox="0 0 24 24" width="2.5rem" height="2.5rem" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.99 6.5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6.01a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h2.75l-1-3a.5.5 0 0 1 .33-.63l.94-.3a.5.5 0 0 1 .63.32l1.1 3.1h2.64l1.1-3.1a.5.5 0 0 1 .63-.32l.94.3a.5.5 0 0 1 .33.63l-1 3h2.75zm-2.74 2.5H8.75a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h6.5a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5z" fill="#3498db" stroke="#3498db" stroke-width="0.2"/>
@@ -1313,7 +1324,7 @@
     </a>
   </div>
 
-  <!-- 工具包页 -->
+  <!-- Toolkit Page -->
   <div id="toolkit">
     <button id="toggle-btn-toolkit">
       <span>
@@ -1322,32 +1333,35 @@
       </span>
     </button>
     <div id="clock-toolkit">GMT+8 00:00</div>
-    <div class="container">
+    <div class="toolkit-container">
       <div class="toolkit-heading">Academic Toolkit</div>
       
       <div class="toolkit-grid">
         <!-- USTC Official Website -->
         <div class="toolkit-card">
-          <div class="toolkit-icon ustc-icon">
-            <i class="fas fa-university"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg ustc-icon-bg"></div>
+            <i class="toolkit-icon ustc-icon fas fa-university"></i>
           </div>
-          <div class="toolkit-title">USTC Official Website</div>
+          <div class="toolkit-title">USTC Official</div>
           <a href="https://www.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
         </div>
         
         <!-- Integrated Academic Affairs System -->
         <div class="toolkit-card">
-          <div class="toolkit-icon jw-icon">
-            <i class="fas fa-graduation-cap"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg jw-icon-bg"></div>
+            <i class="toolkit-icon jw-icon fas fa-graduation-cap"></i>
           </div>
-          <div class="toolkit-title">Academic Affairs System</div>
+          <div class="toolkit-title">Academic Affairs</div>
           <a href="https://jw.ustc.edu.cn/home" class="toolkit-link" target="_blank">Visit</a>
         </div>
         
         <!-- Blackboard -->
         <div class="toolkit-card">
-          <div class="toolkit-icon blackboard-icon">
-            <i class="fas fa-chalkboard"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg blackboard-icon-bg"></div>
+            <i class="toolkit-icon blackboard-icon fas fa-chalkboard"></i>
           </div>
           <div class="toolkit-title">Blackboard</div>
           <a href="https://www.bb.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
@@ -1355,8 +1369,9 @@
         
         <!-- USTC Mail -->
         <div class="toolkit-card">
-          <div class="toolkit-icon email-icon">
-            <i class="fas fa-envelope"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg email-icon-bg"></div>
+            <i class="toolkit-icon email-icon fas fa-envelope"></i>
           </div>
           <div class="toolkit-title">USTC Mail</div>
           <a href="https://email.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
@@ -1364,26 +1379,29 @@
         
         <!-- USTC Course Review Community -->
         <div class="toolkit-card">
-          <div class="toolkit-icon icourse-icon">
-            <i class="fas fa-comments"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg icourse-icon-bg"></div>
+            <i class="toolkit-icon icourse-icon fas fa-comments"></i>
           </div>
-          <div class="toolkit-title">Course Review Community</div>
+          <div class="toolkit-title">Course Reviews</div>
           <a href="https://icourse.club/" class="toolkit-link" target="_blank">Visit</a>
         </div>
         
         <!-- Hanhai Education Network -->
         <div class="toolkit-card">
-          <div class="toolkit-icon hanhai-icon">
-            <i class="fas fa-network-wired"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg hanhai-icon-bg"></div>
+            <i class="toolkit-icon hanhai-icon fas fa-network-wired"></i>
           </div>
-          <div class="toolkit-title">Hanhai Education Network</div>
+          <div class="toolkit-title">Hanhai Network</div>
           <a href="https://course.ustc.edu.cn/portal" class="toolkit-link" target="_blank">Visit</a>
         </div>
         
         <!-- USTC Flyer -->
         <div class="toolkit-card">
-          <div class="toolkit-icon flyer-icon">
-            <i class="fas fa-newspaper"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg flyer-icon-bg"></div>
+            <i class="toolkit-icon flyer-icon fas fa-newspaper"></i>
           </div>
           <div class="toolkit-title">USTC Flyer</div>
           <a href="https://ustcflyer.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1391,8 +1409,9 @@
         
         <!-- USTC Software -->
         <div class="toolkit-card">
-          <div class="toolkit-icon software-icon">
-            <i class="fas fa-download"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg software-icon-bg"></div>
+            <i class="toolkit-icon software-icon fas fa-download"></i>
           </div>
           <div class="toolkit-title">USTC Software</div>
           <a href="https://software.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
@@ -1400,8 +1419,9 @@
         
         <!-- DeepSeek -->
         <div class="toolkit-card">
-          <div class="toolkit-icon deepseek-icon">
-            <i class="fas fa-robot"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg deepseek-icon-bg"></div>
+            <i class="toolkit-icon deepseek-icon fas fa-robot"></i>
           </div>
           <div class="toolkit-title">DeepSeek</div>
           <a href="https://chat.deepseek.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1409,8 +1429,9 @@
         
         <!-- ChatGPT -->
         <div class="toolkit-card">
-          <div class="toolkit-icon chatgpt-icon">
-            <i class="fas fa-comment-dots"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg chatgpt-icon-bg"></div>
+            <i class="toolkit-icon chatgpt-icon fas fa-comment-dots"></i>
           </div>
           <div class="toolkit-title">ChatGPT</div>
           <a href="https://chatgpt.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1418,8 +1439,9 @@
         
         <!-- Grok -->
         <div class="toolkit-card">
-          <div class="toolkit-icon grok-icon">
-            <i class="fas fa-brain"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg grok-icon-bg"></div>
+            <i class="toolkit-icon grok-icon fas fa-brain"></i>
           </div>
           <div class="toolkit-title">Grok</div>
           <a href="https://grok.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1427,8 +1449,9 @@
         
         <!-- Google Scholar -->
         <div class="toolkit-card">
-          <div class="toolkit-icon scholar-icon">
-            <i class="fas fa-graduation-cap"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg scholar-icon-bg"></div>
+            <i class="toolkit-icon scholar-icon fas fa-graduation-cap"></i>
           </div>
           <div class="toolkit-title">Google Scholar</div>
           <a href="https://scholar.google.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1436,8 +1459,9 @@
         
         <!-- Spotify -->
         <div class="toolkit-card">
-          <div class="toolkit-icon spotify-icon">
-            <i class="fab fa-spotify"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg spotify-icon-bg"></div>
+            <i class="toolkit-icon spotify-icon fab fa-spotify"></i>
           </div>
           <div class="toolkit-title">Spotify</div>
           <a href="https://open.spotify.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1445,8 +1469,9 @@
         
         <!-- Overleaf -->
         <div class="toolkit-card">
-          <div class="toolkit-icon overleaf-icon">
-            <i class="fas fa-leaf"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg overleaf-icon-bg"></div>
+            <i class="toolkit-icon overleaf-icon fas fa-leaf"></i>
           </div>
           <div class="toolkit-title">Overleaf</div>
           <a href="https://cn.overleaf.com/project" class="toolkit-link" target="_blank">Visit</a>
@@ -1454,8 +1479,9 @@
         
         <!-- Jupyter -->
         <div class="toolkit-card">
-          <div class="toolkit-icon jupyter-icon">
-            <i class="fas fa-code"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg jupyter-icon-bg"></div>
+            <i class="toolkit-icon jupyter-icon fas fa-code"></i>
           </div>
           <div class="toolkit-title">Jupyter</div>
           <a href="https://jupyter.org/try" class="toolkit-link" target="_blank">Visit</a>
@@ -1463,8 +1489,9 @@
         
         <!-- Typing Test Paragraphs -->
         <div class="toolkit-card">
-          <div class="toolkit-icon typing-icon">
-            <i class="fas fa-keyboard"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg typing-icon-bg"></div>
+            <i class="toolkit-icon typing-icon fas fa-keyboard"></i>
           </div>
           <div class="toolkit-title">Typing Test</div>
           <a href="https://thepracticetest.com/typing/tests/practice-paragraphs/" class="toolkit-link" target="_blank">Visit</a>
@@ -1472,8 +1499,9 @@
         
         <!-- Qwerty Learner -->
         <div class="toolkit-card">
-          <div class="toolkit-icon qwerty-icon">
-            <i class="fas fa-keyboard"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg qwerty-icon-bg"></div>
+            <i class="toolkit-icon qwerty-icon fas fa-keyboard"></i>
           </div>
           <div class="toolkit-title">Qwerty Learner</div>
           <a href="https://qwerty.kaiyi.cool/" class="toolkit-link" target="_blank">Visit</a>
@@ -1481,8 +1509,9 @@
         
         <!-- iCloud -->
         <div class="toolkit-card">
-          <div class="toolkit-icon icloud-icon">
-            <i class="fas fa-cloud"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg icloud-icon-bg"></div>
+            <i class="toolkit-icon icloud-icon fas fa-cloud"></i>
           </div>
           <div class="toolkit-title">iCloud</div>
           <a href="https://www.icloud.com.cn/" class="toolkit-link" target="_blank">Visit</a>
@@ -1490,8 +1519,9 @@
         
         <!-- Shanbay -->
         <div class="toolkit-card">
-          <div class="toolkit-icon shanbay-icon">
-            <i class="fas fa-book-open"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg shanbay-icon-bg"></div>
+            <i class="toolkit-icon shanbay-icon fas fa-book-open"></i>
           </div>
           <div class="toolkit-title">Shanbay</div>
           <a href="https://web.shanbay.com/web/main/index" class="toolkit-link" target="_blank">Visit</a>
@@ -1499,8 +1529,9 @@
         
         <!-- XiaoZhan TOEFL -->
         <div class="toolkit-card">
-          <div class="toolkit-icon toefl-icon">
-            <i class="fas fa-language"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg toefl-icon-bg"></div>
+            <i class="toolkit-icon toefl-icon fas fa-language"></i>
           </div>
           <div class="toolkit-title">XiaoZhan TOEFL</div>
           <a href="https://top.zhan.com/toefl/listen/alltpo.html" class="toolkit-link" target="_blank">Visit</a>
@@ -1508,8 +1539,9 @@
         
         <!-- English Partner -->
         <div class="toolkit-card">
-          <div class="toolkit-icon english-icon">
-            <i class="fas fa-users"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg english-icon-bg"></div>
+            <i class="toolkit-icon english-icon fas fa-users"></i>
           </div>
           <div class="toolkit-title">English Partner</div>
           <a href="https://www.itongzhuo.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1517,8 +1549,9 @@
         
         <!-- Z-Library -->
         <div class="toolkit-card">
-          <div class="toolkit-icon zlib-icon">
-            <i class="fas fa-book"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg zlib-icon-bg"></div>
+            <i class="toolkit-icon zlib-icon fas fa-book"></i>
           </div>
           <div class="toolkit-title">Z-Library</div>
           <a href="https://zh.z-library.sk/" class="toolkit-link" target="_blank">Visit</a>
@@ -1526,8 +1559,9 @@
         
         <!-- Matlab -->
         <div class="toolkit-card">
-          <div class="toolkit-icon matlab-icon">
-            <i class="fas fa-calculator"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg matlab-icon-bg"></div>
+            <i class="toolkit-icon matlab-icon fas fa-calculator"></i>
           </div>
           <div class="toolkit-title">Matlab</div>
           <a href="https://matlab.mathworks.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1535,8 +1569,9 @@
         
         <!-- Mathematica -->
         <div class="toolkit-card">
-          <div class="toolkit-icon mathematica-icon">
-            <i class="fas fa-square-root-alt"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg mathematica-icon-bg"></div>
+            <i class="toolkit-icon mathematica-icon fas fa-square-root-alt"></i>
           </div>
           <div class="toolkit-title">Mathematica</div>
           <a href="https://www.wolfram.com/mathematica/" class="toolkit-link" target="_blank">Visit</a>
@@ -1544,8 +1579,9 @@
         
         <!-- WolframAlpha -->
         <div class="toolkit-card">
-          <div class="toolkit-icon wolfram-icon">
-            <i class="fas fa-infinity"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg wolfram-icon-bg"></div>
+            <i class="toolkit-icon wolfram-icon fas fa-infinity"></i>
           </div>
           <div class="toolkit-title">WolframAlpha</div>
           <a href="https://www.wolframalpha.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1553,8 +1589,9 @@
         
         <!-- DeepL -->
         <div class="toolkit-card">
-          <div class="toolkit-icon deepl-icon">
-            <i class="fas fa-language"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg deepl-icon-bg"></div>
+            <i class="toolkit-icon deepl-icon fas fa-language"></i>
           </div>
           <div class="toolkit-title">DeepL</div>
           <a href="https://www.deepl.com/zh/translator" class="toolkit-link" target="_blank">Visit</a>
@@ -1562,8 +1599,9 @@
         
         <!-- CNKI -->
         <div class="toolkit-card">
-          <div class="toolkit-icon cnki-icon">
-            <i class="fas fa-search"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg cnki-icon-bg"></div>
+            <i class="toolkit-icon cnki-icon fas fa-search"></i>
           </div>
           <div class="toolkit-title">CNKI</div>
           <a href="https://www.cnki.net/" class="toolkit-link" target="_blank">Visit</a>
@@ -1571,8 +1609,9 @@
         
         <!-- GeoGebra -->
         <div class="toolkit-card">
-          <div class="toolkit-icon geogebra-icon">
-            <i class="fas fa-chart-line"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg geogebra-icon-bg"></div>
+            <i class="toolkit-icon geogebra-icon fas fa-chart-line"></i>
           </div>
           <div class="toolkit-title">GeoGebra</div>
           <a href="https://www.geogebra.org/calculator" class="toolkit-link" target="_blank">Visit</a>
@@ -1580,8 +1619,9 @@
         
         <!-- LOFTER -->
         <div class="toolkit-card">
-          <div class="toolkit-icon lofter-icon">
-            <i class="fas fa-blog"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg lofter-icon-bg"></div>
+            <i class="toolkit-icon lofter-icon fas fa-blog"></i>
           </div>
           <div class="toolkit-title">LOFTER</div>
           <a href="https://www.lofter.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1589,8 +1629,9 @@
         
         <!-- XDF TOEFL -->
         <div class="toolkit-card">
-          <div class="toolkit-icon xdf-icon">
-            <i class="fas fa-language"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg xdf-icon-bg"></div>
+            <i class="toolkit-icon xdf-icon fas fa-language"></i>
           </div>
           <div class="toolkit-title">XDF TOEFL</div>
           <a href="https://www.lofter.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1598,8 +1639,9 @@
         
         <!-- XDF Online -->
         <div class="toolkit-card">
-          <div class="toolkit-icon xdf-icon">
-            <i class="fas fa-graduation-cap"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg xdf-icon-bg"></div>
+            <i class="toolkit-icon xdf-icon fas fa-graduation-cap"></i>
           </div>
           <div class="toolkit-title">XDF Online</div>
           <a href="https://il.xdf.cn/plus/student/class" class="toolkit-link" target="_blank">Visit</a>
@@ -1607,8 +1649,9 @@
         
         <!-- CamScanner -->
         <div class="toolkit-card">
-          <div class="toolkit-icon camscanner-icon">
-            <i class="fas fa-camera"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg camscanner-icon-bg"></div>
+            <i class="toolkit-icon camscanner-icon fas fa-camera"></i>
           </div>
           <div class="toolkit-title">CamScanner</div>
           <a href="https://www.camscanner.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1616,8 +1659,9 @@
         
         <!-- MARS -->
         <div class="toolkit-card">
-          <div class="toolkit-icon mars-icon">
-            <i class="fas fa-database"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg mars-icon-bg"></div>
+            <i class="toolkit-icon mars-icon fas fa-database"></i>
           </div>
           <div class="toolkit-title">MARS</div>
           <a href="https://www.marsbigdata.com/dataset" class="toolkit-link" target="_blank">Visit</a>
@@ -1625,8 +1669,9 @@
         
         <!-- X-MOL -->
         <div class="toolkit-card">
-          <div class="toolkit-icon xmol-icon">
-            <i class="fas fa-flask"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg xmol-icon-bg"></div>
+            <i class="toolkit-icon xmol-icon fas fa-flask"></i>
           </div>
           <div class="toolkit-title">X-MOL</div>
           <a href="https://www.x-mol.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1634,8 +1679,9 @@
         
         <!-- AbleSci -->
         <div class="toolkit-card">
-          <div class="toolkit-icon ablesci-icon">
-            <i class="fas fa-microscope"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg ablesci-icon-bg"></div>
+            <i class="toolkit-icon ablesci-icon fas fa-microscope"></i>
           </div>
           <div class="toolkit-title">AbleSci</div>
           <a href="https://www.ablesci.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1643,8 +1689,9 @@
         
         <!-- ScienceDirect -->
         <div class="toolkit-card">
-          <div class="toolkit-icon sciencedirect-icon">
-            <i class="fas fa-book-open"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg sciencedirect-icon-bg"></div>
+            <i class="toolkit-icon sciencedirect-icon fas fa-book-open"></i>
           </div>
           <div class="toolkit-title">ScienceDirect</div>
           <a href="https://www.sciencedirect.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1652,8 +1699,9 @@
         
         <!-- Kaggle -->
         <div class="toolkit-card">
-          <div class="toolkit-icon kaggle-icon">
-            <i class="fas fa-chart-bar"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg kaggle-icon-bg"></div>
+            <i class="toolkit-icon kaggle-icon fas fa-chart-bar"></i>
           </div>
           <div class="toolkit-title">Kaggle</div>
           <a href="https://www.kaggle.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1661,8 +1709,9 @@
         
         <!-- CSMAR -->
         <div class="toolkit-card">
-          <div class="toolkit-icon csmr-icon">
-            <i class="fas fa-chart-pie"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg csmr-icon-bg"></div>
+            <i class="toolkit-icon csmr-icon fas fa-chart-pie"></i>
           </div>
           <div class="toolkit-title">CSMAR</div>
           <a href="https://data.csmar.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1670,8 +1719,9 @@
         
         <!-- Wind -->
         <div class="toolkit-card">
-          <div class="toolkit-icon wind-icon">
-            <i class="fas fa-wind"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg wind-icon-bg"></div>
+            <i class="toolkit-icon wind-icon fas fa-wind"></i>
           </div>
           <div class="toolkit-title">Wind</div>
           <a href="https://www.wind.com.cn/portal/zh/EDB/index.html" class="toolkit-link" target="_blank">Visit</a>
@@ -1679,8 +1729,9 @@
         
         <!-- Web of Science -->
         <div class="toolkit-card">
-          <div class="toolkit-icon webofscience-icon">
-            <i class="fas fa-globe"></i>
+          <div class="toolkit-icon-container">
+            <div class="toolkit-icon-bg webofscience-icon-bg"></div>
+            <i class="toolkit-icon webofscience-icon fas fa-globe"></i>
           </div>
           <div class="toolkit-title">Web of Science</div>
           <a href="https://www.webofscience.com/" class="toolkit-link" target="_blank">Visit</a>
@@ -1694,13 +1745,13 @@
   </div>
 
   <script>
-    // 初始化自定义光标
+    // Initialize custom cursor
     document.addEventListener('DOMContentLoaded', function() {
       const cursorOuter = document.querySelector('.cursor-outer');
       const cursorInner = document.querySelector('.cursor-inner');
       const positions = { mouseX: 0, mouseY: 0 };
       
-      // 跟踪光标位置
+      // Track cursor position
       document.addEventListener('mousemove', (e) => {
         positions.mouseX = e.clientX;
         positions.mouseY = e.clientY;
@@ -1711,18 +1762,18 @@
         cursorInner.style.top = `${positions.mouseY}px`;
       });
       
-      // 点击效果
+      // Click effect
       document.addEventListener('mousedown', (e) => {
         cursorInner.classList.add('click');
         
-        // 创建涟漪效果
+        // Create ripple effect
         const ripple = document.createElement('div');
         ripple.classList.add('ripple');
         ripple.style.left = `${e.clientX}px`;
         ripple.style.top = `${e.clientY}px`;
         document.body.appendChild(ripple);
         
-        // 动画结束后清理
+        // Cleanup after animation
         setTimeout(() => {
           ripple.remove();
         }, 600);
@@ -1732,7 +1783,7 @@
         cursorInner.classList.remove('click');
       });
       
-      // 悬停效果
+      // Hover effect
       const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn, #social-btn, #toolkit-btn');
       hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -1744,11 +1795,11 @@
         });
       });
 
-      // 初始化主题
+      // Initialize theme
       initializeTheme();
     });
 
-    // 页面元素
+    // Page elements
     const cover = document.getElementById("cover");
     const resume = document.getElementById("resume");
     const social = document.getElementById("social");
@@ -1772,173 +1823,171 @@
     let coverHidden = false;
     let currentPage = null;
 
-    // 顺序显示封面元素
+    // Show cover elements in sequence
     function showCoverElements() {
-      avatarFrame.classList.add("visible");
+      avatarFrame.classList.add('visible');
       setTimeout(() => {
-        name.classList.add("visible");
-      }, 400);
+        name.classList.add('visible');
+      }, 500);
       setTimeout(() => {
-        slogan.classList.add("visible");
-      }, 800);
+        slogan.classList.add('visible');
+      }, 1000);
       setTimeout(() => {
-        aboutBtn.classList.add("visible");
-        socialBtn.classList.add("visible");
-        toolkitBtn.classList.add("visible");
-      }, 1200);
-    }
-
-    // 从封面过渡到页面
-    function showPage(page) {
-      if (coverHidden && currentPage === page) return;
-      
-      cover.classList.add("hidden");
-      setTimeout(() => {
-        cover.style.display = "none";
-        document.body.style.overflow = "auto";
-        coverHidden = true;
-        
-        // 先隐藏所有页面
-        resume.classList.remove("visible");
-        social.classList.remove("visible");
-        toolkit.classList.remove("visible");
-        
-        // 显示选中的页面
-        if (page === 'resume') {
-          resume.classList.add("visible");
-          currentPage = 'resume';
-          setTimeout(() => {
-            resumeBackBtn.classList.add("visible");
-          }, 500);
-        } else if (page === 'social') {
-          social.classList.add("visible");
-          currentPage = 'social';
-          setTimeout(() => {
-            socialBackBtn.classList.add("visible");
-          }, 500);
-        } else if (page === 'toolkit') {
-          toolkit.classList.add("visible");
-          currentPage = 'toolkit';
-          setTimeout(() => {
-            toolkitBackBtn.classList.add("visible");
-          }, 500);
-        }
+        aboutBtn.classList.add('visible');
+        socialBtn.classList.add('visible');
+        toolkitBtn.classList.add('visible');
       }, 1500);
-      
-      avatarFrame.classList.remove("visible");
-      name.classList.remove("visible");
-      slogan.classList.remove("visible");
-      aboutBtn.classList.remove("visible");
-      socialBtn.classList.remove("visible");
-      toolkitBtn.classList.remove("visible");
     }
 
-    // 返回封面
-    function backToCover() {
-      coverHidden = false;
-      cover.style.display = "flex";
-      cover.classList.remove("hidden");
-      
-      // 隐藏所有页面和返回按钮
-      resume.classList.remove("visible");
-      social.classList.remove("visible");
-      toolkit.classList.remove("visible");
-      resumeBackBtn.classList.remove("visible");
-      socialBackBtn.classList.remove("visible");
-      toolkitBackBtn.classList.remove("visible");
-      
-      // 重置封面元素
-      setTimeout(() => {
-        cover.classList.add("visible");
-        showCoverElements();
-      }, 100);
-    }
-
-    // 页面加载时初始化
-    window.addEventListener("load", () => {
-      cover.classList.add("visible");
-      showCoverElements();
-      startClock();
-    });
-
-    // 按钮点击处理
-    aboutBtn.addEventListener("click", () => showPage('resume'));
-    socialBtn.addEventListener("click", () => showPage('social'));
-    toolkitBtn.addEventListener("click", () => showPage('toolkit'));
-    resumeBackBtn.addEventListener("click", backToCover);
-    socialBackBtn.addEventListener("click", backToCover);
-    toolkitBackBtn.addEventListener("click", backToCover);
-
-    // 主题管理功能
+    // Initialize theme from localStorage or prefer-color-scheme
     function initializeTheme() {
-      const currentHour = new Date().getHours();
-      const isNightTime = currentHour >= 18 || currentHour < 6;
-      applyTheme(isNightTime ? 'dark' : 'light');
-      updateToggleBtnText();
-    }
-
-    // 主题切换功能
-    toggleBtn.addEventListener("click", toggleTheme);
-    toggleBtnSocial.addEventListener("click", toggleTheme);
-    toggleBtnToolkit.addEventListener("click", toggleTheme);
-
-    function toggleTheme() {
-      document.body.classList.toggle("dark-mode");
-      updateToggleBtnText();
-    }
-
-    function applyTheme(theme) {
-      if (theme === "dark") {
-        document.body.classList.add("dark-mode");
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.body.classList.add('dark-mode');
+        updateThemeButtons('dark');
       } else {
-        document.body.classList.remove("dark-mode");
+        updateThemeButtons('light');
       }
     }
 
-    function updateToggleBtnText() {
-      const isDark = document.body.classList.contains("dark-mode");
-      const icon = isDark ? '☀️' : '🌙';
-      const text = isDark ? "Switch to Light" : "Switch to Dark";
-      
-      toggleBtn.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnSocial.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnToolkit.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
+    // Update theme toggle buttons text
+    function updateThemeButtons(theme) {
+      const buttons = [toggleBtn, toggleBtnSocial, toggleBtnToolkit];
+      buttons.forEach(btn => {
+        if (btn) {
+          const span = btn.querySelector('span');
+          if (theme === 'dark') {
+            span.innerHTML = '<i>☀️</i> Switch to Light';
+          } else {
+            span.innerHTML = '<i>🌙</i> Switch to Dark';
+          }
+        }
+      });
     }
 
-    // 时钟功能
-    function startClock() {
-      updateClock();
-      setInterval(updateClock, 1000);
+    // Toggle dark/light theme
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeButtons(isDark ? 'dark' : 'light');
     }
 
+    // Update clock
     function updateClock() {
       const now = new Date();
-      const timeZoneName = now.toLocaleTimeString("en-us", { timeZoneName: "short" }).split(" ").pop();
-      const hours = now.getHours().toString().padStart(2, "0");
-      const mins = now.getMinutes().toString().padStart(2, "0");
-      const timeString = `${timeZoneName} ${hours}:${mins}`;
-      
-      clock.textContent = timeString;
-      clockSocial.textContent = timeString;
-      clockToolkit.textContent = timeString;
+      const options = { 
+        timeZone: 'Asia/Shanghai',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      };
+      const timeString = now.toLocaleTimeString('en-US', options);
+      const clocks = [clock, clockSocial, clockToolkit];
+      clocks.forEach(clockElement => {
+        if (clockElement) {
+          clockElement.textContent = `GMT+8 ${timeString}`;
+        }
+      });
     }
+
+    // Show page and hide others
+    function showPage(page) {
+      if (currentPage === page) return;
+      
+      // Hide current page if exists
+      if (currentPage) {
+        const currentPageElement = document.getElementById(currentPage);
+        if (currentPageElement) {
+          currentPageElement.classList.remove('visible');
+        }
+      }
+      
+      // Show new page
+      const pageElement = document.getElementById(page);
+      if (pageElement) {
+        pageElement.classList.add('visible');
+        currentPage = page;
+        
+        // Hide cover if not already hidden
+        if (!coverHidden) {
+          cover.classList.add('hidden');
+          coverHidden = true;
+        }
+      }
+    }
+
+    // Back to cover
+    function backToCover() {
+      if (currentPage) {
+        const currentPageElement = document.getElementById(currentPage);
+        if (currentPageElement) {
+          currentPageElement.classList.remove('visible');
+        }
+        currentPage = null;
+      }
+      
+      cover.classList.remove('hidden');
+      coverHidden = false;
+    }
+
+    // Event listeners
+    aboutBtn.addEventListener('click', () => showPage('resume'));
+    socialBtn.addEventListener('click', () => showPage('social'));
+    toolkitBtn.addEventListener('click', () => showPage('toolkit'));
+    
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
+    if (toggleBtnSocial) toggleBtnSocial.addEventListener('click', toggleTheme);
+    if (toggleBtnToolkit) toggleBtnToolkit.addEventListener('click', toggleTheme);
+    
+    if (resumeBackBtn) resumeBackBtn.addEventListener('click', backToCover);
+    if (socialBackBtn) socialBackBtn.addEventListener('click', backToCover);
+    if (toolkitBackBtn) toolkitBackBtn.addEventListener('click', backToCover);
+
+    // Show back button when scrolling
+    window.addEventListener('scroll', () => {
+      const backButtons = [resumeBackBtn, socialBackBtn, toolkitBackBtn];
+      backButtons.forEach(btn => {
+        if (btn) {
+          if (window.scrollY > 100) {
+            btn.classList.add('visible');
+          } else {
+            btn.classList.remove('visible');
+          }
+        }
+      });
+    });
+
+    // Initialize
+    showCoverElements();
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Preload images
+    function preloadImage(url) {
+      const img = new Image();
+      img.src = url;
+    }
+
+    // Preload important images
+    window.addEventListener('load', () => {
+      preloadImage('./cover.jpg');
+      preloadImage('./avatar.jpg');
+      preloadImage('./Reference_Answer_of_''Probability_Theory_and_Mathematical_Statistics''_(by Baiqi_Miu_and_Weiping_Zhang).pdf');
+      preloadImage('./Stardust_Meditations.pdf');
+    });
   </script>
 </body>
 </html>
