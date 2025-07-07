@@ -6,6 +6,7 @@
 <title>Stardust-math_Personal Academic Website</title>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
 <style>
   /* 基础样式 */
   body, html {
@@ -241,7 +242,7 @@
   }
 
   /* 按钮样式 */
-  #about-btn, #social-btn, #toolkit-btn {
+  #about-btn, #social-btn, #toolkit-btn, #schedule-btn {
     position: relative;
     z-index: 20;
     background: transparent;
@@ -265,7 +266,7 @@
     letter-spacing: 0.5px;
   }
 
-  #about-btn::before, #social-btn::before, #toolkit-btn::before {
+  #about-btn::before, #social-btn::before, #toolkit-btn::before, #schedule-btn::before {
     content: '';
     position: absolute;
     top: 0;
@@ -284,7 +285,7 @@
     border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
-  #about-btn::after, #social-btn::after, #toolkit-btn::after {
+  #about-btn::after, #social-btn::after, #toolkit-btn::after, #schedule-btn::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -298,7 +299,7 @@
     transition: all 0.6s ease;
   }
 
-  #about-btn:hover, #social-btn:hover, #toolkit-btn:hover {
+  #about-btn:hover, #social-btn:hover, #toolkit-btn:hover, #schedule-btn:hover {
     transform: translateY(0) scale(1.05);
     box-shadow: 
       0 0 0 1px rgba(255, 255, 255, 0.5),
@@ -306,7 +307,7 @@
     letter-spacing: 1px;
   }
 
-  #about-btn:hover::before, #social-btn:hover::before, #toolkit-btn:hover::before {
+  #about-btn:hover::before, #social-btn:hover::before, #toolkit-btn:hover::before, #schedule-btn:hover::before {
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.15),
@@ -314,19 +315,19 @@
     );
   }
 
-  #about-btn:active::after, #social-btn:active::after, #toolkit-btn:active::after {
+  #about-btn:active::after, #social-btn:active::after, #toolkit-btn:active::after, #schedule-btn:active::after {
     opacity: 1;
     transform: translate(-50%, -50%) scale(20);
     transition: transform 0.8s ease, opacity 0.6s ease;
   }
 
-  #about-btn.visible, #social-btn.visible, #toolkit-btn.visible {
+  #about-btn.visible, #social-btn.visible, #toolkit-btn.visible, #schedule-btn.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
   /* 简历内容 */
-  #resume, #social, #toolkit {
+  #resume, #social, #toolkit, #schedule {
     position: relative;
     z-index: 1;
     display: none;
@@ -342,7 +343,7 @@
     transition: opacity 1s ease-in-out;
   }
   
-  #resume.visible, #social.visible, #toolkit.visible {
+  #resume.visible, #social.visible, #toolkit.visible, #schedule.visible {
     display: block;
     opacity: 1;
   }
@@ -453,7 +454,7 @@
     color: #ffffff;
   }
   
-  body.dark-mode #resume, body.dark-mode #social, body.dark-mode #toolkit {
+  body.dark-mode #resume, body.dark-mode #social, body.dark-mode #toolkit, body.dark-mode #schedule {
     background: #121212;
   }
   
@@ -496,7 +497,7 @@
   }
 
   /* 主题切换按钮 */
-  #toggle-btn, #toggle-btn-social, #toggle-btn-toolkit {
+  #toggle-btn, #toggle-btn-social, #toggle-btn-toolkit, #toggle-btn-schedule {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -518,16 +519,16 @@
     padding: 0;
   }
 
-  #toggle-btn:hover, #toggle-btn-social:hover, #toggle-btn-toolkit:hover {
+  #toggle-btn:hover, #toggle-btn-social:hover, #toggle-btn-toolkit:hover, #toggle-btn-schedule:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
   }
 
-  #toggle-btn:active, #toggle-btn-social:active, #toggle-btn-toolkit:active {
+  #toggle-btn:active, #toggle-btn-social:active, #toggle-btn-toolkit:active, #toggle-btn-schedule:active {
     transform: translateY(1px);
   }
 
-  #toggle-btn::before, #toggle-btn-social::before, #toggle-btn-toolkit::before {
+  #toggle-btn::before, #toggle-btn-social::before, #toggle-btn-toolkit::before, #toggle-btn-schedule::before {
     content: '';
     position: absolute;
     top: 0;
@@ -539,11 +540,11 @@
     transition: opacity 0.4s ease;
   }
 
-  #toggle-btn:hover::before, #toggle-btn-social:hover::before, #toggle-btn-toolkit:hover::before {
+  #toggle-btn:hover::before, #toggle-btn-social:hover::before, #toggle-btn-toolkit:hover::before, #toggle-btn-schedule:hover::before {
     opacity: 1;
   }
 
-  #toggle-btn span, #toggle-btn-social span, #toggle-btn-toolkit span {
+  #toggle-btn span, #toggle-btn-social span, #toggle-btn-toolkit span, #toggle-btn-schedule span {
     position: relative;
     z-index: 1;
     display: flex;
@@ -556,24 +557,24 @@
     padding: 0 5px;
   }
 
-  #toggle-btn i, #toggle-btn-social i, #toggle-btn-toolkit i {
+  #toggle-btn i, #toggle-btn-social i, #toggle-btn-toolkit i, #toggle-btn-schedule i {
     font-style: normal;
     font-size: 1.2em;
     margin-right: 5px;
   }
 
   /* 暗黑模式按钮 */
-  body.dark-mode #toggle-btn, body.dark-mode #toggle-btn-social, body.dark-mode #toggle-btn-toolkit {
+  body.dark-mode #toggle-btn, body.dark-mode #toggle-btn-social, body.dark-mode #toggle-btn-toolkit, body.dark-mode #toggle-btn-schedule {
     background: linear-gradient(145deg, #6a3093, #4a148c);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
 
-  body.dark-mode #toggle-btn::before, body.dark-mode #toggle-btn-social::before, body.dark-mode #toggle-btn-toolkit::before {
+  body.dark-mode #toggle-btn::before, body.dark-mode #toggle-btn-social::before, body.dark-mode #toggle-btn-toolkit::before, body.dark-mode #toggle-btn-schedule::before {
     background: linear-gradient(145deg, #4a148c, #6a3093);
   }
 
   /* 时钟样式 */
-  #clock, #clock-social, #clock-toolkit {
+  #clock, #clock-social, #clock-toolkit, #clock-schedule {
     position: fixed;
     top: 20px;
     left: 20px;
@@ -594,13 +595,13 @@
     letter-spacing: 1px;
   }
 
-  #clock:hover, #clock-social:hover, #clock-toolkit:hover {
+  #clock:hover, #clock-social:hover, #clock-toolkit:hover, #clock-schedule:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
   }
 
   /* 暗黑模式时钟 */
-  body.dark-mode #clock, body.dark-mode #clock-social, body.dark-mode #clock-toolkit {
+  body.dark-mode #clock, body.dark-mode #clock-social, body.dark-mode #clock-toolkit, body.dark-mode #clock-schedule {
     background: rgba(106, 48, 147, 0.9);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
@@ -1240,6 +1241,505 @@
   body.dark-mode .no-results {
     color: #bdc3c7;
   }
+
+  /* Schedule Page Styles */
+  .schedule-heading {
+    font-size: 2.8em;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-family: "Great Vibes", cursive;
+    letter-spacing: 2px;
+  }
+
+  body.dark-mode .schedule-heading {
+    color: #ffffff;
+  }
+
+  .schedule-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .schedule-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .schedule-switch-btn {
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+  }
+
+  .schedule-switch-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+  }
+
+  .schedule-switch-btn.active {
+    background: #6a3093;
+    box-shadow: 0 4px 10px rgba(106, 48, 147, 0.3);
+  }
+
+  body.dark-mode .schedule-switch-btn {
+    background: #6a3093;
+  }
+
+  body.dark-mode .schedule-switch-btn:hover {
+    background: #4a148c;
+  }
+
+  body.dark-mode .schedule-switch-btn.active {
+    background: #3498db;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+  }
+
+  .schedule-section {
+    display: none;
+  }
+
+  .schedule-section.active {
+    display: block;
+  }
+
+  /* Calendar Styles */
+  #calendar-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .fc {
+    font-family: "Georgia", serif;
+  }
+
+  .fc-toolbar-title {
+    font-family: "Georgia", serif;
+    font-size: 1.5em;
+    color: #2c3e50;
+  }
+
+  body.dark-mode .fc-toolbar-title {
+    color: #ffffff;
+  }
+
+  .fc-button {
+    background-color: #3498db !important;
+    border-color: #3498db !important;
+    color: white !important;
+    transition: all 0.3s ease;
+  }
+
+  .fc-button:hover {
+    background-color: #2980b9 !important;
+    border-color: #2980b9 !important;
+  }
+
+  body.dark-mode .fc-button {
+    background-color: #6a3093 !important;
+    border-color: #6a3093 !important;
+  }
+
+  body.dark-mode .fc-button:hover {
+    background-color: #4a148c !important;
+    border-color: #4a148c !important;
+  }
+
+  .fc-daygrid-day-number {
+    color: #2c3e50;
+  }
+
+  body.dark-mode .fc-daygrid-day-number {
+    color: #ffffff;
+  }
+
+  .fc-daygrid-day.fc-day-today {
+    background-color: rgba(52, 152, 219, 0.1) !important;
+  }
+
+  body.dark-mode .fc-daygrid-day.fc-day-today {
+    background-color: rgba(106, 48, 147, 0.1) !important;
+  }
+
+  .fc-event {
+    background-color: #3498db !important;
+    border-color: #3498db !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .fc-event:hover {
+    background-color: #2980b9 !important;
+    border-color: #2980b9 !important;
+  }
+
+  body.dark-mode .fc-event {
+    background-color: #6a3093 !important;
+    border-color: #6a3093 !important;
+  }
+
+  body.dark-mode .fc-event:hover {
+    background-color: #4a148c !important;
+    border-color: #4a148c !important;
+  }
+
+  /* Timetable Styles */
+  .timetable-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .timetable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .timetable th, .timetable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .timetable th {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+  }
+
+  .timetable td {
+    background-color: white;
+    height: 60px;
+    vertical-align: middle;
+    position: relative;
+  }
+
+  .timetable td.time-cell {
+    background-color: #f1f3f5;
+    font-weight: bold;
+  }
+
+  .timetable td.empty-cell {
+    background-color: #f9f9f9;
+  }
+
+  .timetable td.has-event {
+    background-color: rgba(52, 152, 219, 0.1);
+    cursor: pointer;
+  }
+
+  .timetable td.has-event:hover {
+    background-color: rgba(52, 152, 219, 0.2);
+  }
+
+  .timetable-event {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 0.9em;
+    padding: 2px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .timetable-event:hover {
+    background-color: #2980b9;
+    transform: scale(1.02);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  body.dark-mode .timetable th {
+    background-color: #6a3093;
+  }
+
+  body.dark-mode .timetable td {
+    background-color: #2d2d2d;
+    border-color: #444;
+  }
+
+  body.dark-mode .timetable td.time-cell {
+    background-color: #3d3d3d;
+  }
+
+  body.dark-mode .timetable td.empty-cell {
+    background-color: #333;
+  }
+
+  body.dark-mode .timetable td.has-event {
+    background-color: rgba(106, 48, 147, 0.1);
+  }
+
+  body.dark-mode .timetable td.has-event:hover {
+    background-color: rgba(106, 48, 147, 0.2);
+  }
+
+  body.dark-mode .timetable-event {
+    background-color: #6a3093;
+  }
+
+  body.dark-mode .timetable-event:hover {
+    background-color: #4a148c;
+  }
+
+  /* Event Modal Styles */
+  .event-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .event-modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+
+  body.dark-mode .event-modal-content {
+    background-color: #2d2d2d;
+  }
+
+  .event-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #7f8c8d;
+    transition: color 0.3s ease;
+  }
+
+  .event-modal-close:hover {
+    color: #e74c3c;
+  }
+
+  .event-modal-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+  }
+
+  body.dark-mode .event-modal-title {
+    color: #ffffff;
+  }
+
+  .event-form-group {
+    margin-bottom: 20px;
+  }
+
+  .event-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+
+  body.dark-mode .event-form-group label {
+    color: #cccccc;
+  }
+
+  .event-form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: "Georgia", serif;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+  }
+
+  .event-form-control:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+
+  body.dark-mode .event-form-control {
+    background-color: #3d3d3d;
+    border-color: #555;
+    color: #ffffff;
+  }
+
+  body.dark-mode .event-form-control:focus {
+    border-color: #6a3093;
+  }
+
+  .event-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .event-form-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Georgia", serif;
+    font-size: 1em;
+    transition: all 0.3s ease;
+  }
+
+  .event-form-btn-save {
+    background-color: #3498db;
+    color: white;
+  }
+
+  .event-form-btn-save:hover {
+    background-color: #2980b9;
+  }
+
+  .event-form-btn-delete {
+    background-color: #e74c3c;
+    color: white;
+  }
+
+  .event-form-btn-delete:hover {
+    background-color: #c0392b;
+  }
+
+  .event-form-btn-cancel {
+    background-color: #95a5a6;
+    color: white;
+  }
+
+  .event-form-btn-cancel:hover {
+    background-color: #7f8c8d;
+  }
+
+  body.dark-mode .event-form-btn-save {
+    background-color: #6a3093;
+  }
+
+  body.dark-mode .event-form-btn-save:hover {
+    background-color: #4a148c;
+  }
+
+  /* Add Event Button */
+  .add-event-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: "Georgia", serif;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+  }
+
+  .add-event-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+  }
+
+  body.dark-mode .add-event-btn {
+    background-color: #6a3093;
+    box-shadow: 0 4px 10px rgba(106, 48, 147, 0.3);
+  }
+
+  body.dark-mode .add-event-btn:hover {
+    background-color: #4a148c;
+    box-shadow: 0 6px 15px rgba(106, 48, 147, 0.4);
+  }
+
+  /* Week Navigation */
+  .week-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .week-title {
+    font-size: 1.5em;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+
+  body.dark-mode .week-title {
+    color: #ffffff;
+  }
+
+  .week-nav-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .week-nav-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+  }
+
+  body.dark-mode .week-nav-btn {
+    background-color: #6a3093;
+  }
+
+  body.dark-mode .week-nav-btn:hover {
+    background-color: #4a148c;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .schedule-switcher {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .timetable {
+      font-size: 0.9em;
+    }
+    
+    .timetable th, .timetable td {
+      padding: 8px;
+    }
+    
+    .event-modal-content {
+      width: 95%;
+      padding: 20px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1258,6 +1758,7 @@
       <button id="about-btn">About</button>
       <button id="social-btn">Social</button>
       <button id="toolkit-btn">Toolkit</button>
+      <button id="schedule-btn">Schedule</button>
     </div>
   </div>
 
@@ -2042,6 +2543,122 @@
     </a>
   </div>
 
+  <!-- Schedule Page -->
+  <div id="schedule">
+    <button id="toggle-btn-schedule">
+      <span>
+        <i>🌙</i>
+        Switch to Dark
+      </span>
+    </button>
+    <div id="clock-schedule">GMT+8 00:00</div>
+    <div class="container">
+      <div class="schedule-heading">My Schedule</div>
+      
+      <div class="schedule-container">
+        <div class="schedule-switcher">
+          <button class="schedule-switch-btn active" data-view="calendar">Calendar</button>
+          <button class="schedule-switch-btn" data-view="timetable">Timetable</button>
+        </div>
+        
+        <!-- Calendar Section -->
+        <div class="schedule-section active" id="calendar-section">
+          <div id="calendar-container"></div>
+          <button class="add-event-btn" id="add-calendar-event">
+            <i class="fas fa-plus"></i> Add Event
+          </button>
+        </div>
+        
+        <!-- Timetable Section -->
+        <div class="schedule-section" id="timetable-section">
+          <div class="week-navigation">
+            <button class="week-nav-btn" id="prev-week-btn">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="week-title" id="current-week">Week of Mon, Jan 1 - Sun, Jan 7</div>
+            <button class="week-nav-btn" id="next-week-btn">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          
+          <div class="timetable-container">
+            <table class="timetable" id="timetable">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                  <th>Saturday</th>
+                  <th>Sunday</th>
+                </tr>
+              </thead>
+              <tbody id="timetable-body">
+                <!-- Timetable rows will be generated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          
+          <button class="add-event-btn" id="add-timetable-event">
+            <i class="fas fa-plus"></i> Add Class/Event
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <a href="#" class="back-btn" id="schedule-back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    
+    <!-- Event Modal -->
+    <div class="event-modal" id="event-modal">
+      <div class="event-modal-content">
+        <span class="event-modal-close" id="event-modal-close">&times;</span>
+        <h3 class="event-modal-title" id="event-modal-title">Add New Event</h3>
+        
+        <form id="event-form">
+          <input type="hidden" id="event-id">
+          <input type="hidden" id="event-type">
+          
+          <div class="event-form-group">
+            <label for="event-title">Title</label>
+            <input type="text" id="event-title" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-start">Start</label>
+            <input type="datetime-local" id="event-start" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-end">End</label>
+            <input type="datetime-local" id="event-end" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-description">Description (Optional)</label>
+            <textarea id="event-description" class="event-form-control" rows="3"></textarea>
+          </div>
+          
+          <div class="event-form-group" id="recurring-container" style="display: none;">
+            <label>
+              <input type="checkbox" id="event-recurring"> Recurring Event (Weekly)
+            </label>
+          </div>
+          
+          <div class="event-form-actions">
+            <button type="button" class="event-form-btn event-form-btn-delete" id="event-delete-btn" style="display: none;">Delete</button>
+            <button type="button" class="event-form-btn event-form-btn-cancel" id="event-cancel-btn">Cancel</button>
+            <button type="submit" class="event-form-btn event-form-btn-save">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script>
     // 初始化自定义光标
     document.addEventListener('DOMContentLoaded', function() {
@@ -2082,7 +2699,7 @@
       });
       
       // 悬停效果
-      const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn, #social-btn, #toolkit-btn');
+      const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn, #social-btn, #toolkit-btn, #schedule-btn');
       hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
           cursorInner.classList.add('hover');
@@ -2098,6 +2715,9 @@
       
       // 初始化工具包筛选和搜索功能
       initToolkitFilter();
+      
+      // 初始化日程页面
+      initSchedulePage();
     });
 
     // 页面元素
@@ -2105,21 +2725,26 @@
     const resume = document.getElementById("resume");
     const social = document.getElementById("social");
     const toolkit = document.getElementById("toolkit");
+    const schedule = document.getElementById("schedule");
     const avatarFrame = document.getElementById("avatar-frame");
     const name = document.getElementById("name");
     const slogan = document.getElementById("slogan");
     const aboutBtn = document.getElementById("about-btn");
     const socialBtn = document.getElementById("social-btn");
     const toolkitBtn = document.getElementById("toolkit-btn");
+    const scheduleBtn = document.getElementById("schedule-btn");
     const toggleBtn = document.getElementById("toggle-btn");
     const toggleBtnSocial = document.getElementById("toggle-btn-social");
     const toggleBtnToolkit = document.getElementById("toggle-btn-toolkit");
+    const toggleBtnSchedule = document.getElementById("toggle-btn-schedule");
     const clock = document.getElementById("clock");
     const clockSocial = document.getElementById("clock-social");
     const clockToolkit = document.getElementById("clock-toolkit");
+    const clockSchedule = document.getElementById("clock-schedule");
     const resumeBackBtn = document.getElementById("resume-back-btn");
     const socialBackBtn = document.getElementById("social-back-btn");
     const toolkitBackBtn = document.getElementById("toolkit-back-btn");
+    const scheduleBackBtn = document.getElementById("schedule-back-btn");
 
     let coverHidden = false;
     let currentPage = null;
@@ -2137,6 +2762,7 @@
         aboutBtn.classList.add("visible");
         socialBtn.classList.add("visible");
         toolkitBtn.classList.add("visible");
+        scheduleBtn.classList.add("visible");
       }, 1200);
     }
 
@@ -2154,6 +2780,7 @@
         resume.classList.remove("visible");
         social.classList.remove("visible");
         toolkit.classList.remove("visible");
+        schedule.classList.remove("visible");
         
         // 显示选中的页面
         if (page === 'resume') {
@@ -2174,6 +2801,12 @@
           setTimeout(() => {
             toolkitBackBtn.classList.add("visible");
           }, 500);
+        } else if (page === 'schedule') {
+          schedule.classList.add("visible");
+          currentPage = 'schedule';
+          setTimeout(() => {
+            scheduleBackBtn.classList.add("visible");
+          }, 500);
         }
       }, 1500);
       
@@ -2183,6 +2816,7 @@
       aboutBtn.classList.remove("visible");
       socialBtn.classList.remove("visible");
       toolkitBtn.classList.remove("visible");
+      scheduleBtn.classList.remove("visible");
     }
 
     // 返回封面
@@ -2195,9 +2829,11 @@
       resume.classList.remove("visible");
       social.classList.remove("visible");
       toolkit.classList.remove("visible");
+      schedule.classList.remove("visible");
       resumeBackBtn.classList.remove("visible");
       socialBackBtn.classList.remove("visible");
       toolkitBackBtn.classList.remove("visible");
+      scheduleBackBtn.classList.remove("visible");
       
       // 重置封面元素
       setTimeout(() => {
@@ -2217,9 +2853,11 @@
     aboutBtn.addEventListener("click", () => showPage('resume'));
     socialBtn.addEventListener("click", () => showPage('social'));
     toolkitBtn.addEventListener("click", () => showPage('toolkit'));
+    scheduleBtn.addEventListener("click", () => showPage('schedule'));
     resumeBackBtn.addEventListener("click", backToCover);
     socialBackBtn.addEventListener("click", backToCover);
     toolkitBackBtn.addEventListener("click", backToCover);
+    scheduleBackBtn.addEventListener("click", backToCover);
 
     // 主题管理功能
     function initializeTheme() {
@@ -2233,10 +2871,12 @@
     toggleBtn.addEventListener("click", toggleTheme);
     toggleBtnSocial.addEventListener("click", toggleTheme);
     toggleBtnToolkit.addEventListener("click", toggleTheme);
+    toggleBtnSchedule.addEventListener("click", toggleTheme);
 
     function toggleTheme() {
       document.body.classList.toggle("dark-mode");
       updateToggleBtnText();
+      updateCalendarTheme();
     }
 
     function applyTheme(theme) {
@@ -2272,6 +2912,13 @@
           ${text}
         </span>
       `;
+      
+      toggleBtnSchedule.innerHTML = `
+        <span>
+          <i>${icon}</i>
+          ${text}
+        </span>
+      `;
     }
 
     // 时钟功能
@@ -2290,6 +2937,7 @@
       clock.textContent = timeString;
       clockSocial.textContent = timeString;
       clockToolkit.textContent = timeString;
+      clockSchedule.textContent = timeString;
     }
     
     // 工具包筛选和搜索功能
@@ -2365,6 +3013,360 @@
       // 初始显示所有
       filterTools('all', '');
     }
+    
+    // Schedule Page Functionality
+    function initSchedulePage() {
+      // Initialize calendar and timetable
+      initCalendar();
+      initTimetable();
+      
+      // Switch between calendar and timetable views
+      const viewSwitchers = document.querySelectorAll('.schedule-switch-btn');
+      const calendarSection = document.getElementById('calendar-section');
+      const timetableSection = document.getElementById('timetable-section');
+      
+      viewSwitchers.forEach(btn => {
+        btn.addEventListener('click', () => {
+          viewSwitchers.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          const view = btn.dataset.view;
+          calendarSection.classList.remove('active');
+          timetableSection.classList.remove('active');
+          
+          if (view === 'calendar') {
+            calendarSection.classList.add('active');
+          } else {
+            timetableSection.classList.add('active');
+            updateTimetable();
+          }
+        });
+      });
+      
+      // Event modal functionality
+      const eventModal = document.getElementById('event-modal');
+      const eventModalClose = document.getElementById('event-modal-close');
+      const eventCancelBtn = document.getElementById('event-cancel-btn');
+      const eventForm = document.getElementById('event-form');
+      
+      // Open modal for new calendar event
+      document.getElementById('add-calendar-event').addEventListener('click', () => {
+        openEventModal('calendar');
+      });
+      
+      // Open modal for new timetable event
+      document.getElementById('add-timetable-event').addEventListener('click', () => {
+        openEventModal('timetable');
+      });
+      
+      // Close modal
+      eventModalClose.addEventListener('click', () => {
+        eventModal.style.display = 'none';
+      });
+      
+      eventCancelBtn.addEventListener('click', () => {
+        eventModal.style.display = 'none';
+      });
+      
+      // Close modal when clicking outside
+      window.addEventListener('click', (e) => {
+        if (e.target === eventModal) {
+          eventModal.style.display = 'none';
+        }
+      });
+      
+      // Handle form submission
+      eventForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        saveEvent();
+      });
+      
+      // Week navigation for timetable
+      document.getElementById('prev-week-btn').addEventListener('click', () => {
+        currentWeek.setDate(currentWeek.getDate() - 7);
+        updateTimetable();
+      });
+      
+      document.getElementById('next-week-btn').addEventListener('click', () => {
+        currentWeek.setDate(currentWeek.getDate() + 7);
+        updateTimetable();
+      });
+    }
+    
+    // Calendar functionality
+    let calendar;
+    let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+    
+    function initCalendar() {
+      const calendarEl = document.getElementById('calendar-container');
+      
+      calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        events: calendarEvents,
+        eventClick: function(info) {
+          openEventModal('calendar', info.event);
+        },
+        eventDidMount: function(info) {
+          // Apply dark mode styles if needed
+          if (document.body.classList.contains('dark-mode')) {
+            info.el.style.backgroundColor = '#6a3093';
+            info.el.style.borderColor = '#6a3093';
+          }
+        }
+      });
+      
+      calendar.render();
+      updateCalendarTheme();
+    }
+    
+    function updateCalendarTheme() {
+      if (!calendar) return;
+      
+      if (document.body.classList.contains('dark-mode')) {
+        calendar.setOption('themeSystem', 'standard');
+      } else {
+        calendar.setOption('themeSystem', 'standard');
+      }
+    }
+    
+    // Timetable functionality
+    let currentWeek = new Date();
+    currentWeek.setHours(0, 0, 0, 0);
+    // Set to Monday of current week
+    currentWeek.setDate(currentWeek.getDate() - (currentWeek.getDay() + 6) % 7);
+    
+    let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
+    
+    function initTimetable() {
+      // Generate timetable structure
+      const timetableBody = document.getElementById('timetable-body');
+      timetableBody.innerHTML = '';
+      
+      // Create time slots from 8:00 to 22:00
+      for (let hour = 8; hour <= 22; hour++) {
+        const row = document.createElement('tr');
+        
+        // Time cell
+        const timeCell = document.createElement('td');
+        timeCell.className = 'time-cell';
+        timeCell.textContent = `${hour}:00 - ${hour + 1}:00`;
+        row.appendChild(timeCell);
+        
+        // Day cells
+        for (let day = 0; day < 7; day++) {
+          const dayCell = document.createElement('td');
+          dayCell.dataset.day = day;
+          dayCell.dataset.hour = hour;
+          dayCell.addEventListener('click', () => {
+            handleTimetableCellClick(dayCell);
+          });
+          row.appendChild(dayCell);
+        }
+        
+        timetableBody.appendChild(row);
+      }
+      
+      updateTimetable();
+    }
+    
+    function updateTimetable() {
+      // Update week title
+      const weekStart = new Date(currentWeek);
+      const weekEnd = new Date(currentWeek);
+      weekEnd.setDate(weekEnd.getDate() + 6);
+      
+      const options = { weekday: 'short', month: 'short', day: 'numeric' };
+      document.getElementById('current-week').textContent = 
+        `Week of ${weekStart.toLocaleDateString('en-US', options)} - ${weekEnd.toLocaleDateString('en-US', options)}`;
+      
+      // Clear all cells
+      const cells = document.querySelectorAll('#timetable-body td:not(.time-cell)');
+      cells.forEach(cell => {
+        cell.className = '';
+        cell.innerHTML = '';
+      });
+      
+      // Filter events for current week
+      const weekStartTime = currentWeek.getTime();
+      const weekEndTime = weekEnd.getTime() + 24 * 60 * 60 * 1000;
+      
+      const weekEvents = timetableEvents.filter(event => {
+        const eventDate = new Date(event.start).getTime();
+        return eventDate >= weekStartTime && eventDate < weekEndTime;
+      });
+      
+      // Populate events
+      weekEvents.forEach(event => {
+        const eventDate = new Date(event.start);
+        const day = (eventDate.getDay() + 6) % 7; // Convert to 0-6 (Mon-Sun)
+        const hour = eventDate.getHours();
+        
+        const cell = document.querySelector(`#timetable-body td[data-day="${day}"][data-hour="${hour}"]`);
+        if (cell) {
+          cell.className = 'has-event';
+          
+          const eventElement = document.createElement('div');
+          eventElement.className = 'timetable-event';
+          eventElement.innerHTML = `
+            <strong>${event.title}</strong>
+            ${event.description ? `<small>${event.description}</small>` : ''}
+          `;
+          eventElement.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openEventModal('timetable', event);
+          });
+          
+          cell.appendChild(eventElement);
+        }
+      });
+    }
+    
+    function handleTimetableCellClick(cell) {
+      const day = parseInt(cell.dataset.day);
+      const hour = parseInt(cell.dataset.hour);
+      
+      // Calculate date for this cell
+      const eventDate = new Date(currentWeek);
+      eventDate.setDate(eventDate.getDate() + day);
+      eventDate.setHours(hour, 0, 0, 0);
+      
+      // End time is 1 hour later
+      const endDate = new Date(eventDate);
+      endDate.setHours(hour + 1, 0, 0, 0);
+      
+      // Open modal with pre-filled times
+      openEventModal('timetable', null, {
+        start: eventDate,
+        end: endDate
+      });
+    }
+    
+    // Event modal functionality
+    function openEventModal(type, event = null, presetData = null) {
+      const modal = document.getElementById('event-modal');
+      const form = document.getElementById('event-form');
+      const deleteBtn = document.getElementById('event-delete-btn');
+      const recurringContainer = document.getElementById('recurring-container');
+      
+      // Reset form
+      form.reset();
+      document.getElementById('event-id').value = '';
+      document.getElementById('event-type').value = type;
+      
+      // Set title
+      document.getElementById('event-modal-title').textContent = 
+        event ? 'Edit Event' : 'Add New Event';
+      
+      // Show/hide delete button
+      deleteBtn.style.display = event ? 'block' : 'none';
+      
+      // Show/hide recurring option (only for calendar)
+      recurringContainer.style.display = type === 'calendar' ? 'block' : 'none';
+      
+      // Populate form with event data or preset data
+      if (event) {
+        document.getElementById('event-id').value = event.id || event._id;
+        document.getElementById('event-title').value = event.title || event._def.title;
+        document.getElementById('event-description').value = event.extendedProps?.description || '';
+        
+        // Format dates for datetime-local input
+        const start = event.start ? new Date(event.start) : new Date(event._instance.range.start);
+        const end = event.end ? new Date(event.end) : new Date(event._instance.range.end);
+        
+        document.getElementById('event-start').value = formatDateTimeForInput(start);
+        document.getElementById('event-end').value = formatDateTimeForInput(end);
+        
+        // Set recurring if it's a recurring event
+        if (event.extendedProps?.recurring) {
+          document.getElementById('event-recurring').checked = true;
+        }
+      } else if (presetData) {
+        document.getElementById('event-start').value = formatDateTimeForInput(presetData.start);
+        document.getElementById('event-end').value = formatDateTimeForInput(presetData.end);
+      }
+      
+      // Show modal
+      modal.style.display = 'flex';
+    }
+    
+    function formatDateTimeForInput(date) {
+      return date.toISOString().slice(0, 16);
+    }
+    
+    function saveEvent() {
+      const form = document.getElementById('event-form');
+      const type = document.getElementById('event-type').value;
+      const eventId = document.getElementById('event-id').value;
+      const isRecurring = document.getElementById('event-recurring').checked;
+      
+      const eventData = {
+        id: eventId || generateId(),
+        title: document.getElementById('event-title').value,
+        start: document.getElementById('event-start').value,
+        end: document.getElementById('event-end').value,
+        description: document.getElementById('event-description').value,
+        recurring: isRecurring
+      };
+      
+      if (type === 'calendar') {
+        // Save calendar event
+        if (eventId) {
+          // Update existing event
+          calendarEvents = calendarEvents.map(e => e.id === eventId ? eventData : e);
+        } else {
+          // Add new event
+          calendarEvents.push(eventData);
+        }
+        
+        localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
+        calendar.refetchEvents();
+      } else {
+        // Save timetable event
+        if (eventId) {
+          // Update existing event
+          timetableEvents = timetableEvents.map(e => e.id === eventId ? eventData : e);
+        } else {
+          // Add new event
+          timetableEvents.push(eventData);
+        }
+        
+        localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
+        updateTimetable();
+      }
+      
+      // Close modal
+      document.getElementById('event-modal').style.display = 'none';
+    }
+    
+    function deleteEvent() {
+      const eventId = document.getElementById('event-id').value;
+      const type = document.getElementById('event-type').value;
+      
+      if (type === 'calendar') {
+        calendarEvents = calendarEvents.filter(e => e.id !== eventId);
+        localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
+        calendar.refetchEvents();
+      } else {
+        timetableEvents = timetableEvents.filter(e => e.id !== eventId);
+        localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
+        updateTimetable();
+      }
+      
+      // Close modal
+      document.getElementById('event-modal').style.display = 'none';
+    }
+    
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
+    
+    // Set up delete button
+    document.getElementById('event-delete-btn').addEventListener('click', deleteEvent);
   </script>
 </body>
 </html>
