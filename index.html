@@ -1032,6 +1032,7 @@
 
       let coverHidden = false;
 
+      // 自定义光标
       document.addEventListener('mousemove', (e) => {
         cursorOuter.style.left = `${e.clientX}px`;
         cursorOuter.style.top = `${e.clientY}px`;
@@ -1039,6 +1040,34 @@
         cursorInner.style.top = `${e.clientY}px`;
       });
 
+      document.addEventListener('mousedown', () => {
+        cursorOuter.classList.add('click');
+        cursorInner.classList.add('click');
+        const ripple = document.createElement('div');
+        ripple.classList.add('ripple');
+        ripple.style.left = cursorInner.style.left;
+        ripple.style.top = cursorInner.style.top;
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+
+      document.addEventListener('mouseup', () => {
+        cursorOuter.classList.remove('click');
+        cursorInner.classList.remove('click');
+      });
+
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorOuter.classList.add('hover');
+          cursorInner.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorOuter.classList.remove('hover');
+          cursorInner.classList.remove('hover');
+        });
+      });
+
+      // 封面动画
       function showCoverElements() {
         avatarFrame.classList.add("visible");
         setTimeout(() => name.classList.add("visible"), 400);
@@ -1050,6 +1079,7 @@
         }, 1200);
       }
 
+      // 页面切换
       function showPage(pageId) {
         if (coverHidden) return;
         cover.classList.add("hidden");
@@ -1070,6 +1100,7 @@
         }, 1500);
       }
 
+      // 返回封面
       function backToCover(e) {
         e.preventDefault();
         coverHidden = false;
@@ -1088,11 +1119,13 @@
         }, 100);
       }
 
+      // 初始化
       window.addEventListener("load", () => {
         cover.classList.add("visible");
         showCoverElements();
       });
 
+      // 按钮事件
       aboutBtn.addEventListener("click", () => showPage('resume'));
       socialBtn.addEventListener("click", () => showPage('social'));
       toolkitBtn.addEventListener("click", () => showPage('toolkit'));
@@ -1101,6 +1134,7 @@
       socialBackBtn.addEventListener("click", backToCover);
       toolkitBackBtn.addEventListener("click", backToCover);
 
+      // 主题切换
       function applyTheme(theme) {
         if (theme === 'dark') {
           document.body.classList.add('dark-mode');
@@ -1136,6 +1170,7 @@
         applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
       });
 
+      // 时钟
       function startClock() {
         function updateClock() {
           const now = new Date();
