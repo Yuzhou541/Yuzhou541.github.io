@@ -1125,6 +1125,9 @@
   .toolkit-icon.kugou-icon { background: linear-gradient(135deg, #2ca2f9, #1a8fd8); }
   .toolkit-icon.wikipedia-icon { background: linear-gradient(135deg, #000, #666); }
   .toolkit-icon.maple-icon { background: linear-gradient(135deg, #0066cc, #004d99); }
+  .toolkit-icon.notion-icon { background: linear-gradient(135deg, #000000, #3d3d3d); }
+  .toolkit-icon.obsidian-icon { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+  .toolkit-icon.tencentdocs-icon { background: linear-gradient(135deg, #0084ff, #0066cc); }
 </style>
 </head>
 <body>
@@ -1346,6 +1349,7 @@
         <button class="filter-btn" data-category="media">Media & Video</button>
         <button class="filter-btn" data-category="music">Music</button>
         <button class="filter-btn" data-category="knowledge">Knowledge</button>
+        <button class="filter-btn" data-category="productivity">Productivity</button>
       </div>
       
       <!-- Development 分类 -->
@@ -1424,6 +1428,15 @@
             <a href="https://jupyter.org/try" class="toolkit-link" target="_blank">Visit</a>
           </div>
         </div>
+      </div>
+
+      <!-- Wolfram Alpha -->
+      <div class="toolkit-card" data-title="wolfram alpha" data-categories="development">
+        <div class="toolkit-icon wolfram-icon">
+          <i class="fas fa-infinity"></i>
+        </div>
+        <div class="toolkit-title">Wolfram Alpha</div>
+        <a href="https://www.wolframalpha.com/" class="toolkit-link" target="_blank">Visit</a>
       </div>
       
       <!-- Communication 分类 -->
@@ -1639,6 +1652,39 @@
             </div>
             <div class="toolkit-title">Web of Science</div>
             <a href="https://www.webofscience.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productivity 分类 -->
+      <div class="category-section" data-category="productivity">
+        <h3 class="category-title">Productivity</h3>
+        <div class="toolkit-grid">
+          <!-- Notion -->
+          <div class="toolkit-card" data-title="notion" data-categories="productivity">
+            <div class="toolkit-icon notion-icon">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div class="toolkit-title">Notion</div>
+            <a href="https://www.notion.so/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Obsidian -->
+          <div class="toolkit-card" data-title="obsidian" data-categories="productivity">
+            <div class="toolkit-icon obsidian-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="toolkit-title">Obsidian</div>
+            <a href="https://obsidian.md/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Tencent Docs -->
+          <div class="toolkit-card" data-title="tencent docs" data-categories="productivity">
+            <div class="toolkit-icon tencentdocs-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="toolkit-title">Tencent Docs</div>
+            <a href="https://docs.qq.com/" class="toolkit-link" target="_blank">Visit</a>
           </div>
         </div>
       </div>
