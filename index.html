@@ -1106,6 +1106,14 @@
   .toolkit-icon.notion-icon { background: linear-gradient(135deg, #000000, #3d3d3d); }
   .toolkit-icon.obsidian-icon { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
   .toolkit-icon.tencentdocs-icon { background: linear-gradient(135deg, #0084ff, #0066cc); }
+  .toolkit-icon.ustc-blackboard-icon { background: linear-gradient(135deg, #1a237e, #283593); }
+  .toolkit-icon.ustc-mail-icon { background: linear-gradient(135deg, #d32f2f, #b71c1c); }
+  .toolkit-icon.ustc-flyer-icon { background: linear-gradient(135deg, #6a1b9a, #4a148c); }
+  .toolkit-icon.ustc-website-icon { background: linear-gradient(135deg, #b71c1c, #7f0000); }
+  .toolkit-icon.ustc-jw-icon { background: linear-gradient(135deg, #0d47a1, #1565c0); }
+  .toolkit-icon.ustc-icourse-icon { background: linear-gradient(135deg, #e53935, #c62828); }
+  .toolkit-icon.ustc-software-icon { background: linear-gradient(135deg, #424242, #212121); }
+  .toolkit-icon.ustc-hanhai-icon { background: linear-gradient(135deg, #00838f, #006064); }
 
   /* Dark mode icon colors*/
   body.dark-mode .toolkit-icon.ustc-icon { background: linear-gradient(135deg, #8b0000, #a50000); }
@@ -1167,6 +1175,14 @@
   body.dark-mode .toolkit-icon.notion-icon { background: linear-gradient(135deg, #111111, #333333); }
   body.dark-mode .toolkit-icon.obsidian-icon { background: linear-gradient(135deg, #5b21b6, #7c3aed); }
   body.dark-mode .toolkit-icon.tencentdocs-icon { background: linear-gradient(135deg, #0066cc, #0080ff); }
+  body.dark-mode .toolkit-icon.ustc-blackboard-icon { background: linear-gradient(135deg, #0d1a52, #1a237e); }
+  body.dark-mode .toolkit-icon.ustc-mail-icon { background: linear-gradient(135deg, #b71c1c, #8e0000); }
+  body.dark-mode .toolkit-icon.ustc-flyer-icon { background: linear-gradient(135deg, #4a148c, #38006b); }
+  body.dark-mode .toolkit-icon.ustc-website-icon { background: linear-gradient(135deg, #8e0000, #5e0000); }
+  body.dark-mode .toolkit-icon.ustc-jw-icon { background: linear-gradient(135deg, #0b3d91, #0d47a1); }
+  body.dark-mode .toolkit-icon.ustc-icourse-icon { background: linear-gradient(135deg, #c62828, #a31818); }
+  body.dark-mode .toolkit-icon.ustc-software-icon { background: linear-gradient(135deg, #2d2d2d, #1a1a1a); }
+  body.dark-mode .toolkit-icon.ustc-hanhai-icon { background: linear-gradient(135deg, #006064, #004d4f); }
 
   /* Additional icons with dark mode variants */
   body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#e24329,#6d4b41)"] { 
@@ -1447,6 +1463,7 @@
         <button class="filter-btn" data-category="knowledge">Knowledge</button>
         <button class="filter-btn" data-category="productivity">Productivity</button>
         <button class="filter-btn" data-category="reference">Document and Management</button>
+        <button class="filter-btn" data-category="ustc">USTC Services</button>
       </div>
       
       <!-- Development 分类 -->
@@ -1932,6 +1949,84 @@
             </div>
             <div class="toolkit-title">Academia</div>
             <a href="https://www.academia.edu/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- USTC Services -->
+      <div class="category-section" data-category="ustc">
+        <h3 class="category-title">USTC Services</h3>
+        <div class="toolkit-grid">
+          <!-- Blackboard -->
+          <div class="toolkit-card" data-title="ustc blackboard" data-categories="ustc">
+            <div class="toolkit-icon ustc-blackboard-icon">
+              <i class="fas fa-chalkboard"></i>
+            </div>
+            <div class="toolkit-title">USTC Blackboard</div>
+            <a href="https://www.bb.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Mail -->
+          <div class="toolkit-card" data-title="ustc mail" data-categories="ustc">
+            <div class="toolkit-icon ustc-mail-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="toolkit-title">USTC Mail</div>
+            <a href="https://email.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Flyer -->
+          <div class="toolkit-card" data-title="ustc flyer" data-categories="ustc">
+            <div class="toolkit-icon ustc-flyer-icon">
+              <i class="fas fa-paper-plane"></i>
+            </div>
+            <div class="toolkit-title">USTC Flyer</div>
+            <a href="https://ustcflyer.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Website -->
+          <div class="toolkit-card" data-title="ustc website" data-categories="ustc">
+            <div class="toolkit-icon ustc-website-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="toolkit-title">USTC Website</div>
+            <a href="https://www.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Integrated Academic Affairs System -->
+          <div class="toolkit-card" data-title="ustc jw" data-categories="ustc">
+            <div class="toolkit-icon ustc-jw-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="toolkit-title">Academic Affairs System</div>
+            <a href="https://jw.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Course Review Community -->
+          <div class="toolkit-card" data-title="ustc icourse" data-categories="ustc">
+            <div class="toolkit-icon ustc-icourse-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="toolkit-title">Course Review Community</div>
+            <a href="https://icourse.club/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Software -->
+          <div class="toolkit-card" data-title="ustc software" data-categories="ustc">
+            <div class="toolkit-icon ustc-software-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <div class="toolkit-title">USTC Software</div>
+            <a href="https://software.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Hanhai Teaching Network -->
+          <div class="toolkit-card" data-title="ustc hanhai" data-categories="ustc">
+            <div class="toolkit-icon ustc-hanhai-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <div class="toolkit-title">Hanhai Teaching Network</div>
+            <a href="https://course.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
           </div>
         </div>
       </div>
