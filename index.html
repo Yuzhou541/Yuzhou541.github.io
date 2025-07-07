@@ -203,7 +203,7 @@
 
   /* 文本元素 */
   #name,
-  #slogan {
+  #slogans {
     position: relative;
     z-index: 20;
     opacity: 0;
@@ -267,7 +267,7 @@
 
   #about-btn::before, #social-btn::before, #toolkit-btn::before {
     content: '';
-    position: absolute;
+    position: absolute的一种
     top: 0;
     left: 0;
     width: 100%;
@@ -291,7 +291,7 @@
     left: 50%;
     width: 5px;
     height: 5px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0 GA);
     opacity: 0;
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(1);
@@ -348,12 +348,14 @@
   }
 
   .container {
-    max-width: 900px;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     background: #ffffff;
     padding: 30px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-top: 1px solid #000;
+    box-sizing: border-box;
   }
   
   .resume-heading {
@@ -816,9 +818,22 @@
 
   .toolkit-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-top: 30px;
+  }
+
+  /* 响应式调整 */
+  @media (max-width: 1000px) {
+    .toolkit-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .toolkit-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .toolkit-card {
@@ -833,16 +848,41 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.95),
+        rgba(255, 255, 255, 0.95)
+      ),
+      url("https://www.transparenttextures.com/patterns/subtle-white-feathers.png");
   }
 
   .toolkit-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.95),
+        rgba(255, 255, 255, 0.95)
+      ),
+      url("https://www.transparenttextures.com/patterns/subtle-white-feathers.png"),
+      linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(155, 89, 182, 0.1));
   }
 
   body.dark-mode .toolkit-card {
     background: #2d2d2d;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-image: linear-gradient(
+        rgba(45, 45, 45, 0.95),
+        rgba(45, 45, 45, 0.95)
+      ),
+      url("https://www.transparenttextures.com/patterns/subtle-white-feathers.png");
+  }
+
+  body.dark-mode .toolkit-card:hover {
+    background-image: linear-gradient(
+        rgba(45, 45, 45, 0.95),
+        rgba(45, 45, 45, 0.95)
+      ),
+      url("https://www.transparenttextures.com/patterns/subtle-white-feathers.png"),
+      linear-gradient(135deg, rgba(106, 48, 147, 0.1), rgba(155, 89, 182, 0.1));
   }
 
   .toolkit-icon {
@@ -857,11 +897,27 @@
     justify-content: center;
     border-radius: 50%;
     background: rgba(52, 152, 219, 0.1);
+    position: relative;
   }
 
   .toolkit-card:hover .toolkit-icon {
     transform: scale(1.2);
     background: rgba(52, 152, 219, 0.2);
+  }
+
+  .toolkit-icon::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .toolkit-card:hover .toolkit-icon::after {
+    opacity: 1;
   }
 
   .toolkit-title {
@@ -873,10 +929,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
 
   body.dark-mode .toolkit-title {
     color: #ffffff;
+  }
+
+  .toolkit-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #3498db;
+    transition: width 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .toolkit-card:hover .toolkit-title::after {
+    width: 50%;
+  }
+
+  body.dark-mode .toolkit-title::after {
+    background: #6a3093;
   }
 
   .toolkit-link {
@@ -889,6 +966,28 @@
     font-weight: 500;
     transition: all 0.3s ease;
     margin-top: auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .toolkit-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.3s ease;
+  }
+
+  .toolkit-link:hover::before {
+    left: 100%;
   }
 
   .toolkit-link:hover {
@@ -1174,7 +1273,7 @@
         <ul>
           <li>"Zhang Zongzhi Sci-Tech Scholarship"</li>
           <li>"Outstanding Freshman Scholarship (Grade 2)"</li>
-          <li>Honorable Mention, Mathematical Contest in Modeling<sup>&reg;</sup> (MCM), Problem B, 2025</li>
+          <li>Honorable Mention, Mathematical Contest in Modeling<sup>®</sup> (MCM), Problem B, 2025</li>
         </ul>
       </div>
       
@@ -1878,67 +1977,55 @@
     }
 
     // 主题切换功能
-    toggleBtn.addEventListener("click", toggleTheme);
-    toggleBtnSocial.addEventListener("click", toggleTheme);
-    toggleBtnToolkit.addEventListener("click", toggleTheme);
-
-    function toggleTheme() {
-      document.body.classList.toggle("dark-mode");
-      updateToggleBtnText();
-    }
-
     function applyTheme(theme) {
-      if (theme === "dark") {
-        document.body.classList.add("dark-mode");
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+        toggleBtn.querySelector('span').innerHTML = '<i>☀️</i> Switch to Light';
+        toggleBtnSocial.querySelector('span').innerHTML = '<i>☀️</i> Switch to Light';
+        toggleBtnToolkit.querySelector('span').innerHTML = '<i>☀️</i> Switch to Light';
       } else {
-        document.body.classList.remove("dark-mode");
+        document.body.classList.remove('dark-mode');
+        toggleBtn.querySelector('span').innerHTML = '<i>🌙</i> Switch to Dark';
+        toggleBtnSocial.querySelector('span').innerHTML = '<i>🌙</i> Switch to Dark';
+        toggleBtnToolkit.querySelector('span').innerHTML = '<i>🌙</i> Switch to Dark';
       }
+      localStorage.setItem('theme', theme);
     }
 
     function updateToggleBtnText() {
-      const isDark = document.body.classList.contains("dark-mode");
-      const icon = isDark ? '☀️' : '🌙';
-      const text = isDark ? "Switch to Light" : "Switch to Dark";
-      
-      toggleBtn.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnSocial.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnToolkit.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
+      const savedTheme = localStorage.getItem('theme') || (new Date().getHours() >= 18 || new Date().getHours() < 6 ? 'dark' : 'light');
+      applyTheme(savedTheme);
     }
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+
+    toggleBtnSocial.addEventListener('click', () => {
+      const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+
+    toggleBtnToolkit.addEventListener('click', () => {
+      const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
 
     // 时钟功能
     function startClock() {
+      function updateClock() {
+        const now = new Date();
+        const options = { timeZone: 'Asia/Shanghai', hour12: false };
+        const timeString = now.toLocaleTimeString('en-GB', options);
+        clock.textContent = `GMT+8 ${timeString}`;
+        clockSocial.textContent = `GMT+8 ${timeString}`;
+        clockToolkit.textContent = `GMT+8 ${timeString}`;
+      }
       updateClock();
       setInterval(updateClock, 1000);
     }
-
-    function updateClock() {
-      const now = new Date();
-      const timeZoneName = now.toLocaleTimeString("en-us", { timeZoneName: "short" }).split(" ").pop();
-      const hours = now.getHours().toString().padStart(2, "0");
-      const mins = now.getMinutes().toString().padStart(2, "0");
-      const timeString = `${timeZoneName} ${hours}:${mins}`;
-      
-      clock.textContent = timeString;
-      clockSocial.textContent = timeString;
-      clockToolkit.textContent = timeString;
-    }
-  </script>
+  });
+</script>
 </body>
 </html>
