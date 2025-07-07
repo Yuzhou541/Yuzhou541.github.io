@@ -1046,29 +1046,7 @@
     box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
   }
 
-  body.dark-mode .toolkit-icon {
-    background: linear-gradient(135deg, #6a3093, #9b59b6);
-    box-shadow: 0 4px 10px rgba(106, 48, 147, 0.3);
-  }
-
-  body.dark-mode .toolkit-card:hover .toolkit-icon {
-    box-shadow: 0 6px 15px rgba(106, 48, 147, 0.4);
-  }
-
-  /* 无结果提示 */
-  .no-results {
-    text-align: center;
-    padding: 40px;
-    color: #7f8c8d;
-    font-size: 1.2em;
-    grid-column: 1 / -1;
-  }
-
-  body.dark-mode .no-results {
-    color: #bdc3c7;
-  }
-
-  /* Special icons colors */
+  /* Special icons colors - Light mode */
   .toolkit-icon.ustc-icon { background: linear-gradient(135deg, #b30000, #d40000); }
   .toolkit-icon.jw-icon { background: linear-gradient(135deg, #0056b3, #0066cc); }
   .toolkit-icon.blackboard-icon { background: linear-gradient(135deg, #000, #333); }
@@ -1128,6 +1106,124 @@
   .toolkit-icon.notion-icon { background: linear-gradient(135deg, #000000, #3d3d3d); }
   .toolkit-icon.obsidian-icon { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
   .toolkit-icon.tencentdocs-icon { background: linear-gradient(135deg, #0084ff, #0066cc); }
+
+  /* Dark mode icon colors - Different from light mode and not just purple */
+  body.dark-mode .toolkit-icon.ustc-icon { background: linear-gradient(135deg, #8b0000, #a50000); }
+  body.dark-mode .toolkit-icon.jw-icon { background: linear-gradient(135deg, #003d82, #004b99); }
+  body.dark-mode .toolkit-icon.blackboard-icon { background: linear-gradient(135deg, #1a1a1a, #333333); }
+  body.dark-mode .toolkit-icon.email-icon { background: linear-gradient(135deg, #b33c30, #d14336); }
+  body.dark-mode .toolkit-icon.icourse-icon { background: linear-gradient(135deg, #d85b5b, #e66a6a); }
+  body.dark-mode .toolkit-icon.hanhai-icon { background: linear-gradient(135deg, #1565c0, #1976d2); }
+  body.dark-mode .toolkit-icon.flyer-icon { background: linear-gradient(135deg, #5a2d82, #7b48a3); }
+  body.dark-mode .toolkit-icon.software-icon { background: linear-gradient(135deg, #222222, #444444); }
+  body.dark-mode .toolkit-icon.deepseek-icon { background: linear-gradient(135deg, #0d5bb7, #1a73e8); }
+  body.dark-mode .toolkit-icon.chatgpt-icon { background: linear-gradient(135deg, #0c8b6a, #0fa588); }
+  body.dark-mode .toolkit-icon.grok-icon { background: linear-gradient(135deg, #4d00ba, #5e1ac2); }
+  body.dark-mode .toolkit-icon.scholar-icon { background: linear-gradient(135deg, #3367d6, #4285f4); }
+  body.dark-mode .toolkit-icon.spotify-icon { background: linear-gradient(135deg, #1aa34a, #1db954); }
+  body.dark-mode .toolkit-icon.overleaf-icon { background: linear-gradient(135deg, #3a8a36, #4a9e46); }
+  body.dark-mode .toolkit-icon.jupyter-icon { background: linear-gradient(135deg, #d6681e, #e67e22); }
+  body.dark-mode .toolkit-icon.typing-icon { background: linear-gradient(135deg, #3a0d70, #5c1d8a); }
+  body.dark-mode .toolkit-icon.qwerty-icon { background: linear-gradient(135deg, #222222, #444444); }
+  body.dark-mode .toolkit-icon.icloud-icon { background: linear-gradient(135deg, #005bb5, #0071e3); }
+  body.dark-mode .toolkit-icon.shanbay-icon { background: linear-gradient(135deg, #329a5c, #3eaf7c); }
+  body.dark-mode .toolkit-icon.toefl-icon { background: linear-gradient(135deg, #d84315, #e64a19); }
+  body.dark-mode .toolkit-icon.english-icon { background: linear-gradient(135deg, #1976d2, #2196f3); }
+  body.dark-mode .toolkit-icon.zlib-icon { background: linear-gradient(135deg, #3d8b40, #4caf50); }
+  body.dark-mode .toolkit-icon.matlab-icon { background: linear-gradient(135deg, #006080, #0082a1); }
+  body.dark-mode .toolkit-icon.mathematica-icon { background: linear-gradient(135deg, #b80e00, #d32f2f); }
+  body.dark-mode .toolkit-icon.wolfram-icon { background: linear-gradient(135deg, #b80e00, #d32f2f); }
+  body.dark-mode .toolkit-icon.deepl-icon { background: linear-gradient(135deg, #0c2038, #142d4d); }
+  body.dark-mode .toolkit-icon.cnki-icon { background: linear-gradient(135deg, #c62828, #d32f2f); }
+  body.dark-mode .toolkit-icon.geogebra-icon { background: linear-gradient(135deg, #2e7d32, #388e3c); }
+  body.dark-mode .toolkit-icon.lofter-icon { background: linear-gradient(135deg, #008ba3, #00acc1); }
+  body.dark-mode .toolkit-icon.xdf-icon { background: linear-gradient(135deg, #d84315, #e64a19); }
+  body.dark-mode .toolkit-icon.camscanner-icon { background: linear-gradient(135deg, #3d8b40, #4caf50); }
+  body.dark-mode .toolkit-icon.mars-icon { background: linear-gradient(135deg, #5d4037, #6d4b41); }
+  body.dark-mode .toolkit-icon.xmol-icon { background: linear-gradient(135deg, #0d47a1, #1565c0); }
+  body.dark-mode .toolkit-icon.ablesci-icon { background: linear-gradient(135deg, #3949ab, #5c6bc0); }
+  body.dark-mode .toolkit-icon.sciencedirect-icon { background: linear-gradient(135deg, #e65100, #f57c00); }
+  body.dark-mode .toolkit-icon.kaggle-icon { background: linear-gradient(135deg, #0088cc, #00a0e0); }
+  body.dark-mode .toolkit-icon.csmr-icon { background: linear-gradient(135deg, #455a64, #546e7a); }
+  body.dark-mode .toolkit-icon.wind-icon { background: linear-gradient(135deg, #00796b, #00897b); }
+  body.dark-mode .toolkit-icon.webofscience-icon { background: linear-gradient(135deg, #5e35b1, #7e57c2); }
+  body.dark-mode .toolkit-icon.github-icon { background: linear-gradient(135deg, #222222, #444444); }
+  body.dark-mode .toolkit-icon.gmail-icon { background: linear-gradient(135deg, #b33c30, #d14336); }
+  body.dark-mode .toolkit-icon.youtube-icon { background: linear-gradient(135deg, #cc0000, #e60000); }
+  body.dark-mode .toolkit-icon.tiktok-icon { background: linear-gradient(135deg, #111111, #25f4ee); }
+  body.dark-mode .toolkit-icon.rednote-icon { background: linear-gradient(135deg, #d81b60, #e91e63); }
+  body.dark-mode .toolkit-icon.quora-icon { background: linear-gradient(135deg, #8b1a00, #aa2200); }
+  body.dark-mode .toolkit-icon.twitter-icon { background: linear-gradient(135deg, #0d8ecf, #1a91da); }
+  body.dark-mode .toolkit-icon.bilibili-icon { background: linear-gradient(135deg, #e55c8a, #fb7299); }
+  body.dark-mode .toolkit-icon.iqiyi-icon { background: linear-gradient(135deg, #009900, #00bb00); }
+  body.dark-mode .toolkit-icon.tencent-icon { background: linear-gradient(135deg, #0066cc, #0080ff); }
+  body.dark-mode .toolkit-icon.qqmail-icon { background: linear-gradient(135deg, #0d8ecf, #12b7f5); }
+  body.dark-mode .toolkit-icon.qqmusic-icon { background: linear-gradient(135deg, #269a5a, #31c27c); }
+  body.dark-mode .toolkit-icon.neteasemusic-icon { background: linear-gradient(135deg, #cc0022, #e60026); }
+  body.dark-mode .toolkit-icon.neteasemail-icon { background: linear-gradient(135deg, #cc0022, #e60026); }
+  body.dark-mode .toolkit-icon.kugou-icon { background: linear-gradient(135deg, #1a8fd8, #2ca2f9); }
+  body.dark-mode .toolkit-icon.wikipedia-icon { background: linear-gradient(135deg, #111111, #333333); }
+  body.dark-mode .toolkit-icon.maple-icon { background: linear-gradient(135deg, #004d99, #0066cc); }
+  body.dark-mode .toolkit-icon.notion-icon { background: linear-gradient(135deg, #111111, #333333); }
+  body.dark-mode .toolkit-icon.obsidian-icon { background: linear-gradient(135deg, #5b21b6, #7c3aed); }
+  body.dark-mode .toolkit-icon.tencentdocs-icon { background: linear-gradient(135deg, #0066cc, #0080ff); }
+
+  /* Additional icons with dark mode variants */
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#e24329,#6d4b41)"] { 
+    background: linear-gradient(135deg, #c2331d, #5d3f39) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#000000,#3d3d3d)"] { 
+    background: linear-gradient(135deg, #111111, #2d2d2d) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#ffa116,#ff7b00)"] { 
+    background: linear-gradient(135deg, #e69113, #e66b00) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#5c6bc0,#3f51b5)"] { 
+    background: linear-gradient(135deg, #4a58a3, #324497) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#4285f4,#34a853)"] { 
+    background: linear-gradient(135deg, #3274d4, #2a9747) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#f39c12,#e67e22)"] { 
+    background: linear-gradient(135deg, #d38a10, #d16e1e) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#27ae60,#2ecc71)"] { 
+    background: linear-gradient(135deg, #1e8d4f, #25b362) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#00b0ff,#0081cb)"] { 
+    background: linear-gradient(135deg, #0095d6, #006ba7) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#00c4cc,#00a2ff)"] { 
+    background: linear-gradient(135deg, #00a5b3, #0085d6) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#2ecc71,#27ae60)"] { 
+    background: linear-gradient(135deg, #25b362, #1e8d4f) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#2c3e50,#34495e)"] { 
+    background: linear-gradient(135deg, #1e2b38, #263441) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#5c6bc0,#3949ab)"] { 
+    background: linear-gradient(135deg, #4a58a3, #2f3d91) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#e74c3c,#c0392b)"] { 
+    background: linear-gradient(135deg, #d14336, #a82e23) !important;
+  }
+  body.dark-mode .toolkit-icon[style*="background:linear-gradient(135deg,#3498db,#2980b9)"] { 
+    background: linear-gradient(135deg, #2a89c8, #21699e) !important;
+  }
+
+  /* 无结果提示 */
+  .no-results {
+    text-align: center;
+    padding: 40px;
+    color: #7f8c8d;
+    font-size: 1.2em;
+    grid-column: 1 / -1;
+  }
+
+  body.dark-mode .no-results {
+    color: #bdc3c7;
+  }
 </style>
 </head>
 <body>
@@ -1467,7 +1563,7 @@
 
           <!-- Tableau -->
           <div class="toolkit-card" data-title="tableau" data-categories="datascience">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5d6bc0,#3f51b5)">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3f51b5)">
               <i class="fas fa-chart-bar"></i>
             </div>
             <div class="toolkit-title">Tableau Public</div>
