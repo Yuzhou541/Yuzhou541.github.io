@@ -1313,8 +1313,8 @@
 
   /* Calendar Styles */
   #calendar-container {
-    width: 100%;
-    margin: 0 auto;
+    height: 70vh;
+    margin-bottom: 20px;
   }
 
   .fc {
@@ -1646,7 +1646,6 @@
   /* Add Event Button */
   .add-event-btn {
     display: block;
-    margin: 20px auto;
     padding: 12px 25px;
     background-color: #3498db;
     color: white;
@@ -1657,6 +1656,9 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    position: relative;
+    z-index: 100;
+    margin: 20px auto 40px;
   }
 
   .add-event-btn:hover {
