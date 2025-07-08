@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <style>
   /* 基础样式 */
   body, html {
@@ -201,159 +200,6 @@
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  /* 漩涡动画效果 */
-  .swirl-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #000000 100%);
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .swirl-center {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #00b4d8, #0077b6);
-    transform: translate(-50%, -50%);
-    z-index: 1001;
-  }
-
-  /* 黑暗史诗卷轴页面 */
-  .epic-scroll-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-    z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .epic-scroll-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
-  }
-
-  .scroll-container {
-    position: relative;
-    width: 80%;
-    max-width: 800px;
-    background: url('https://www.transparenttextures.com/patterns/old-paper.png');
-    padding: 40px;
-    border-radius: 5px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-    z-index: 2;
-    transform: scale(0.9);
-    opacity: 0;
-    border: 1px solid #8b5a2b;
-    font-family: 'Cinzel Decorative', serif;
-    color: #3a2c1a;
-    text-align: center;
-    line-height: 1.8;
-    font-size: 1.2rem;
-  }
-
-  .scroll-text {
-    position: relative;
-    z-index: 3;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .flame-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 4;
-    opacity: 0;
-    transition: all 0.5s ease;
-  }
-
-  .flame {
-    position: absolute;
-    width: 20px;
-    height: 30px;
-    background: linear-gradient(to top, #ff7800, #ff0000);
-    border-radius: 50% 50% 20% 20%;
-    box-shadow: 0 0 10px #ff6600, 0 0 20px #ff3300, 0 0 30px #ff0000;
-    animation: flicker 1.5s infinite alternate;
-    transform-origin: center bottom;
-  }
-
-  @keyframes flicker {
-    0%, 100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    25% {
-      transform: scale(0.9, 1.1);
-    }
-    50% {
-      transform: scale(1.1, 0.9);
-    }
-    75% {
-      transform: scale(0.95, 1.05);
-    }
-  }
-
-  .burn-effect {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/burnt-paper.png');
-    opacity: 0;
-    z-index: 5;
-    pointer-events: none;
-  }
-
-  /* 博客页面 */
-  .blog-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #f5f5f5;
-    z-index: 3000;
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    color: #333;
   }
 
   /* 文本元素 */
@@ -1896,47 +1742,12 @@
       padding: 20px;
     }
   }
-
-  #loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #f1f3f5;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-  }
 </style>
 </head>
 <body>
   <!-- 光标元素 -->
   <div class="custom-cursor cursor-outer"></div>
   <div class="custom-cursor cursor-inner"></div>
-
-  <!-- 漩涡效果容器 -->
-  <div class="swirl-effect" id="swirl-effect"></div>
-
-  <!-- 黑暗史诗卷轴页面 -->
-  <div class="epic-scroll-page" id="epic-scroll-page">
-    <div class="scroll-container">
-      <div class="scroll-text" id="scroll-text">
-        Traveler of silent paths, by your insight and unwavering will, the ancient seal lies broken. What once dwelt beyond mortal ken now unfolds before thine eyes: a hidden realm, long shrouded in shadow.
-      </div>
-      <button class="flame-button" id="flame-button">
-        <div class="flame"></div>
-      </button>
-      <div class="burn-effect" id="burn-effect"></div>
-    </div>
-  </div>
-
-  <!-- 博客页面 -->
-  <div class="blog-page" id="blog-page">
-    Blog Page (Coming Soon)
-  </div>
 
   <!-- 封面页 -->
   <div id="cover">
@@ -2911,173 +2722,6 @@
       initSchedulePage();
     });
 
-      // 添加头像点击事件
-      document.getElementById('avatar-image').addEventListener('click', startEpicTransition);
-    });
-
-    // 史诗过渡效果
-    function startEpicTransition() {
-      const avatar = document.getElementById('avatar-frame');
-      const swirlEffect = document.getElementById('swirl-effect');
-      const swirlCenter = document.createElement('div');
-      swirlCenter.className = 'swirl-center';
-      swirlEffect.appendChild(swirlCenter);
-      
-      // 获取头像位置
-      const avatarRect = avatar.getBoundingClientRect();
-      const centerX = avatarRect.left + avatarRect.width / 2;
-      const centerY = avatarRect.top + avatarRect.height / 2;
-      
-      // 设置漩涡中心位置
-      swirlCenter.style.left = `${centerX}px`;
-      swirlCenter.style.top = `${centerY}px`;
-      
-      // 显示漩涡效果
-      swirlEffect.style.opacity = '1';
-      
-      // 开始漩涡动画
-      anime({
-        targets: swirlCenter,
-        width: ['0px', '3000px'],
-        height: ['0px', '3000px'],
-        opacity: [0, 1],
-        duration: 2000,
-        easing: 'easeInOutQuad',
-        complete: function() {
-          // 隐藏封面
-          document.getElementById('cover').style.opacity = '0';
-          
-          // 显示史诗卷轴页面
-          showEpicScrollPage();
-        }
-      });
-    }
-
-    // 显示史诗卷轴页面
-    function showEpicScrollPage() {
-      const epicPage = document.getElementById('epic-scroll-page');
-      const scrollContainer = epicPage.querySelector('.scroll-container');
-      const scrollText = document.getElementById('scroll-text');
-      const flameButton = document.getElementById('flame-button');
-      
-      // 显示页面
-      epicPage.style.opacity = '1';
-      epicPage.style.pointerEvents = 'auto';
-      
-      // 动画显示卷轴容器
-      anime({
-        targets: scrollContainer,
-        scale: [0.9, 1],
-        opacity: [0, 1],
-        duration: 1500,
-        easing: 'easeOutExpo'
-      });
-      
-      // 动画显示文本
-      setTimeout(() => {
-        anime({
-          targets: scrollText,
-          opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 2000,
-          easing: 'easeOutExpo'
-        });
-        
-        // 播放旁白声音
-        playNarration();
-        
-        // 显示火焰按钮
-        setTimeout(() => {
-          flameButton.style.opacity = '1';
-          
-          // 添加火焰按钮点击事件
-          flameButton.addEventListener('click', burnScroll);
-        }, 1000);
-      }, 500);
-    }
-
-    // 播放旁白声音
-    function playNarration() {
-      // 使用Web Speech API合成语音
-      if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance();
-        utterance.text = "Traveler of silent paths, by your insight and unwavering will, the ancient seal lies broken. What once dwelt beyond mortal ken now unfolds before thine eyes: a hidden realm, long shrouded in shadow.";
-        utterance.rate = 0.9;
-        utterance.pitch = 0.8;
-        utterance.volume = 1;
-        
-        // 尝试设置史诗般的语音
-        const voices = speechSynthesis.getVoices();
-        const epicVoice = voices.find(voice => 
-          voice.name.includes('Microsoft David') || 
-          voice.name.includes('Google UK English Male') ||
-          voice.name.includes('Alex')
-        );
-        
-        if (epicVoice) {
-          utterance.voice = epicVoice;
-        }
-        
-        speechSynthesis.speak(utterance);
-      }
-    }
-
-    // 燃烧卷轴效果
-    function burnScroll() {
-      const flameButton = document.getElementById('flame-button');
-      const burnEffect = document.getElementById('burn-effect');
-      const scrollContainer = document.querySelector('.scroll-container');
-      
-      // 隐藏火焰按钮
-      flameButton.style.opacity = '0';
-      flameButton.style.pointerEvents = 'none';
-      
-      // 放大火焰动画
-      anime({
-        targets: flameButton.querySelector('.flame'),
-        width: ['20px', '200px'],
-        height: ['30px', '300px'],
-        duration: 1500,
-        easing: 'easeInExpo'
-      });
-      
-      // 显示燃烧效果
-      anime({
-        targets: burnEffect,
-        opacity: [0, 1],
-        duration: 2000,
-        easing: 'easeInExpo',
-        complete: function() {
-          // 隐藏史诗页面
-          document.getElementById('epic-scroll-page').style.opacity = '0';
-          document.getElementById('epic-scroll-page').style.pointerEvents = 'none';
-          
-          // 显示博客页面
-          showBlogPage();
-        }
-      });
-      
-      // 卷轴燃烧动画
-      anime({
-        targets: scrollContainer,
-        scale: [1, 1.2],
-        opacity: [1, 0],
-        duration: 2000,
-        easing: 'easeInExpo'
-      });
-    }
-
-    // 显示博客页面
-    function showBlogPage() {
-      const blogPage = document.getElementById('blog-page');
-      
-      // 显示博客页面
-      blogPage.style.opacity = '1';
-      blogPage.style.pointerEvents = 'auto';
-      
-      // 可以在这里添加更多博客页面的初始化代码
-    }
-
     // 页面元素
     const cover = document.getElementById("cover");
     const resume = document.getElementById("resume");
@@ -3205,13 +2849,6 @@
       cover.classList.add("visible");
       showCoverElements();
       startClock();
-
-      // 加载语音合成API的语音列表
-      if ('speechSynthesis' in window) {
-        speechSynthesis.onvoiceschanged = function() {
-          // 语音已加载
-        };
-      }
     });
 
     // 按钮点击处理
