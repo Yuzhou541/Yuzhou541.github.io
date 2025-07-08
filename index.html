@@ -130,32 +130,6 @@
     z-index: 11;
   }
 
-  #cover::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(52, 152, 219, 0.25),
-      rgba(155, 89, 182, 0.25)
-    );
-    mix-blend-mode: screen;
-    pointer-events: none;
-    z-index: 12;
-    opacity: 0.6;
-    animation: gradientShift 20s ease infinite;
-  }
-
-  @keyframes gradientShift {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
   /* 封面可见性 */
   #cover.visible {
     opacity: 1;
@@ -179,6 +153,7 @@
     z-index: 20;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     animation: pulse 3s infinite;
+    cursor: pointer;
   }
   
   @keyframes pulse {
@@ -1082,7 +1057,7 @@
   .toolkit-icon.camscanner-icon { background: linear-gradient(135deg, #4caf50, #66bb6a); }
   .toolkit-icon.mars-icon { background: linear-gradient(135deg, #795548, #8d6e63); }
   .toolkit-icon.xmol-icon { background: linear-gradient(135deg, #1565c0, #1976d2); }
-  .toolkit-icon.ablesci-icon { background: linear-gradient(135deg, #5c6bc0, #7986cb); }
+  .toolkit-icon.ablesci-icon { background: linear-gradient(135deg, #5c6bc0, #3f51b5); }
   .toolkit-icon.sciencedirect-icon { background: linear-gradient(135deg, #ff8f00, #ffa000); }
   .toolkit-icon.kaggle-icon { background: linear-gradient(135deg, #20beff, #00b0ff); }
   .toolkit-icon.csmr-icon { background: linear-gradient(135deg, #607d8b, #78909c); }
@@ -1755,6 +1730,7 @@
     z-index: 1000;
     pointer-events: none;
     animation: swirlExpand 1.5s ease-out forwards;
+    display: none;
   }
 
   @keyframes swirlExpand {
@@ -1777,14 +1753,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('./assets/images/old-paper-texture.jpg') center/cover;
+    background: url('https://images.unsplash.com/photo-1519751138087-5eb79d1a9f1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
     z-index: 2000;
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #3a2810;
-    font-family: 'Old English Text MT', 'Times New Roman', serif;
+    font-family: 'Old Standard TT', 'Times New Roman', serif;
     padding: 2rem;
     opacity: 0;
     transition: opacity 1s ease;
@@ -1797,8 +1773,8 @@
     border: 2px solid #5a3a1a;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
     position: relative;
-    background-image: url('./assets/images/scroll-texture.png');
-    background-size: cover;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="%235a3a1a" stroke-width="0.5" d="M0,0 L100,0 L100,100 L0,100 Z M20,20 L80,20 L80,80 L20,80 Z" opacity="0.1"/></svg>');
+    background-size: 100px;
   }
 
   .epic-text {
@@ -1809,6 +1785,8 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease, transform 1s ease;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   }
 
   .flame-button {
@@ -1919,6 +1897,31 @@
     100% {
       transform: scale(20);
       opacity: 0.8;
+    }
+  }
+
+  /* Burn effect for scroll */
+  .burn-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,120,0,0.8) 0%, rgba(255,51,0,0.8) 100%);
+    z-index: 5;
+    opacity: 0;
+    animation: burn 1.5s forwards;
+  }
+
+  @keyframes burn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
     }
   }
 </style>
