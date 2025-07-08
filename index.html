@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
 <style>
   /* 基础样式 */
   body, html {
@@ -130,6 +129,32 @@
     z-index: 11;
   }
 
+  #cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(52, 152, 219, 0.25),
+      rgba(155, 89, 182, 0.25)
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 12;
+    opacity: 0.6;
+    animation: gradientShift 20s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
   /* 封面可见性 */
   #cover.visible {
     opacity: 1;
@@ -153,7 +178,6 @@
     z-index: 20;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     animation: pulse 3s infinite;
-    cursor: pointer;
   }
   
   @keyframes pulse {
@@ -1057,7 +1081,7 @@
   .toolkit-icon.camscanner-icon { background: linear-gradient(135deg, #4caf50, #66bb6a); }
   .toolkit-icon.mars-icon { background: linear-gradient(135deg, #795548, #8d6e63); }
   .toolkit-icon.xmol-icon { background: linear-gradient(135deg, #1565c0, #1976d2); }
-  .toolkit-icon.ablesci-icon { background: linear-gradient(135deg, #5c6bc0, #3f51b5); }
+  .toolkit-icon.ablesci-icon { background: linear-gradient(135deg, #5c6bc0, #7986cb); }
   .toolkit-icon.sciencedirect-icon { background: linear-gradient(135deg, #ff8f00, #ffa000); }
   .toolkit-icon.kaggle-icon { background: linear-gradient(135deg, #20beff, #00b0ff); }
   .toolkit-icon.csmr-icon { background: linear-gradient(135deg, #607d8b, #78909c); }
@@ -1716,212 +1740,6 @@
     .event-modal-content {
       width: 95%;
       padding: 20px;
-    }
-  }
-
-  /* 漩涡动画 */
-  .swirl-effect {
-    position: fixed;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(106,48,147,0.9) 0%, rgba(22,11,33,0.9) 100%);
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    pointer-events: none;
-    animation: swirlExpand 1.5s ease-out forwards;
-    display: none;
-  }
-
-  @keyframes swirlExpand {
-    0% {
-      width: 150px;
-      height: 150px;
-      opacity: 1;
-    }
-    100% {
-      width: 300vh;
-      height: 300vh;
-      opacity: 1;
-    }
-  }
-
-  /* 黑暗史诗页面样式 */
-  .epic-scroll-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://images.unsplash.com/photo-1519751138087-5eb79d1a9f1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
-    z-index: 2000;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #3a2810;
-    font-family: 'Old Standard TT', 'Times New Roman', serif;
-    padding: 2rem;
-    opacity: 0;
-    transition: opacity 1s ease;
-  }
-
-  .epic-scroll-content {
-    max-width: 800px;
-    background: rgba(240, 230, 210, 0.85);
-    padding: 3rem;
-    border: 2px solid #5a3a1a;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
-    position: relative;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="%235a3a1a" stroke-width="0.5" d="M0,0 L100,0 L100,100 L0,100 Z M20,20 L80,20 L80,80 L20,80 Z" opacity="0.1"/></svg>');
-    background-size: 100px;
-  }
-
-  .epic-text {
-    font-size: 1.5rem;
-    line-height: 1.8;
-    letter-spacing: 0.5px;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
-    font-weight: 700;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-  }
-
-  .flame-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    z-index: 10;
-    background: none;
-    border: none;
-    outline: none;
-  }
-
-  .flame-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* CSS Flame Animation */
-  .flame {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 30px;
-    background: #ff7800;
-    border-radius: 50% 50% 20% 20%;
-    box-shadow: 
-      0 0 10px 5px #ff7800,
-      0 0 20px 10px #ff5100,
-      0 0 30px 15px #ff3300;
-    animation: flicker 1.5s ease-in-out infinite alternate;
-  }
-
-  .flame::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 15px;
-    height: 20px;
-    background: #ffcc00;
-    border-radius: 50% 50% 20% 20%;
-    filter: blur(5px);
-  }
-
-  .flame::after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 15px;
-    background: #fff;
-    border-radius: 50%;
-    filter: blur(8px);
-    opacity: 0.8;
-  }
-
-  /* Flame flicker animation */
-  @keyframes flicker {
-    0%, 100% {
-      transform: translateX(-50%) scaleY(1) scaleX(1);
-      box-shadow: 
-        0 0 10px 5px #ff7800,
-        0 0 20px 10px #ff5100,
-        0 0 30px 15px #ff3300;
-    }
-    25% {
-      transform: translateX(-50%) scaleY(1.1) scaleX(0.9);
-      box-shadow: 
-        0 0 12px 6px #ff7800,
-        0 0 22px 11px #ff5100,
-        0 0 32px 16px #ff3300;
-    }
-    50% {
-      transform: translateX(-50%) scaleY(0.9) scaleX(1.1);
-      box-shadow: 
-        0 0 8px 4px #ff7800,
-        0 0 18px 9px #ff5100,
-        0 0 28px 14px #ff3300;
-    }
-    75% {
-      transform: translateX(-50%) scaleY(1.05) scaleX(0.95);
-      box-shadow: 
-        0 0 11px 5.5px #ff7800,
-        0 0 21px 10.5px #ff5100,
-        0 0 31px 15.5px #ff3300;
-    }
-  }
-
-  /* Flame expand animation */
-  .flame-expand {
-    animation: flameExpand 1.5s forwards;
-  }
-
-  @keyframes flameExpand {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(20);
-      opacity: 0.8;
-    }
-  }
-
-  /* Burn effect for scroll */
-  .burn-effect {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255,120,0,0.8) 0%, rgba(255,51,0,0.8) 100%);
-    z-index: 5;
-    opacity: 0;
-    animation: burn 1.5s forwards;
-  }
-
-  @keyframes burn {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.8;
-    }
-    100% {
-      opacity: 0;
     }
   }
 </style>
@@ -2842,20 +2660,6 @@
     </div>
   </div>
 
-  <!-- 黑暗史诗页面元素 -->
-  <div id="swirl-effect" class="swirl-effect"></div>
-  <div id="epic-scroll-page" class="epic-scroll-page">
-    <div class="epic-scroll-content">
-      <div id="epic-text" class="epic-text"></div>
-      <div id="flame-button" class="flame-button">
-        <div class="flame-container">
-          <div class="flame"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="blog-page" style="display:none; width:100%; height:100vh;"></div>
-
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script>
     // 初始化自定义光标
@@ -3045,100 +2849,6 @@
       cover.classList.add("visible");
       showCoverElements();
       startClock();
-    });
-
-    // 头像点击事件处理
-    avatarFrame.addEventListener('click', function() {
-      // 创建漩涡效果
-      const swirl = document.getElementById('swirl-effect');
-      swirl.style.left = `${positions.mouseX}px`;
-      swirl.style.top = `${positions.mouseY}px`;
-      swirl.style.display = 'block';
-  
-      // 隐藏封面元素
-      cover.classList.add('hidden');
-  
-      // 动画结束后显示史诗卷轴页面
-      setTimeout(() => {
-        swirl.style.display = 'none';
-        const epicPage = document.getElementById('epic-scroll-page');
-        epicPage.style.display = 'flex';
-    
-        setTimeout(() => {
-          epicPage.style.opacity = '1';
-      
-          // 设置并显示史诗文本
-          const epicText = document.getElementById('epic-text');
-          const message = "Traveler of silent paths, by your insight and unwavering will, the ancient seal lies broken. What once dwelt beyond mortal ken now unfolds before thine eyes: a hidden realm, long shrouded in shadow.";
-          epicText.textContent = message;
-      
-          setTimeout(() => {
-            epicText.style.opacity = '1';
-            epicText.style.transform = 'translateY(0)';
-        
-            // 添加人声朗读
-            if ('speechSynthesis' in window) {
-              const utterance = new SpeechSynthesisUtterance(message);
-              utterance.rate = 0.9;
-              utterance.pitch = 0.8;
-          
-              // 尝试获取合适的语音
-              speechSynthesis.onvoiceschanged = function() {
-                const voices = speechSynthesis.getVoices();
-                const epicVoice = voices.find(v => v.name.includes('Google UK English Male')) || 
-                                  voices.find(v => v.lang.includes('en-GB')) || 
-                                  voices.find(v => v.lang.includes('en-US'));
-            
-                if (epicVoice) {
-                  utterance.voice = epicVoice;
-                }
-                speechSynthesis.speak(utterance);
-              };
-          
-              // 立即尝试获取语音（某些浏览器需要）
-              const voices = speechSynthesis.getVoices();
-              if (voices.length > 0) {
-                speechSynthesis.onvoiceschanged = null;
-                const epicVoice = voices.find(v => v.name.includes('Google UK English Male')) || 
-                                voices.find(v => v.lang.includes('en-GB')) || 
-                                voices.find(v => v.lang.includes('en-US'));
-            
-                if (epicVoice) {
-                  utterance.voice = epicVoice;
-                }
-                speechSynthesis.speak(utterance);
-              }
-            }
-          }, 500);
-        }, 100);
-      }, 1500);
-    });
-
-    // ==== 火焰按钮点击事件 ====
-    document.getElementById('flame-button').addEventListener('click', function() {
-      const flame = this.querySelector('.flame');
-      flame.classList.add('flame-expand');
-  
-      // Play flame sound effect
-      try {
-        const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...'); // Base64 encoded short flame sound
-        audio.volume = 0.5;
-        audio.play().catch(e => console.log('Audio play failed:', e));
-      } catch (e) {
-        console.log('Audio error:', e);
-      }
-  
-      setTimeout(() => {
-        document.getElementById('epic-scroll-page').style.opacity = '0';
-    
-        setTimeout(() => {
-          document.getElementById('epic-scroll-page').style.display = 'none';
-          document.getElementById('blog-page').style.display = 'block';
-      
-          // Reset flame animation for next time
-          flame.classList.remove('flame-expand');
-        }, 1000);
-      }, 1500);
     });
 
     // 按钮点击处理
