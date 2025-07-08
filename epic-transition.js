@@ -182,15 +182,21 @@ function showEpicScrollPage() {
     const epicText = document.createElement('div');
     epicText.id = 'epic-text';
     epicText.innerHTML = `Traveler of silent paths, by your insight and unwavering will, the ancient seal lies broken. What once dwelt beyond mortal ken now unfolds before thine eyes: a hidden realm, long shrouded in shadow.`;
-    epicText.style.fontFamily = '"Cinzel", "Times New Roman", serif';
-    epicText.style.fontSize = '1.8rem';
-    epicText.style.lineHeight = '1.6';
+    epicText.style.fontFamily = '"UnifrakturMaguntia", cursive';
+    epicText.style.fontSize = '2.2rem'; // 稍微加大字号
+    epicText.style.lineHeight = '1.5';
     epicText.style.color = '#3a2c1a';
-    epicText.style.textShadow = '1px 1px 2px rgba(0,0,0,0.3)';
+    epicText.style.textShadow = `
+        1px 1px 2px rgba(0,0,0,0.3),
+        0 0 5px rgba(139, 69, 19, 0.5)
+    `; // 添加古铜色光晕
     epicText.style.marginBottom = '40px';
     epicText.style.opacity = '0';
     epicText.style.transform = 'translateY(20px)';
     epicText.style.transition = 'all 1s ease-in-out 0.5s';
+    epicText.style.letterSpacing = '1px'; // 增加字母间距
+    epicText.style.fontWeight = 'bold';
+    epicText.style.textTransform = 'uppercase'; // 全部大写更显古典
     scrollContent.appendChild(epicText);
 
     // Make entire page clickable for fire animation
