@@ -31,37 +31,50 @@ function startSwirlAnimation() {
         y: avatarRect.top + avatarRect.height / 2
     };
 
-    // 创建漩涡效果
+    // 创建漩涡效果 - 修改为条纹漩涡效果
     const swirl = document.createElement('div');
     swirl.style.position = 'absolute';
     swirl.style.width = '150px';
     swirl.style.height = '150px';
     swirl.style.borderRadius = '50%';
-    swirl.style.background = 'radial-gradient(circle, rgba(10,10,30,0.8) 0%, rgba(0,50,100,0.9) 100%)';
+    swirl.style.background = `
+        conic-gradient(
+            from 0deg,
+            rgba(0, 20, 40, 0.9) 0%,
+            rgba(0, 50, 100, 0.9) 20%,
+            rgba(10, 10, 30, 0.9) 30%,
+            rgba(0, 50, 100, 0.9) 40%,
+            rgba(10, 10, 30, 0.9) 50%,
+            rgba(0, 50, 100, 0.9) 60%,
+            rgba(10, 10, 30, 0.9) 70%,
+            rgba(0, 50, 100, 0.9) 80%,
+            rgba(10, 10, 30, 0.9) 90%,
+            rgba(0, 20, 40, 0.9) 100%
+        )
+    `;
     swirl.style.left = `${avatarCenter.x - 75}px`;
     swirl.style.top = `${avatarCenter.y - 75}px`;
     swirl.style.transformOrigin = 'center center';
     swirl.style.boxShadow = '0 0 30px rgba(0,100,255,0.7)';
     swirlContainer.appendChild(swirl);
 
-    // 漩涡动画
+    // 漩涡动画 - 加快动画速度
     let scale = 1;
     let opacity = 1;
     let rotation = 0;
     const swirlAnimation = setInterval(() => {
-        scale += 0.05;
-        rotation += 5;
-        opacity -= 0.005;
+        scale += 0.1;  // 加快放大速度
+        rotation += 10;  // 加快旋转速度
+        opacity -= 0.01;
         
         swirl.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
         swirl.style.opacity = opacity;
-        swirl.style.background = `radial-gradient(circle, rgba(10,10,30,${opacity*0.8}) 0%, rgba(0,50,100,${opacity*0.9}) 100%)`;
         
         if (scale > 20) {
             clearInterval(swirlAnimation);
             showEpicScrollPage();
         }
-    }, 16);
+    }, 10);  // 减少间隔时间
 }
 
 function showEpicScrollPage() {
@@ -80,19 +93,19 @@ function showEpicScrollPage() {
     epicPage.style.width = '100%';
     epicPage.style.height = '100%';
     epicPage.style.zIndex = '1001';
-    epicPage.style.background = 'radial-gradient(circle, rgba(0,0,10,0.9) 0%, rgba(0,20,50,0.95) 100%)';
+    epicPage.style.background = 'url("./assets/images/background.jpeg") center/cover no-repeat';
     epicPage.style.display = 'flex';
     epicPage.style.flexDirection = 'column';
     epicPage.style.justifyContent = 'center';
     epicPage.style.alignItems = 'center';
     epicPage.style.opacity = '0';
-    epicPage.style.transition = 'opacity 1.5s ease-in-out';
+    epicPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(epicPage);
 
     // 添加背景装饰元素
     addEpicBackgroundElements(epicPage);
 
-    // 创建羊皮纸卷轴
+    // 创建羊皮纸卷轴 - 修改边框效果
     const scroll = document.createElement('div');
     scroll.id = 'epic-scroll';
     scroll.style.position = 'relative';
@@ -102,7 +115,13 @@ function showEpicScrollPage() {
     scroll.style.backgroundImage = 'url("./assets/images/old-paper-texture.jpg")';
     scroll.style.backgroundSize = 'cover';
     scroll.style.borderRadius = '5px';
-    scroll.style.boxShadow = '0 0 30px rgba(200, 160, 100, 0.5), inset 0 0 50px rgba(0,0,0,0.3)';
+    scroll.style.boxShadow = `
+        0 0 30px rgba(200, 160, 100, 0.5),
+        inset 0 0 50px rgba(0,0,0,0.3),
+        0 0 0 10px rgba(139, 69, 19, 0.3),
+        0 0 0 15px rgba(160, 82, 45, 0.2),
+        0 0 0 20px rgba(139, 69, 19, 0.1)
+    `;
     scroll.style.padding = '40px';
     scroll.style.opacity = '0';
     scroll.style.transform = 'scale(0.9)';
@@ -110,7 +129,7 @@ function showEpicScrollPage() {
     scroll.style.overflow = 'hidden';
     epicPage.appendChild(scroll);
 
-    // 添加卷轴边缘装饰
+    // 添加卷轴边缘装饰 - 更精致的边缘效果
     const scrollEdgeLeft = document.createElement('div');
     scrollEdgeLeft.style.position = 'absolute';
     scrollEdgeLeft.style.left = '0';
@@ -120,6 +139,8 @@ function showEpicScrollPage() {
     scrollEdgeLeft.style.backgroundImage = 'url("./assets/images/scroll-texture.png")';
     scrollEdgeLeft.style.backgroundSize = 'contain';
     scrollEdgeLeft.style.backgroundRepeat = 'repeat-y';
+    scrollEdgeLeft.style.filter = 'sepia(100%) brightness(0.8)';
+    scrollEdgeLeft.style.boxShadow = 'inset 5px 0 10px rgba(0,0,0,0.2)';
     scroll.appendChild(scrollEdgeLeft);
 
     const scrollEdgeRight = document.createElement('div');
@@ -131,6 +152,8 @@ function showEpicScrollPage() {
     scrollEdgeRight.style.backgroundImage = 'url("./assets/images/scroll-texture.png")';
     scrollEdgeRight.style.backgroundSize = 'contain';
     scrollEdgeRight.style.backgroundRepeat = 'repeat-y';
+    scrollEdgeRight.style.filter = 'sepia(100%) brightness(0.8)';
+    scrollEdgeRight.style.boxShadow = 'inset -5px 0 10px rgba(0,0,0,0.2)';
     scroll.appendChild(scrollEdgeRight);
 
     // 添加卷轴内容
@@ -160,7 +183,7 @@ function showEpicScrollPage() {
     epicText.style.transition = 'all 1s ease-in-out 0.5s';
     scrollContent.appendChild(epicText);
 
-    // 添加火苗按钮
+    // 添加火苗按钮 - 改进火焰效果
     const flameButton = document.createElement('div');
     flameButton.id = 'flame-button';
     flameButton.style.position = 'absolute';
@@ -171,13 +194,54 @@ function showEpicScrollPage() {
     flameButton.style.cursor = 'pointer';
     flameButton.style.zIndex = '3';
     flameButton.innerHTML = `
-        <div id="flame" style="width: 20px; height: 30px; margin: 0 auto; position: relative;">
-            <div style="position: absolute; width: 100%; height: 100%; background: linear-gradient(to top, rgba(255,100,0,0.8), rgba(255,200,0,0.8)); 
-                border-radius: 50% 50% 20% 20%; filter: blur(5px); box-shadow: 0 0 20px rgba(255,100,0,0.6);"></div>
+        <div id="flame" style="
+            width: 20px; 
+            height: 30px; 
+            margin: 0 auto; 
+            position: relative;
+            animation: flicker 0.5s infinite alternate;
+        ">
+            <div style="
+                position: absolute; 
+                width: 100%; 
+                height: 100%; 
+                background: linear-gradient(to top, 
+                    rgba(255,100,0,0.9) 0%, 
+                    rgba(255,200,0,0.8) 50%,
+                    rgba(255,255,200,0.5) 100%
+                ); 
+                border-radius: 50% 50% 20% 20%; 
+                filter: blur(3px); 
+                box-shadow: 
+                    0 0 10px rgba(255,100,0,0.8),
+                    0 0 20px rgba(255,200,0,0.6);
+            "></div>
         </div>
-        <div style="text-align: center; margin-top: 5px; font-family: 'Cinzel', serif; color: #3a2c1a; font-size: 0.9rem;">Ignite</div>
+        <div style="
+            text-align: center; 
+            margin-top: 5px; 
+            font-family: 'Cinzel', serif; 
+            color: #3a2c1a; 
+            font-size: 0.9rem;
+        ">Ignite</div>
     `;
     scrollContent.appendChild(flameButton);
+
+    // 添加火焰动画
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes flicker {
+            0%, 100% {
+                transform: scale(1) translateY(0);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05) translateY(-2px);
+                opacity: 1;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 
     // 显示页面
     setTimeout(() => {
@@ -205,12 +269,12 @@ function showEpicScrollPage() {
 
 function addEpicBackgroundElements(container) {
     // 添加飘动的粒子效果
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 30; i++) {
         const particle = document.createElement('div');
         particle.style.position = 'absolute';
-        particle.style.width = `${Math.random() * 3 + 1}px`;
+        particle.style.width = `${Math.random() * 4 + 2}px`;
         particle.style.height = particle.style.width;
-        particle.style.backgroundColor = `rgba(100, 150, 255, ${Math.random() * 0.3 + 0.1})`;
+        particle.style.backgroundColor = `rgba(100, 150, 255, ${Math.random() * 0.2 + 0.1})`;
         particle.style.borderRadius = '50%';
         particle.style.left = `${Math.random() * 100}%`;
         particle.style.top = `${Math.random() * 100}%`;
@@ -236,6 +300,7 @@ function addEpicBackgroundElements(container) {
     decor1.style.height = '100px';
     decor1.style.backgroundImage = 'radial-gradient(circle, transparent 60%, rgba(0,50,150,0.3) 60%)';
     decor1.style.opacity = '0.3';
+    decor1.style.filter = 'blur(2px)';
     container.appendChild(decor1);
 
     const decor2 = document.createElement('div');
@@ -246,6 +311,7 @@ function addEpicBackgroundElements(container) {
     decor2.style.height = '150px';
     decor2.style.backgroundImage = 'radial-gradient(circle, transparent 60%, rgba(0,50,150,0.3) 60%)';
     decor2.style.opacity = '0.3';
+    decor2.style.filter = 'blur(2px)';
     container.appendChild(decor2);
 }
 
@@ -285,12 +351,12 @@ function startFlameAnimation() {
     const flameButton = document.getElementById('flame-button');
     flameButton.style.pointerEvents = 'none';
     
-    // 火焰扩大动画
+    // 改进火焰扩大动画
     let flameSize = 1;
     let flameOpacity = 1;
     const flameAnimation = setInterval(() => {
-        flameSize += 0.05;
-        flameOpacity -= 0.005;
+        flameSize += 0.08;
+        flameOpacity -= 0.008;
         
         flame.style.transform = `scale(${flameSize})`;
         flame.style.opacity = flameOpacity;
@@ -298,10 +364,16 @@ function startFlameAnimation() {
         // 添加燃烧效果到羊皮纸
         if (flameSize > 3) {
             const burnOpacity = (flameSize - 3) / 10;
-            scroll.style.boxShadow = `0 0 50px rgba(255, 100, 0, ${burnOpacity * 0.5})`;
+            scroll.style.boxShadow = `
+                0 0 50px rgba(255, 100, 0, ${burnOpacity * 0.5}),
+                inset 0 0 50px rgba(0,0,0,0.3),
+                0 0 0 10px rgba(139, 69, 19, ${0.3 - burnOpacity * 0.1}),
+                0 0 0 15px rgba(160, 82, 45, ${0.2 - burnOpacity * 0.1}),
+                0 0 0 20px rgba(139, 69, 19, ${0.1 - burnOpacity * 0.05})
+            `;
             
-            // 创建燃烧痕迹
-            if (flameSize > 5 && Math.random() > 0.7) {
+            // 创建更真实的燃烧痕迹
+            if (flameSize > 5 && Math.random() > 0.6) {
                 createBurnMark(scroll, flameSize);
             }
         }
@@ -320,18 +392,29 @@ function startFlameAnimation() {
 function createBurnMark(container, size) {
     const burn = document.createElement('div');
     burn.style.position = 'absolute';
-    burn.style.width = `${Math.random() * 50 + 20}px`;
-    burn.style.height = burn.style.width;
-    burn.style.background = `radial-gradient(circle, rgba(255,100,0,0.3) 0%, rgba(100,30,0,0.6) 70%, transparent 100%)`;
+    const width = Math.random() * 50 + 20;
+    burn.style.width = `${width}px`;
+    burn.style.height = `${width * (0.5 + Math.random() * 0.5)}px`;
+    burn.style.background = `
+        radial-gradient(
+            ellipse at center,
+            rgba(255,100,0,${0.3 + Math.random() * 0.2}) 0%,
+            rgba(100,30,0,${0.5 + Math.random() * 0.2}) 70%,
+            transparent 100%
+        )
+    `;
     burn.style.borderRadius = '50%';
-    burn.style.left = `${Math.random() * 80 + 10}%`;
-    burn.style.top = `${Math.random() * 80 + 10}%`;
+    burn.style.left = `${Math.random() * 70 + 15}%`;
+    burn.style.top = `${Math.random() * 70 + 15}%`;
     burn.style.opacity = '0';
-    burn.style.transition = 'opacity 1s ease-in-out';
+    burn.style.transition = 'opacity 1s ease-in-out, transform 1s ease-in-out';
+    burn.style.transform = 'scale(0.8) rotate(10deg)';
+    burn.style.filter = 'blur(1px)';
     container.appendChild(burn);
     
     setTimeout(() => {
         burn.style.opacity = '1';
+        burn.style.transform = 'scale(1) rotate(0)';
     }, 100);
 }
 
