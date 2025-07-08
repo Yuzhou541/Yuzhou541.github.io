@@ -8,8 +8,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" href="./assets/animation/fire-animation.gif" as="image">
+<link rel="preload" href="./assets/audio/prologue.m4a" as="audio">
+<link rel="preload" href="./assets/audio/fire-sound.mp3" as="audio">
+<link rel="preload" href="./assets/images/background.jpeg" as="image">
+<link rel="preload" href="./assets/images/old-paper-texture.jpg" as="image">
+<link rel="preload" href="./assets/images/scroll-texture.png" as="image">
 <!-- 引入epic-transition.js -->
 <script src="epic-transition.js"></script>
+<script>
+    // Load avatar after page load
+    window.addEventListener('load', function() {
+      const avatar = document.querySelector('#avatar-frame img');
+      avatar.src = avatar.dataset.src;
+      avatar.removeAttribute('data-src');
+    });
+</script>
 <style>
   /* 基础样式 */
   body, html {
@@ -1755,7 +1769,7 @@
   <!-- 封面页 -->
   <div id="cover">
     <div id="avatar-frame">
-      <img src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
+      <img data-src="./avatar.jpg" alt="Profile Avatar" loading="lazy" />
     </div>
     <div id="name">Stardust</div>
     <div id="slogan">Turn this imperfect story into the way we hope it to be.</div>
