@@ -1,6 +1,12 @@
 // epic-transition.js
 document.addEventListener('DOMContentLoaded', function() {
     const avatar = document.querySelector('#avatar-frame img');
+    // 预加载头像
+    const avatarImg = new Image();
+      avatarImg.src = './avatar.jpg';
+      avatarImg.onload = function() {
+        document.querySelector('#avatar-frame img').style.opacity = '1';
+    };
     
     avatar.addEventListener('click', function() {
         startSwirlAnimation();
