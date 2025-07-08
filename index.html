@@ -1315,16 +1315,10 @@
   #calendar-container {
     height: 70vh;
     margin-bottom: 20px;
-    width: 100%;
-    position: relative;
   }
 
   .fc {
     font-family: "Georgia", serif;
-  }
-
-  .fc-toolbar {
-    white-space: normal;  /* 允许工具栏文本换行 */
   }
 
   .fc-toolbar-title {
@@ -3125,22 +3119,11 @@
             info.el.style.backgroundColor = '#6a3093';
             info.el.style.borderColor = '#6a3093';
           }
-        },
-        nowIndicator: true,
-        navLinks: true,
-        editable: true,
-        dayMaxEvents: true,
-        height: 'auto',
-        contentHeight: 'auto',
-        aspectRatio: 1.5
+        }
       });
       
       calendar.render();
       updateCalendarTheme();
-
-      setTimeout(() => {
-        calendar.updateSize();
-      }, 100);
     }
     
     function updateCalendarTheme() {
