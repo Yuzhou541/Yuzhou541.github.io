@@ -1,6 +1,10 @@
 // epic-transition.js
 document.addEventListener('DOMContentLoaded', function() {
     const avatar = document.querySelector('#avatar-frame img');
+    // 预加载头像图片
+    const avatarImg = new Image();
+    avatarImg.src = './assets/images/avatar.jpg';
+    
     avatar.addEventListener('click', function() {
         startSwirlAnimation();
     });
@@ -25,9 +29,9 @@ function startSwirlAnimation() {
         y: avatarRect.top + avatarRect.height / 2
     };
 
-    // 创建多个漩涡层增强混沌效果
+    // 创建5个漩涡层增强混沌效果
     const swirlLayers = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
         const swirl = document.createElement('div');
         swirl.style.position = 'absolute';
         swirl.style.width = '150px';
@@ -39,34 +43,54 @@ function startSwirlAnimation() {
             swirl.style.background = `
                 conic-gradient(
                     from 0deg,
-                    rgba(0, 20, 40, 0.95) 0%,
-                    rgba(0, 50, 100, 0.95) 20%,
-                    rgba(10, 10, 30, 0.95) 30%,
-                    rgba(0, 50, 100, 0.95) 40%,
-                    rgba(10, 10, 30, 0.95) 50%,
-                    rgba(0, 50, 100, 0.95) 60%,
-                    rgba(10, 10, 30, 0.95) 70%,
-                    rgba(0, 50, 100, 0.95) 80%,
-                    rgba(10, 10, 30, 0.95) 90%,
-                    rgba(0, 20, 40, 0.95) 100%
+                    rgba(0, 10, 20, 0.95) 0%,
+                    rgba(0, 30, 60, 0.95) 20%,
+                    rgba(5, 5, 15, 0.95) 30%,
+                    rgba(0, 30, 60, 0.95) 40%,
+                    rgba(5, 5, 15, 0.95) 50%,
+                    rgba(0, 30, 60, 0.95) 60%,
+                    rgba(5, 5, 15, 0.95) 70%,
+                    rgba(0, 30, 60, 0.95) 80%,
+                    rgba(5, 5, 15, 0.95) 90%,
+                    rgba(0, 10, 20, 0.95) 100%
                 )
             `;
         } else if (i === 1) {
             swirl.style.background = `
                 radial-gradient(
                     circle,
-                    rgba(0, 100, 255, 0.8) 0%,
-                    rgba(0, 50, 150, 0.9) 50%,
-                    rgba(0, 20, 80, 0.95) 100%
+                    rgba(0, 60, 120, 0.8) 0%,
+                    rgba(0, 30, 90, 0.9) 50%,
+                    rgba(0, 10, 40, 0.95) 100%
+                )
+            `;
+        } else if (i === 2) {
+            swirl.style.background = `
+                repeating-radial-gradient(
+                    circle at center,
+                    rgba(0, 80, 150, 0.7) 0%,
+                    rgba(0, 40, 100, 0.8) 10%,
+                    rgba(0, 20, 60, 0.9) 20%
+                )
+            `;
+        } else if (i === 3) {
+            swirl.style.background = `
+                conic-gradient(
+                    from 180deg,
+                    rgba(10, 0, 30, 0.8) 0%,
+                    rgba(20, 0, 60, 0.85) 25%,
+                    rgba(30, 0, 90, 0.9) 50%,
+                    rgba(20, 0, 60, 0.85) 75%,
+                    rgba(10, 0, 30, 0.8) 100%
                 )
             `;
         } else {
             swirl.style.background = `
-                repeating-radial-gradient(
-                    circle at center,
-                    rgba(0, 150, 255, 0.7) 0%,
-                    rgba(0, 80, 200, 0.8) 10%,
-                    rgba(0, 40, 120, 0.9) 20%
+                radial-gradient(
+                    circle,
+                    rgba(0, 0, 20, 0.9) 0%,
+                    rgba(0, 0, 40, 0.8) 50%,
+                    rgba(0, 0, 60, 0.7) 100%
                 )
             `;
         }
@@ -74,7 +98,7 @@ function startSwirlAnimation() {
         swirl.style.left = `${avatarCenter.x - 75}px`;
         swirl.style.top = `${avatarCenter.y - 75}px`;
         swirl.style.transformOrigin = 'center center';
-        swirl.style.boxShadow = `0 0 30px rgba(0,100,255,0.7)`;
+        swirl.style.boxShadow = `0 0 40px rgba(0,60,120,0.8)`;
         swirlContainer.appendChild(swirl);
         swirlLayers.push(swirl);
     }
@@ -82,18 +106,18 @@ function startSwirlAnimation() {
     // 更强烈的漩涡动画
     let scale = 1;
     let opacity = 1;
-    const rotations = [0, 180, 90]; // 不同层次不同旋转方向
+    const rotations = [0, 180, 90, 270, 45]; // 不同层次不同旋转方向
     const swirlAnimation = setInterval(() => {
-        scale += 0.15;  // 加快放大速度
-        opacity -= 0.015;
+        scale += 0.18;  // 加快放大速度
+        opacity -= 0.012;
         
         swirlLayers.forEach((swirl, index) => {
-            rotations[index] += (index + 1) * 12;  // 不同层次不同旋转速度
-            swirl.style.transform = `scale(${scale * (1 + index * 0.2)}) rotate(${rotations[index]}deg)`;
-            swirl.style.opacity = opacity * (1 - index * 0.1);
+            rotations[index] += (index + 1) * 15;  // 不同层次不同旋转速度
+            swirl.style.transform = `scale(${scale * (1 + index * 0.15)}) rotate(${rotations[index]}deg)`;
+            swirl.style.opacity = opacity * (1 - index * 0.08);
         });
         
-        if (scale > 15) {
+        if (scale > 20) {
             clearInterval(swirlAnimation);
             showEpicScrollPage();
         }
@@ -200,7 +224,7 @@ function showEpicScrollPage() {
     epicText.style.transition = 'all 1s ease-in-out 0.5s';
     scrollContent.appendChild(epicText);
 
-    // 改进的火焰按钮
+    // 修改后的火焰按钮
     const flameButton = document.createElement('div');
     flameButton.id = 'flame-button';
     flameButton.style.position = 'absolute';
@@ -312,62 +336,28 @@ function startFlameAnimation() {
     const flameButton = document.getElementById('flame-button');
     flameButton.style.pointerEvents = 'none';
     
-    // 创建火焰覆盖层
+    // 创建火焰覆盖层 - 使用GIF动画
     const flameOverlay = document.createElement('div');
-    flameOverlay.style.position = 'absolute';
-    flameOverlay.style.bottom = '0';
-    flameOverlay.style.right = '0';
-    flameOverlay.style.width = '0';
-    flameOverlay.style.height = '0';
-    flameOverlay.style.background = 'radial-gradient(circle at 80% 80%, rgba(255,100,0,0.8), rgba(255,50,0,0))';
-    flameOverlay.style.zIndex = '4';
-    flameOverlay.style.transition = 'all 2s ease-out';
-    scroll.appendChild(flameOverlay);
+    flameOverlay.id = 'flame-overlay';
+    flameOverlay.style.position = 'fixed';
+    flameOverlay.style.top = '0';
+    flameOverlay.style.left = '0';
+    flameOverlay.style.width = '100%';
+    flameOverlay.style.height = '100%';
+    flameOverlay.style.background = 'url("./assets/animation/fire-animation.gif") center/cover no-repeat';
+    flameOverlay.style.zIndex = '1002';
+    flameOverlay.style.opacity = '0';
+    flameOverlay.style.transition = 'opacity 1.5s ease-in-out';
+    document.body.appendChild(flameOverlay);
     
-    // 第一阶段：火焰蔓延
+    // 渐入效果
     setTimeout(() => {
-        flameOverlay.style.width = '100%';
-        flameOverlay.style.height = '100%';
-        flameOverlay.style.background = 'radial-gradient(circle at 80% 80%, rgba(255,100,0,0.8), rgba(255,50,0,0.5))';
+        flameOverlay.style.opacity = '1';
         
-        // 创建燃烧效果
-        const burnMarks = [];
-        for (let i = 0; i < 5; i++) {
-            const burn = document.createElement('div');
-            burn.style.position = 'absolute';
-            burn.style.width = `${Math.random() * 100 + 50}px`;
-            burn.style.height = `${Math.random() * 100 + 50}px`;
-            burn.style.background = `
-                radial-gradient(
-                    ellipse at center,
-                    rgba(255,100,0,${0.3 + Math.random() * 0.3}) 0%,
-                    rgba(100,30,0,${0.5 + Math.random() * 0.3}) 70%,
-                    transparent 100%
-                )
-            `;
-            burn.style.borderRadius = '50%';
-            burn.style.left = `${Math.random() * 70 + 15}%`;
-            burn.style.top = `${Math.random() * 70 + 15}%`;
-            burn.style.opacity = '0';
-            burn.style.transition = 'opacity 1s ease-in-out';
-            burn.style.filter = 'blur(5px)';
-            scroll.appendChild(burn);
-            burnMarks.push(burn);
-            
-            setTimeout(() => {
-                burn.style.opacity = '1';
-            }, i * 200);
-        }
-        
-        // 第二阶段：全屏火焰
+        // 转场到博客页面
         setTimeout(() => {
-            flameOverlay.style.background = 'radial-gradient(circle at center, rgba(255,150,0,0.9), rgba(255,50,0,0.8))';
-            
-            // 第三阶段：转场到博客页面
-            setTimeout(() => {
-                transitionToBlogPage();
-            }, 1000);
-        }, 1500);
+            transitionToBlogPage();
+        }, 2000);
     }, 100);
 }
 
@@ -379,7 +369,7 @@ function transitionToBlogPage() {
     blogPage.style.left = '0';
     blogPage.style.width = '100%';
     blogPage.style.height = '100%';
-    blogPage.style.zIndex = '1002';
+    blogPage.style.zIndex = '1003';
     blogPage.style.backgroundColor = '#f5f5f5';
     blogPage.style.display = 'flex';
     blogPage.style.justifyContent = 'center';
@@ -399,11 +389,14 @@ function transitionToBlogPage() {
     blogPage.appendChild(blogContent);
     
     const epicPage = document.getElementById('epic-scroll-page');
+    const flameOverlay = document.getElementById('flame-overlay');
+    
     if (epicPage) {
         epicPage.style.opacity = '0';
         
         setTimeout(() => {
             epicPage.remove();
+            if (flameOverlay) flameOverlay.remove();
             blogPage.style.opacity = '1';
         }, 1000);
     } else {
