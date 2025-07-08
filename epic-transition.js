@@ -25,106 +25,56 @@ function startSwirlAnimation() {
         y: avatarRect.top + avatarRect.height / 2
     };
 
-    // Create multiple swirl layers for enhanced effect
+    // Create 5 swirl layers
     const swirlLayers = [];
-    const layerCount = 5; // Increased from 3 to 5 for more depth
-    for (let i = 0; i < layerCount; i++) {
+    for (let i = 0; i < 5; i++) {
         const swirl = document.createElement('div');
         swirl.style.position = 'absolute';
-        swirl.style.width = `${150 + i * 30}px`; // Varying sizes
+        swirl.style.width = `${150 + i * 30}px`;
         swirl.style.height = `${150 + i * 30}px`;
         swirl.style.borderRadius = '50%';
-        
-        // Different styles for each layer
-        if (i === 0) {
-            swirl.style.background = `
-                conic-gradient(
-                    from 0deg,
-                    rgba(0, 20, 40, 0.95) 0%,
-                    rgba(0, 80, 160, 0.95) 20%,
-                    rgba(20, 20, 60, 0.95) 30%,
-                    rgba(0, 80, 160, 0.95) 40%,
-                    rgba(20, 20, 60, 0.95) 50%,
-                    rgba(0, 80, 160, 0.95) 60%,
-                    rgba(20, 20, 60, 0.95) 70%,
-                    rgba(0, 80, 160, 0.95) 80%,
-                    rgba(20, 20, 60, 0.95) 90%,
-                    rgba(0, 20, 40, 0.95) 100%
-                )
-            `;
-            swirl.style.filter = 'blur(2px)';
-        } else if (i === 1) {
-            swirl.style.background = `
-                radial-gradient(
-                    circle,
-                    rgba(0, 150, 255, 0.8) 0%,
-                    rgba(0, 80, 200, 0.9) 50%,
-                    rgba(0, 40, 120, 0.95) 100%
-                )
-            `;
-            swirl.style.filter = 'blur(1px)';
-        } else if (i === 2) {
-            swirl.style.background = `
-                repeating-radial-gradient(
-                    circle at center,
-                    rgba(0, 180, 255, 0.7) 0%,
-                    rgba(0, 100, 220, 0.8) 10%,
-                    rgba(0, 60, 150, 0.9) 20%
-                )
-            `;
-        } else if (i === 3) {
-            swirl.style.background = `
-                repeating-conic-gradient(
-                    from 45deg,
-                    rgba(0, 100, 200, 0.8) 0deg 30deg,
-                    rgba(50, 0, 150, 0.8) 30deg 60deg
-                )
-            `;
-            swirl.style.filter = 'blur(1.5px)';
-        } else {
-            swirl.style.background = `
-                radial-gradient(
-                    circle,
-                    rgba(100, 0, 200, 0.7) 0%,
-                    rgba(50, 0, 150, 0.8) 50%,
-                    rgba(20, 0, 100, 0.9) 100%
-                )
-            `;
-            swirl.style.filter = 'blur(3px)';
-        }
-        
+        swirl.style.background = `
+            conic-gradient(
+                from ${i * 72}deg,
+                rgba(0, 20, 40, 0.95) 0%,
+                rgba(0, 50, 100, 0.95) 20%,
+                rgba(10, 10, 30, 0.95) 30%,
+                rgba(0, 50, 100, 0.95) 40%,
+                rgba(10, 10, 30, 0.95) 50%,
+                rgba(0, 50, 100, 0.95) 60%,
+                rgba(10, 10, 30, 0.95) 70%,
+                rgba(0, 50, 100, 0.95) 80%,
+                rgba(10, 10, 30, 0.95) 90%,
+                rgba(0, 20, 40, 0.95) 100%
+            )
+        `;
         swirl.style.left = `${avatarCenter.x - (75 + i * 15)}px`;
         swirl.style.top = `${avatarCenter.y - (75 + i * 15)}px`;
         swirl.style.transformOrigin = 'center center';
-        swirl.style.boxShadow = `0 0 ${30 + i * 10}px rgba(0,100,255,0.7)`;
+        swirl.style.boxShadow = `0 0 ${15 + i * 5}px rgba(0,100,255,0.7)`;
         swirlContainer.appendChild(swirl);
         swirlLayers.push(swirl);
     }
 
-    // Enhanced swirl animation with longer duration
+    // Animation with doubled duration
     let scale = 1;
     let opacity = 1;
-    const rotations = [0, 180, 90, 270, 45]; // Different rotation directions
+    const rotations = [0, 180, 90, 270, 45];
     const swirlAnimation = setInterval(() => {
-        scale += 0.075;  // Slower scaling for longer duration
-        opacity -= 0.0075; // Slower fade for longer duration
+        scale += 0.05;
+        opacity -= 0.005;
         
         swirlLayers.forEach((swirl, index) => {
-            rotations[index] += (index + 1) * 8;  // Different rotation speeds
-            swirl.style.transform = `scale(${scale * (1 + index * 0.15)}) rotate(${rotations[index]}deg)`;
-            swirl.style.opacity = opacity * (1 - index * 0.08);
-            
-            // Add pulsing effect
-            if (index % 2 === 0) {
-                swirl.style.boxShadow = `0 0 ${30 + index * 10}px rgba(0,${100 + index * 30},255,${opacity * 0.7})`;
-            }
+            rotations[index] += (index + 1) * 4;
+            swirl.style.transform = `scale(${scale * (1 + index * 0.1)}) rotate(${rotations[index]}deg)`;
+            swirl.style.opacity = opacity * (1 - index * 0.1);
         });
         
-        if (scale > 20) {  // Increased from 15 to 20 for longer animation
+        if (scale > 20) {
             clearInterval(swirlAnimation);
             showEpicScrollPage();
         }
-    }, 16); // Slightly faster frame rate for smoother animation
+    }, 20);
 }
 
 let narrationAudio = null;
@@ -153,6 +103,20 @@ function showEpicScrollPage() {
     epicPage.style.opacity = '0';
     epicPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(epicPage);
+
+    // Create initial fire at bottom of screen
+    const initialFire = document.createElement('div');
+    initialFire.id = 'initial-fire';
+    initialFire.style.position = 'fixed';
+    initialFire.style.bottom = '0';
+    initialFire.style.left = '0';
+    initialFire.style.width = '100%';
+    initialFire.style.height = '100px';
+    initialFire.style.background = 'url("./assets/animation/fire-animation.gif") bottom/cover no-repeat';
+    initialFire.style.zIndex = '1001';
+    initialFire.style.transition = 'height 0.5s ease-in-out';
+    initialFire.style.pointerEvents = 'none';
+    document.body.appendChild(initialFire);
 
     const scroll = document.createElement('div');
     scroll.id = 'epic-scroll';
@@ -229,13 +193,9 @@ function showEpicScrollPage() {
     epicText.style.transition = 'all 1s ease-in-out 0.5s';
     scrollContent.appendChild(epicText);
 
-    // Preload fire animation
-    const fireImg = new Image();
-    fireImg.src = './assets/animation/fire-animation.gif';
-
-    // Make entire scroll clickable for fire animation
-    scrollContent.style.cursor = 'pointer';
-    scrollContent.addEventListener('click', function() {
+    // Make entire page clickable for fire animation
+    epicPage.style.cursor = 'pointer';
+    epicPage.addEventListener('click', function() {
         startFlameAnimation();
     });
 
@@ -250,7 +210,7 @@ function showEpicScrollPage() {
                 epicText.style.opacity = '1';
                 epicText.style.transform = 'translateY(0)';
                 
-                // Play narration and fire sounds together
+                // Play narration sound
                 playNarration();
                 
             }, 500);
@@ -294,74 +254,47 @@ function startFlameAnimation() {
     if (isTransitioning) return;
     isTransitioning = true;
     
-    const scroll = document.getElementById('epic-scroll');
-    const epicPage = document.getElementById('epic-scroll-page');
-    
-    // Create fire elements
-    const fireBottom = document.createElement('img');
-    fireBottom.src = './assets/animation/fire-animation.gif';
-    fireBottom.style.position = 'absolute';
-    fireBottom.style.bottom = '0';
-    fireBottom.style.left = '0';
-    fireBottom.style.width = '100%';
-    fireBottom.style.height = '0';
-    fireBottom.style.objectFit = 'cover';
-    fireBottom.style.transition = 'height 3s ease-in-out';
-    fireBottom.style.zIndex = '5';
-    fireBottom.style.transformOrigin = 'bottom';
-    
-    const fireTop = document.createElement('img');
-    fireTop.src = './assets/animation/fire-animation.gif';
-    fireTop.style.position = 'absolute';
-    fireTop.style.top = '0';
-    fireTop.style.left = '0';
-    fireTop.style.width = '100%';
-    fireTop.style.height = '0';
-    fireTop.style.objectFit = 'cover';
-    fireTop.style.transition = 'height 3s ease-in-out';
-    fireTop.style.zIndex = '5';
-    fireTop.style.transform = 'scaleY(-1)';
-    fireTop.style.transformOrigin = 'top';
-    
-    scroll.appendChild(fireBottom);
-    scroll.appendChild(fireTop);
-    
+    // Remove initial small fire
+    const initialFire = document.getElementById('initial-fire');
+    if (initialFire) {
+        initialFire.remove();
+    }
+
+    // Create full-screen fire overlay
+    const fireOverlay = document.createElement('div');
+    fireOverlay.id = 'fire-overlay';
+    fireOverlay.style.position = 'fixed';
+    fireOverlay.style.bottom = '0';
+    fireOverlay.style.left = '0';
+    fireOverlay.style.width = '100%';
+    fireOverlay.style.height = '0';
+    fireOverlay.style.background = `
+        url("./assets/animation/fire-animation.gif") bottom/cover no-repeat,
+        linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 30%)
+    `;
+    fireOverlay.style.zIndex = '1002';
+    fireOverlay.style.transition = 'height 3s ease-in-out';
+    document.body.appendChild(fireOverlay);
+
     // Start fire spread
     setTimeout(() => {
-        fireBottom.style.height = '50%';
-        fireTop.style.height = '50%';
+        fireOverlay.style.height = '100%';
         
-        // Final full-screen fire
+        // When fire reaches top
         setTimeout(() => {
-            const fullFire = document.createElement('div');
-            fullFire.style.position = 'fixed';
-            fullFire.style.top = '0';
-            fullFire.style.left = '0';
-            fullFire.style.width = '100%';
-            fullFire.style.height = '100%';
-            fullFire.style.background = 'url("./assets/animation/fire-animation.gif") center/cover';
-            fullFire.style.zIndex = '1002';
-            fullFire.style.opacity = '0';
-            fullFire.style.transition = 'opacity 1.5s ease-in-out';
-            document.body.appendChild(fullFire);
-            
+            // Transition to blog page
             setTimeout(() => {
-                fullFire.style.opacity = '1';
-                
-                // Transition to blog page after fire is fully visible
-                setTimeout(() => {
-                    if (narrationAudio) {
-                        narrationAudio.pause();
-                        narrationAudio.currentTime = 0;
-                    }
-                    if (fireAudio) {
-                        fireAudio.pause();
-                        fireAudio.currentTime = 0;
-                    }
-                    transitionToBlogPage();
-                }, 1500);
-            }, 50);
-        }, 2000);
+                if (narrationAudio) {
+                    narrationAudio.pause();
+                    narrationAudio.currentTime = 0;
+                }
+                if (fireAudio) {
+                    fireAudio.pause();
+                    fireAudio.currentTime = 0;
+                }
+                transitionToBlogPage();
+            }, 1000);
+        }, 3000);
     }, 100);
 }
 
