@@ -1,17 +1,12 @@
 // epic-transition.js
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取头像元素
     const avatar = document.querySelector('#avatar-frame img');
-    
-    // 为头像添加点击事件
     avatar.addEventListener('click', function() {
-        // 开始漩涡动画
         startSwirlAnimation();
     });
 });
 
 function startSwirlAnimation() {
-    // 创建漩涡动画容器
     const swirlContainer = document.createElement('div');
     swirlContainer.id = 'swirl-container';
     swirlContainer.style.position = 'fixed';
@@ -23,7 +18,6 @@ function startSwirlAnimation() {
     swirlContainer.style.pointerEvents = 'none';
     document.body.appendChild(swirlContainer);
 
-    // 获取头像位置和尺寸
     const avatar = document.querySelector('#avatar-frame');
     const avatarRect = avatar.getBoundingClientRect();
     const avatarCenter = {
@@ -31,60 +25,89 @@ function startSwirlAnimation() {
         y: avatarRect.top + avatarRect.height / 2
     };
 
-    // 创建漩涡效果 - 修改为条纹漩涡效果
-    const swirl = document.createElement('div');
-    swirl.style.position = 'absolute';
-    swirl.style.width = '150px';
-    swirl.style.height = '150px';
-    swirl.style.borderRadius = '50%';
-    swirl.style.background = `
-        conic-gradient(
-            from 0deg,
-            rgba(0, 20, 40, 0.9) 0%,
-            rgba(0, 50, 100, 0.9) 20%,
-            rgba(10, 10, 30, 0.9) 30%,
-            rgba(0, 50, 100, 0.9) 40%,
-            rgba(10, 10, 30, 0.9) 50%,
-            rgba(0, 50, 100, 0.9) 60%,
-            rgba(10, 10, 30, 0.9) 70%,
-            rgba(0, 50, 100, 0.9) 80%,
-            rgba(10, 10, 30, 0.9) 90%,
-            rgba(0, 20, 40, 0.9) 100%
-        )
-    `;
-    swirl.style.left = `${avatarCenter.x - 75}px`;
-    swirl.style.top = `${avatarCenter.y - 75}px`;
-    swirl.style.transformOrigin = 'center center';
-    swirl.style.boxShadow = '0 0 30px rgba(0,100,255,0.7)';
-    swirlContainer.appendChild(swirl);
+    // 创建多个漩涡层增强混沌效果
+    const swirlLayers = [];
+    for (let i = 0; i < 3; i++) {
+        const swirl = document.createElement('div');
+        swirl.style.position = 'absolute';
+        swirl.style.width = '150px';
+        swirl.style.height = '150px';
+        swirl.style.borderRadius = '50%';
+        
+        // 不同层次的漩涡使用不同颜色和样式
+        if (i === 0) {
+            swirl.style.background = `
+                conic-gradient(
+                    from 0deg,
+                    rgba(0, 20, 40, 0.95) 0%,
+                    rgba(0, 50, 100, 0.95) 20%,
+                    rgba(10, 10, 30, 0.95) 30%,
+                    rgba(0, 50, 100, 0.95) 40%,
+                    rgba(10, 10, 30, 0.95) 50%,
+                    rgba(0, 50, 100, 0.95) 60%,
+                    rgba(10, 10, 30, 0.95) 70%,
+                    rgba(0, 50, 100, 0.95) 80%,
+                    rgba(10, 10, 30, 0.95) 90%,
+                    rgba(0, 20, 40, 0.95) 100%
+                )
+            `;
+        } else if (i === 1) {
+            swirl.style.background = `
+                radial-gradient(
+                    circle,
+                    rgba(0, 100, 255, 0.8) 0%,
+                    rgba(0, 50, 150, 0.9) 50%,
+                    rgba(0, 20, 80, 0.95) 100%
+                )
+            `;
+        } else {
+            swirl.style.background = `
+                repeating-radial-gradient(
+                    circle at center,
+                    rgba(0, 150, 255, 0.7) 0%,
+                    rgba(0, 80, 200, 0.8) 10%,
+                    rgba(0, 40, 120, 0.9) 20%
+                )
+            `;
+        }
+        
+        swirl.style.left = `${avatarCenter.x - 75}px`;
+        swirl.style.top = `${avatarCenter.y - 75}px`;
+        swirl.style.transformOrigin = 'center center';
+        swirl.style.boxShadow = `0 0 30px rgba(0,100,255,0.7)`;
+        swirlContainer.appendChild(swirl);
+        swirlLayers.push(swirl);
+    }
 
-    // 漩涡动画 - 加快动画速度
+    // 更强烈的漩涡动画
     let scale = 1;
     let opacity = 1;
-    let rotation = 0;
+    const rotations = [0, 180, 90]; // 不同层次不同旋转方向
     const swirlAnimation = setInterval(() => {
-        scale += 0.1;  // 加快放大速度
-        rotation += 10;  // 加快旋转速度
-        opacity -= 0.01;
+        scale += 0.15;  // 加快放大速度
+        opacity -= 0.015;
         
-        swirl.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
-        swirl.style.opacity = opacity;
+        swirlLayers.forEach((swirl, index) => {
+            rotations[index] += (index + 1) * 12;  // 不同层次不同旋转速度
+            swirl.style.transform = `scale(${scale * (1 + index * 0.2)}) rotate(${rotations[index]}deg)`;
+            swirl.style.opacity = opacity * (1 - index * 0.1);
+        });
         
-        if (scale > 20) {
+        if (scale > 15) {
             clearInterval(swirlAnimation);
             showEpicScrollPage();
         }
-    }, 10);  // 减少间隔时间
+    }, 10);
 }
 
+let narrationAudio = null; // 全局保存音频对象
+
 function showEpicScrollPage() {
-    // 移除漩涡容器
     const swirlContainer = document.getElementById('swirl-container');
     if (swirlContainer) {
         swirlContainer.remove();
     }
 
-    // 创建史诗卷轴页面
     const epicPage = document.createElement('div');
     epicPage.id = 'epic-scroll-page';
     epicPage.style.position = 'fixed';
@@ -102,10 +125,6 @@ function showEpicScrollPage() {
     epicPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(epicPage);
 
-    // 添加背景装饰元素
-    addEpicBackgroundElements(epicPage);
-
-    // 创建羊皮纸卷轴 - 修改边框效果
     const scroll = document.createElement('div');
     scroll.id = 'epic-scroll';
     scroll.style.position = 'relative';
@@ -129,7 +148,7 @@ function showEpicScrollPage() {
     scroll.style.overflow = 'hidden';
     epicPage.appendChild(scroll);
 
-    // 添加卷轴边缘装饰 - 更精致的边缘效果
+    // 卷轴边缘装饰
     const scrollEdgeLeft = document.createElement('div');
     scrollEdgeLeft.style.position = 'absolute';
     scrollEdgeLeft.style.left = '0';
@@ -156,7 +175,6 @@ function showEpicScrollPage() {
     scrollEdgeRight.style.boxShadow = 'inset -5px 0 10px rgba(0,0,0,0.2)';
     scroll.appendChild(scrollEdgeRight);
 
-    // 添加卷轴内容
     const scrollContent = document.createElement('div');
     scrollContent.style.position = 'relative';
     scrollContent.style.zIndex = '2';
@@ -168,7 +186,6 @@ function showEpicScrollPage() {
     scrollContent.style.textAlign = 'center';
     scroll.appendChild(scrollContent);
 
-    // 添加史诗文本
     const epicText = document.createElement('div');
     epicText.id = 'epic-text';
     epicText.innerHTML = `Traveler of silent paths, by your insight and unwavering will, the ancient seal lies broken. What once dwelt beyond mortal ken now unfolds before thine eyes: a hidden realm, long shrouded in shadow.`;
@@ -183,7 +200,7 @@ function showEpicScrollPage() {
     epicText.style.transition = 'all 1s ease-in-out 0.5s';
     scrollContent.appendChild(epicText);
 
-    // 添加火苗按钮 - 改进火焰效果
+    // 改进的火焰按钮
     const flameButton = document.createElement('div');
     flameButton.id = 'flame-button';
     flameButton.style.position = 'absolute';
@@ -227,7 +244,6 @@ function showEpicScrollPage() {
     `;
     scrollContent.appendChild(flameButton);
 
-    // 添加火焰动画
     const style = document.createElement('style');
     style.textContent = `
         @keyframes flicker {
@@ -243,7 +259,6 @@ function showEpicScrollPage() {
     `;
     document.head.appendChild(style);
 
-    // 显示页面
     setTimeout(() => {
         epicPage.style.opacity = '1';
         
@@ -261,80 +276,21 @@ function showEpicScrollPage() {
         }, 500);
     }, 100);
 
-    // 火苗点击事件
     flameButton.addEventListener('click', function() {
         startFlameAnimation();
     });
 }
 
-function addEpicBackgroundElements(container) {
-    // 添加飘动的粒子效果
-    for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.style.position = 'absolute';
-        particle.style.width = `${Math.random() * 4 + 2}px`;
-        particle.style.height = particle.style.width;
-        particle.style.backgroundColor = `rgba(100, 150, 255, ${Math.random() * 0.2 + 0.1})`;
-        particle.style.borderRadius = '50%';
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        particle.style.opacity = '0';
-        particle.style.transition = 'opacity 2s ease-in-out';
-        container.appendChild(particle);
-
-        // 随机动画
-        animateParticle(particle);
-        
-        // 淡入
-        setTimeout(() => {
-            particle.style.opacity = '1';
-        }, Math.random() * 1000);
-    }
-
-    // 添加一些装饰性元素
-    const decor1 = document.createElement('div');
-    decor1.style.position = 'absolute';
-    decor1.style.top = '20px';
-    decor1.style.left = '20px';
-    decor1.style.width = '100px';
-    decor1.style.height = '100px';
-    decor1.style.backgroundImage = 'radial-gradient(circle, transparent 60%, rgba(0,50,150,0.3) 60%)';
-    decor1.style.opacity = '0.3';
-    decor1.style.filter = 'blur(2px)';
-    container.appendChild(decor1);
-
-    const decor2 = document.createElement('div');
-    decor2.style.position = 'absolute';
-    decor2.style.bottom = '20px';
-    decor2.style.right = '20px';
-    decor2.style.width = '150px';
-    decor2.style.height = '150px';
-    decor2.style.backgroundImage = 'radial-gradient(circle, transparent 60%, rgba(0,50,150,0.3) 60%)';
-    decor2.style.opacity = '0.3';
-    decor2.style.filter = 'blur(2px)';
-    container.appendChild(decor2);
-}
-
-function animateParticle(particle) {
-    const duration = Math.random() * 20000 + 10000;
-    const xMovement = (Math.random() - 0.5) * 200;
-    const yMovement = (Math.random() - 0.5) * 200;
-    
-    particle.animate([
-        { transform: 'translate(0, 0)' },
-        { transform: `translate(${xMovement}px, ${yMovement}px)` }
-    ], {
-        duration: duration,
-        iterations: Infinity,
-        direction: 'alternate',
-        easing: 'ease-in-out'
-    });
-}
-
 function playNarration() {
-    const audio = new Audio('./assets/audio/prologue.m4a');
-    audio.volume = 0.7;
-    audio.play().catch(e => console.log('Audio play failed:', e));
+    // 停止之前的音频
+    if (narrationAudio) {
+        narrationAudio.pause();
+        narrationAudio.currentTime = 0;
+    }
+    
+    narrationAudio = new Audio('./assets/audio/prologue.m4a');
+    narrationAudio.volume = 0.7;
+    narrationAudio.play().catch(e => console.log('Audio play failed:', e));
 }
 
 function startFlameAnimation() {
@@ -342,84 +298,80 @@ function startFlameAnimation() {
     const scroll = document.getElementById('epic-scroll');
     const epicPage = document.getElementById('epic-scroll-page');
     
+    // 停止旁白音频
+    if (narrationAudio) {
+        narrationAudio.pause();
+        narrationAudio.currentTime = 0;
+    }
+    
     // 播放火焰声音
     const fireAudio = new Audio('./assets/audio/fire-sound.mp3');
     fireAudio.volume = 0.6;
     fireAudio.play().catch(e => console.log('Fire audio play failed:', e));
     
-    // 移除点击事件以防止多次触发
     const flameButton = document.getElementById('flame-button');
     flameButton.style.pointerEvents = 'none';
     
-    // 改进火焰扩大动画
-    let flameSize = 1;
-    let flameOpacity = 1;
-    const flameAnimation = setInterval(() => {
-        flameSize += 0.08;
-        flameOpacity -= 0.008;
+    // 创建火焰覆盖层
+    const flameOverlay = document.createElement('div');
+    flameOverlay.style.position = 'absolute';
+    flameOverlay.style.bottom = '0';
+    flameOverlay.style.right = '0';
+    flameOverlay.style.width = '0';
+    flameOverlay.style.height = '0';
+    flameOverlay.style.background = 'radial-gradient(circle at 80% 80%, rgba(255,100,0,0.8), rgba(255,50,0,0))';
+    flameOverlay.style.zIndex = '4';
+    flameOverlay.style.transition = 'all 2s ease-out';
+    scroll.appendChild(flameOverlay);
+    
+    // 第一阶段：火焰蔓延
+    setTimeout(() => {
+        flameOverlay.style.width = '100%';
+        flameOverlay.style.height = '100%';
+        flameOverlay.style.background = 'radial-gradient(circle at 80% 80%, rgba(255,100,0,0.8), rgba(255,50,0,0.5))';
         
-        flame.style.transform = `scale(${flameSize})`;
-        flame.style.opacity = flameOpacity;
-        
-        // 添加燃烧效果到羊皮纸
-        if (flameSize > 3) {
-            const burnOpacity = (flameSize - 3) / 10;
-            scroll.style.boxShadow = `
-                0 0 50px rgba(255, 100, 0, ${burnOpacity * 0.5}),
-                inset 0 0 50px rgba(0,0,0,0.3),
-                0 0 0 10px rgba(139, 69, 19, ${0.3 - burnOpacity * 0.1}),
-                0 0 0 15px rgba(160, 82, 45, ${0.2 - burnOpacity * 0.1}),
-                0 0 0 20px rgba(139, 69, 19, ${0.1 - burnOpacity * 0.05})
+        // 创建燃烧效果
+        const burnMarks = [];
+        for (let i = 0; i < 5; i++) {
+            const burn = document.createElement('div');
+            burn.style.position = 'absolute';
+            burn.style.width = `${Math.random() * 100 + 50}px`;
+            burn.style.height = `${Math.random() * 100 + 50}px`;
+            burn.style.background = `
+                radial-gradient(
+                    ellipse at center,
+                    rgba(255,100,0,${0.3 + Math.random() * 0.3}) 0%,
+                    rgba(100,30,0,${0.5 + Math.random() * 0.3}) 70%,
+                    transparent 100%
+                )
             `;
+            burn.style.borderRadius = '50%';
+            burn.style.left = `${Math.random() * 70 + 15}%`;
+            burn.style.top = `${Math.random() * 70 + 15}%`;
+            burn.style.opacity = '0';
+            burn.style.transition = 'opacity 1s ease-in-out';
+            burn.style.filter = 'blur(5px)';
+            scroll.appendChild(burn);
+            burnMarks.push(burn);
             
-            // 创建更真实的燃烧痕迹
-            if (flameSize > 5 && Math.random() > 0.6) {
-                createBurnMark(scroll, flameSize);
-            }
+            setTimeout(() => {
+                burn.style.opacity = '1';
+            }, i * 200);
         }
         
-        if (flameSize > 15) {
-            clearInterval(flameAnimation);
+        // 第二阶段：全屏火焰
+        setTimeout(() => {
+            flameOverlay.style.background = 'radial-gradient(circle at center, rgba(255,150,0,0.9), rgba(255,50,0,0.8))';
             
-            // 过渡到博客页面
+            // 第三阶段：转场到博客页面
             setTimeout(() => {
                 transitionToBlogPage();
-            }, 500);
-        }
-    }, 16);
-}
-
-function createBurnMark(container, size) {
-    const burn = document.createElement('div');
-    burn.style.position = 'absolute';
-    const width = Math.random() * 50 + 20;
-    burn.style.width = `${width}px`;
-    burn.style.height = `${width * (0.5 + Math.random() * 0.5)}px`;
-    burn.style.background = `
-        radial-gradient(
-            ellipse at center,
-            rgba(255,100,0,${0.3 + Math.random() * 0.2}) 0%,
-            rgba(100,30,0,${0.5 + Math.random() * 0.2}) 70%,
-            transparent 100%
-        )
-    `;
-    burn.style.borderRadius = '50%';
-    burn.style.left = `${Math.random() * 70 + 15}%`;
-    burn.style.top = `${Math.random() * 70 + 15}%`;
-    burn.style.opacity = '0';
-    burn.style.transition = 'opacity 1s ease-in-out, transform 1s ease-in-out';
-    burn.style.transform = 'scale(0.8) rotate(10deg)';
-    burn.style.filter = 'blur(1px)';
-    container.appendChild(burn);
-    
-    setTimeout(() => {
-        burn.style.opacity = '1';
-        burn.style.transform = 'scale(1) rotate(0)';
+            }, 1000);
+        }, 1500);
     }, 100);
 }
 
 function transitionToBlogPage() {
-    // 创建博客页面容器
     const blogPage = document.createElement('div');
     blogPage.id = 'blog-page';
     blogPage.style.position = 'fixed';
@@ -436,7 +388,6 @@ function transitionToBlogPage() {
     blogPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(blogPage);
     
-    // 博客页面内容
     const blogContent = document.createElement('div');
     blogContent.style.textAlign = 'center';
     blogContent.innerHTML = `
@@ -447,15 +398,12 @@ function transitionToBlogPage() {
     `;
     blogPage.appendChild(blogContent);
     
-    // 移除史诗页面
     const epicPage = document.getElementById('epic-scroll-page');
     if (epicPage) {
         epicPage.style.opacity = '0';
         
         setTimeout(() => {
             epicPage.remove();
-            
-            // 显示博客页面
             blogPage.style.opacity = '1';
         }, 1000);
     } else {
