@@ -391,40 +391,608 @@ function transitionToBlogPage() {
     blogPage.style.width = '100%';
     blogPage.style.height = '100%';
     blogPage.style.zIndex = '1003';
-    blogPage.style.backgroundColor = '#f5f5f5';
     blogPage.style.display = 'flex';
-    blogPage.style.justifyContent = 'center';
-    blogPage.style.alignItems = 'center';
+    blogPage.style.flexDirection = 'column';
+    blogPage.style.overflow = 'hidden';
     blogPage.style.opacity = '0';
     blogPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(blogPage);
     
+    // 背景图片
+    const background = document.createElement('div');
+    background.id = 'blog-background';
+    background.style.position = 'fixed';
+    background.style.top = '0';
+    background.style.left = '0';
+    background.style.width = '100%';
+    background.style.height = '100%';
+    background.style.background = 'url("./background.png") center/cover no-repeat';
+    background.style.zIndex = '-1';
+    blogPage.appendChild(background);
+    
+    // 主容器
+    const blogContainer = document.createElement('div');
+    blogContainer.id = 'blog-container';
+    blogContainer.style.display = 'flex';
+    blogContainer.style.width = '100%';
+    blogContainer.style.height = '100%';
+    blogContainer.style.overflow = 'hidden';
+    blogContainer.style.position = 'relative';
+    blogPage.appendChild(blogContainer);
+    
+    // 页面标题
+    const blogHeader = document.createElement('div');
+    blogHeader.id = 'blog-header';
+    blogHeader.innerHTML = '<h1>Personal Blog</h1>';
+    blogHeader.style.position = 'absolute';
+    blogHeader.style.top = '20px';
+    blogHeader.style.left = '0';
+    blogHeader.style.width = '100%';
+    blogHeader.style.textAlign = 'center';
+    blogHeader.style.zIndex = '10';
+    blogHeader.style.fontFamily = '"MedievalSharp", "UnifrakturMaguntia", cursive';
+    blogHeader.style.fontSize = '3rem';
+    blogHeader.style.color = '#e0f0e0';
+    blogHeader.style.textShadow = '0 0 10px rgba(0, 255, 100, 0.5)';
+    blogContainer.appendChild(blogHeader);
+    
+    // 导航栏
+    const navBar = document.createElement('div');
+    navBar.id = 'blog-nav';
+    navBar.style.position = 'absolute';
+    navBar.style.top = '100px';
+    navBar.style.left = '5%';
+    navBar.style.width = '90%';
+    navBar.style.display = 'flex';
+    navBar.style.justifyContent = 'center';
+    navBar.style.gap = '40px';
+    navBar.style.zIndex = '10';
+    navBar.style.padding = '15px 0';
+    navBar.style.backgroundColor = 'rgba(10, 30, 15, 0.7)';
+    navBar.style.borderRadius = '10px';
+    navBar.style.backdropFilter = 'blur(5px)';
+    navBar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+    blogContainer.appendChild(navBar);
+    
+    // 导航项
+    const navItems = ['Post', 'Favorite', 'Research'];
+    navItems.forEach((item, index) => {
+        const navItem = document.createElement('div');
+        navItem.className = 'nav-item';
+        navItem.textContent = item;
+        navItem.dataset.page = item.toLowerCase();
+        navItem.style.fontFamily = '"Cinzel", serif';
+        navItem.style.fontSize = '1.5rem';
+        navItem.style.color = '#a0d0a0';
+        navItem.style.cursor = 'pointer';
+        navItem.style.padding = '5px 15px';
+        navItem.style.transition = 'all 0.3s ease';
+        navItem.style.position = 'relative';
+        
+        // 分隔符（除了最后一个）
+        if (index < navItems.length - 1) {
+            const separator = document.createElement('div');
+            separator.className = 'nav-separator';
+            separator.innerHTML = '❖';
+            separator.style.position = 'absolute';
+            separator.style.right = '-25px';
+            separator.style.top = '50%';
+            separator.style.transform = 'translateY(-50%)';
+            separator.style.color = '#70c070';
+            navBar.appendChild(separator);
+        }
+        
+        navBar.appendChild(navItem);
+    });
+    
+    // 页面容器
+    const pagesContainer = document.createElement('div');
+    pagesContainer.id = 'blog-pages';
+    pagesContainer.style.display = 'flex';
+    pagesContainer.style.width = '300%';
+    pagesContainer.style.height = 'calc(100% - 180px)';
+    pagesContainer.style.position = 'absolute';
+    pagesContainer.style.top = '180px';
+    pagesContainer.style.left = '0';
+    pagesContainer.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+    blogContainer.appendChild(pagesContainer);
+    
+    // 创建三个页面
+    const pages = ['post', 'favorite', 'research'];
+    pages.forEach(page => {
+        const pageElement = document.createElement('div');
+        pageElement.className = 'blog-page';
+        pageElement.dataset.page = page;
+        pageElement.style.width = '33.3333%';
+        pageElement.style.height = '100%';
+        pageElement.style.padding = '20px';
+        pageElement.style.boxSizing = 'border-box';
+        pageElement.style.overflowY = 'auto';
+        pagesContainer.appendChild(pageElement);
+        
+        // 添加页面内容
+        if (page === 'post') {
+            // 添加文章
+            for (let i = 1; i <= 5; i++) {
+                const post = document.createElement('div');
+                post.className = 'blog-post';
+                post.innerHTML = `
+                    <div class="post-header">
+                        <h3>Article Title ${i}</h3>
+                        <span>2023-06-${10+i}</span>
+                    </div>
+                    <div class="post-content">
+                        <p>This is the beginning of the article content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+                    </div>
+                    <div class="post-footer">
+                        <button class="read-more">Read more</button>
+                    </div>
+                `;
+                pageElement.appendChild(post);
+            }
+        } else if (page === 'favorite') {
+            // 添加收藏项
+            const favorites = [
+                { type: 'image', title: 'Mountain Landscape', content: 'Beautiful mountain view at sunset' },
+                { type: 'quote', title: 'Inspirational Quote', content: 'The only way to do great work is to love what you do. - Steve Jobs' },
+                { type: 'image', title: 'Ocean Waves', content: 'Powerful ocean waves crashing on rocks' },
+                { type: 'quote', title: 'Wisdom', content: 'Life is what happens when you\'re busy making other plans. - John Lennon' }
+            ];
+            
+            favorites.forEach((fav, index) => {
+                const favorite = document.createElement('div');
+                favorite.className = 'blog-favorite';
+                favorite.innerHTML = `
+                    <div class="fav-header">
+                        <h3>${fav.title}</h3>
+                    </div>
+                    <div class="fav-content">
+                        ${fav.type === 'image' ? 
+                            `<div class="image-preview" style="background-image: url('./assets/fav${index+1}.jpg')"></div>` :
+                            `<div class="quote-preview">${fav.content}</div>`
+                        }
+                    </div>
+                    <div class="fav-footer">
+                        <button class="view-item">View</button>
+                        ${fav.type === 'image' ? `<button class="download-item">Download</button>` : ''}
+                    </div>
+                `;
+                pageElement.appendChild(favorite);
+            });
+        } else {
+            // 研究页面留白
+            const researchPlaceholder = document.createElement('div');
+            researchPlaceholder.className = 'research-placeholder';
+            researchPlaceholder.innerHTML = `
+                <h2>Research Section</h2>
+                <p>This section is currently under development. Check back later for updates.</p>
+                <div class="placeholder-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+            `;
+            pageElement.appendChild(researchPlaceholder);
+        }
+    });
+    
+    // 个人信息卡片（固定在右侧）
+    const profileCard = document.createElement('div');
+    profileCard.id = 'blog-profile';
+    profileCard.style.position = 'fixed';
+    profileCard.style.right = '5%';
+    profileCard.style.top = '180px';
+    profileCard.style.width = '25%';
+    profileCard.style.maxWidth = '300px';
+    profileCard.style.padding = '20px';
+    profileCard.style.backgroundColor = 'rgba(15, 40, 20, 0.85)';
+    profileCard.style.borderRadius = '15px';
+    profileCard.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.6)';
+    profileCard.style.backdropFilter = 'blur(8px)';
+    profileCard.style.zIndex = '5';
+    profileCard.innerHTML = `
+        <div class="profile-avatar">
+            <img src="./avatar.jpg" alt="Profile">
+        </div>
+        <div class="profile-name">Stardust</div>
+        <div class="profile-motto">Turn this imperfect story into the way we hope it to be.</div>
+    `;
+    blogContainer.appendChild(profileCard);
+    
+    // 滚动按钮
+    const createNavButton = (direction) => {
+        const button = document.createElement('div');
+        button.className = `nav-button ${direction}`;
+        button.innerHTML = `<i class="fas fa-chevron-${direction}"></i>`;
+        button.style.position = 'fixed';
+        button.style.top = '50%';
+        button.style[direction === 'left' ? 'left' : 'right'] = '-50px';
+        button.style.transform = 'translateY(-50%)';
+        button.style.width = '50px';
+        button.style.height = '50px';
+        button.style.borderRadius = '50%';
+        button.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+        button.style.display = 'flex';
+        button.style.alignItems = 'center';
+        button.style.justifyContent = 'center';
+        button.style.cursor = 'pointer';
+        button.style.transition = 'all 0.4s ease, opacity 0.3s ease';
+        button.style.opacity = '0';
+        button.style.zIndex = '10';
+        button.style.boxShadow = '0 0 15px rgba(0, 255, 100, 0.3)';
+        blogContainer.appendChild(button);
+        return button;
+    };
+    
+    const leftButton = createNavButton('left');
+    const rightButton = createNavButton('right');
+    
+    // 当前页面索引
+    let currentPageIndex = 0;
+    
+    // 导航按钮事件
+    leftButton.addEventListener('click', () => {
+        if (currentPageIndex > 0) {
+            currentPageIndex--;
+            updatePagePosition();
+        }
+    });
+    
+    rightButton.addEventListener('click', () => {
+        if (currentPageIndex < 2) {
+            currentPageIndex++;
+            updatePagePosition();
+        }
+    });
+    
+    // 更新页面位置
+    function updatePagePosition() {
+        pagesContainer.style.transform = `translateX(-${currentPageIndex * 33.3333}%)`;
+        
+        // 更新导航高亮
+        document.querySelectorAll('.nav-item').forEach((item, index) => {
+            item.style.color = index === currentPageIndex ? '#70ff70' : '#a0d0a0';
+            item.style.textShadow = index === currentPageIndex ? '0 0 10px rgba(100, 255, 100, 0.7)' : 'none';
+        });
+    }
+    
+    // 鼠标进入左右区域显示按钮
+    blogContainer.addEventListener('mousemove', (e) => {
+        const rect = blogContainer.getBoundingClientRect();
+        const width = rect.width;
+        const x = e.clientX - rect.left;
+        
+        // 左侧1/8区域
+        if (x < width / 8) {
+            leftButton.style.left = '20px';
+            leftButton.style.opacity = '1';
+        } else {
+            leftButton.style.left = '-50px';
+            leftButton.style.opacity = '0';
+        }
+        
+        // 右侧1/8区域
+        if (x > width * 7 / 8) {
+            rightButton.style.right = '20px';
+            rightButton.style.opacity = '1';
+        } else {
+            rightButton.style.right = '-50px';
+            rightButton.style.opacity = '0';
+        }
+    });
+    
+    // 导航项点击事件
+    document.querySelectorAll('.nav-item').forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentPageIndex = index;
+            updatePagePosition();
+        });
+    });
+    
+    // 添加CSS样式
+    const blogStyles = document.createElement('style');
+    blogStyles.textContent = `
+        #blog-page {
+            background: linear-gradient(135deg, #0a200d, #061709);
+            font-family: 'Georgia', serif;
+        }
+        
+        #blog-container {
+            perspective: 1000px;
+        }
+        
+        #blog-header h1 {
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            margin: 0;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00ff40, 0 0 20px #00ff40; }
+            to { text-shadow: 0 0 20px #00ff80, 0 0 30px #00ff80; }
+        }
+        
+        .nav-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            transform: translateY(-3px);
+            color: #70ff70 !important;
+            text-shadow: 0 0 8px rgba(100, 255, 100, 0.6);
+        }
+        
+        .blog-page {
+            padding: 20px 5%;
+        }
+        
+        .blog-post, .blog-favorite, .research-placeholder {
+            background: rgba(20, 45, 25, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(100, 255, 100, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .blog-post:hover, .blog-favorite:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 255, 100, 0.3);
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(100, 255, 100, 0.2);
+        }
+        
+        .post-header h3 {
+            margin: 0;
+            color: #e0ffe0;
+            font-size: 1.8rem;
+        }
+        
+        .post-header span {
+            color: #90d090;
+            font-size: 0.9rem;
+        }
+        
+        .post-content {
+            color: #c0e0c0;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            max-height: 150px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .post-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(20, 45, 25, 0.8));
+        }
+        
+        .post-footer {
+            text-align: right;
+        }
+        
+        .read-more {
+            background: linear-gradient(to right, #00b34d, #00802e);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 100, 0.3);
+        }
+        
+        .read-more:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 255, 100, 0.5);
+        }
+        
+        .blog-favorite .fav-header h3 {
+            color: #e0ffe0;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        
+        .image-preview {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .image-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, rgba(10, 30, 15, 0.9));
+            filter: blur(5px);
+        }
+        
+        .quote-preview {
+            padding: 20px;
+            background: rgba(10, 30, 15, 0.6);
+            border-left: 4px solid #00cc66;
+            color: #c0e0c0;
+            font-style: italic;
+            line-height: 1.8;
+            border-radius: 5px;
+            max-height: 150px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .quote-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(10, 30, 15, 0.8));
+        }
+        
+        .fav-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .view-item, .download-item {
+            background: linear-gradient(to right, #00802e, #00b34d);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s ease;
+        }
+        
+        .view-item:hover, .download-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 255, 100, 0.4);
+        }
+        
+        .research-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 400px;
+            color: #a0d0a0;
+        }
+        
+        .research-placeholder h2 {
+            font-size: 2.5rem;
+            color: #e0ffe0;
+            margin-bottom: 20px;
+        }
+        
+        .research-placeholder p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+        
+        .placeholder-icon {
+            font-size: 5rem;
+            color: #00cc66;
+            margin-top: 30px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        #blog-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(100, 255, 100, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #e0ffe0;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .profile-motto {
+            color: #a0d0a0;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        /* 滚动条样式 */
+        .blog-page::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .blog-page::-webkit-scrollbar-track {
+            background: rgba(10, 30, 15, 0.3);
+            border-radius: 4px;
+        }
+        
+        .blog-page::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #00cc66, #00802e);
+            border-radius: 4px;
+        }
+        
+        .blog-page::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #00ff80, #00b34d);
+        }
+        
+        /* 导航按钮样式 */
+        .nav-button {
+            transition: all 0.4s ease !important;
+        }
+        
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3) !important;
+            transform: translateY(-50%) scale(1.1) !important;
+        }
+        
+        .nav-button i {
+            font-size: 1.5rem;
+            color: #e0ffe0;
+        }
+    `;
+    document.head.appendChild(blogStyles);
+    
+    // 初始高亮第一项
+    updatePagePosition();
+    
+    // 渐入效果
+    setTimeout(() => {
+        blogPage.style.opacity = '1';
+    }, 100);
+    
     // 隐藏时钟控制按钮
     const clockToggle = document.querySelector('.clock-toggle');
     if (clockToggle) clockToggle.style.display = 'none';
-    
-    const blogContent = document.createElement('div');
-    blogContent.style.textAlign = 'center';
-    blogContent.innerHTML = `
-        <h1 style="font-family: 'Georgia', serif; color: #333; margin-bottom: 20px;">Welcome to My Blog</h1>
-        <p style="font-family: 'Georgia', serif; color: #666; max-width: 600px; margin: 0 auto;">
-            This is a placeholder for the blog page. Content will be added here in the future.
-        </p>
-    `;
-    blogPage.appendChild(blogContent);
-    
-    const epicPage = document.getElementById('epic-scroll-page');
-    const flameOverlay = document.getElementById('flame-overlay');
-    
-    if (epicPage) {
-        epicPage.style.opacity = '0';
-        
-        setTimeout(() => {
-            epicPage.remove();
-            if (flameOverlay) flameOverlay.remove();
-            blogPage.style.opacity = '1';
-        }, 1000);
-    } else {
-        blogPage.style.opacity = '1';
-    }
 }
