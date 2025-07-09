@@ -1814,6 +1814,7 @@
     <button id="toggle-btn">
       <span>
         <i>🌙</i>
+        Switch to Dark
       </span>
     </button>
     <div id="clock">GMT+8 00:00</div>
@@ -1905,6 +1906,7 @@
     <button id="toggle-btn-social">
       <span>
         <i>🌙</i>
+        Switch to Dark
       </span>
     </button>
     <div id="clock-social">GMT+8 00:00</div>
@@ -1984,6 +1986,7 @@
     <button id="toggle-btn-toolkit">
       <span>
         <i>🌙</i>
+        Switch to Dark
       </span>
     </button>
     <div id="clock-toolkit">GMT+8 00:00</div>
@@ -2592,6 +2595,7 @@
     <button id="toggle-btn-schedule">
       <span>
         <i>🌙</i>
+        Switch to Dark
       </span>
     </button>
     <div id="clock-schedule">GMT+8 00:00</div>
@@ -2933,6 +2937,7 @@
     function updateToggleBtnText() {
       const isDark = document.body.classList.contains("dark-mode");
       const icon = isDark ? '☀️' : '🌙';
+      const text = isDark ? "Switch to Light" : "Switch to Dark";
       
       toggleBtn.innerHTML = `
         <span>
