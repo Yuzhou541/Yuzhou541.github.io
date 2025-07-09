@@ -360,7 +360,7 @@ function startFlameAnimation() {
         // 转场到博客页面
         setTimeout(() => {
             transitionToBlogPage();
-        }, 2000);
+        }, 4000);
     }, 100);
 }
 
