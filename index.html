@@ -15,16 +15,6 @@
 <link rel="preload" href="./assets/images/scroll-texture.png" as="image">
 <link rel="preload" href="./assets/animation/fire-animation.gif" as="image">
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&display=swap" rel="stylesheet">
-<!-- 引入epic-transition.js -->
-<script src="epic-transition.js"></script>
-<script>
-    // Load avatar after page load
-    window.addEventListener('load', function() {
-      const avatar = document.querySelector('#avatar-frame img');
-      avatar.src = avatar.dataset.src;
-      avatar.removeAttribute('data-src');
-    });
-</script>
 <style>
   /* 图片加载优化 */
   #avatar-frame img {
@@ -532,27 +522,23 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* 主题切换按钮 */
+  /* 主题切换按钮 - 修改为圆形 */
   #toggle-btn, #toggle-btn-social, #toggle-btn-toolkit, #toggle-btn-schedule {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 170px;
-    height: 50px;
-    background: linear-gradient(145deg, #3498db, #2980b9);
-    color: white;
-    border: none;
-    border-radius: 25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 0.9em;
     z-index: 9999;
     transition: all 0.4s ease;
     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    border: none;
   }
 
   #toggle-btn:hover, #toggle-btn-social:hover, #toggle-btn-toolkit:hover, #toggle-btn-schedule:hover {
@@ -574,6 +560,7 @@
     background: linear-gradient(145deg, #2980b9, #3498db);
     opacity: 0;
     transition: opacity 0.4s ease;
+    border-radius: 50%;
   }
 
   #toggle-btn:hover::before, #toggle-btn-social:hover::before, #toggle-btn-toolkit:hover::before, #toggle-btn-schedule:hover::before {
@@ -590,13 +577,7 @@
     font-weight: 600;
     letter-spacing: 0.5px;
     white-space: nowrap;
-    padding: 0 5px;
-  }
-
-  #toggle-btn i, #toggle-btn-social i, #toggle-btn-toolkit i, #toggle-btn-schedule i {
-    font-style: normal;
-    font-size: 1.2em;
-    margin-right: 5px;
+    padding: 0;
   }
 
   /* 暗黑模式按钮 */
@@ -613,7 +594,7 @@
   #clock, #clock-social, #clock-toolkit, #clock-schedule {
     position: fixed;
     top: 20px;
-    left: 20px;
+    left: 70px; /* 为时钟控制按钮留出空间 */
     background: rgba(52, 152, 219, 0.9);
     color: white;
     padding: 12px 18px;
@@ -640,6 +621,42 @@
   body.dark-mode #clock, body.dark-mode #clock-social, body.dark-mode #clock-toolkit, body.dark-mode #clock-schedule {
     background: rgba(106, 48, 147, 0.9);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
+  }
+  
+  /* 时钟控制按钮 */
+  .clock-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(52, 152, 219, 0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10000;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    transition: all 0.4s ease;
+  }
+  
+  .clock-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+  }
+  
+  body.dark-mode .clock-toggle {
+    background: rgba(106, 48, 147, 0.9);
+    box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
+  }
+  
+  /* 时钟收起状态 */
+  #clock.collapsed, #clock-social.collapsed, #clock-toolkit.collapsed, #clock-schedule.collapsed {
+    transform: translateX(-150%);
+    opacity: 0;
+    pointer-events: none;
   }
 
   /* 社交页面特定样式 */
@@ -1794,6 +1811,11 @@
   <div class="custom-cursor cursor-outer"></div>
   <div class="custom-cursor cursor-inner"></div>
 
+  <!-- 时钟控制按钮 -->
+  <div class="clock-toggle" id="clock-toggle">
+    <i class="fas fa-clock"></i>
+  </div>
+
   <!-- 封面页 -->
   <div id="cover">
     <div id="avatar-frame">
@@ -1812,10 +1834,7 @@
   <!-- 简历页 -->
   <div id="resume">
     <button id="toggle-btn">
-      <span>
-        <i>🌙</i>
-        Switch to Dark
-      </span>
+      <span><i class="fas fa-sun"></i></span>
     </button>
     <div id="clock">GMT+8 00:00</div>
     <div class="container">
@@ -1904,10 +1923,7 @@
   <!-- 社交页 -->
   <div id="social">
     <button id="toggle-btn-social">
-      <span>
-        <i>🌙</i>
-        Switch to Dark
-      </span>
+      <span><i class="fas fa-sun"></i></span>
     </button>
     <div id="clock-social">GMT+8 00:00</div>
     <div class="container">
@@ -1984,10 +2000,7 @@
   <!-- 工具包页 - 修改后的部分 -->
   <div id="toolkit">
     <button id="toggle-btn-toolkit">
-      <span>
-        <i>🌙</i>
-        Switch to Dark
-      </span>
+      <span><i class="fas fa-sun"></i></span>
     </button>
     <div id="clock-toolkit">GMT+8 00:00</div>
     <div class="container">
@@ -2593,10 +2606,7 @@
   <!-- Schedule Page -->
   <div id="schedule">
     <button id="toggle-btn-schedule">
-      <span>
-        <i>🌙</i>
-        Switch to Dark
-      </span>
+      <span><i class="fas fa-sun"></i></span>
     </button>
     <div id="clock-schedule">GMT+8 00:00</div>
     <div class="container">
@@ -2765,6 +2775,9 @@
       
       // 初始化日程页面
       initSchedulePage();
+      
+      // 初始化时钟控制按钮
+      initClockToggle();
     });
 
     // 页面元素
@@ -2911,7 +2924,7 @@
       const currentHour = new Date().getHours();
       const isNightTime = currentHour >= 18 || currentHour < 6;
       applyTheme(isNightTime ? 'dark' : 'light');
-      updateToggleBtnText();
+      updateToggleBtnIcon();
     }
 
     // 主题切换功能
@@ -2922,7 +2935,7 @@
 
     function toggleTheme() {
       document.body.classList.toggle("dark-mode");
-      updateToggleBtnText();
+      updateToggleBtnIcon();
       updateCalendarTheme();
     }
 
@@ -2934,38 +2947,22 @@
       }
     }
 
-    function updateToggleBtnText() {
+    function updateToggleBtnIcon() {
       const isDark = document.body.classList.contains("dark-mode");
-      const icon = isDark ? '☀️' : '🌙';
-      const text = isDark ? "Switch to Light" : "Switch to Dark";
       
-      toggleBtn.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
+      // 更新所有主题切换按钮的图标
+      const toggleButtons = document.querySelectorAll("#toggle-btn, #toggle-btn-social, #toggle-btn-toolkit, #toggle-btn-schedule");
       
-      toggleBtnSocial.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnToolkit.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnSchedule.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
+      toggleButtons.forEach(button => {
+        const icon = button.querySelector("i");
+        if (isDark) {
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+        } else {
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+        }
+      });
     }
 
     // 时钟功能
@@ -2985,6 +2982,35 @@
       clockSocial.textContent = timeString;
       clockToolkit.textContent = timeString;
       clockSchedule.textContent = timeString;
+    }
+    
+    // 时钟控制功能
+    function initClockToggle() {
+      const clockToggle = document.getElementById("clock-toggle");
+      const clocks = [clock, clockSocial, clockToolkit, clockSchedule];
+      
+      // 初始状态：时钟展开
+      let clocksCollapsed = false;
+      
+      clockToggle.addEventListener("click", () => {
+        clocksCollapsed = !clocksCollapsed;
+        
+        // 更新所有时钟的状态
+        clocks.forEach(clockElement => {
+          if (clocksCollapsed) {
+            clockElement.classList.add("collapsed");
+          } else {
+            clockElement.classList.remove("collapsed");
+          }
+        });
+        
+        // 更新按钮图标
+        if (clocksCollapsed) {
+          clockToggle.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        } else {
+          clockToggle.innerHTML = '<i class="fas fa-clock"></i>';
+        }
+      });
     }
     
     // 工具包筛选和搜索功能
