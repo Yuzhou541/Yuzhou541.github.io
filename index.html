@@ -1796,6 +1796,11 @@
       padding: 20px;
     }
   }
+
+  /* 时钟初始隐藏 */
+  .clock-toggle {
+    display: none; /* 初始隐藏 */
+  }
 </style>
 </head>
 <body>
@@ -2825,6 +2830,10 @@
         toolkitBtn.classList.add("visible");
         scheduleBtn.classList.add("visible");
       }, 1200);
+
+      // 时钟控制按钮
+      const clockToggle = document.querySelector('.clock-toggle');
+      if (clockToggle) clockToggle.style.display = 'none';
     }
 
     // 从封面过渡到页面
@@ -2878,6 +2887,10 @@
       socialBtn.classList.remove("visible");
       toolkitBtn.classList.remove("visible");
       scheduleBtn.classList.remove("visible");
+
+      // 显示时钟控制按钮
+      const clockToggle = document.querySelector('.clock-toggle');
+      if (clockToggle) clockToggle.style.display = 'flex';
     }
 
     // 返回封面
