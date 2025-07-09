@@ -537,18 +537,17 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 170px;
+    width: 50px;
     height: 50px;
     background: linear-gradient(145deg, #3498db, #2980b9);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 1.5em;
     z-index: 9999;
     transition: all 0.4s ease;
     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -600,7 +599,10 @@
   }
 
   /* 暗黑模式按钮 */
-  body.dark-mode #toggle-btn, body.dark-mode #toggle-btn-social, body.dark-mode #toggle-btn-toolkit, body.dark-mode #toggle-btn-schedule {
+  body.dark-mode #toggle-btn, 
+  body.dark-mode #toggle-btn-social, 
+  body.dark-mode #toggle-btn-toolkit, 
+  body.dark-mode #toggle-btn-schedule {
     background: linear-gradient(145deg, #6a3093, #4a148c);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
@@ -609,11 +611,39 @@
     background: linear-gradient(145deg, #4a148c, #6a3093);
   }
 
+  /* 时钟控制按钮样式 */
+  #clock-toggle, #clock-toggle-social, #clock-toggle-toolkit, #clock-toggle-schedule {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(52, 152, 219, 0.9);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    font-size: 1.2em;
+  }
+
+  body.dark-mode #clock-toggle, 
+  body.dark-mode #clock-toggle-social, 
+  body.dark-mode #clock-toggle-toolkit, 
+  body.dark-mode #clock-toggle-schedule {
+    background: rgba(106, 48, 147, 0.9);
+    box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
+  }
+
   /* 时钟样式 */
   #clock, #clock-social, #clock-toolkit, #clock-schedule {
     position: fixed;
     top: 20px;
-    left: 20px;
+    left: 80px;  /* 为控制按钮留出空间 */
     background: rgba(52, 152, 219, 0.9);
     color: white;
     padding: 12px 18px;
@@ -629,6 +659,10 @@
     font-family: 'Arial', sans-serif;
     font-weight: bold;
     letter-spacing: 1px;
+    transform-origin: left center;
+    transform: scaleX(1);
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   #clock:hover, #clock-social:hover, #clock-toolkit:hover, #clock-schedule:hover {
@@ -636,8 +670,18 @@
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
   }
 
+  /* 时钟隐藏状态 */
+  #clock.hidden, #clock-social.hidden, #clock-toolkit.hidden, #clock-schedule.hidden {
+    transform: scaleX(0);
+    opacity: 0;
+    pointer-events: none;
+  }
+
   /* 暗黑模式时钟 */
-  body.dark-mode #clock, body.dark-mode #clock-social, body.dark-mode #clock-toolkit, body.dark-mode #clock-schedule {
+  body.dark-mode #clock, 
+  body.dark-mode #clock-social, 
+  body.dark-mode #clock-toolkit, 
+  body.dark-mode #clock-schedule {
     background: rgba(106, 48, 147, 0.9);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
@@ -1789,6 +1833,27 @@
     <img src="./assets/images/scroll-texture.png" alt="Preload Scroll Texture">
     <img src="./assets/animation/fire-animation.gif" alt="Preload Fire Animation">
   </div>
+
+  <!-- 在时钟元素之前添加控制按钮 -->
+  <div id="clock-toggle">
+    <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
+  </div>
+  <div id="clock">GMT+8 00:00</div>
+
+  <div id="clock-toggle-social">
+    <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
+  </div>
+  <div id="clock-social">GMT+8 00:00</div>
+
+  <div id="clock-toggle-toolkit">
+    <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
+  </div>
+  <div id="clock-toolkit">GMT+8 00:00</div>
+
+  <div id="clock-toggle-schedule">
+    <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
+  </div>
+  <div id="clock-schedule">GMT+8 00:00</div>
     
   <!-- 光标元素 -->
   <div class="custom-cursor cursor-outer"></div>
@@ -2765,6 +2830,9 @@
       
       // 初始化日程页面
       initSchedulePage();
+
+      // 时钟控制初始化
+      initClockToggle();
     });
 
     // 页面元素
@@ -2935,37 +3003,47 @@
     }
 
     function updateToggleBtnText() {
-      const isDark = document.body.classList.contains("dark-mode");
-      const icon = isDark ? '☀️' : '🌙';
-      const text = isDark ? "Switch to Light" : "Switch to Dark";
-      
-      toggleBtn.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnSocial.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnToolkit.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
-      
-      toggleBtnSchedule.innerHTML = `
-        <span>
-          <i>${icon}</i>
-          ${text}
-        </span>
-      `;
+      const isDark = document.body.classList.contains('dark-mode');
+      const icon = isDark ? '🌙' : '☀️'; // 只保留图标
+    
+      toggleBtn.innerHTML = `<i>${icon}</i>`;
+      toggleBtnSocial.innerHTML = `<i>${icon}</i>`;
+      toggleBtnToolkit.innerHTML = `<i>${icon}</i>`;
+      toggleBtnSchedule.innerHTML = `<i>${icon}</i>`;
+    }
+
+    // 时钟控制功能
+    function initClockToggle() {
+      const clockToggles = [
+        document.getElementById('clock-toggle'),
+        document.getElementById('clock-toggle-social'),
+        document.getElementById('clock-toggle-toolkit'),
+        document.getElementById('clock-toggle-schedule')
+      ];
+    
+      const clocks = [
+        document.getElementById('clock'),
+        document.getElementById('clock-social'),
+        document.getElementById('clock-toolkit'),
+        document.getElementById('clock-schedule')
+      ];
+    
+      // 初始状态
+      let clockVisible = true;
+    
+      clockToggles.forEach((toggle, index) => {
+        toggle.addEventListener('click', () => {
+          clockVisible = !clockVisible;
+        
+          if (clockVisible) {
+            clocks[index].classList.remove('hidden');
+            toggle.innerHTML = '<i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>';
+          } else {
+            clocks[index].classList.add('hidden');
+            toggle.innerHTML = '<i class="fas fa-clock"></i>';
+          }
+        });
+      });
     }
 
     // 时钟功能
