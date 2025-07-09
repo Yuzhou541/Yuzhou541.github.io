@@ -418,7 +418,24 @@ function transitionToBlogPage() {
     blogContainer.style.height = '100%';
     blogContainer.style.overflow = 'hidden';
     blogContainer.style.position = 'relative';
+    blogContainer.style.padding = '0 5%'; // 左右各留5%
     blogPage.appendChild(blogContainer);
+    
+    // 创建两列布局
+    const leftColumn = document.createElement('div');
+    leftColumn.id = 'blog-left-column';
+    leftColumn.style.width = '65%'; // 2/3减去间隙
+    leftColumn.style.height = '100%';
+    leftColumn.style.position = 'relative';
+    blogContainer.appendChild(leftColumn);
+    
+    const rightColumn = document.createElement('div');
+    rightColumn.id = 'blog-right-column';
+    rightColumn.style.width = '30%'; // 1/3减去间隙
+    rightColumn.style.height = '100%';
+    rightColumn.style.marginLeft = '5%'; // 1/20的间隙
+    rightColumn.style.position = 'relative';
+    blogContainer.appendChild(rightColumn);
     
     // 页面标题
     const blogHeader = document.createElement('div');
@@ -434,15 +451,15 @@ function transitionToBlogPage() {
     blogHeader.style.fontSize = '3rem';
     blogHeader.style.color = '#e0f0e0';
     blogHeader.style.textShadow = '0 0 10px rgba(0, 255, 100, 0.5)';
-    blogContainer.appendChild(blogHeader);
+    leftColumn.appendChild(blogHeader);
     
     // 导航栏
     const navBar = document.createElement('div');
     navBar.id = 'blog-nav';
     navBar.style.position = 'absolute';
     navBar.style.top = '100px';
-    navBar.style.left = '5%';
-    navBar.style.width = '90%';
+    navBar.style.left = '0';
+    navBar.style.width = '100%';
     navBar.style.display = 'flex';
     navBar.style.justifyContent = 'center';
     navBar.style.gap = '40px';
@@ -452,7 +469,7 @@ function transitionToBlogPage() {
     navBar.style.borderRadius = '10px';
     navBar.style.backdropFilter = 'blur(5px)';
     navBar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
-    blogContainer.appendChild(navBar);
+    leftColumn.appendChild(navBar);
     
     // 导航项
     const navItems = ['Post', 'Favorite', 'Research'];
@@ -495,7 +512,7 @@ function transitionToBlogPage() {
     pagesContainer.style.top = '180px';
     pagesContainer.style.left = '0';
     pagesContainer.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
-    blogContainer.appendChild(pagesContainer);
+    leftColumn.appendChild(pagesContainer);
     
     // 创建三个页面
     const pages = ['post', 'favorite', 'research'];
@@ -574,28 +591,42 @@ function transitionToBlogPage() {
         }
     });
     
-    // 个人信息卡片（固定在右侧）
+    // 右侧栏 - 个人信息卡片（高级黑色圆角方框）
     const profileCard = document.createElement('div');
     profileCard.id = 'blog-profile';
-    profileCard.style.position = 'fixed';
-    profileCard.style.right = '5%';
-    profileCard.style.top = '180px';
-    profileCard.style.width = '25%';
-    profileCard.style.maxWidth = '300px';
-    profileCard.style.padding = '20px';
-    profileCard.style.backgroundColor = 'rgba(15, 40, 20, 0.85)';
-    profileCard.style.borderRadius = '15px';
-    profileCard.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.6)';
-    profileCard.style.backdropFilter = 'blur(8px)';
-    profileCard.style.zIndex = '5';
+    profileCard.style.width = '100%';
+    profileCard.style.height = '100%';
+    profileCard.style.padding = '30px';
+    profileCard.style.backgroundColor = 'rgba(15, 15, 25, 0.9)';
+    profileCard.style.borderRadius = '20px';
+    profileCard.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.8)';
+    profileCard.style.backdropFilter = 'blur(10px)';
+    profileCard.style.border = '1px solid rgba(100, 255, 100, 0.2)';
+    profileCard.style.display = 'flex';
+    profileCard.style.flexDirection = 'column';
+    profileCard.style.alignItems = 'center';
+    profileCard.style.justifyContent = 'center';
+    profileCard.style.position = 'relative';
+    profileCard.style.overflow = 'hidden';
     profileCard.innerHTML = `
-        <div class="profile-avatar">
+        <div class="profile-avatar-frame">
             <img src="./avatar.jpg" alt="Profile">
         </div>
         <div class="profile-name">Stardust</div>
         <div class="profile-motto">Turn this imperfect story into the way we hope it to be.</div>
+        <div class="profile-decoration">
+            <div class="deco-line"></div>
+            <div class="deco-icon"><i class="fas fa-star"></i></div>
+            <div class="deco-line"></div>
+        </div>
     `;
-    blogContainer.appendChild(profileCard);
+    rightColumn.appendChild(profileCard);
+    
+    // 添加装饰元素
+    const decoElement = document.createElement('div');
+    decoElement.className = 'profile-deco-element';
+    decoElement.innerHTML = '<i class="fas fa-crown"></i>';
+    profileCard.appendChild(decoElement);
     
     // 滚动按钮
     const createNavButton = (direction) => {
@@ -911,41 +942,92 @@ function transitionToBlogPage() {
             100% { transform: scale(1); }
         }
         
+        /* 右侧个人信息卡片样式 */
         #blog-profile {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            text-align: center;
         }
         
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
+        .profile-avatar-frame {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid rgba(100, 255, 100, 0.3);
-            margin-bottom: 20px;
+            border: 4px solid rgba(100, 255, 100, 0.3);
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 255, 100, 0.2);
         }
         
-        .profile-avatar img {
+        .profile-avatar-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         
+        .profile-avatar-frame::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid rgba(100, 255, 100, 0.5);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
         .profile-name {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #e0ffe0;
-            margin-bottom: 10px;
-            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(100, 255, 100, 0.5);
         }
         
         .profile-motto {
             color: #a0d0a0;
             font-style: italic;
-            text-align: center;
             line-height: 1.6;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        
+        .profile-decoration {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            margin: 30px 0;
+        }
+        
+        .deco-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(100, 255, 100, 0.5), transparent);
+        }
+        
+        .deco-icon {
+            margin: 0 15px;
+            color: #70ff70;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .profile-deco-element {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: rgba(100, 255, 100, 0.5);
+            font-size: 1.5rem;
         }
         
         /* 滚动条样式 */
