@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const avatar = document.querySelector('#avatar-frame img');
     // 预加载头像
     const avatarImg = new Image();
-      avatarImg.src = './avatar.jpg';
-      avatarImg.onload = function() {
+    avatarImg.src = './avatar.jpg';
+    avatarImg.onload = function() {
         document.querySelector('#avatar-frame img').style.opacity = '1';
     };
     
@@ -128,6 +128,7 @@ function startSwirlAnimation() {
 }
 
 let narrationAudio = null; // 全局保存音频对象
+let fireAudio = null;     // 全局保存火焰音频对象
 
 function showEpicScrollPage() {
     const swirlContainer = document.getElementById('swirl-container');
@@ -151,6 +152,10 @@ function showEpicScrollPage() {
     epicPage.style.opacity = '0';
     epicPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(epicPage);
+
+    // 隐藏时钟控制按钮
+    const clockToggle = document.querySelector('.clock-toggle');
+    if (clockToggle) clockToggle.style.display = 'none';
 
     const scroll = document.createElement('div');
     scroll.id = 'epic-scroll';
@@ -265,7 +270,7 @@ function showEpicScrollPage() {
             text-align: center; 
             margin-top: 5px; 
             font-family: 'Cinzel', serif; 
-            color: #3a2c1a; 
+            color: '#3a2c1a'; 
             font-size: 0.9rem;
         ">Ignite</div>
     `;
@@ -297,8 +302,9 @@ function showEpicScrollPage() {
                 epicText.style.opacity = '1';
                 epicText.style.transform = 'translateY(0)';
                 
-                // 播放旁白声音
+                // 播放旁白声音和火焰音效
                 playNarration();
+                playFireSound();
             }, 500);
         }, 500);
     }, 100);
@@ -320,24 +326,23 @@ function playNarration() {
     narrationAudio.play().catch(e => console.log('Audio play failed:', e));
 }
 
+function playFireSound() {
+    // 停止之前的火焰音频
+    if (fireAudio) {
+        fireAudio.pause();
+        fireAudio.currentTime = 0;
+    }
+    
+    fireAudio = new Audio('./assets/audio/fire-sound.mp3');
+    fireAudio.volume = 1.0; // 音量变为原来的两倍
+    fireAudio.loop = true;  // 循环播放
+    fireAudio.play().catch(e => console.log('Fire audio play failed:', e));
+}
+
 function startFlameAnimation() {
     const flame = document.getElementById('flame');
     const scroll = document.getElementById('epic-scroll');
     const epicPage = document.getElementById('epic-scroll-page');
-    
-    // 停止旁白音频
-    if (narrationAudio) {
-        narrationAudio.pause();
-        narrationAudio.currentTime = 0;
-    }
-    
-    // 播放火焰声音
-    const fireAudio = new Audio('./assets/audio/fire-sound.mp3');
-    fireAudio.volume = 0.6;
-    fireAudio.play().catch(e => console.log('Fire audio play failed:', e));
-    
-    const flameButton = document.getElementById('flame-button');
-    flameButton.style.pointerEvents = 'none';
     
     // 创建火焰覆盖层 - 使用GIF动画
     const flameOverlay = document.createElement('div');
@@ -364,7 +369,20 @@ function startFlameAnimation() {
     }, 100);
 }
 
+function stopAllSounds() {
+    if (narrationAudio) {
+        narrationAudio.pause();
+        narrationAudio.currentTime = 0;
+    }
+    if (fireAudio) {
+        fireAudio.pause();
+        fireAudio.currentTime = 0;
+    }
+}
+
 function transitionToBlogPage() {
+    stopAllSounds(); // 停止所有声音
+    
     const blogPage = document.createElement('div');
     blogPage.id = 'blog-page';
     blogPage.style.position = 'fixed';
@@ -380,6 +398,10 @@ function transitionToBlogPage() {
     blogPage.style.opacity = '0';
     blogPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(blogPage);
+    
+    // 隐藏时钟控制按钮
+    const clockToggle = document.querySelector('.clock-toggle');
+    if (clockToggle) clockToggle.style.display = 'none';
     
     const blogContent = document.createElement('div');
     blogContent.style.textAlign = 'center';
