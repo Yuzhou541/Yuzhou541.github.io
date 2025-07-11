@@ -122,7 +122,7 @@ function startSwirlAnimation() {
         
         if (scale > 20) {
             clearInterval(swirlAnimation);
-            showEpicScrollPage();
+            showBlogPage();
         }
     }, 10);
 }
@@ -130,243 +130,688 @@ function startSwirlAnimation() {
 let narrationAudio = null; // 全局保存音频对象
 let fireAudio = null;     // 全局保存火焰音频对象
 
-function showEpicScrollPage() {
+function showBlogPage() {
     const swirlContainer = document.getElementById('swirl-container');
     if (swirlContainer) {
         swirlContainer.remove();
     }
 
-    const epicPage = document.createElement('div');
-    epicPage.id = 'epic-scroll-page';
-    epicPage.style.position = 'fixed';
-    epicPage.style.top = '0';
-    epicPage.style.left = '0';
-    epicPage.style.width = '100%';
-    epicPage.style.height = '100%';
-    epicPage.style.zIndex = '1001';
-    epicPage.style.background = 'url("./assets/images/background.jpg") center/cover no-repeat';
-    epicPage.style.display = 'flex';
-    epicPage.style.flexDirection = 'column';
-    epicPage.style.justifyContent = 'center';
-    epicPage.style.alignItems = 'center';
-    epicPage.style.opacity = '0';
-    epicPage.style.transition = 'opacity 1s ease-in-out';
-    document.body.appendChild(epicPage);
+    const blogPage = document.createElement('div');
+    blogPage.id = 'blog-page';
+    blogPage.style.position = 'fixed';
+    blogPage.style.top = '0';
+    blogPage.style.left = '0';
+    blogPage.style.width = '100%';
+    blogPage.style.height = '100%';
+    blogPage.style.zIndex = '1003';
+    blogPage.style.overflow = 'hidden';
+    document.body.appendChild(blogPage);
+
+    // 创建背景层
+    const background = document.createElement('div');
+    background.id = 'blog-background';
+    background.style.position = 'fixed';
+    background.style.top = '0';
+    background.style.left = '0';
+    background.style.width = '100%';
+    background.style.height = '100%';
+    background.style.backgroundImage = 'url("./background.png")';
+    background.style.backgroundSize = 'cover';
+    background.style.backgroundPosition = 'center';
+    background.style.backgroundAttachment = 'fixed';
+    background.style.zIndex = '0';
+    blogPage.appendChild(background);
+
+    // 创建内容容器
+    const blogContainer = document.createElement('div');
+    blogContainer.id = 'blog-container';
+    blogContainer.style.position = 'absolute';
+    blogContainer.style.top = '0';
+    blogContainer.style.left = '0';
+    blogContainer.style.width = '100%';
+    blogContainer.style.height = '100%';
+    blogContainer.style.display = 'flex';
+    blogContainer.style.flexDirection = 'column';
+    blogContainer.style.zIndex = '1';
+    blogPage.appendChild(blogContainer);
+
+    // 创建导航栏
+    const navBar = document.createElement('div');
+    navBar.id = 'blog-nav';
+    navBar.style.width = '100%';
+    navBar.style.padding = '20px 0';
+    navBar.style.textAlign = 'center';
+    navBar.style.background = 'linear-gradient(to right, rgba(10, 25, 15, 0.9), rgba(20, 50, 30, 0.9))';
+    navBar.style.backdropFilter = 'blur(5px)';
+    navBar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+    blogContainer.appendChild(navBar);
+
+    // 博客标题
+    const blogTitle = document.createElement('h1');
+    blogTitle.id = 'blog-title';
+    blogTitle.textContent = 'Personal Blog';
+    blogTitle.style.fontFamily = '"Great Vibes", cursive, "Allura", cursive';
+    blogTitle.style.fontSize = '3rem';
+    blogTitle.style.color = '#fff';
+    blogTitle.style.margin = '0 0 20px 0';
+    blogTitle.style.textShadow = '0 0 10px rgba(0, 255, 100, 0.5)';
+    navBar.appendChild(blogTitle);
+
+    // 导航标签
+    const navTabs = document.createElement('div');
+    navTabs.id = 'blog-tabs';
+    navTabs.style.display = 'flex';
+    navTabs.style.justifyContent = 'center';
+    navTabs.style.gap = '30px';
+    navBar.appendChild(navTabs);
+
+    const tabs = ['Post', 'Favorite', 'Research'];
+    tabs.forEach(tab => {
+        const tabElement = document.createElement('div');
+        tabElement.className = 'blog-tab';
+        tabElement.textContent = tab;
+        tabElement.style.fontFamily = '"Cinzel", serif';
+        tabElement.style.fontSize = '1.2rem';
+        tabElement.style.color = '#aaa';
+        tabElement.style.cursor = 'pointer';
+        tabElement.style.padding = '10px 20px';
+        tabElement.style.borderRadius = '5px';
+        tabElement.style.transition = 'all 0.3s ease';
+        
+        if (tab === 'Post') {
+            tabElement.style.color = '#fff';
+            tabElement.style.background = 'rgba(0, 255, 100, 0.2)';
+            tabElement.style.borderBottom = '2px solid #0f0';
+        }
+        
+        tabElement.addEventListener('click', () => {
+            document.querySelectorAll('.blog-tab').forEach(t => {
+                t.style.color = '#aaa';
+                t.style.background = 'transparent';
+                t.style.borderBottom = 'none';
+            });
+            tabElement.style.color = '#fff';
+            tabElement.style.background = 'rgba(0, 255, 100, 0.2)';
+            tabElement.style.borderBottom = '2px solid #0f0';
+            showBlogSection(tab);
+        });
+        
+        navTabs.appendChild(tabElement);
+        
+        // 添加分隔符（除了最后一个）
+        if (tab !== tabs[tabs.length - 1]) {
+            const separator = document.createElement('div');
+            separator.className = 'tab-separator';
+            separator.innerHTML = '✧';
+            separator.style.color = '#555';
+            separator.style.fontSize = '1.5rem';
+            separator.style.display = 'flex';
+            separator.style.alignItems = 'center';
+            navTabs.appendChild(separator);
+        }
+    });
+
+    // 创建内容区域
+    const contentWrapper = document.createElement('div');
+    contentWrapper.id = 'blog-content-wrapper';
+    contentWrapper.style.flex = '1';
+    contentWrapper.style.display = 'flex';
+    contentWrapper.style.overflow = 'hidden';
+    contentWrapper.style.position = 'relative';
+    blogContainer.appendChild(contentWrapper);
+
+    // 创建滚动按钮
+    const leftScrollBtn = document.createElement('div');
+    leftScrollBtn.id = 'blog-scroll-left';
+    leftScrollBtn.innerHTML = '&larr;';
+    leftScrollBtn.style.position = 'fixed';
+    leftScrollBtn.style.left = '0';
+    leftScrollBtn.style.top = '50%';
+    leftScrollBtn.style.transform = 'translateY(-50%)';
+    leftScrollBtn.style.width = '40px';
+    leftScrollBtn.style.height = '40px';
+    leftScrollBtn.style.borderRadius = '50%';
+    leftScrollBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+    leftScrollBtn.style.color = '#fff';
+    leftScrollBtn.style.display = 'flex';
+    leftScrollBtn.style.alignItems = 'center';
+    leftScrollBtn.style.justifyContent = 'center';
+    leftScrollBtn.style.cursor = 'pointer';
+    leftScrollBtn.style.zIndex = '10';
+    leftScrollBtn.style.opacity = '0';
+    leftScrollBtn.style.transition = 'all 0.3s ease';
+    leftScrollBtn.style.fontSize = '1.2rem';
+    leftScrollBtn.style.backdropFilter = 'blur(5px)';
+    leftScrollBtn.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+    blogContainer.appendChild(leftScrollBtn);
+
+    const rightScrollBtn = document.createElement('div');
+    rightScrollBtn.id = 'blog-scroll-right';
+    rightScrollBtn.innerHTML = '&rarr;';
+    rightScrollBtn.style.position = 'fixed';
+    rightScrollBtn.style.right = '0';
+    rightScrollBtn.style.top = '50%';
+    rightScrollBtn.style.transform = 'translateY(-50%)';
+    rightScrollBtn.style.width = '40px';
+    rightScrollBtn.style.height = '40px';
+    rightScrollBtn.style.borderRadius = '50%';
+    rightScrollBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+    rightScrollBtn.style.color = '#fff';
+    rightScrollBtn.style.display = 'flex';
+    rightScrollBtn.style.alignItems = 'center';
+    rightScrollBtn.style.justifyContent = 'center';
+    rightScrollBtn.style.cursor = 'pointer';
+    rightScrollBtn.style.zIndex = '10';
+    rightScrollBtn.style.opacity = '0';
+    rightScrollBtn.style.transition = 'all 0.3s ease';
+    rightScrollBtn.style.fontSize = '1.2rem';
+    rightScrollBtn.style.backdropFilter = 'blur(5px)';
+    rightScrollBtn.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+    blogContainer.appendChild(rightScrollBtn);
+
+    // 创建内容区域
+    const contentContainer = document.createElement('div');
+    contentContainer.id = 'blog-content-container';
+    contentContainer.style.display = 'flex';
+    contentContainer.style.width = '300%';
+    contentContainer.style.height = '100%';
+    contentContainer.style.transition = 'transform 0.5s ease';
+    contentWrapper.appendChild(contentContainer);
+
+    // 创建三个部分
+    const sections = ['post', 'favorite', 'research'];
+    sections.forEach((section, index) => {
+        const sectionElement = document.createElement('div');
+        sectionElement.className = 'blog-section';
+        sectionElement.id = `blog-${section}`;
+        sectionElement.style.width = '33.333%';
+        sectionElement.style.height = '100%';
+        sectionElement.style.padding = '20px';
+        sectionElement.style.boxSizing = 'border-box';
+        sectionElement.style.overflowY = 'auto';
+        sectionElement.style.background = 'linear-gradient(to bottom, rgba(10, 25, 15, 0.85), rgba(20, 50, 30, 0.85))';
+        sectionElement.style.backdropFilter = 'blur(10px)';
+        sectionElement.style.borderRadius = '15px';
+        sectionElement.style.margin = '0 10px';
+        sectionElement.style.boxShadow = '0 0 30px rgba(0, 0, 0, 0.5)';
+        
+        // 右侧固定区域
+        const sidebar = document.createElement('div');
+        sidebar.className = 'blog-sidebar';
+        sidebar.style.position = 'absolute';
+        sidebar.style.right = '5%';
+        sidebar.style.top = '20%';
+        sidebar.style.width = '25%';
+        sidebar.style.padding = '20px';
+        sidebar.style.background = 'rgba(15, 35, 20, 0.8)';
+        sidebar.style.borderRadius = '15px';
+        sidebar.style.backdropFilter = 'blur(5px)';
+        sidebar.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.4)';
+        sectionElement.appendChild(sidebar);
+
+        // 头像框
+        const avatarFrame = document.createElement('div');
+        avatarFrame.className = 'blog-avatar-frame';
+        avatarFrame.style.width = '100px';
+        avatarFrame.style.height = '100px';
+        avatarFrame.style.borderRadius = '50%';
+        avatarFrame.style.overflow = 'hidden';
+        avatarFrame.style.margin = '0 auto 15px';
+        avatarFrame.style.border = '3px solid rgba(0, 255, 100, 0.5)';
+        avatarFrame.style.boxShadow = '0 0 15px rgba(0, 255, 100, 0.3)';
+        
+        const avatarImg = document.createElement('img');
+        avatarImg.src = './avatar.jpg';
+        avatarImg.style.width = '100%';
+        avatarImg.style.height = '100%';
+        avatarImg.style.objectFit = 'cover';
+        avatarFrame.appendChild(avatarImg);
+        sidebar.appendChild(avatarFrame);
+
+        // 名字
+        const name = document.createElement('div');
+        name.className = 'blog-name';
+        name.textContent = 'Stardust';
+        name.style.fontFamily = '"Great Vibes", cursive';
+        name.style.fontSize = '1.8rem';
+        name.style.color = '#fff';
+        name.style.textAlign = 'center';
+        name.style.marginBottom = '10px';
+        name.style.textShadow = '0 0 5px rgba(0, 255, 100, 0.5)';
+        sidebar.appendChild(name);
+
+        // 座右铭
+        const motto = document.createElement('div');
+        motto.className = 'blog-motto';
+        motto.textContent = 'Turn this imperfect story into the way we hope it to be.';
+        motto.style.fontFamily = '"Allura", cursive';
+        motto.style.fontSize = '1.2rem';
+        motto.style.color = '#aaa';
+        motto.style.textAlign = 'center';
+        motto.style.fontStyle = 'italic';
+        sidebar.appendChild(motto);
+
+        // 根据部分类型添加内容
+        if (section === 'post') {
+            // Posts 部分
+            const postsContainer = document.createElement('div');
+            postsContainer.className = 'blog-posts';
+            postsContainer.style.width = '60%';
+            postsContainer.style.marginLeft = '5%';
+            sectionElement.insertBefore(postsContainer, sidebar);
+
+            // 添加示例文章
+            const samplePosts = [
+                {
+                    title: 'The Beauty of Mathematics',
+                    date: '2023-10-15',
+                    content: 'Mathematics, rightly viewed, possesses not only truth but supreme beauty—a beauty cold and austere, like that of sculpture, without appeal to any part of our weaker nature, without the gorgeous trappings of painting or music, yet sublimely pure, and capable of a stern perfection such as only the greatest art can show...',
+                    link: '#'
+                },
+                {
+                    title: 'Exploring Quantum Mechanics',
+                    date: '2023-09-28',
+                    content: 'Quantum mechanics is the body of scientific laws that describe the wacky behavior of photons, electrons and the other particles that make up the universe. At the scale of atoms and electrons, many of the equations of classical mechanics, which describe how things move at everyday sizes and speeds, cease to be useful...',
+                    link: '#'
+                },
+                {
+                    title: 'The Art of Problem Solving',
+                    date: '2023-08-10',
+                    content: 'Problem solving is the essence of what mathematicians do. When faced with a problem, a mathematician seeks not only to solve it but to understand why the solution works and how it connects to other mathematical ideas. This process often involves creativity, persistence, and the ability to see patterns and make connections...',
+                    link: '#'
+                }
+            ];
+
+            samplePosts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'blog-post';
+                postElement.style.background = 'rgba(20, 40, 25, 0.7)';
+                postElement.style.borderRadius = '10px';
+                postElement.style.padding = '20px';
+                postElement.style.marginBottom = '20px';
+                postElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                postElement.style.transition = 'all 0.3s ease';
+
+                // 标题和日期行
+                const titleRow = document.createElement('div');
+                titleRow.style.display = 'flex';
+                titleRow.style.justifyContent = 'space-between';
+                titleRow.style.alignItems = 'center';
+                titleRow.style.marginBottom = '15px';
+
+                const title = document.createElement('h3');
+                title.textContent = post.title;
+                title.style.fontFamily = '"Cinzel", serif';
+                title.style.fontSize = '1.3rem';
+                title.style.color = '#0f0';
+                title.style.margin = '0';
+
+                const date = document.createElement('span');
+                date.textContent = post.date;
+                date.style.fontFamily = 'Arial, sans-serif';
+                date.style.fontSize = '0.9rem';
+                date.style.color = '#aaa';
+
+                titleRow.appendChild(title);
+                titleRow.appendChild(date);
+                postElement.appendChild(titleRow);
+
+                // 内容
+                const content = document.createElement('p');
+                content.textContent = post.content;
+                content.style.fontFamily = 'Georgia, serif';
+                content.style.fontSize = '1rem';
+                content.style.color = '#ddd';
+                content.style.lineHeight = '1.6';
+                content.style.marginBottom = '15px';
+                postElement.appendChild(content);
+
+                // 阅读更多按钮
+                const readMore = document.createElement('a');
+                readMore.href = post.link;
+                readMore.textContent = 'Read more →';
+                readMore.style.fontFamily = 'Arial, sans-serif';
+                readMore.style.fontSize = '0.9rem';
+                readMore.style.color = '#0f0';
+                readMore.style.textDecoration = 'none';
+                readMore.style.float = 'right';
+                readMore.style.transition = 'all 0.3s ease';
+
+                readMore.addEventListener('mouseenter', () => {
+                    readMore.style.color = '#fff';
+                    readMore.style.textShadow = '0 0 5px rgba(0, 255, 100, 0.5)';
+                });
+
+                readMore.addEventListener('mouseleave', () => {
+                    readMore.style.color = '#0f0';
+                    readMore.style.textShadow = 'none';
+                });
+
+                postElement.appendChild(readMore);
+
+                // 悬停效果
+                postElement.addEventListener('mouseenter', () => {
+                    postElement.style.transform = 'translateY(-5px)';
+                    postElement.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+                });
+
+                postElement.addEventListener('mouseleave', () => {
+                    postElement.style.transform = 'none';
+                    postElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                });
+
+                postsContainer.appendChild(postElement);
+            });
+        } else if (section === 'favorite') {
+            // Favorite 部分
+            const favoritesContainer = document.createElement('div');
+            favoritesContainer.className = 'blog-favorites';
+            favoritesContainer.style.width = '60%';
+            favoritesContainer.style.marginLeft = '5%';
+            favoritesContainer.style.display = 'grid';
+            favoritesContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+            favoritesContainer.style.gap = '20px';
+            sectionElement.insertBefore(favoritesContainer, sidebar);
+
+            // 添加示例收藏
+            const sampleFavorites = [
+                {
+                    type: 'image',
+                    title: 'Northern Lights',
+                    content: 'The aurora borealis, also known as the northern lights, is one of the most spectacular displays in the night sky.',
+                    image: 'https://example.com/northern-lights.jpg',
+                    link: '#'
+                },
+                {
+                    type: 'quote',
+                    title: 'Einstein Quote',
+                    content: 'Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.',
+                    author: 'Albert Einstein',
+                    link: '#'
+                },
+                {
+                    type: 'image',
+                    title: 'Mountain Sunset',
+                    content: 'The beauty of nature captured at the perfect moment when the sun dips below the mountain peaks.',
+                    image: 'https://example.com/mountain-sunset.jpg',
+                    link: '#'
+                }
+            ];
+
+            sampleFavorites.forEach((fav, idx) => {
+                const favElement = document.createElement('div');
+                favElement.className = 'blog-favorite';
+                favElement.style.background = 'rgba(20, 40, 25, 0.7)';
+                favElement.style.borderRadius = '10px';
+                favElement.style.overflow = 'hidden';
+                favElement.style.position = 'relative';
+                favElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                favElement.style.transition = 'all 0.3s ease';
+
+                if (fav.type === 'image') {
+                    const imageContainer = document.createElement('div');
+                    imageContainer.style.height = '200px';
+                    imageContainer.style.overflow = 'hidden';
+                    imageContainer.style.position = 'relative';
+
+                    const image = document.createElement('div');
+                    image.style.height = '100%';
+                    image.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url(${fav.image})`;
+                    image.style.backgroundSize = 'cover';
+                    image.style.backgroundPosition = 'center';
+                    imageContainer.appendChild(image);
+
+                    const overlay = document.createElement('div');
+                    overlay.style.position = 'absolute';
+                    overlay.style.bottom = '0';
+                    overlay.style.left = '0';
+                    overlay.style.right = '0';
+                    overlay.style.height = '50%';
+                    overlay.style.background = 'linear-gradient(to top, rgba(10, 25, 15, 0.9), transparent)';
+                    overlay.style.pointerEvents = 'none';
+                    imageContainer.appendChild(overlay);
+
+                    const title = document.createElement('h3');
+                    title.textContent = fav.title;
+                    title.style.position = 'absolute';
+                    title.style.bottom = '20px';
+                    title.style.left = '20px';
+                    title.style.fontFamily = '"Cinzel", serif';
+                    title.style.fontSize = '1.2rem';
+                    title.style.color = '#fff';
+                    title.style.textShadow = '0 0 5px rgba(0, 0, 0, 0.5)';
+                    title.style.margin = '0';
+                    imageContainer.appendChild(title);
+
+                    favElement.appendChild(imageContainer);
+
+                    const content = document.createElement('p');
+                    content.textContent = fav.content;
+                    content.style.fontFamily = 'Georgia, serif';
+                    content.style.fontSize = '0.9rem';
+                    content.style.color = '#ddd';
+                    content.style.padding = '15px';
+                    content.style.margin = '0';
+                    favElement.appendChild(content);
+
+                    // 查看和下载按钮
+                    const buttons = document.createElement('div');
+                    buttons.style.display = 'flex';
+                    buttons.style.justifyContent = 'flex-end';
+                    buttons.style.padding = '0 15px 15px';
+
+                    const viewBtn = document.createElement('a');
+                    viewBtn.href = fav.link;
+                    viewBtn.textContent = 'View';
+                    viewBtn.style.fontFamily = 'Arial, sans-serif';
+                    viewBtn.style.fontSize = '0.8rem';
+                    viewBtn.style.color = '#0f0';
+                    viewBtn.style.textDecoration = 'none';
+                    viewBtn.style.padding = '5px 10px';
+                    viewBtn.style.borderRadius = '3px';
+                    viewBtn.style.background = 'rgba(0, 255, 100, 0.2)';
+                    viewBtn.style.marginLeft = '10px';
+                    viewBtn.style.transition = 'all 0.3s ease';
+
+                    const downloadBtn = document.createElement('a');
+                    downloadBtn.href = fav.image;
+                    downloadBtn.download = '';
+                    downloadBtn.textContent = 'Download';
+                    downloadBtn.style.fontFamily = 'Arial, sans-serif';
+                    downloadBtn.style.fontSize = '0.8rem';
+                    downloadBtn.style.color = '#0f0';
+                    downloadBtn.style.textDecoration = 'none';
+                    downloadBtn.style.padding = '5px 10px';
+                    downloadBtn.style.borderRadius = '3px';
+                    downloadBtn.style.background = 'rgba(0, 255, 100, 0.2)';
+                    downloadBtn.style.transition = 'all 0.3s ease';
+
+                    viewBtn.addEventListener('mouseenter', () => {
+                        viewBtn.style.background = 'rgba(0, 255, 100, 0.4)';
+                        viewBtn.style.color = '#fff';
+                    });
+
+                    viewBtn.addEventListener('mouseleave', () => {
+                        viewBtn.style.background = 'rgba(0, 255, 100, 0.2)';
+                        viewBtn.style.color = '#0f0';
+                    });
+
+                    downloadBtn.addEventListener('mouseenter', () => {
+                        downloadBtn.style.background = 'rgba(0, 255, 100, 0.4)';
+                        downloadBtn.style.color = '#fff';
+                    });
+
+                    downloadBtn.addEventListener('mouseleave', () => {
+                        downloadBtn.style.background = 'rgba(0, 255, 100, 0.2)';
+                        downloadBtn.style.color = '#0f0';
+                    });
+
+                    buttons.appendChild(downloadBtn);
+                    buttons.appendChild(viewBtn);
+                    favElement.appendChild(buttons);
+                } else {
+                    const quoteContainer = document.createElement('div');
+                    quoteContainer.style.padding = '20px';
+                    quoteContainer.style.position = 'relative';
+
+                    const quoteText = document.createElement('blockquote');
+                    quoteText.textContent = fav.content;
+                    quoteText.style.fontFamily = 'Georgia, serif';
+                    quoteText.style.fontSize = '1.1rem';
+                    quoteText.style.color = '#ddd';
+                    quoteText.style.fontStyle = 'italic';
+                    quoteText.style.lineHeight = '1.6';
+                    quoteText.style.margin = '0 0 15px 0';
+                    quoteText.style.position = 'relative';
+                    quoteText.style.paddingLeft = '30px';
+
+                    const quoteMark = document.createElement('span');
+                    quoteMark.textContent = '"';
+                    quoteMark.style.position = 'absolute';
+                    quoteMark.style.left = '0';
+                    quoteMark.style.top = '0';
+                    quoteMark.style.fontSize = '3rem';
+                    quoteMark.style.fontFamily = 'Georgia, serif';
+                    quoteMark.style.color = 'rgba(0, 255, 100, 0.3)';
+                    quoteMark.style.lineHeight = '1';
+                    quoteText.appendChild(quoteMark);
+
+                    quoteContainer.appendChild(quoteText);
+
+                    const quoteAuthor = document.createElement('div');
+                    quoteAuthor.textContent = `— ${fav.author}`;
+                    quoteAuthor.style.fontFamily = 'Arial, sans-serif';
+                    quoteAuthor.style.fontSize = '0.9rem';
+                    quoteAuthor.style.color = '#aaa';
+                    quoteAuthor.style.textAlign = 'right';
+                    quoteContainer.appendChild(quoteAuthor);
+
+                    const viewBtn = document.createElement('a');
+                    viewBtn.href = fav.link;
+                    viewBtn.textContent = 'View';
+                    viewBtn.style.fontFamily = 'Arial, sans-serif';
+                    viewBtn.style.fontSize = '0.8rem';
+                    viewBtn.style.color = '#0f0';
+                    viewBtn.style.textDecoration = 'none';
+                    viewBtn.style.padding = '5px 10px';
+                    viewBtn.style.borderRadius = '3px';
+                    viewBtn.style.background = 'rgba(0, 255, 100, 0.2)';
+                    viewBtn.style.position = 'absolute';
+                    viewBtn.style.bottom = '15px';
+                    viewBtn.style.right = '15px';
+                    viewBtn.style.transition = 'all 0.3s ease';
+
+                    viewBtn.addEventListener('mouseenter', () => {
+                        viewBtn.style.background = 'rgba(0, 255, 100, 0.4)';
+                        viewBtn.style.color = '#fff';
+                    });
+
+                    viewBtn.addEventListener('mouseleave', () => {
+                        viewBtn.style.background = 'rgba(0, 255, 100, 0.2)';
+                        viewBtn.style.color = '#0f0';
+                    });
+
+                    quoteContainer.appendChild(viewBtn);
+                    favElement.appendChild(quoteContainer);
+                }
+
+                // 悬停效果
+                favElement.addEventListener('mouseenter', () => {
+                    favElement.style.transform = 'translateY(-5px)';
+                    favElement.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+                });
+
+                favElement.addEventListener('mouseleave', () => {
+                    favElement.style.transform = 'none';
+                    favElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                });
+
+                favoritesContainer.appendChild(favElement);
+            });
+        } else {
+            // Research 部分
+            const researchContainer = document.createElement('div');
+            researchContainer.className = 'blog-research';
+            researchContainer.style.width = '60%';
+            researchContainer.style.marginLeft = '5%';
+            researchContainer.style.display = 'flex';
+            researchContainer.style.flexDirection = 'column';
+            researchContainer.style.alignItems = 'center';
+            researchContainer.style.justifyContent = 'center';
+            researchContainer.style.height = '100%';
+            sectionElement.insertBefore(researchContainer, sidebar);
+
+            const placeholder = document.createElement('div');
+            placeholder.className = 'research-placeholder';
+            placeholder.textContent = 'Research content coming soon...';
+            placeholder.style.fontFamily = '"Cinzel", serif';
+            placeholder.style.fontSize = '1.5rem';
+            placeholder.style.color = '#aaa';
+            placeholder.style.textAlign = 'center';
+            researchContainer.appendChild(placeholder);
+        }
+
+        contentContainer.appendChild(sectionElement);
+    });
+
+    // 滚动按钮显示/隐藏逻辑
+    blogPage.addEventListener('mousemove', (e) => {
+        const pageWidth = blogPage.clientWidth;
+        const mouseX = e.clientX;
+        
+        if (mouseX < pageWidth / 8) {
+            leftScrollBtn.style.opacity = '1';
+        } else {
+            leftScrollBtn.style.opacity = '0';
+        }
+        
+        if (mouseX > pageWidth * 7 / 8) {
+            rightScrollBtn.style.opacity = '1';
+        } else {
+            rightScrollBtn.style.opacity = '0';
+        }
+    });
+
+    // 滚动功能
+    let currentSection = 0;
+    
+    leftScrollBtn.addEventListener('click', () => {
+        if (currentSection > 0) {
+            currentSection--;
+            contentContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
+            updateActiveTab(currentSection);
+        }
+    });
+    
+    rightScrollBtn.addEventListener('click', () => {
+        if (currentSection < 2) {
+            currentSection++;
+            contentContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
+            updateActiveTab(currentSection);
+        }
+    });
+
+    function updateActiveTab(index) {
+        const tabs = document.querySelectorAll('.blog-tab');
+        tabs.forEach((tab, i) => {
+            tab.style.color = i === index ? '#fff' : '#aaa';
+            tab.style.background = i === index ? 'rgba(0, 255, 100, 0.2)' : 'transparent';
+            tab.style.borderBottom = i === index ? '2px solid #0f0' : 'none';
+        });
+    }
+
+    function showBlogSection(section) {
+        const sections = ['post', 'favorite', 'research'];
+        const index = sections.indexOf(section.toLowerCase());
+        if (index >= 0) {
+            currentSection = index;
+            contentContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
+        }
+    }
 
     // 隐藏时钟控制按钮
     const clockToggle = document.querySelector('.clock-toggle');
     if (clockToggle) clockToggle.style.display = 'none';
-
-    const scroll = document.createElement('div');
-    scroll.id = 'epic-scroll';
-    scroll.style.position = 'relative';
-    scroll.style.width = '70%';
-    scroll.style.minHeight = '60%';
-    scroll.style.maxWidth = '800px';
-    scroll.style.backgroundImage = 'url("./assets/images/old-paper-texture.jpg")';
-    scroll.style.backgroundSize = 'cover';
-    scroll.style.borderRadius = '5px';
-    scroll.style.boxShadow = `
-        0 0 30px rgba(200, 160, 100, 0.5),
-        inset 0 0 50px rgba(0,0,0,0.3),
-        0 0 0 10px rgba(139, 69, 19, 0.3),
-        0 0 0 15px rgba(160, 82, 45, 0.2),
-        0 0 0 20px rgba(139, 69, 19, 0.1)
-    `;
-    scroll.style.padding = '40px';
-    scroll.style.opacity = '0';
-    scroll.style.transform = 'scale(0.9)';
-    scroll.style.transition = 'all 1s ease-in-out';
-    scroll.style.overflow = 'hidden';
-    epicPage.appendChild(scroll);
-
-    // 卷轴边缘装饰
-    const scrollEdgeLeft = document.createElement('div');
-    scrollEdgeLeft.style.position = 'absolute';
-    scrollEdgeLeft.style.left = '0';
-    scrollEdgeLeft.style.top = '0';
-    scrollEdgeLeft.style.bottom = '0';
-    scrollEdgeLeft.style.width = '40px';
-    scrollEdgeLeft.style.backgroundImage = 'url("./assets/images/scroll-texture.png")';
-    scrollEdgeLeft.style.backgroundSize = 'contain';
-    scrollEdgeLeft.style.backgroundRepeat = 'repeat-y';
-    scrollEdgeLeft.style.filter = 'sepia(100%) brightness(0.8)';
-    scrollEdgeLeft.style.boxShadow = 'inset 5px 0 10px rgba(0,0,0,0.2)';
-    scroll.appendChild(scrollEdgeLeft);
-
-    const scrollEdgeRight = document.createElement('div');
-    scrollEdgeRight.style.position = 'absolute';
-    scrollEdgeRight.style.right = '0';
-    scrollEdgeRight.style.top = '0';
-    scrollEdgeRight.style.bottom = '0';
-    scrollEdgeRight.style.width = '40px';
-    scrollEdgeRight.style.backgroundImage = 'url("./assets/images/scroll-texture.png")';
-    scrollEdgeRight.style.backgroundSize = 'contain';
-    scrollEdgeRight.style.backgroundRepeat = 'repeat-y';
-    scrollEdgeRight.style.filter = 'sepia(100%) brightness(0.8)';
-    scrollEdgeRight.style.boxShadow = 'inset -5px 0 10px rgba(0,0,0,0.2)';
-    scroll.appendChild(scrollEdgeRight);
-
-    const scrollContent = document.createElement('div');
-    scrollContent.style.position = 'relative';
-    scrollContent.style.zIndex = '2';
-    scrollContent.style.height = '100%';
-    scrollContent.style.display = 'flex';
-    scrollContent.style.flexDirection = 'column';
-    scrollContent.style.justifyContent = 'center';
-    scrollContent.style.alignItems = 'center';
-    scrollContent.style.textAlign = 'center';
-    scroll.appendChild(scrollContent);
-
-    const epicText = document.createElement('div');
-    epicText.id = 'epic-text';
-    epicText.innerHTML = `Traveler of silent paths, by your insight and unwavering will, the ancient seal lies broken. What once dwelt beyond mortal ken now unfolds before thine eyes: a hidden realm, long shrouded in shadow.`;
-    epicText.style.fontFamily = '"Cinzel", "Times New Roman", serif';
-    epicText.style.fontSize = '1.8rem';
-    epicText.style.lineHeight = '1.6';
-    epicText.style.color = '#3a2c1a';
-    epicText.style.textShadow = '1px 1px 2px rgba(0,0,0,0.3)';
-    epicText.style.marginBottom = '40px';
-    epicText.style.opacity = '0';
-    epicText.style.transform = 'translateY(20px)';
-    epicText.style.transition = 'all 1s ease-in-out 0.5s';
-    scrollContent.appendChild(epicText);
-
-    // 修改后的火焰按钮
-    const flameButton = document.createElement('div');
-    flameButton.id = 'flame-button';
-    flameButton.style.position = 'absolute';
-    flameButton.style.bottom = '30px';
-    flameButton.style.right = '30px';
-    flameButton.style.width = '40px';
-    flameButton.style.height = '60px';
-    flameButton.style.cursor = 'pointer';
-    flameButton.style.zIndex = '3';
-    flameButton.innerHTML = `
-        <div id="flame" style="
-            width: 20px; 
-            height: 30px; 
-            margin: 0 auto; 
-            position: relative;
-            animation: flicker 0.5s infinite alternate;
-        ">
-            <div style="
-                position: absolute; 
-                width: 100%; 
-                height: 100%; 
-                background: linear-gradient(to top, 
-                    rgba(255,100,0,0.9) 0%, 
-                    rgba(255,200,0,0.8) 50%,
-                    rgba(255,255,200,0.5) 100%
-                ); 
-                border-radius: 50% 50% 20% 20%; 
-                filter: blur(3px); 
-                box-shadow: 
-                    0 0 10px rgba(255,100,0,0.8),
-                    0 0 20px rgba(255,200,0,0.6);
-            "></div>
-        </div>
-        <div style="
-            text-align: center; 
-            margin-top: 5px; 
-            font-family: 'Cinzel', serif; 
-            color: '#3a2c1a'; 
-            font-size: 0.9rem;
-        ">Ignite</div>
-    `;
-    scrollContent.appendChild(flameButton);
-
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes flicker {
-            0%, 100% {
-                transform: scale(1) translateY(0);
-                opacity: 0.9;
-            }
-            50% {
-                transform: scale(1.05) translateY(-2px);
-                opacity: 1;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-
-    setTimeout(() => {
-        epicPage.style.opacity = '1';
-        
-        setTimeout(() => {
-            scroll.style.opacity = '1';
-            scroll.style.transform = 'scale(1)';
-            
-            setTimeout(() => {
-                epicText.style.opacity = '1';
-                epicText.style.transform = 'translateY(0)';
-                
-                // 播放旁白声音和火焰音效
-                playNarration();
-                playFireSound();
-            }, 500);
-        }, 500);
-    }, 100);
-
-    flameButton.addEventListener('click', function() {
-        startFlameAnimation();
-    });
-}
-
-function playNarration() {
-    // 停止之前的音频
-    if (narrationAudio) {
-        narrationAudio.pause();
-        narrationAudio.currentTime = 0;
-    }
-    
-    narrationAudio = new Audio('./assets/audio/prologue.m4a');
-    narrationAudio.volume = 0.7;
-    narrationAudio.play().catch(e => console.log('Audio play failed:', e));
-}
-
-function playFireSound() {
-    // 停止之前的火焰音频
-    if (fireAudio) {
-        fireAudio.pause();
-        fireAudio.currentTime = 0;
-    }
-    
-    fireAudio = new Audio('./assets/audio/fire-sound.mp3');
-    fireAudio.volume = 1.0; // 音量变为原来的两倍
-    fireAudio.loop = true;  // 循环播放
-    fireAudio.play().catch(e => console.log('Fire audio play failed:', e));
-}
-
-function startFlameAnimation() {
-    const flame = document.getElementById('flame');
-    const scroll = document.getElementById('epic-scroll');
-    const epicPage = document.getElementById('epic-scroll-page');
-    
-    // 创建火焰覆盖层 - 使用GIF动画
-    const flameOverlay = document.createElement('div');
-    flameOverlay.id = 'flame-overlay';
-    flameOverlay.style.position = 'fixed';
-    flameOverlay.style.top = '0';
-    flameOverlay.style.left = '0';
-    flameOverlay.style.width = '100%';
-    flameOverlay.style.height = '100%';
-    flameOverlay.style.background = 'url("./assets/animation/fire-animation.gif") center/cover no-repeat';
-    flameOverlay.style.zIndex = '1002';
-    flameOverlay.style.opacity = '0';
-    flameOverlay.style.transition = 'opacity 1.5s ease-in-out';
-    document.body.appendChild(flameOverlay);
-    
-    // 渐入效果
-    setTimeout(() => {
-        flameOverlay.style.opacity = '1';
-        
-        // 转场到博客页面
-        setTimeout(() => {
-            transitionToBlogPage();
-        }, 4000);
-    }, 100);
 }
 
 function stopAllSounds() {
@@ -378,716 +823,4 @@ function stopAllSounds() {
         fireAudio.pause();
         fireAudio.currentTime = 0;
     }
-}
-
-function transitionToBlogPage() {
-    stopAllSounds(); // 停止所有声音
-    
-    const blogPage = document.createElement('div');
-    blogPage.id = 'blog-page';
-    blogPage.style.position = 'fixed';
-    blogPage.style.top = '0';
-    blogPage.style.left = '0';
-    blogPage.style.width = '100%';
-    blogPage.style.height = '100%';
-    blogPage.style.zIndex = '1003';
-    blogPage.style.overflow = 'hidden';
-    blogPage.style.opacity = '0';
-    blogPage.style.transition = 'opacity 1s ease-in-out';
-    document.body.appendChild(blogPage);
-    
-    // 添加博客页面样式
-    const blogStyles = document.createElement('style');
-    blogStyles.textContent = `
-        /* 博客页面样式 */
-        .blog-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('background.png') center/cover no-repeat;
-            z-index: -1;
-            filter: brightness(0.4) blur(1px);
-        }
-        
-        .blog-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: flex;
-            width: 300%;
-            height: 100%;
-            transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-        }
-        
-        .blog-section {
-            width: 33.333%;
-            height: 100%;
-            padding: 100px 5% 80px;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .blog-header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            padding-bottom: 25px;
-        }
-        
-        .blog-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #64ffda;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
-            letter-spacing: 3px;
-        }
-        
-        .nav-bar {
-            display: flex;
-            justify-content: center;
-            background: rgba(10, 25, 47, 0.85);
-            border-radius: 50px;
-            padding: 15px 40px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .nav-item {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            padding: 10px 25px;
-            margin: 0 15px;
-            cursor: pointer;
-            position: relative;
-            color: #8892b0;
-            transition: all 0.3s ease;
-            z-index: 2;
-        }
-        
-        .nav-item.active {
-            color: #64ffda;
-        }
-        
-        .nav-divider {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.8rem;
-            color: #64ffda;
-            opacity: 0.3;
-        }
-        
-        .sidebar {
-            position: fixed;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 25%;
-            background: rgba(17, 34, 64, 0.85);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            z-index: 10;
-            transition: top 0.3s ease;
-        }
-        
-        .avatar-container {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .avatar-frame {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid #64ffda;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.3);
-        }
-        
-        .avatar-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .sidebar-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: #ccd6f6;
-            margin-bottom: 10px;
-        }
-        
-        .sidebar-quote {
-            font-style: italic;
-            color: #8892b0;
-            line-height: 1.6;
-            text-align: center;
-            font-size: 1.1rem;
-            border-top: 1px solid rgba(100, 255, 218, 0.2);
-            padding-top: 20px;
-        }
-        
-        .content-container {
-            background: rgba(17, 34, 64, 0.85);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(100, 255, 218, 0.1);
-        }
-        
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            color: #64ffda;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(100, 255, 218, 0.3);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 120px;
-            height: 2px;
-            background: #64ffda;
-        }
-        
-        .post {
-            background: rgba(23, 42, 69, 0.7);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-        }
-        
-        .post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .post-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .post-title {
-            font-size: 1.8rem;
-            color: #ccd6f6;
-            font-weight: 700;
-        }
-        
-        .post-date {
-            color: #64ffda;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-        
-        .post-content {
-            color: #a8b2d1;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
-        
-        .read-more {
-            display: inline-block;
-            padding: 10px 25px;
-            background: transparent;
-            border: 1px solid #64ffda;
-            color: #64ffda;
-            border-radius: 30px;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-        
-        .read-more:hover {
-            background: rgba(100, 255, 218, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            height: 300px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-8px);
-        }
-        
-        .item-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover .item-image {
-            transform: scale(1.05);
-        }
-        
-        .item-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(10, 25, 47, 0.9), transparent);
-            padding: 30px 20px 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover .item-overlay {
-            opacity: 1;
-        }
-        
-        .item-title {
-            color: #fff;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-        
-        .item-description {
-            color: #ccd6f6;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .view-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(100, 255, 218, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64ffda;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-        
-        .view-btn:hover {
-            background: rgba(100, 255, 218, 0.3);
-            transform: scale(1.1);
-        }
-        
-        .scroll-control {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 20;
-            opacity: 0;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .scroll-control.left {
-            left: -60px;
-        }
-        
-        .scroll-control.right {
-            right: -60px;
-        }
-        
-        body:hover .scroll-control.left {
-            left: 20px;
-            opacity: 1;
-        }
-        
-        body:hover .scroll-control.right {
-            right: 20px;
-            opacity: 1;
-        }
-        
-        .scroll-control:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-50%) scale(1.1);
-        }
-        
-        .research-placeholder {
-            text-align: center;
-            padding: 100px 0;
-        }
-        
-        .research-icon {
-            font-size: 5rem;
-            color: rgba(100, 255, 218, 0.2);
-            margin-bottom: 30px;
-        }
-        
-        .research-text {
-            font-size: 1.8rem;
-            color: #8892b0;
-            font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
-        }
-        
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .blog-section::-webkit-scrollbar {
-            display: none;
-        }
-        
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .blog-section {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        
-        /* Animation for section transitions */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-    `;
-    document.head.appendChild(blogStyles);
-    
-    // 创建博客页面结构
-    blogPage.innerHTML = `
-        <div class="blog-background"></div>
-        
-        <div class="scroll-control left">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-        
-        <div class="scroll-control right">
-            <i class="fas fa-chevron-right"></i>
-        </div>
-        
-        <div class="blog-container">
-            <!-- Post Section -->
-            <section id="blog-post" class="blog-section">
-                <div class="blog-header">
-                    <h1 class="blog-title">Personal Blog</h1>
-                    <div class="nav-bar">
-                        <div class="nav-item active" data-target="0">Post</div>
-                        <div class="nav-divider">✦</div>
-                        <div class="nav-item" data-target="1">Favorite</div>
-                        <div class="nav-divider">✦</div>
-                        <div class="nav-item" data-target="2">Research</div>
-                    </div>
-                </div>
-                
-                <div class="content-container">
-                    <h2 class="section-title">Latest Posts</h2>
-                    
-                    <div class="post animate-in">
-                        <div class="post-header">
-                            <h3 class="post-title">Exploring Fractal Geometry</h3>
-                            <div class="post-date">May 15, 2025</div>
-                        </div>
-                        <div class="post-content">
-                            <p>Fractal geometry reveals the hidden patterns of the universe. From the branching of trees to the structure of galaxies, fractals are nature's signature...</p>
-                            <p>In this post, I explore the Mandelbrot set and its infinite complexity. We'll dive into the mathematical foundations and visualize these stunning patterns using computational methods.</p>
-                        </div>
-                        <a href="#" class="read-more">Read More</a>
-                    </div>
-                    
-                    <div class="post animate-in delay-1">
-                        <div class="post-header">
-                            <h3 class="post-title">Quantum Computing Algorithms</h3>
-                            <div class="post-date">April 28, 2025</div>
-                        </div>
-                        <div class="post-content">
-                            <p>Quantum computing represents a paradigm shift in computational power. By leveraging quantum superposition and entanglement, we can solve problems that are intractable for classical computers...</p>
-                            <p>In this article, I break down Shor's algorithm for prime factorization and Grover's algorithm for database search, explaining the quantum principles behind them.</p>
-                        </div>
-                        <a href="#" class="read-more">Read More</a>
-                    </div>
-                    
-                    <div class="post animate-in delay-2">
-                        <div class="post-header">
-                            <h3 class="post-title">Topology in Data Analysis</h3>
-                            <div class="post-date">April 10, 2025</div>
-                        </div>
-                        <div class="post-content">
-                            <p>Topological data analysis (TDA) provides powerful tools for understanding the shape of data. By applying concepts from algebraic topology, we can extract meaningful insights from complex datasets...</p>
-                            <p>This post explores persistent homology and Mapper algorithms, demonstrating how they reveal hidden structures in high-dimensional data spaces.</p>
-                        </div>
-                        <a href="#" class="read-more">Read More</a>
-                    </div>
-                    
-                    <div class="post animate-in delay-3">
-                        <div class="post-header">
-                            <h3 class="post-title">Neural Networks: A Mathematical Perspective</h3>
-                            <div class="post-date">March 22, 2025</div>
-                        </div>
-                        <div class="post-content">
-                            <p>Deep learning has revolutionized artificial intelligence, but what mathematical principles underpin these powerful models? In this exploration, I examine the calculus of backpropagation and the linear algebra of neural architectures...</p>
-                            <p>We'll see how concepts from optimization theory and functional analysis explain why deep networks work so well for complex pattern recognition tasks.</p>
-                        </div>
-                        <a href="#" class="read-more">Read More</a>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Favorite Section -->
-            <section id="blog-favorite" class="blog-section">
-                <div class="blog-header">
-                    <h1 class="blog-title">Personal Blog</h1>
-                    <div class="nav-bar">
-                        <div class="nav-item" data-target="0">Post</div>
-                        <div class="nav-divider">✦</div>
-                        <div class="nav-item active" data-target="1">Favorite</div>
-                        <div class="nav-divider">✦</div>
-                        <div class="nav-item" data-target="2">Research</div>
-                    </div>
-                </div>
-                
-                <div class="content-container">
-                    <h2 class="section-title">Inspirational Collection</h2>
-                    
-                    <div class="gallery">
-                        <div class="gallery-item animate-in">
-                            <img src="https://images.unsplash.com/photo-1505506874110-6a7a69069a08?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mathematical Art" class="item-image">
-                            <div class="item-overlay">
-                                <h3 class="item-title">Mathematical Art</h3>
-                                <p class="item-description">Visualization of complex mathematical functions creating stunning patterns</p>
-                            </div>
-                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
-                        </div>
-                        
-                        <div class="gallery-item animate-in delay-1">
-                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Quantum Equations" class="item-image">
-                            <div class="item-overlay">
-                                <h3 class="item-title">Quantum Equations</h3>
-                                <p class="item-description">Schrödinger's equation visualized in three-dimensional space</p>
-                            </div>
-                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
-                        </div>
-                        
-                        <div class="gallery-item animate-in delay-2">
-                            <div style="background: linear-gradient(135deg, #0a192f, #112240); height: 100%; display: flex; align-items: center; justify-content: center; padding: 30px;">
-                                <blockquote style="font-style: italic; font-size: 1.4rem; text-align: center; color: #64ffda; line-height: 1.6;">
-                                    "Mathematics is the language with which God has written the universe."
-                                    <footer style="margin-top: 20px; font-size: 1rem; color: #8892b0;">— Galileo Galilei</footer>
-                                </blockquote>
-                            </div>
-                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
-                        </div>
-                        
-                        <div class="gallery-item animate-in delay-3">
-                            <img src="https://images.unsplash.com/photo-1624953587687-daf255b6b80a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fractal Universe" class="item-image">
-                            <div class="item-overlay">
-                                <h3 class="item-title">Fractal Universe</h3>
-                                <p class="item-description">Mandelbrot set zoom revealing infinite complexity</p>
-                            </div>
-                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
-                        </div>
-                        
-                        <div class="gallery-item animate-in">
-                            <div style="background: linear-gradient(135deg, #112240, #0a192f); height: 100%; display: flex; align-items: center; justify-content: center; padding: 30px;">
-                                <blockquote style="font-style: italic; font-size: 1.4rem; text-align: center; color: #64ffda; line-height: 1.6;">
-                                    "Pure mathematics is, in its way, the poetry of logical ideas."
-                                    <footer style="margin-top: 20px; font-size: 1rem; color: #8892b0;">— Albert Einstein</footer>
-                                </blockquote>
-                            </div>
-                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
-                        </div>
-                        
-                        <div class="gallery-item animate-in delay-1">
-                            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Topology" class="item-image">
-                            <div class="item-overlay">
-                                <h3 class="item-title">Topological Surfaces</h3>
-                                <p class="item-description">Visual representation of genus and Euler characteristic</p>
-                            </div>
-                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Research Section -->
-            <section id="blog-research" class="blog-section">
-                <div class="blog-header">
-                    <h1 class="blog-title">Personal Blog</h1>
-                    <div class="nav-bar">
-                        <div class="nav-item" data-target="0">Post</div>
-                        <div class="nav-divider">✦</div>
-                        <div class="nav-item" data-target="1">Favorite</div>
-                        <div class="nav-divider">✦</div>
-                        <div class="nav-item active" data-target="2">Research</div>
-                    </div>
-                </div>
-                
-                <div class="content-container">
-                    <h2 class="section-title">Research Projects</h2>
-                    
-                    <div class="research-placeholder">
-                        <div class="research-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3 class="research-text">Research Section Coming Soon</h3>
-                    </div>
-                </div>
-            </section>
-        </div>
-        
-        <div class="sidebar">
-            <div class="avatar-container">
-                <div class="avatar-frame">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profile">
-                </div>
-                <h2 class="sidebar-name">Stardust Math</h2>
-                <p class="sidebar-quote">"Turn this imperfect story into the way we hope it to be."</p>
-            </div>
-        </div>
-    `;
-    
-    const epicPage = document.getElementById('epic-scroll-page');
-    const flameOverlay = document.getElementById('flame-overlay');
-    
-    if (epicPage) {
-        epicPage.style.opacity = '0';
-        
-        setTimeout(() => {
-            epicPage.remove();
-            if (flameOverlay) flameOverlay.remove();
-            
-            // 初始化博客页面
-            initBlogPage();
-            blogPage.style.opacity = '1';
-        }, 1000);
-    } else {
-        // 初始化博客页面
-        initBlogPage();
-        blogPage.style.opacity = '1';
-    }
-}
-
-function initBlogPage() {
-    // 初始化博客页面功能
-    const navItems = document.querySelectorAll('.nav-item');
-    const blogContainer = document.querySelector('.blog-container');
-    
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const target = parseInt(item.getAttribute('data-target'));
-            blogContainer.style.transform = `translateX(-${target * 33.333}%)`;
-            
-            // 更新活动状态
-            navItems.forEach(navItem => {
-                navItem.classList.remove('active');
-            });
-            item.classList.add('active');
-        });
-    });
-    
-    // 滚动控制功能
-    const scrollLeft = document.querySelector('.scroll-control.left');
-    const scrollRight = document.querySelector('.scroll-control.right');
-    let currentSection = 0;
-    
-    scrollLeft.addEventListener('click', () => {
-        currentSection = (currentSection - 1 + 3) % 3;
-        blogContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
-        updateNavActive(currentSection);
-    });
-    
-    scrollRight.addEventListener('click', () => {
-        currentSection = (currentSection + 1) % 3;
-        blogContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
-        updateNavActive(currentSection);
-    });
-    
-    function updateNavActive(sectionIndex) {
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (parseInt(item.getAttribute('data-target')) === sectionIndex) {
-                item.classList.add('active');
-            }
-        });
-    }
-    
-    // 侧边栏跟随滚动
-    const sidebar = document.querySelector('.sidebar');
-    const blogSections = document.querySelectorAll('.blog-section');
-    
-    blogSections.forEach(section => {
-        section.addEventListener('scroll', () => {
-            const scrollPosition = section.scrollTop;
-            sidebar.style.top = `calc(50% + ${scrollPosition}px)`;
-        });
-    });
-    
-    // 添加内容动画
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-    
-    document.querySelectorAll('.post, .gallery-item').forEach(item => {
-        observer.observe(item);
-    });
-    
-    // 添加Font Awesome图标库
-    const fontAwesome = document.createElement('link');
-    fontAwesome.rel = 'stylesheet';
-    fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-    document.head.appendChild(fontAwesome);
-    
-    // 添加Google字体
-    const googleFonts = document.createElement('link');
-    googleFonts.rel = 'stylesheet';
-    googleFonts.href = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap';
-    document.head.appendChild(googleFonts);
 }
