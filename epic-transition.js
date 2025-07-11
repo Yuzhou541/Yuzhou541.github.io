@@ -391,602 +391,545 @@ function transitionToBlogPage() {
     blogPage.style.width = '100%';
     blogPage.style.height = '100%';
     blogPage.style.zIndex = '1003';
-    blogPage.style.overflow = 'hidden';
+    blogPage.style.backgroundColor = '#f5f5f5';
+    blogPage.style.display = 'flex';
+    blogPage.style.justifyContent = 'center';
+    blogPage.style.alignItems = 'center';
+    blogPage.style.opacity = '0';
+    blogPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(blogPage);
     
-    // 添加背景图片
-    const background = document.createElement('div');
-    background.id = 'blog-background';
-    background.style.position = 'fixed';
-    background.style.top = '0';
-    background.style.left = '0';
-    background.style.width = '100%';
-    background.style.height = '100%';
-    background.style.backgroundImage = 'url("./background.png")';
-    background.style.backgroundSize = 'cover';
-    background.style.backgroundPosition = 'center';
-    background.style.backgroundAttachment = 'fixed';
-    background.style.zIndex = '-1';
-    blogPage.appendChild(background);
+    // 隐藏时钟控制按钮
+    const clockToggle = document.querySelector('.clock-toggle');
+    if (clockToggle) clockToggle.style.display = 'none';
     
-    // 添加博客容器
+    // 博客背景 - 使用提供的背景图片
+    const blogBackground = document.createElement('div');
+    blogBackground.id = 'blog-background';
+    blogBackground.style.position = 'fixed';
+    blogBackground.style.top = '0';
+    blogBackground.style.left = '0';
+    blogBackground.style.width = '100%';
+    blogBackground.style.height = '100%';
+    blogBackground.style.background = 'url("./assets/images/background.jpg") center/cover no-repeat';
+    blogBackground.style.zIndex = '-1';
+    blogBackground.style.filter = 'brightness(0.8)';
+    blogPage.appendChild(blogBackground);
+    
+    // 博客容器
     const blogContainer = document.createElement('div');
     blogContainer.id = 'blog-container';
     blogContainer.style.position = 'relative';
     blogContainer.style.width = '100%';
     blogContainer.style.height = '100%';
     blogContainer.style.overflow = 'hidden';
+    blogContainer.style.display = 'flex';
+    blogContainer.style.flexDirection = 'column';
     blogPage.appendChild(blogContainer);
     
-    // 添加导航栏
-    const navBar = document.createElement('div');
-    navBar.id = 'blog-nav';
-    navBar.style.position = 'fixed';
-    navBar.style.top = '0';
-    navBar.style.left = '0';
-    navBar.style.width = '100%';
-    navBar.style.height = '80px';
-    navBar.style.zIndex = '10';
-    navBar.style.display = 'flex';
-    navBar.style.justifyContent = 'center';
-    navBar.style.alignItems = 'center';
-    navBar.style.background = 'linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7))';
-    navBar.style.backdropFilter = 'blur(5px)';
-    navBar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-    blogContainer.appendChild(navBar);
+    // 导航栏
+    const navbar = document.createElement('div');
+    navbar.id = 'blog-navbar';
+    navbar.style.position = 'fixed';
+    navbar.style.top = '0';
+    navbar.style.left = '0';
+    navbar.style.width = '100%';
+    navbar.style.height = '100px';
+    navbar.style.zIndex = '10';
+    navbar.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))';
+    navbar.style.backdropFilter = 'blur(10px)';
+    navbar.style.display = 'flex';
+    navbar.style.flexDirection = 'column';
+    navbar.style.justifyContent = 'center';
+    navbar.style.alignItems = 'center';
+    navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    blogContainer.appendChild(navbar);
     
-    // 添加博客标题
+    // 博客标题
     const blogTitle = document.createElement('h1');
     blogTitle.id = 'blog-title';
     blogTitle.textContent = 'Personal Blog';
-    blogTitle.style.fontFamily = '"Allura", cursive, "Great Vibes", cursive';
+    blogTitle.style.fontFamily = '"Great Vibes", "Allura", cursive';
     blogTitle.style.fontSize = '2.5rem';
-    blogTitle.style.fontWeight = 'normal';
-    blogTitle.style.color = '#333';
+    blogTitle.style.color = '#fff';
+    blogTitle.style.textShadow = '0 0 10px rgba(0,0,0,0.5)';
     blogTitle.style.margin = '0';
-    blogTitle.style.textShadow = '1px 1px 3px rgba(0,0,0,0.1)';
-    navBar.appendChild(blogTitle);
+    blogTitle.style.letterSpacing = '2px';
+    navbar.appendChild(blogTitle);
     
-    // 添加页面导航
-    const pageNav = document.createElement('div');
-    pageNav.id = 'blog-page-nav';
-    pageNav.style.position = 'absolute';
-    pageNav.style.bottom = '0';
-    pageNav.style.left = '0';
-    pageNav.style.width = '100%';
-    pageNav.style.height = '50px';
-    pageNav.style.display = 'flex';
-    pageNav.style.justifyContent = 'center';
-    pageNav.style.alignItems = 'center';
-    pageNav.style.background = 'rgba(255,255,255,0.7)';
-    pageNav.style.borderTop = '1px solid rgba(0,0,0,0.1)';
-    navBar.appendChild(pageNav);
+    // 导航链接
+    const navLinks = document.createElement('div');
+    navLinks.id = 'blog-nav-links';
+    navLinks.style.display = 'flex';
+    navLinks.style.justifyContent = 'center';
+    navLinks.style.gap = '30px';
+    navLinks.style.marginTop = '15px';
+    navbar.appendChild(navLinks);
     
-    // 添加导航按钮
+    // 创建导航项
     const pages = ['Post', 'Favorite', 'Research'];
     pages.forEach((page, index) => {
-        const navItem = document.createElement('div');
-        navItem.className = 'blog-nav-item';
-        navItem.textContent = page;
-        navItem.style.padding = '0 20px';
-        navItem.style.fontFamily = '"Georgia", serif';
-        navItem.style.fontSize = '1.1rem';
-        navItem.style.color = '#555';
-        navItem.style.cursor = 'pointer';
-        navItem.style.transition = 'all 0.3s ease';
+        const link = document.createElement('a');
+        link.href = '#';
+        link.dataset.page = index;
+        link.textContent = page;
+        link.style.fontFamily = '"Cinzel", serif';
+        link.style.fontSize = '1.2rem';
+        link.style.color = '#fff';
+        link.style.textDecoration = 'none';
+        link.style.padding = '5px 15px';
+        link.style.borderRadius = '20px';
+        link.style.transition = 'all 0.3s ease';
         
+        // 添加分隔符（除了最后一个）
         if (index < pages.length - 1) {
             const separator = document.createElement('span');
-            separator.style.margin = '0 10px';
-            separator.style.color = '#ccc';
             separator.textContent = '✦';
-            pageNav.appendChild(separator);
+            separator.style.marginLeft = '10px';
+            separator.style.opacity = '0.5';
+            navLinks.appendChild(separator);
         }
         
-        pageNav.appendChild(navItem);
+        navLinks.appendChild(link);
     });
     
-    // 添加页面容器
+    // 右侧个人信息栏
+    const profileSidebar = document.createElement('div');
+    profileSidebar.id = 'blog-profile';
+    profileSidebar.style.position = 'fixed';
+    profileSidebar.style.top = '120px';
+    profileSidebar.style.right = '5%';
+    profileSidebar.style.width = 'calc(30% - 50px)';
+    profileSidebar.style.zIndex = '5';
+    profileSidebar.style.padding = '20px';
+    profileSidebar.style.background = 'rgba(255,255,255,0.1)';
+    profileSidebar.style.backdropFilter = 'blur(10px)';
+    profileSidebar.style.borderRadius = '15px';
+    profileSidebar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+    profileSidebar.style.display = 'flex';
+    profileSidebar.style.flexDirection = 'column';
+    profileSidebar.style.alignItems = 'center';
+    profileSidebar.style.transition = 'transform 0.3s ease';
+    blogContainer.appendChild(profileSidebar);
+    
+    // 头像
+    const profileAvatar = document.createElement('img');
+    profileAvatar.src = './avatar.jpg';
+    profileAvatar.alt = 'Profile Avatar';
+    profileAvatar.style.width = '100px';
+    profileAvatar.style.height = '100px';
+    profileAvatar.style.borderRadius = '50%';
+    profileAvatar.style.border = '3px solid rgba(255,255,255,0.5)';
+    profileAvatar.style.boxShadow = '0 0 15px rgba(0,0,0,0.3)';
+    profileAvatar.style.marginBottom = '20px';
+    profileSidebar.appendChild(profileAvatar);
+    
+    // 名字
+    const profileName = document.createElement('h2');
+    profileName.textContent = 'Stardust';
+    profileName.style.fontFamily = '"Cinzel", serif';
+    profileName.style.color = '#fff';
+    profileName.style.margin = '0 0 10px 0';
+    profileName.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';
+    profileSidebar.appendChild(profileName);
+    
+    // 座右铭
+    const profileSlogan = document.createElement('p');
+    profileSlogan.textContent = 'Turn this imperfect story into the way we hope it to be.';
+    profileSlogan.style.fontFamily = '"Georgia", serif';
+    profileSlogan.style.fontStyle = 'italic';
+    profileSlogan.style.color = '#fff';
+    profileSlogan.style.textAlign = 'center';
+    profileSlogan.style.margin = '0';
+    profileSlogan.style.textShadow = '0 0 3px rgba(0,0,0,0.5)';
+    profileSidebar.appendChild(profileSlogan);
+    
+    // 页面容器
     const pagesContainer = document.createElement('div');
     pagesContainer.id = 'blog-pages';
     pagesContainer.style.position = 'absolute';
-    pagesContainer.style.top = '80px';
+    pagesContainer.style.top = '100px';
     pagesContainer.style.left = '0';
     pagesContainer.style.width = '300%';
-    pagesContainer.style.height = 'calc(100% - 80px)';
+    pagesContainer.style.height = 'calc(100% - 100px)';
     pagesContainer.style.display = 'flex';
     pagesContainer.style.transition = 'transform 0.5s ease-in-out';
     blogContainer.appendChild(pagesContainer);
     
-    // 添加三个页面
+    // 创建三个页面
     pages.forEach((page, index) => {
-        const pageElement = document.createElement('div');
-        pageElement.className = 'blog-page';
-        pageElement.id = `blog-${page.toLowerCase()}`;
-        pageElement.style.width = '33.333%';
-        pageElement.style.height = '100%';
-        pageElement.style.padding = '20px';
-        pageElement.style.boxSizing = 'border-box';
-        pageElement.style.overflowY = 'auto';
+        const pageSection = document.createElement('div');
+        pageSection.className = 'blog-page';
+        pageSection.dataset.page = index;
+        pageSection.style.width = '33.3333%';
+        pageSection.style.height = '100%';
+        pageSection.style.padding = '120px 5% 50px 5%';
+        pageSection.style.overflowY = 'auto';
+        pageSection.style.boxSizing = 'border-box';
         
-        // 添加页面内容
+        // 添加渐变背景
+        const gradientColors = [
+            'linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,240,255,0.9))',
+            'linear-gradient(135deg, rgba(255,255,240,0.9), rgba(255,240,240,0.9))',
+            'linear-gradient(135deg, rgba(240,255,255,0.9), rgba(240,240,255,0.9))'
+        ];
+        pageSection.style.background = gradientColors[index];
+        pageSection.style.borderRadius = '20px';
+        pageSection.style.boxShadow = '0 0 30px rgba(0,0,0,0.1)';
+        pageSection.style.margin = '0 2.5%';
+        
+        // 页面标题
+        const pageTitle = document.createElement('h2');
+        pageTitle.textContent = page;
+        pageTitle.style.fontFamily = '"Cinzel", serif';
+        pageTitle.style.color = '#333';
+        pageTitle.style.borderBottom = '2px solid #ddd';
+        pageTitle.style.paddingBottom = '10px';
+        pageTitle.style.marginBottom = '30px';
+        pageSection.appendChild(pageTitle);
+        
+        // 根据页面类型添加内容
         if (page === 'Post') {
-            // Posts页面
-            pageElement.style.display = 'flex';
-            pageElement.style.flexDirection = 'column';
-            pageElement.style.alignItems = 'center';
-            
-            // 示例文章
-            const posts = [
-                {
-                    title: 'The Beauty of Mathematics',
-                    date: '2023-10-15',
-                    content: 'Mathematics, rightly viewed, possesses not only truth but supreme beauty—a beauty cold and austere, like that of sculpture...',
-                    link: '#'
-                },
-                {
-                    title: 'Exploring the Universe',
-                    date: '2023-09-28',
-                    content: 'The cosmos is all that is or ever was or ever will be. Our feeblest contemplations of the Cosmos stir us...',
-                    link: '#'
-                },
-                {
-                    title: 'Artificial Intelligence Ethics',
-                    date: '2023-08-12',
-                    content: 'The development of full artificial intelligence could spell the end of the human race. It would take off on its own...',
-                    link: '#'
-                }
-            ];
-            
-            posts.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.className = 'blog-post';
-                postElement.style.width = 'calc(66.666% - 40px)';
-                postElement.style.margin = '20px';
-                postElement.style.padding = '25px';
-                postElement.style.background = 'rgba(255,255,255,0.85)';
-                postElement.style.borderRadius = '15px';
-                postElement.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-                
-                // 文章标题和日期
-                const postHeader = document.createElement('div');
-                postHeader.style.display = 'flex';
-                postHeader.style.justifyContent = 'space-between';
-                postHeader.style.marginBottom = '15px';
-                postHeader.style.paddingBottom = '10px';
-                postHeader.style.borderBottom = '1px solid rgba(0,0,0,0.1)';
-                
-                const postTitle = document.createElement('h3');
-                postTitle.textContent = post.title;
-                postTitle.style.margin = '0';
-                postTitle.style.fontFamily = '"Georgia", serif';
-                postTitle.style.color = '#333';
-                
-                const postDate = document.createElement('span');
-                postDate.textContent = post.date;
-                postDate.style.fontFamily = '"Arial", sans-serif';
-                postDate.style.color = '#777';
-                postDate.style.fontSize = '0.9rem';
-                
-                postHeader.appendChild(postTitle);
-                postHeader.appendChild(postDate);
-                postElement.appendChild(postHeader);
-                
-                // 文章内容
-                const postContent = document.createElement('p');
-                postContent.textContent = post.content;
-                postContent.style.fontFamily = '"Georgia", serif';
-                postContent.style.color = '#555';
-                postContent.style.lineHeight = '1.6';
-                postContent.style.marginBottom = '20px';
-                postElement.appendChild(postContent);
-                
-                // 阅读更多按钮
-                const readMore = document.createElement('a');
-                readMore.textContent = 'Read more →';
-                readMore.href = post.link;
-                readMore.style.fontFamily = '"Arial", sans-serif';
-                readMore.style.color = '#3498db';
-                readMore.style.textDecoration = 'none';
-                readMore.style.fontWeight = 'bold';
-                readMore.style.transition = 'color 0.3s ease';
-                readMore.addEventListener('mouseenter', () => {
-                    readMore.style.color = '#2980b9';
-                });
-                readMore.addEventListener('mouseleave', () => {
-                    readMore.style.color = '#3498db';
-                });
-                postElement.appendChild(readMore);
-                
-                pageElement.appendChild(postElement);
-            });
+            // 添加博客文章
+            for (let i = 1; i <= 5; i++) {
+                const post = createBlogPost(i);
+                pageSection.appendChild(post);
+            }
         } else if (page === 'Favorite') {
-            // Favorites页面
-            pageElement.style.display = 'flex';
-            pageElement.style.flexWrap = 'wrap';
-            pageElement.style.justifyContent = 'center';
-            pageElement.style.alignContent = 'flex-start';
-            
-            // 示例收藏项
-            const favorites = [
-                {
-                    type: 'image',
-                    title: 'Starry Night',
-                    content: 'A beautiful night sky full of stars',
-                    image: 'https://example.com/starry-night.jpg',
-                    link: '#'
-                },
-                {
-                    type: 'quote',
-                    title: 'Einstein Quote',
-                    content: 'Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.',
-                    author: 'Albert Einstein',
-                    link: '#'
-                },
-                {
-                    type: 'image',
-                    title: 'Mountain View',
-                    content: 'Majestic mountains at sunrise',
-                    image: 'https://example.com/mountain-view.jpg',
-                    link: '#'
-                }
-            ];
-            
-            favorites.forEach((fav, i) => {
-                const favElement = document.createElement('div');
-                favElement.className = 'blog-favorite';
-                favElement.style.width = 'calc(50% - 40px)';
-                favElement.style.margin = '20px';
-                favElement.style.background = 'rgba(255,255,255,0.85)';
-                favElement.style.borderRadius = '15px';
-                favElement.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-                favElement.style.overflow = 'hidden';
-                favElement.style.position = 'relative';
-                
-                if (fav.type === 'image') {
-                    const imgContainer = document.createElement('div');
-                    imgContainer.style.height = '200px';
-                    imgContainer.style.overflow = 'hidden';
-                    imgContainer.style.position = 'relative';
-                    
-                    const img = document.createElement('div');
-                    img.style.height = '100%';
-                    img.style.backgroundImage = `url(${fav.image})`;
-                    img.style.backgroundSize = 'cover';
-                    img.style.backgroundPosition = 'center';
-                    img.style.filter = 'blur(2px)';
-                    img.style.transition = 'filter 0.3s ease';
-                    
-                    const overlay = document.createElement('div');
-                    overlay.style.position = 'absolute';
-                    overlay.style.top = '0';
-                    overlay.style.left = '0';
-                    overlay.style.width = '100%';
-                    overlay.style.height = '100%';
-                    overlay.style.background = 'rgba(0,0,0,0.3)';
-                    overlay.style.display = 'flex';
-                    overlay.style.justifyContent = 'center';
-                    overlay.style.alignItems = 'center';
-                    overlay.style.color = 'white';
-                    overlay.style.fontFamily = '"Georgia", serif';
-                    overlay.style.fontSize = '1.5rem';
-                    overlay.style.textShadow = '1px 1px 3px rgba(0,0,0,0.5)';
-                    overlay.textContent = fav.title;
-                    
-                    imgContainer.appendChild(img);
-                    imgContainer.appendChild(overlay);
-                    favElement.appendChild(imgContainer);
-                    
-                    // 悬停效果
-                    favElement.addEventListener('mouseenter', () => {
-                        img.style.filter = 'none';
-                    });
-                    favElement.addEventListener('mouseleave', () => {
-                        img.style.filter = 'blur(2px)';
-                    });
-                } else {
-                    const quoteContainer = document.createElement('div');
-                    quoteContainer.style.padding = '25px';
-                    quoteContainer.style.fontFamily = '"Georgia", serif';
-                    quoteContainer.style.color = '#555';
-                    quoteContainer.style.lineHeight = '1.6';
-                    
-                    const quoteContent = document.createElement('blockquote');
-                    quoteContent.textContent = fav.content;
-                    quoteContent.style.fontSize = '1.1rem';
-                    quoteContent.style.fontStyle = 'italic';
-                    quoteContent.style.margin = '0 0 15px 0';
-                    
-                    const quoteAuthor = document.createElement('p');
-                    quoteAuthor.textContent = `— ${fav.author}`;
-                    quoteAuthor.style.textAlign = 'right';
-                    quoteAuthor.style.fontSize = '0.9rem';
-                    quoteAuthor.style.color = '#777';
-                    
-                    quoteContainer.appendChild(quoteContent);
-                    quoteContainer.appendChild(quoteAuthor);
-                    favElement.appendChild(quoteContainer);
-                }
-                
-                // 查看按钮
-                const viewBtn = document.createElement('a');
-                viewBtn.textContent = 'View';
-                viewBtn.href = fav.link;
-                viewBtn.style.position = 'absolute';
-                viewBtn.style.bottom = '15px';
-                viewBtn.style.right = '15px';
-                viewBtn.style.padding = '8px 15px';
-                viewBtn.style.background = '#3498db';
-                viewBtn.style.color = 'white';
-                viewBtn.style.borderRadius = '20px';
-                viewBtn.style.fontFamily = '"Arial", sans-serif';
-                viewBtn.style.fontSize = '0.9rem';
-                viewBtn.style.textDecoration = 'none';
-                viewBtn.style.transition = 'all 0.3s ease';
-                viewBtn.addEventListener('mouseenter', () => {
-                    viewBtn.style.background = '#2980b9';
-                    viewBtn.style.transform = 'translateY(-2px)';
-                });
-                viewBtn.addEventListener('mouseleave', () => {
-                    viewBtn.style.background = '#3498db';
-                    viewBtn.style.transform = 'none';
-                });
-                
-                // 如果是图片，添加下载按钮
-                if (fav.type === 'image') {
-                    const downloadBtn = document.createElement('a');
-                    downloadBtn.textContent = 'Download';
-                    downloadBtn.href = fav.image;
-                    downloadBtn.download = fav.title.toLowerCase().replace(/\s+/g, '-') + '.jpg';
-                    downloadBtn.style.position = 'absolute';
-                    downloadBtn.style.bottom = '15px';
-                    downloadBtn.style.left = '15px';
-                    downloadBtn.style.padding = '8px 15px';
-                    downloadBtn.style.background = '#2ecc71';
-                    downloadBtn.style.color = 'white';
-                    downloadBtn.style.borderRadius = '20px';
-                    downloadBtn.style.fontFamily = '"Arial", sans-serif';
-                    downloadBtn.style.fontSize = '0.9rem';
-                    downloadBtn.style.textDecoration = 'none';
-                    downloadBtn.style.transition = 'all 0.3s ease';
-                    downloadBtn.addEventListener('mouseenter', () => {
-                        downloadBtn.style.background = '#27ae60';
-                        downloadBtn.style.transform = 'translateY(-2px)';
-                    });
-                    downloadBtn.addEventListener('mouseleave', () => {
-                        downloadBtn.style.background = '#2ecc71';
-                        downloadBtn.style.transform = 'none';
-                    });
-                    favElement.appendChild(downloadBtn);
-                }
-                
-                favElement.appendChild(viewBtn);
-                pageElement.appendChild(favElement);
-            });
-        } else {
-            // Research页面
-            pageElement.style.display = 'flex';
-            pageElement.style.justifyContent = 'center';
-            pageElement.style.alignItems = 'center';
-            
-            const placeholder = document.createElement('div');
-            placeholder.style.textAlign = 'center';
-            placeholder.style.fontFamily = '"Georgia", serif';
-            placeholder.style.color = '#555';
-            placeholder.style.fontSize = '1.2rem';
-            placeholder.textContent = 'Research content will be added here in the future.';
-            pageElement.appendChild(placeholder);
+            // 添加收藏项目
+            for (let i = 1; i <= 6; i++) {
+                const favorite = createFavoriteItem(i);
+                pageSection.appendChild(favorite);
+            }
+        } else if (page === 'Research') {
+            // 研究页面留白
+            const researchContent = document.createElement('div');
+            researchContent.innerHTML = `
+                <div style="text-align: center; padding: 50px;">
+                    <h3 style="font-family: 'Cinzel', serif; color: #555;">Research Section</h3>
+                    <p style="font-family: 'Georgia', serif; color: #777;">
+                        This section is currently under development. Check back soon for updates.
+                    </p>
+                </div>
+            `;
+            pageSection.appendChild(researchContent);
         }
         
-        pagesContainer.appendChild(pageElement);
+        pagesContainer.appendChild(pageSection);
     });
     
-    // 添加侧边栏
-    const sidebar = document.createElement('div');
-    sidebar.id = 'blog-sidebar';
-    sidebar.style.position = 'fixed';
-    sidebar.style.top = '80px';
-    sidebar.style.right = '5%'; // 右边留1/20
-    sidebar.style.width = 'calc(33.333% - 10%)'; // 右边1/3减去留白
-    sidebar.style.height = 'calc(100% - 80px)';
-    sidebar.style.padding = '20px';
-    sidebar.style.boxSizing = 'border-box';
-    sidebar.style.overflowY = 'auto';
-    blogContainer.appendChild(sidebar);
-    
-    // 添加头像和名字
-    const avatarContainer = document.createElement('div');
-    avatarContainer.style.textAlign = 'center';
-    avatarContainer.style.marginBottom = '30px';
-    
-    const sidebarAvatar = document.createElement('div');
-    sidebarAvatar.style.width = '120px';
-    sidebarAvatar.style.height = '120px';
-    sidebarAvatar.style.margin = '0 auto 15px';
-    sidebarAvatar.style.borderRadius = '50%';
-    sidebarAvatar.style.overflow = 'hidden';
-    sidebarAvatar.style.border = '3px solid rgba(255,255,255,0.8)';
-    sidebarAvatar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-    
-    const avatarImg = document.createElement('img');
-    avatarImg.src = './avatar.jpg';
-    avatarImg.style.width = '100%';
-    avatarImg.style.height = '100%';
-    avatarImg.style.objectFit = 'cover';
-    sidebarAvatar.appendChild(avatarImg);
-    
-    const sidebarName = document.createElement('h2');
-    sidebarName.textContent = 'Stardust';
-    sidebarName.style.fontFamily = '"Great Vibes", cursive';
-    sidebarName.style.fontSize = '1.8rem';
-    sidebarName.style.color = '#333';
-    sidebarName.style.margin = '0';
-    
-    avatarContainer.appendChild(sidebarAvatar);
-    avatarContainer.appendChild(sidebarName);
-    sidebar.appendChild(avatarContainer);
-    
-    // 添加座右铭
-    const motto = document.createElement('div');
-    motto.style.fontFamily = '"Georgia", serif';
-    motto.style.fontStyle = 'italic';
-    motto.style.color = '#555';
-    motto.style.textAlign = 'center';
-    motto.style.lineHeight = '1.6';
-    motto.textContent = 'Turn this imperfect story into the way we hope it to be.';
-    sidebar.appendChild(motto);
-    
-    // 添加导航按钮
+    // 创建左右导航按钮
     const leftNav = document.createElement('div');
     leftNav.id = 'blog-nav-left';
+    leftNav.className = 'blog-nav-button';
+    leftNav.innerHTML = '<i class="fas fa-chevron-left"></i>';
     leftNav.style.position = 'fixed';
     leftNav.style.left = '0';
     leftNav.style.top = '50%';
     leftNav.style.transform = 'translateY(-50%)';
-    leftNav.style.width = '50px';
-    leftNav.style.height = '50px';
-    leftNav.style.background = 'rgba(255,255,255,0.7)';
-    leftNav.style.borderRadius = '50%';
-    leftNav.style.display = 'flex';
-    leftNav.style.justifyContent = 'center';
-    leftNav.style.alignItems = 'center';
-    leftNav.style.cursor = 'pointer';
     leftNav.style.opacity = '0';
-    leftNav.style.transition = 'all 0.3s ease';
-    leftNav.style.zIndex = '5';
-    leftNav.innerHTML = '<i class="fas fa-chevron-left" style="font-size: 1.2rem; color: #555;"></i>';
+    leftNav.style.transition = 'opacity 0.3s ease';
     blogContainer.appendChild(leftNav);
     
     const rightNav = document.createElement('div');
     rightNav.id = 'blog-nav-right';
+    rightNav.className = 'blog-nav-button';
+    rightNav.innerHTML = '<i class="fas fa-chevron-right"></i>';
     rightNav.style.position = 'fixed';
     rightNav.style.right = '0';
     rightNav.style.top = '50%';
     rightNav.style.transform = 'translateY(-50%)';
-    rightNav.style.width = '50px';
-    rightNav.style.height = '50px';
-    rightNav.style.background = 'rgba(255,255,255,0.7)';
-    rightNav.style.borderRadius = '50%';
-    rightNav.style.display = 'flex';
-    rightNav.style.justifyContent = 'center';
-    rightNav.style.alignItems = 'center';
-    rightNav.style.cursor = 'pointer';
     rightNav.style.opacity = '0';
-    rightNav.style.transition = 'all 0.3s ease';
-    rightNav.style.zIndex = '5';
-    rightNav.innerHTML = '<i class="fas fa-chevron-right" style="font-size: 1.2rem; color: #555;"></i>';
+    rightNav.style.transition = 'opacity 0.3s ease';
     blogContainer.appendChild(rightNav);
     
-    // 添加导航按钮悬停效果
-    leftNav.addEventListener('mouseenter', () => {
-        leftNav.style.background = 'rgba(255,255,255,0.9)';
-        leftNav.style.transform = 'translateY(-50%) scale(1.1)';
-    });
-    leftNav.addEventListener('mouseleave', () => {
-        leftNav.style.background = 'rgba(255,255,255,0.7)';
-        leftNav.style.transform = 'translateY(-50%)';
+    // 添加导航按钮样式
+    const navStyle = document.createElement('style');
+    navStyle.textContent = `
+        .blog-nav-button {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            z-index: 20;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-nav-button:hover {
+            background: rgba(255,255,255,0.9);
+            transform: scale(1.1);
+        }
+    `;
+    blogContainer.appendChild(navStyle);
+    
+    // 当前页面索引
+    let currentPageIndex = 0;
+    
+    // 导航按钮事件
+    leftNav.addEventListener('click', () => {
+        if (currentPageIndex > 0) {
+            currentPageIndex--;
+            navigateToPage(currentPageIndex);
+        }
     });
     
-    rightNav.addEventListener('mouseenter', () => {
-        rightNav.style.background = 'rgba(255,255,255,0.9)';
-        rightNav.style.transform = 'translateY(-50%) scale(1.1)';
-    });
-    rightNav.addEventListener('mouseleave', () => {
-        rightNav.style.background = 'rgba(255,255,255,0.7)';
-        rightNav.style.transform = 'translateY(-50%)';
+    rightNav.addEventListener('click', () => {
+        if (currentPageIndex < pages.length - 1) {
+            currentPageIndex++;
+            navigateToPage(currentPageIndex);
+        }
     });
     
-    // 添加导航按钮显示/隐藏逻辑
+    // 导航链接事件
+    const navLinksElements = navLinks.querySelectorAll('a');
+    navLinksElements.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentPageIndex = parseInt(link.dataset.page);
+            navigateToPage(currentPageIndex);
+        });
+    });
+    
+    // 导航到指定页面
+    function navigateToPage(index) {
+        pagesContainer.style.transform = `translateX(-${index * 33.3333}%)`;
+        
+        // 更新导航链接高亮
+        navLinksElements.forEach((link, i) => {
+            if (i === index) {
+                link.style.background = 'rgba(255,255,255,0.3)';
+                link.style.fontWeight = 'bold';
+            } else {
+                link.style.background = 'transparent';
+                link.style.fontWeight = 'normal';
+            }
+        });
+    }
+    
+    // 初始导航状态
+    navigateToPage(0);
+    
+    // 鼠标进入左右区域时显示导航按钮
     blogContainer.addEventListener('mousemove', (e) => {
-        const containerWidth = blogContainer.offsetWidth;
+        const containerWidth = blogContainer.clientWidth;
         const mouseX = e.clientX;
         
-        // 左侧1/8区域
+        // 显示/隐藏左侧按钮
         if (mouseX < containerWidth / 8) {
             leftNav.style.opacity = '1';
         } else {
             leftNav.style.opacity = '0';
         }
         
-        // 右侧1/8区域
-        if (mouseX > containerWidth * 7 / 8) {
+        // 显示/隐藏右侧按钮
+        if (mouseX > containerWidth * 7/8) {
             rightNav.style.opacity = '1';
         } else {
             rightNav.style.opacity = '0';
         }
     });
     
-    // 添加导航功能
-    let currentPageIndex = 0;
-    const pageCount = pages.length;
-    
-    leftNav.addEventListener('click', () => {
-        if (currentPageIndex > 0) {
-            currentPageIndex--;
-            updatePagePosition();
-            updateNavHighlight();
-        }
+    // 鼠标离开容器时隐藏按钮
+    blogContainer.addEventListener('mouseleave', () => {
+        leftNav.style.opacity = '0';
+        rightNav.style.opacity = '0';
     });
     
-    rightNav.addEventListener('click', () => {
-        if (currentPageIndex < pageCount - 1) {
-            currentPageIndex++;
-            updatePagePosition();
-            updateNavHighlight();
-        }
+    // 添加滚动效果到个人信息栏
+    blogContainer.addEventListener('scroll', () => {
+        const scrollPosition = blogContainer.scrollTop;
+        profileSidebar.style.transform = `translateY(${scrollPosition}px)`;
     });
     
-    // 添加页面导航点击功能
-    const navItems = document.querySelectorAll('.blog-nav-item');
-    navItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            currentPageIndex = index;
-            updatePagePosition();
-            updateNavHighlight();
-        });
-    });
-    
-    function updatePagePosition() {
-        const translateX = -currentPageIndex * 33.333;
-        pagesContainer.style.transform = `translateX(${translateX}%)`;
-    }
-    
-    function updateNavHighlight() {
-        navItems.forEach((item, index) => {
-            if (index === currentPageIndex) {
-                item.style.color = '#3498db';
-                item.style.fontWeight = 'bold';
-            } else {
-                item.style.color = '#555';
-                item.style.fontWeight = 'normal';
-            }
-        });
-    }
-    
-    // 初始化高亮
-    updateNavHighlight();
-    
-    // 添加滚动时侧边栏固定效果
-    const mainContent = document.querySelectorAll('.blog-page');
-    mainContent.forEach(content => {
-        content.addEventListener('scroll', () => {
-            const scrollTop = content.scrollTop;
-            sidebar.style.transform = `translateY(${-scrollTop}px)`;
-        });
-    });
-    
-    // 显示博客页面
-    blogPage.style.opacity = '1';
-    
-    const epicPage = document.getElementById('epic-scroll-page');
-    const flameOverlay = document.getElementById('flame-overlay');
-    
-    if (epicPage) {
-        epicPage.style.opacity = '0';
+    // 渐入效果
+    setTimeout(() => {
+        blogPage.style.opacity = '1';
         
-        setTimeout(() => {
-            epicPage.remove();
-            if (flameOverlay) flameOverlay.remove();
-        }, 1000);
-    }
+        const epicPage = document.getElementById('epic-scroll-page');
+        const flameOverlay = document.getElementById('flame-overlay');
+        
+        if (epicPage) {
+            epicPage.style.opacity = '0';
+            
+            setTimeout(() => {
+                epicPage.remove();
+                if (flameOverlay) flameOverlay.remove();
+            }, 1000);
+        }
+    }, 100);
+}
+
+// 创建博客文章函数
+function createBlogPost(index) {
+    const post = document.createElement('div');
+    post.className = 'blog-post';
+    post.style.background = 'rgba(255,255,255,0.7)';
+    post.style.borderRadius = '15px';
+    post.style.padding = '20px';
+    post.style.marginBottom = '30px';
+    post.style.boxShadow = '0 3px 10px rgba(0,0,0,0.1)';
+    post.style.transition = 'transform 0.3s ease';
+    
+    // 悬停效果
+    post.addEventListener('mouseenter', () => {
+        post.style.transform = 'translateY(-5px)';
+    });
+    
+    post.addEventListener('mouseleave', () => {
+        post.style.transform = 'none';
+    });
+    
+    // 标题行
+    const titleRow = document.createElement('div');
+    titleRow.style.display = 'flex';
+    titleRow.style.justifyContent = 'space-between';
+    titleRow.style.alignItems = 'center';
+    titleRow.style.marginBottom = '15px';
+    
+    const postTitle = document.createElement('h3');
+    postTitle.textContent = `Exploring Mathematical Concepts ${index}`;
+    postTitle.style.fontFamily = '"Cinzel", serif';
+    postTitle.style.color = '#333';
+    postTitle.style.margin = '0';
+    
+    const postDate = document.createElement('span');
+    postDate.textContent = `2025-0${index}-1${index}`;
+    postDate.style.fontFamily = '"Georgia", serif';
+    postDate.style.color = '#666';
+    postDate.style.fontSize = '0.9rem';
+    
+    titleRow.appendChild(postTitle);
+    titleRow.appendChild(postDate);
+    post.appendChild(titleRow);
+    
+    // 内容
+    const content = document.createElement('p');
+    content.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+    content.style.fontFamily = '"Georgia", serif';
+    content.style.color = '#444';
+    content.style.lineHeight = '1.6';
+    content.style.marginBottom = '20px';
+    post.appendChild(content);
+    
+    // 阅读更多按钮
+    const readMore = document.createElement('a');
+    readMore.href = '#';
+    readMore.textContent = 'Read more →';
+    readMore.style.fontFamily = '"Cinzel", serif';
+    readMore.style.color = '#2c3e50';
+    readMore.style.textDecoration = 'none';
+    readMore.style.display = 'inline-block';
+    readMore.style.padding = '8px 15px';
+    readMore.style.background = 'rgba(52, 152, 219, 0.1)';
+    readMore.style.borderRadius = '20px';
+    readMore.style.transition = 'all 0.3s ease';
+    
+    readMore.addEventListener('mouseenter', () => {
+        readMore.style.background = 'rgba(52, 152, 219, 0.2)';
+        readMore.style.transform = 'translateX(5px)';
+    });
+    
+    readMore.addEventListener('mouseleave', () => {
+        readMore.style.background = 'rgba(52, 152, 219, 0.1)';
+        readMore.style.transform = 'none';
+    });
+    
+    post.appendChild(readMore);
+    
+    return post;
+}
+
+// 创建收藏项目函数
+function createFavoriteItem(index) {
+    const item = document.createElement('div');
+    item.className = 'favorite-item';
+    item.style.position = 'relative';
+    item.style.background = 'rgba(255,255,255,0.7)';
+    item.style.borderRadius = '15px';
+    item.style.padding = '20px';
+    item.style.marginBottom = '30px';
+    item.style.boxShadow = '0 3px 10px rgba(0,0,0,0.1)';
+    item.style.overflow = 'hidden';
+    item.style.transition = 'transform 0.3s ease';
+    
+    // 悬停效果
+    item.addEventListener('mouseenter', () => {
+        item.style.transform = 'translateY(-5px)';
+    });
+    
+    item.addEventListener('mouseleave', () => {
+        item.style.transform = 'none';
+    });
+    
+    // 标题
+    const title = document.createElement('h3');
+    title.textContent = `Inspirational Quote ${index}`;
+    title.style.fontFamily = '"Cinzel", serif';
+    title.style.color = '#333';
+    title.style.margin = '0 0 15px 0';
+    item.appendChild(title);
+    
+    // 内容
+    const content = document.createElement('div');
+    content.style.position = 'relative';
+    content.style.height = '150px';
+    content.style.overflow = 'hidden';
+    
+    const quote = document.createElement('p');
+    quote.textContent = 'Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding. - William Paul Thurston';
+    quote.style.fontFamily = '"Georgia", serif';
+    quote.style.color = '#444';
+    quote.style.lineHeight = '1.6';
+    quote.style.margin = '0';
+    content.appendChild(quote);
+    
+    // 模糊覆盖层
+    const blurOverlay = document.createElement('div');
+    blurOverlay.style.position = 'absolute';
+    blurOverlay.style.bottom = '0';
+    blurOverlay.style.left = '0';
+    blurOverlay.style.width = '100%';
+    blurOverlay.style.height = '30px';
+    blurOverlay.style.background = 'linear-gradient(to top, rgba(255,255,255,0.9), transparent)';
+    blurOverlay.style.backdropFilter = 'blur(2px)';
+    content.appendChild(blurOverlay);
+    
+    item.appendChild(content);
+    
+    // 查看按钮
+    const viewBtn = document.createElement('a');
+    viewBtn.href = '#';
+    viewBtn.textContent = 'View';
+    viewBtn.style.position = 'absolute';
+    viewBtn.style.right = '20px';
+    viewBtn.style.bottom = '20px';
+    viewBtn.style.fontFamily = '"Cinzel", serif';
+    viewBtn.style.color = '#fff';
+    viewBtn.style.textDecoration = 'none';
+    viewBtn.style.padding = '8px 15px';
+    viewBtn.style.background = 'rgba(106, 48, 147, 0.8)';
+    viewBtn.style.borderRadius = '20px';
+    viewBtn.style.transition = 'all 0.3s ease';
+    viewBtn.style.zIndex = '2';
+    
+    viewBtn.addEventListener('mouseenter', () => {
+        viewBtn.style.background = 'rgba(106, 48, 147, 1)';
+        viewBtn.style.transform = 'scale(1.05)';
+    });
+    
+    viewBtn.addEventListener('mouseleave', () => {
+        viewBtn.style.background = 'rgba(106, 48, 147, 0.8)';
+        viewBtn.style.transform = 'none';
+    });
+    
+    item.appendChild(viewBtn);
+    
+    return item;
 }
