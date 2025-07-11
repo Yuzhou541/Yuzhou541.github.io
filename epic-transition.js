@@ -509,8 +509,18 @@ function transitionToBlogPage() {
     profileSidebar.style.display = 'flex';
     profileSidebar.style.flexDirection = 'column';
     profileSidebar.style.alignItems = 'center';
-    profileSidebar.style.transition = 'transform 0.3s ease';
+    profileSidebar.style.transition = 'transform 0.3s ease, width 0.5s ease, height 0.5s ease';
     blogContainer.appendChild(profileSidebar);
+    
+    // 头像容器 - 添加点击事件
+    const avatarContainer = document.createElement('div');
+    avatarContainer.id = 'avatar-container';
+    avatarContainer.style.cursor = 'pointer';
+    avatarContainer.style.display = 'flex';
+    avatarContainer.style.flexDirection = 'column';
+    avatarContainer.style.alignItems = 'center';
+    avatarContainer.style.transition = 'all 0.5s ease';
+    profileSidebar.appendChild(avatarContainer);
     
     // 头像
     const profileAvatar = document.createElement('img');
@@ -522,19 +532,23 @@ function transitionToBlogPage() {
     profileAvatar.style.border = '3px solid rgba(255,255,255,0.5)';
     profileAvatar.style.boxShadow = '0 0 15px rgba(0,0,0,0.3)';
     profileAvatar.style.marginBottom = '20px';
-    profileSidebar.appendChild(profileAvatar);
+    profileAvatar.style.transition = 'all 0.5s ease';
+    avatarContainer.appendChild(profileAvatar);
     
     // 名字
     const profileName = document.createElement('h2');
+    profileName.id = 'profile-name';
     profileName.textContent = 'Stardust';
     profileName.style.fontFamily = '"Cinzel", serif';
     profileName.style.color = '#fff';
     profileName.style.margin = '0 0 10px 0';
     profileName.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';
-    profileSidebar.appendChild(profileName);
+    profileName.style.transition = 'all 0.5s ease';
+    avatarContainer.appendChild(profileName);
     
     // 座右铭
     const profileSlogan = document.createElement('p');
+    profileSlogan.id = 'profile-slogan';
     profileSlogan.textContent = 'Turn this imperfect story into the way we hope it to be.';
     profileSlogan.style.fontFamily = '"Georgia", serif';
     profileSlogan.style.fontStyle = 'italic';
@@ -542,7 +556,27 @@ function transitionToBlogPage() {
     profileSlogan.style.textAlign = 'center';
     profileSlogan.style.margin = '0';
     profileSlogan.style.textShadow = '0 0 3px rgba(0,0,0,0.5)';
-    profileSidebar.appendChild(profileSlogan);
+    profileSlogan.style.transition = 'all 0.5s ease';
+    avatarContainer.appendChild(profileSlogan);
+    
+    // 展开/收起状态指示器
+    const toggleIndicator = document.createElement('div');
+    toggleIndicator.id = 'toggle-indicator';
+    toggleIndicator.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    toggleIndicator.style.position = 'absolute';
+    toggleIndicator.style.bottom = '10px';
+    toggleIndicator.style.right = '10px';
+    toggleIndicator.style.width = '25px';
+    toggleIndicator.style.height = '25px';
+    toggleIndicator.style.background = 'rgba(255,255,255,0.3)';
+    toggleIndicator.style.borderRadius = '50%';
+    toggleIndicator.style.display = 'flex';
+    toggleIndicator.style.justifyContent = 'center';
+    toggleIndicator.style.alignItems = 'center';
+    toggleIndicator.style.fontSize = '0.8rem';
+    toggleIndicator.style.color = '#fff';
+    toggleIndicator.style.transition = 'all 0.5s ease';
+    profileSidebar.appendChild(toggleIndicator);
     
     // 页面容器
     const pagesContainer = document.createElement('div');
@@ -747,6 +781,74 @@ function transitionToBlogPage() {
         const scrollPosition = blogContainer.scrollTop;
         profileSidebar.style.transform = `translateY(${scrollPosition}px)`;
     });
+    
+    // 头像点击事件 - 展开/收起个人信息
+    let isProfileCollapsed = false;
+    
+    profileAvatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleProfile();
+    });
+    
+    profileSidebar.addEventListener('click', () => {
+        if (isProfileCollapsed) {
+            toggleProfile();
+        }
+    });
+    
+    function toggleProfile() {
+        isProfileCollapsed = !isProfileCollapsed;
+        
+        if (isProfileCollapsed) {
+            // 收起状态
+            profileSidebar.style.width = '100px';
+            profileSidebar.style.height = '100px';
+            profileSidebar.style.padding = '10px';
+            
+            profileAvatar.style.width = '80px';
+            profileAvatar.style.height = '80px';
+            profileAvatar.style.marginBottom = '0';
+            
+            profileName.style.opacity = '0';
+            profileName.style.height = '0';
+            profileName.style.margin = '0';
+            
+            profileSlogan.style.opacity = '0';
+            profileSlogan.style.height = '0';
+            profileSlogan.style.margin = '0';
+            
+            toggleIndicator.innerHTML = '<i class="fas fa-chevron-down"></i>';
+            toggleIndicator.style.bottom = '5px';
+            toggleIndicator.style.right = '5px';
+            
+            // 添加收起动画
+            profileSidebar.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+        } else {
+            // 展开状态
+            profileSidebar.style.width = 'calc(30% - 50px)';
+            profileSidebar.style.height = 'auto';
+            profileSidebar.style.padding = '20px';
+            
+            profileAvatar.style.width = '100px';
+            profileAvatar.style.height = '100px';
+            profileAvatar.style.marginBottom = '20px';
+            
+            profileName.style.opacity = '1';
+            profileName.style.height = 'auto';
+            profileName.style.margin = '0 0 10px 0';
+            
+            profileSlogan.style.opacity = '1';
+            profileSlogan.style.height = 'auto';
+            profileSlogan.style.margin = '0';
+            
+            toggleIndicator.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            toggleIndicator.style.bottom = '10px';
+            toggleIndicator.style.right = '10px';
+            
+            // 添加展开动画
+            profileSidebar.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+        }
+    }
     
     // 渐入效果
     setTimeout(() => {
