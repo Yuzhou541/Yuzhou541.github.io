@@ -391,690 +391,703 @@ function transitionToBlogPage() {
     blogPage.style.width = '100%';
     blogPage.style.height = '100%';
     blogPage.style.zIndex = '1003';
-    blogPage.style.display = 'flex';
-    blogPage.style.flexDirection = 'column';
     blogPage.style.overflow = 'hidden';
     blogPage.style.opacity = '0';
     blogPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(blogPage);
     
-    // 背景图片
-    const background = document.createElement('div');
-    background.id = 'blog-background';
-    background.style.position = 'fixed';
-    background.style.top = '0';
-    background.style.left = '0';
-    background.style.width = '100%';
-    background.style.height = '100%';
-    background.style.background = 'url("./background.png") center/cover no-repeat';
-    background.style.zIndex = '-1';
-    blogPage.appendChild(background);
-    
-    // 主容器
-    const blogContainer = document.createElement('div');
-    blogContainer.id = 'blog-container';
-    blogContainer.style.display = 'flex';
-    blogContainer.style.width = '100%';
-    blogContainer.style.height = '100%';
-    blogContainer.style.overflow = 'hidden';
-    blogContainer.style.position = 'relative';
-    blogContainer.style.padding = '0 5%'; // 左右各留5%
-    blogPage.appendChild(blogContainer);
-    
-    // 创建两列布局
-    const leftColumn = document.createElement('div');
-    leftColumn.id = 'blog-left-column';
-    leftColumn.style.width = '65%'; // 2/3减去间隙
-    leftColumn.style.height = '100%';
-    leftColumn.style.position = 'relative';
-    blogContainer.appendChild(leftColumn);
-    
-    const rightColumn = document.createElement('div');
-    rightColumn.id = 'blog-right-column';
-    rightColumn.style.width = '30%'; // 1/3减去间隙
-    rightColumn.style.height = '100%';
-    rightColumn.style.marginLeft = '5%'; // 1/20的间隙
-    rightColumn.style.position = 'relative';
-    blogContainer.appendChild(rightColumn);
-    
-    // 页面标题
-    const blogHeader = document.createElement('div');
-    blogHeader.id = 'blog-header';
-    blogHeader.innerHTML = '<h1>Personal Blog</h1>';
-    blogHeader.style.position = 'absolute';
-    blogHeader.style.top = '20px';
-    blogHeader.style.left = '0';
-    blogHeader.style.width = '100%';
-    blogHeader.style.textAlign = 'center';
-    blogHeader.style.zIndex = '10';
-    blogHeader.style.fontFamily = '"MedievalSharp", "UnifrakturMaguntia", cursive';
-    blogHeader.style.fontSize = '3rem';
-    blogHeader.style.color = '#e0f0e0';
-    blogHeader.style.textShadow = '0 0 10px rgba(0, 255, 100, 0.5)';
-    leftColumn.appendChild(blogHeader);
-    
-    // 导航栏
-    const navBar = document.createElement('div');
-    navBar.id = 'blog-nav';
-    navBar.style.position = 'absolute';
-    navBar.style.top = '100px';
-    navBar.style.left = '0';
-    navBar.style.width = '100%';
-    navBar.style.display = 'flex';
-    navBar.style.justifyContent = 'center';
-    navBar.style.gap = '40px';
-    navBar.style.zIndex = '10';
-    navBar.style.padding = '15px 0';
-    navBar.style.backgroundColor = 'rgba(10, 30, 15, 0.7)';
-    navBar.style.borderRadius = '10px';
-    navBar.style.backdropFilter = 'blur(5px)';
-    navBar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
-    leftColumn.appendChild(navBar);
-    
-    // 导航项
-    const navItems = ['Post', 'Favorite', 'Research'];
-    navItems.forEach((item, index) => {
-        const navItem = document.createElement('div');
-        navItem.className = 'nav-item';
-        navItem.textContent = item;
-        navItem.dataset.page = item.toLowerCase();
-        navItem.style.fontFamily = '"Cinzel", serif';
-        navItem.style.fontSize = '1.5rem';
-        navItem.style.color = '#a0d0a0';
-        navItem.style.cursor = 'pointer';
-        navItem.style.padding = '5px 15px';
-        navItem.style.transition = 'all 0.3s ease';
-        navItem.style.position = 'relative';
-        
-        // 分隔符（除了最后一个）
-        if (index < navItems.length - 1) {
-            const separator = document.createElement('div');
-            separator.className = 'nav-separator';
-            separator.innerHTML = '❖';
-            separator.style.position = 'absolute';
-            separator.style.right = '-25px';
-            separator.style.top = '50%';
-            separator.style.transform = 'translateY(-50%)';
-            separator.style.color = '#70c070';
-            navBar.appendChild(separator);
-        }
-        
-        navBar.appendChild(navItem);
-    });
-    
-    // 页面容器
-    const pagesContainer = document.createElement('div');
-    pagesContainer.id = 'blog-pages';
-    pagesContainer.style.display = 'flex';
-    pagesContainer.style.width = '300%';
-    pagesContainer.style.height = 'calc(100% - 180px)';
-    pagesContainer.style.position = 'absolute';
-    pagesContainer.style.top = '180px';
-    pagesContainer.style.left = '0';
-    pagesContainer.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
-    leftColumn.appendChild(pagesContainer);
-    
-    // 创建三个页面
-    const pages = ['post', 'favorite', 'research'];
-    pages.forEach(page => {
-        const pageElement = document.createElement('div');
-        pageElement.className = 'blog-page';
-        pageElement.dataset.page = page;
-        pageElement.style.width = '33.3333%';
-        pageElement.style.height = '100%';
-        pageElement.style.padding = '20px';
-        pageElement.style.boxSizing = 'border-box';
-        pageElement.style.overflowY = 'auto';
-        pagesContainer.appendChild(pageElement);
-        
-        // 添加页面内容
-        if (page === 'post') {
-            // 添加文章
-            for (let i = 1; i <= 5; i++) {
-                const post = document.createElement('div');
-                post.className = 'blog-post';
-                post.innerHTML = `
-                    <div class="post-header">
-                        <h3>Article Title ${i}</h3>
-                        <span>2023-06-${10+i}</span>
-                    </div>
-                    <div class="post-content">
-                        <p>This is the beginning of the article content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                    </div>
-                    <div class="post-footer">
-                        <button class="read-more">Read more</button>
-                    </div>
-                `;
-                pageElement.appendChild(post);
-            }
-        } else if (page === 'favorite') {
-            // 添加收藏项
-            const favorites = [
-                { type: 'image', title: 'Mountain Landscape', content: 'Beautiful mountain view at sunset' },
-                { type: 'quote', title: 'Inspirational Quote', content: 'The only way to do great work is to love what you do. - Steve Jobs' },
-                { type: 'image', title: 'Ocean Waves', content: 'Powerful ocean waves crashing on rocks' },
-                { type: 'quote', title: 'Wisdom', content: 'Life is what happens when you\'re busy making other plans. - John Lennon' }
-            ];
-            
-            favorites.forEach((fav, index) => {
-                const favorite = document.createElement('div');
-                favorite.className = 'blog-favorite';
-                favorite.innerHTML = `
-                    <div class="fav-header">
-                        <h3>${fav.title}</h3>
-                    </div>
-                    <div class="fav-content">
-                        ${fav.type === 'image' ? 
-                            `<div class="image-preview" style="background-image: url('./assets/fav${index+1}.jpg')"></div>` :
-                            `<div class="quote-preview">${fav.content}</div>`
-                        }
-                    </div>
-                    <div class="fav-footer">
-                        <button class="view-item">View</button>
-                        ${fav.type === 'image' ? `<button class="download-item">Download</button>` : ''}
-                    </div>
-                `;
-                pageElement.appendChild(favorite);
-            });
-        } else {
-            // 研究页面留白
-            const researchPlaceholder = document.createElement('div');
-            researchPlaceholder.className = 'research-placeholder';
-            researchPlaceholder.innerHTML = `
-                <h2>Research Section</h2>
-                <p>This section is currently under development. Check back later for updates.</p>
-                <div class="placeholder-icon">
-                    <i class="fas fa-flask"></i>
-                </div>
-            `;
-            pageElement.appendChild(researchPlaceholder);
-        }
-    });
-    
-    // 右侧栏 - 个人信息卡片（高级黑色圆角方框）
-    const profileCard = document.createElement('div');
-    profileCard.id = 'blog-profile';
-    profileCard.style.width = '100%';
-    profileCard.style.height = '100%';
-    profileCard.style.padding = '30px';
-    profileCard.style.backgroundColor = 'rgba(15, 15, 25, 0.9)';
-    profileCard.style.borderRadius = '20px';
-    profileCard.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.8)';
-    profileCard.style.backdropFilter = 'blur(10px)';
-    profileCard.style.border = '1px solid rgba(100, 255, 100, 0.2)';
-    profileCard.style.display = 'flex';
-    profileCard.style.flexDirection = 'column';
-    profileCard.style.alignItems = 'center';
-    profileCard.style.justifyContent = 'center';
-    profileCard.style.position = 'relative';
-    profileCard.style.overflow = 'hidden';
-    profileCard.innerHTML = `
-        <div class="profile-avatar-frame">
-            <img src="./avatar.jpg" alt="Profile">
-        </div>
-        <div class="profile-name">Stardust</div>
-        <div class="profile-motto">Turn this imperfect story into the way we hope it to be.</div>
-        <div class="profile-decoration">
-            <div class="deco-line"></div>
-            <div class="deco-icon"><i class="fas fa-star"></i></div>
-            <div class="deco-line"></div>
-        </div>
-    `;
-    rightColumn.appendChild(profileCard);
-    
-    // 添加装饰元素
-    const decoElement = document.createElement('div');
-    decoElement.className = 'profile-deco-element';
-    decoElement.innerHTML = '<i class="fas fa-crown"></i>';
-    profileCard.appendChild(decoElement);
-    
-    // 滚动按钮
-    const createNavButton = (direction) => {
-        const button = document.createElement('div');
-        button.className = `nav-button ${direction}`;
-        button.innerHTML = `<i class="fas fa-chevron-${direction}"></i>`;
-        button.style.position = 'fixed';
-        button.style.top = '50%';
-        button.style[direction === 'left' ? 'left' : 'right'] = '-50px';
-        button.style.transform = 'translateY(-50%)';
-        button.style.width = '50px';
-        button.style.height = '50px';
-        button.style.borderRadius = '50%';
-        button.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-        button.style.display = 'flex';
-        button.style.alignItems = 'center';
-        button.style.justifyContent = 'center';
-        button.style.cursor = 'pointer';
-        button.style.transition = 'all 0.4s ease, opacity 0.3s ease';
-        button.style.opacity = '0';
-        button.style.zIndex = '10';
-        button.style.boxShadow = '0 0 15px rgba(0, 255, 100, 0.3)';
-        blogContainer.appendChild(button);
-        return button;
-    };
-    
-    const leftButton = createNavButton('left');
-    const rightButton = createNavButton('right');
-    
-    // 当前页面索引
-    let currentPageIndex = 0;
-    
-    // 导航按钮事件
-    leftButton.addEventListener('click', () => {
-        if (currentPageIndex > 0) {
-            currentPageIndex--;
-            updatePagePosition();
-        }
-    });
-    
-    rightButton.addEventListener('click', () => {
-        if (currentPageIndex < 2) {
-            currentPageIndex++;
-            updatePagePosition();
-        }
-    });
-    
-    // 更新页面位置
-    function updatePagePosition() {
-        pagesContainer.style.transform = `translateX(-${currentPageIndex * 33.3333}%)`;
-        
-        // 更新导航高亮
-        document.querySelectorAll('.nav-item').forEach((item, index) => {
-            item.style.color = index === currentPageIndex ? '#70ff70' : '#a0d0a0';
-            item.style.textShadow = index === currentPageIndex ? '0 0 10px rgba(100, 255, 100, 0.7)' : 'none';
-        });
-    }
-    
-    // 鼠标进入左右区域显示按钮
-    blogContainer.addEventListener('mousemove', (e) => {
-        const rect = blogContainer.getBoundingClientRect();
-        const width = rect.width;
-        const x = e.clientX - rect.left;
-        
-        // 左侧1/8区域
-        if (x < width / 8) {
-            leftButton.style.left = '20px';
-            leftButton.style.opacity = '1';
-        } else {
-            leftButton.style.left = '-50px';
-            leftButton.style.opacity = '0';
-        }
-        
-        // 右侧1/8区域
-        if (x > width * 7 / 8) {
-            rightButton.style.right = '20px';
-            rightButton.style.opacity = '1';
-        } else {
-            rightButton.style.right = '-50px';
-            rightButton.style.opacity = '0';
-        }
-    });
-    
-    // 导航项点击事件
-    document.querySelectorAll('.nav-item').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            currentPageIndex = index;
-            updatePagePosition();
-        });
-    });
-    
-    // 添加CSS样式
+    // 添加博客页面样式
     const blogStyles = document.createElement('style');
     blogStyles.textContent = `
-        #blog-page {
-            background: linear-gradient(135deg, #0a200d, #061709);
-            font-family: 'Georgia', serif;
+        /* 博客页面样式 */
+        .blog-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('background.png') center/cover no-repeat;
+            z-index: -1;
+            filter: brightness(0.4) blur(1px);
         }
         
-        #blog-container {
-            perspective: 1000px;
+        .blog-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
         }
         
-        #blog-header h1 {
+        .blog-section {
+            width: 33.333%;
+            height: 100%;
+            padding: 100px 5% 80px;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 25px;
+        }
+        
+        .blog-title {
+            font-family: 'Dancing Script', cursive;
             font-size: 3.5rem;
+            color: #64ffda;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
             letter-spacing: 3px;
-            margin: 0;
-            animation: glow 2s infinite alternate;
         }
         
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #00ff40, 0 0 20px #00ff40; }
-            to { text-shadow: 0 0 20px #00ff80, 0 0 30px #00ff80; }
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            background: rgba(10, 25, 47, 0.85);
+            border-radius: 50px;
+            padding: 15px 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
         }
         
         .nav-item {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            padding: 10px 25px;
+            margin: 0 15px;
+            cursor: pointer;
             position: relative;
+            color: #8892b0;
             transition: all 0.3s ease;
+            z-index: 2;
         }
         
-        .nav-item:hover {
-            transform: translateY(-3px);
-            color: #70ff70 !important;
-            text-shadow: 0 0 8px rgba(100, 255, 100, 0.6);
+        .nav-item.active {
+            color: #64ffda;
         }
         
-        .blog-page {
-            padding: 20px 5%;
+        .nav-divider {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            color: #64ffda;
+            opacity: 0.3;
         }
         
-        .blog-post, .blog-favorite, .research-placeholder {
-            background: rgba(20, 45, 25, 0.8);
-            border-radius: 15px;
-            padding: 25px;
+        .sidebar {
+            position: fixed;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25%;
+            background: rgba(17, 34, 64, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            transition: top 0.3s ease;
+        }
+        
+        .avatar-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .avatar-frame {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #64ffda;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(100, 255, 218, 0.3);
+        }
+        
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sidebar-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #ccd6f6;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-quote {
+            font-style: italic;
+            color: #8892b0;
+            line-height: 1.6;
+            text-align: center;
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            padding-top: 20px;
+        }
+        
+        .content-container {
+            background: rgba(17, 34, 64, 0.85);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #64ffda;
             margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(100, 255, 100, 0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(100, 255, 218, 0.3);
+            position: relative;
         }
         
-        .blog-post:hover, .blog-favorite:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 255, 100, 0.3);
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 120px;
+            height: 2px;
+            background: #64ffda;
+        }
+        
+        .post {
+            background: rgba(23, 42, 69, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         }
         
         .post-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(100, 255, 100, 0.2);
+            margin-bottom: 20px;
         }
         
-        .post-header h3 {
-            margin: 0;
-            color: #e0ffe0;
+        .post-title {
             font-size: 1.8rem;
+            color: #ccd6f6;
+            font-weight: 700;
         }
         
-        .post-header span {
-            color: #90d090;
+        .post-date {
+            color: #64ffda;
             font-size: 0.9rem;
+            letter-spacing: 1px;
         }
         
         .post-content {
-            color: #c0e0c0;
+            color: #a8b2d1;
             line-height: 1.8;
-            margin-bottom: 20px;
-            max-height: 150px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .post-content::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: linear-gradient(to bottom, transparent, rgba(20, 45, 25, 0.8));
-        }
-        
-        .post-footer {
-            text-align: right;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
         }
         
         .read-more {
-            background: linear-gradient(to right, #00b34d, #00802e);
-            color: white;
-            border: none;
+            display: inline-block;
             padding: 10px 25px;
-            border-radius: 25px;
-            cursor: pointer;
+            background: transparent;
+            border: 1px solid #64ffda;
+            color: #64ffda;
+            border-radius: 30px;
+            text-decoration: none;
             font-family: 'Cinzel', serif;
-            font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 255, 100, 0.3);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
         
         .read-more:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 255, 100, 0.5);
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
         }
         
-        .blog-favorite .fav-header h3 {
-            color: #e0ffe0;
-            margin-top: 0;
-            font-size: 1.8rem;
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
         }
         
-        .image-preview {
-            width: 100%;
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
+        .gallery-item {
             position: relative;
+            border-radius: 15px;
             overflow: hidden;
-            margin-bottom: 20px;
+            height: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
         }
         
-        .image-preview::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, rgba(10, 30, 15, 0.9));
-            filter: blur(5px);
+        .gallery-item:hover {
+            transform: translateY(-8px);
         }
         
-        .quote-preview {
-            padding: 20px;
-            background: rgba(10, 30, 15, 0.6);
-            border-left: 4px solid #00cc66;
-            color: #c0e0c0;
-            font-style: italic;
-            line-height: 1.8;
-            border-radius: 5px;
-            max-height: 150px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .quote-preview::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: linear-gradient(to bottom, transparent, rgba(10, 30, 15, 0.8));
-        }
-        
-        .fav-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-        
-        .view-item, .download-item {
-            background: linear-gradient(to right, #00802e, #00b34d);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-            transition: all 0.3s ease;
-        }
-        
-        .view-item:hover, .download-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0, 255, 100, 0.4);
-        }
-        
-        .research-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 400px;
-            color: #a0d0a0;
-        }
-        
-        .research-placeholder h2 {
-            font-size: 2.5rem;
-            color: #e0ffe0;
-            margin-bottom: 20px;
-        }
-        
-        .research-placeholder p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            line-height: 1.8;
-        }
-        
-        .placeholder-icon {
-            font-size: 5rem;
-            color: #00cc66;
-            margin-top: 30px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        /* 右侧个人信息卡片样式 */
-        #blog-profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .profile-avatar-frame {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid rgba(100, 255, 100, 0.3);
-            margin-bottom: 30px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(0, 255, 100, 0.2);
-        }
-        
-        .profile-avatar-frame img {
+        .item-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .profile-avatar-frame::before {
-            content: '';
+        .gallery-item:hover .item-image {
+            transform: scale(1.05);
+        }
+        
+        .item-overlay {
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 2px solid rgba(100, 255, 100, 0.5);
-            border-radius: 50%;
-            animation: rotate 20s linear infinite;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 25, 47, 0.9), transparent);
+            padding: 30px 20px 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .gallery-item:hover .item-overlay {
+            opacity: 1;
         }
         
-        .profile-name {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: #e0ffe0;
+        .item-title {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .item-description {
+            color: #ccd6f6;
+            font-size: 0.9rem;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(100, 255, 100, 0.5);
-        }
-        
-        .profile-motto {
-            color: #a0d0a0;
-            font-style: italic;
             line-height: 1.6;
-            font-size: 1.3rem;
-            max-width: 80%;
-            margin: 0 auto;
         }
         
-        .profile-decoration {
+        .view-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(100, 255, 218, 0.2);
             display: flex;
             align-items: center;
-            width: 80%;
-            margin: 30px 0;
+            justify-content: center;
+            color: #64ffda;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
         
-        .deco-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(100, 255, 100, 0.5), transparent);
+        .view-btn:hover {
+            background: rgba(100, 255, 218, 0.3);
+            transform: scale(1.1);
         }
         
-        .deco-icon {
-            margin: 0 15px;
-            color: #70ff70;
+        .scroll-control {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             font-size: 1.5rem;
-            animation: pulse 2s infinite;
+            cursor: pointer;
+            z-index: 20;
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .profile-deco-element {
-            position: absolute;
-            top: 20px;
+        .scroll-control.left {
+            left: -60px;
+        }
+        
+        .scroll-control.right {
+            right: -60px;
+        }
+        
+        body:hover .scroll-control.left {
+            left: 20px;
+            opacity: 1;
+        }
+        
+        body:hover .scroll-control.right {
             right: 20px;
-            color: rgba(100, 255, 100, 0.5);
-            font-size: 1.5rem;
+            opacity: 1;
         }
         
-        /* 滚动条样式 */
-        .blog-page::-webkit-scrollbar {
-            width: 8px;
+        .scroll-control:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-50%) scale(1.1);
         }
         
-        .blog-page::-webkit-scrollbar-track {
-            background: rgba(10, 30, 15, 0.3);
-            border-radius: 4px;
+        .research-placeholder {
+            text-align: center;
+            padding: 100px 0;
         }
         
-        .blog-page::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #00cc66, #00802e);
-            border-radius: 4px;
+        .research-icon {
+            font-size: 5rem;
+            color: rgba(100, 255, 218, 0.2);
+            margin-bottom: 30px;
         }
         
-        .blog-page::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #00ff80, #00b34d);
+        .research-text {
+            font-size: 1.8rem;
+            color: #8892b0;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
         }
         
-        /* 导航按钮样式 */
-        .nav-button {
-            transition: all 0.4s ease !important;
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .blog-section::-webkit-scrollbar {
+            display: none;
         }
         
-        .nav-button:hover {
-            background: rgba(255, 255, 255, 0.3) !important;
-            transform: translateY(-50%) scale(1.1) !important;
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .blog-section {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
         
-        .nav-button i {
-            font-size: 1.5rem;
-            color: #e0ffe0;
+        /* Animation for section transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        
+        .animate-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
     `;
     document.head.appendChild(blogStyles);
     
-    // 初始高亮第一项
-    updatePagePosition();
+    // 创建博客页面结构
+    blogPage.innerHTML = `
+        <div class="blog-background"></div>
+        
+        <div class="scroll-control left">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        
+        <div class="scroll-control right">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        
+        <div class="blog-container">
+            <!-- Post Section -->
+            <section id="blog-post" class="blog-section">
+                <div class="blog-header">
+                    <h1 class="blog-title">Personal Blog</h1>
+                    <div class="nav-bar">
+                        <div class="nav-item active" data-target="0">Post</div>
+                        <div class="nav-divider">✦</div>
+                        <div class="nav-item" data-target="1">Favorite</div>
+                        <div class="nav-divider">✦</div>
+                        <div class="nav-item" data-target="2">Research</div>
+                    </div>
+                </div>
+                
+                <div class="content-container">
+                    <h2 class="section-title">Latest Posts</h2>
+                    
+                    <div class="post animate-in">
+                        <div class="post-header">
+                            <h3 class="post-title">Exploring Fractal Geometry</h3>
+                            <div class="post-date">May 15, 2025</div>
+                        </div>
+                        <div class="post-content">
+                            <p>Fractal geometry reveals the hidden patterns of the universe. From the branching of trees to the structure of galaxies, fractals are nature's signature...</p>
+                            <p>In this post, I explore the Mandelbrot set and its infinite complexity. We'll dive into the mathematical foundations and visualize these stunning patterns using computational methods.</p>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    
+                    <div class="post animate-in delay-1">
+                        <div class="post-header">
+                            <h3 class="post-title">Quantum Computing Algorithms</h3>
+                            <div class="post-date">April 28, 2025</div>
+                        </div>
+                        <div class="post-content">
+                            <p>Quantum computing represents a paradigm shift in computational power. By leveraging quantum superposition and entanglement, we can solve problems that are intractable for classical computers...</p>
+                            <p>In this article, I break down Shor's algorithm for prime factorization and Grover's algorithm for database search, explaining the quantum principles behind them.</p>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    
+                    <div class="post animate-in delay-2">
+                        <div class="post-header">
+                            <h3 class="post-title">Topology in Data Analysis</h3>
+                            <div class="post-date">April 10, 2025</div>
+                        </div>
+                        <div class="post-content">
+                            <p>Topological data analysis (TDA) provides powerful tools for understanding the shape of data. By applying concepts from algebraic topology, we can extract meaningful insights from complex datasets...</p>
+                            <p>This post explores persistent homology and Mapper algorithms, demonstrating how they reveal hidden structures in high-dimensional data spaces.</p>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    
+                    <div class="post animate-in delay-3">
+                        <div class="post-header">
+                            <h3 class="post-title">Neural Networks: A Mathematical Perspective</h3>
+                            <div class="post-date">March 22, 2025</div>
+                        </div>
+                        <div class="post-content">
+                            <p>Deep learning has revolutionized artificial intelligence, but what mathematical principles underpin these powerful models? In this exploration, I examine the calculus of backpropagation and the linear algebra of neural architectures...</p>
+                            <p>We'll see how concepts from optimization theory and functional analysis explain why deep networks work so well for complex pattern recognition tasks.</p>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Favorite Section -->
+            <section id="blog-favorite" class="blog-section">
+                <div class="blog-header">
+                    <h1 class="blog-title">Personal Blog</h1>
+                    <div class="nav-bar">
+                        <div class="nav-item" data-target="0">Post</div>
+                        <div class="nav-divider">✦</div>
+                        <div class="nav-item active" data-target="1">Favorite</div>
+                        <div class="nav-divider">✦</div>
+                        <div class="nav-item" data-target="2">Research</div>
+                    </div>
+                </div>
+                
+                <div class="content-container">
+                    <h2 class="section-title">Inspirational Collection</h2>
+                    
+                    <div class="gallery">
+                        <div class="gallery-item animate-in">
+                            <img src="https://images.unsplash.com/photo-1505506874110-6a7a69069a08?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mathematical Art" class="item-image">
+                            <div class="item-overlay">
+                                <h3 class="item-title">Mathematical Art</h3>
+                                <p class="item-description">Visualization of complex mathematical functions creating stunning patterns</p>
+                            </div>
+                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
+                        </div>
+                        
+                        <div class="gallery-item animate-in delay-1">
+                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Quantum Equations" class="item-image">
+                            <div class="item-overlay">
+                                <h3 class="item-title">Quantum Equations</h3>
+                                <p class="item-description">Schrödinger's equation visualized in three-dimensional space</p>
+                            </div>
+                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
+                        </div>
+                        
+                        <div class="gallery-item animate-in delay-2">
+                            <div style="background: linear-gradient(135deg, #0a192f, #112240); height: 100%; display: flex; align-items: center; justify-content: center; padding: 30px;">
+                                <blockquote style="font-style: italic; font-size: 1.4rem; text-align: center; color: #64ffda; line-height: 1.6;">
+                                    "Mathematics is the language with which God has written the universe."
+                                    <footer style="margin-top: 20px; font-size: 1rem; color: #8892b0;">— Galileo Galilei</footer>
+                                </blockquote>
+                            </div>
+                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
+                        </div>
+                        
+                        <div class="gallery-item animate-in delay-3">
+                            <img src="https://images.unsplash.com/photo-1624953587687-daf255b6b80a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fractal Universe" class="item-image">
+                            <div class="item-overlay">
+                                <h3 class="item-title">Fractal Universe</h3>
+                                <p class="item-description">Mandelbrot set zoom revealing infinite complexity</p>
+                            </div>
+                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
+                        </div>
+                        
+                        <div class="gallery-item animate-in">
+                            <div style="background: linear-gradient(135deg, #112240, #0a192f); height: 100%; display: flex; align-items: center; justify-content: center; padding: 30px;">
+                                <blockquote style="font-style: italic; font-size: 1.4rem; text-align: center; color: #64ffda; line-height: 1.6;">
+                                    "Pure mathematics is, in its way, the poetry of logical ideas."
+                                    <footer style="margin-top: 20px; font-size: 1rem; color: #8892b0;">— Albert Einstein</footer>
+                                </blockquote>
+                            </div>
+                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
+                        </div>
+                        
+                        <div class="gallery-item animate-in delay-1">
+                            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Topology" class="item-image">
+                            <div class="item-overlay">
+                                <h3 class="item-title">Topological Surfaces</h3>
+                                <p class="item-description">Visual representation of genus and Euler characteristic</p>
+                            </div>
+                            <a href="#" class="view-btn"><i class="fas fa-expand"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Research Section -->
+            <section id="blog-research" class="blog-section">
+                <div class="blog-header">
+                    <h1 class="blog-title">Personal Blog</h1>
+                    <div class="nav-bar">
+                        <div class="nav-item" data-target="0">Post</div>
+                        <div class="nav-divider">✦</div>
+                        <div class="nav-item" data-target="1">Favorite</div>
+                        <div class="nav-divider">✦</div>
+                        <div class="nav-item active" data-target="2">Research</div>
+                    </div>
+                </div>
+                
+                <div class="content-container">
+                    <h2 class="section-title">Research Projects</h2>
+                    
+                    <div class="research-placeholder">
+                        <div class="research-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="research-text">Research Section Coming Soon</h3>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="sidebar">
+            <div class="avatar-container">
+                <div class="avatar-frame">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profile">
+                </div>
+                <h2 class="sidebar-name">Stardust Math</h2>
+                <p class="sidebar-quote">"Turn this imperfect story into the way we hope it to be."</p>
+            </div>
+        </div>
+    `;
     
-    // 渐入效果
-    setTimeout(() => {
+    const epicPage = document.getElementById('epic-scroll-page');
+    const flameOverlay = document.getElementById('flame-overlay');
+    
+    if (epicPage) {
+        epicPage.style.opacity = '0';
+        
+        setTimeout(() => {
+            epicPage.remove();
+            if (flameOverlay) flameOverlay.remove();
+            
+            // 初始化博客页面
+            initBlogPage();
+            blogPage.style.opacity = '1';
+        }, 1000);
+    } else {
+        // 初始化博客页面
+        initBlogPage();
         blogPage.style.opacity = '1';
-    }, 100);
+    }
+}
+
+function initBlogPage() {
+    // 初始化博客页面功能
+    const navItems = document.querySelectorAll('.nav-item');
+    const blogContainer = document.querySelector('.blog-container');
     
-    // 隐藏时钟控制按钮
-    const clockToggle = document.querySelector('.clock-toggle');
-    if (clockToggle) clockToggle.style.display = 'none';
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const target = parseInt(item.getAttribute('data-target'));
+            blogContainer.style.transform = `translateX(-${target * 33.333}%)`;
+            
+            // 更新活动状态
+            navItems.forEach(navItem => {
+                navItem.classList.remove('active');
+            });
+            item.classList.add('active');
+        });
+    });
+    
+    // 滚动控制功能
+    const scrollLeft = document.querySelector('.scroll-control.left');
+    const scrollRight = document.querySelector('.scroll-control.right');
+    let currentSection = 0;
+    
+    scrollLeft.addEventListener('click', () => {
+        currentSection = (currentSection - 1 + 3) % 3;
+        blogContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
+        updateNavActive(currentSection);
+    });
+    
+    scrollRight.addEventListener('click', () => {
+        currentSection = (currentSection + 1) % 3;
+        blogContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
+        updateNavActive(currentSection);
+    });
+    
+    function updateNavActive(sectionIndex) {
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (parseInt(item.getAttribute('data-target')) === sectionIndex) {
+                item.classList.add('active');
+            }
+        });
+    }
+    
+    // 侧边栏跟随滚动
+    const sidebar = document.querySelector('.sidebar');
+    const blogSections = document.querySelectorAll('.blog-section');
+    
+    blogSections.forEach(section => {
+        section.addEventListener('scroll', () => {
+            const scrollPosition = section.scrollTop;
+            sidebar.style.top = `calc(50% + ${scrollPosition}px)`;
+        });
+    });
+    
+    // 添加内容动画
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    document.querySelectorAll('.post, .gallery-item').forEach(item => {
+        observer.observe(item);
+    });
+    
+    // 添加Font Awesome图标库
+    const fontAwesome = document.createElement('link');
+    fontAwesome.rel = 'stylesheet';
+    fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+    document.head.appendChild(fontAwesome);
+    
+    // 添加Google字体
+    const googleFonts = document.createElement('link');
+    googleFonts.rel = 'stylesheet';
+    googleFonts.href = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap';
+    document.head.appendChild(googleFonts);
 }
