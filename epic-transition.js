@@ -122,7 +122,7 @@ function startSwirlAnimation() {
         
         if (scale > 20) {
             clearInterval(swirlAnimation);
-            showBlogPage();
+            showEpicScrollPage();
         }
     }, 10);
 }
@@ -130,12 +130,259 @@ function startSwirlAnimation() {
 let narrationAudio = null; // 全局保存音频对象
 let fireAudio = null;     // 全局保存火焰音频对象
 
-function showBlogPage() {
+function showEpicScrollPage() {
     const swirlContainer = document.getElementById('swirl-container');
     if (swirlContainer) {
         swirlContainer.remove();
     }
 
+    const epicPage = document.createElement('div');
+    epicPage.id = 'epic-scroll-page';
+    epicPage.style.position = 'fixed';
+    epicPage.style.top = '0';
+    epicPage.style.left = '0';
+    epicPage.style.width = '100%';
+    epicPage.style.height = '100%';
+    epicPage.style.zIndex = '1001';
+    epicPage.style.background = 'url("./assets/images/background.jpg") center/cover no-repeat';
+    epicPage.style.display = 'flex';
+    epicPage.style.flexDirection = 'column';
+    epicPage.style.justifyContent = 'center';
+    epicPage.style.alignItems = 'center';
+    epicPage.style.opacity = '0';
+    epicPage.style.transition = 'opacity 1s ease-in-out';
+    document.body.appendChild(epicPage);
+
+    // 隐藏时钟控制按钮
+    const clockToggle = document.querySelector('.clock-toggle');
+    if (clockToggle) clockToggle.style.display = 'none';
+
+    const scroll = document.createElement('div');
+    scroll.id = 'epic-scroll';
+    scroll.style.position = 'relative';
+    scroll.style.width = '70%';
+    scroll.style.minHeight = '60%';
+    scroll.style.maxWidth = '800px';
+    scroll.style.backgroundImage = 'url("./assets/images/old-paper-texture.jpg")';
+    scroll.style.backgroundSize = 'cover';
+    scroll.style.borderRadius = '5px';
+    scroll.style.boxShadow = `
+        0 0 30px rgba(200, 160, 100, 0.5),
+        inset 0 0 50px rgba(0,0,0,0.3),
+        0 0 0 10px rgba(139, 69, 19, 0.3),
+        0 0 0 15px rgba(160, 82, 45, 0.2),
+        0 0 0 20px rgba(139, 69, 19, 0.1)
+    `;
+    scroll.style.padding = '40px';
+    scroll.style.opacity = '0';
+    scroll.style.transform = 'scale(0.9)';
+    scroll.style.transition = 'all 1s ease-in-out';
+    scroll.style.overflow = 'hidden';
+    epicPage.appendChild(scroll);
+
+    // 卷轴边缘装饰
+    const scrollEdgeLeft = document.createElement('div');
+    scrollEdgeLeft.style.position = 'absolute';
+    scrollEdgeLeft.style.left = '0';
+    scrollEdgeLeft.style.top = '0';
+    scrollEdgeLeft.style.bottom = '0';
+    scrollEdgeLeft.style.width = '40px';
+    scrollEdgeLeft.style.backgroundImage = 'url("./assets/images/scroll-texture.png")';
+    scrollEdgeLeft.style.backgroundSize = 'contain';
+    scrollEdgeLeft.style.backgroundRepeat = 'repeat-y';
+    scrollEdgeLeft.style.filter = 'sepia(100%) brightness(0.8)';
+    scrollEdgeLeft.style.boxShadow = 'inset 5px 0 10px rgba(0,0,0,0.2)';
+    scroll.appendChild(scrollEdgeLeft);
+
+    const scrollEdgeRight = document.createElement('div');
+    scrollEdgeRight.style.position = 'absolute';
+    scrollEdgeRight.style.right = '0';
+    scrollEdgeRight.style.top = '0';
+    scrollEdgeRight.style.bottom = '0';
+    scrollEdgeRight.style.width = '40px';
+    scrollEdgeRight.style.backgroundImage = 'url("./assets/images/scroll-texture.png")';
+    scrollEdgeRight.style.backgroundSize = 'contain';
+    scrollEdgeRight.style.backgroundRepeat = 'repeat-y';
+    scrollEdgeRight.style.filter = 'sepia(100%) brightness(0.8)';
+    scrollEdgeRight.style.boxShadow = 'inset -5px 0 10px rgba(0,0,0,0.2)';
+    scroll.appendChild(scrollEdgeRight);
+
+    const scrollContent = document.createElement('div');
+    scrollContent.style.position = 'relative';
+    scrollContent.style.zIndex = '2';
+    scrollContent.style.height = '100%';
+    scrollContent.style.display = 'flex';
+    scrollContent.style.flexDirection = 'column';
+    scrollContent.style.justifyContent = 'center';
+    scrollContent.style.alignItems = 'center';
+    scrollContent.style.textAlign = 'center';
+    scroll.appendChild(scrollContent);
+
+    const epicText = document.createElement('div');
+    epicText.id = 'epic-text';
+    epicText.innerHTML = `Traveler of silent paths, by your insight and unwavering will, the ancient seal lies broken. What once dwelt beyond mortal ken now unfolds before thine eyes: a hidden realm, long shrouded in shadow.`;
+    epicText.style.fontFamily = '"Cinzel", "Times New Roman", serif';
+    epicText.style.fontSize = '1.8rem';
+    epicText.style.lineHeight = '1.6';
+    epicText.style.color = '#3a2c1a';
+    epicText.style.textShadow = '1px 1px 2px rgba(0,0,0,0.3)';
+    epicText.style.marginBottom = '40px';
+    epicText.style.opacity = '0';
+    epicText.style.transform = 'translateY(20px)';
+    epicText.style.transition = 'all 1s ease-in-out 0.5s';
+    scrollContent.appendChild(epicText);
+
+    // 修改后的火焰按钮
+    const flameButton = document.createElement('div');
+    flameButton.id = 'flame-button';
+    flameButton.style.position = 'absolute';
+    flameButton.style.bottom = '30px';
+    flameButton.style.right = '30px';
+    flameButton.style.width = '40px';
+    flameButton.style.height = '60px';
+    flameButton.style.cursor = 'pointer';
+    flameButton.style.zIndex = '3';
+    flameButton.innerHTML = `
+        <div id="flame" style="
+            width: 20px; 
+            height: 30px; 
+            margin: 0 auto; 
+            position: relative;
+            animation: flicker 0.5s infinite alternate;
+        ">
+            <div style="
+                position: absolute; 
+                width: 100%; 
+                height: 100%; 
+                background: linear-gradient(to top, 
+                    rgba(255,100,0,0.9) 0%, 
+                    rgba(255,200,0,0.8) 50%,
+                    rgba(255,255,200,0.5) 100%
+                ); 
+                border-radius: 50% 50% 20% 20%; 
+                filter: blur(3px); 
+                box-shadow: 
+                    0 0 10px rgba(255,100,0,0.8),
+                    0 0 20px rgba(255,200,0,0.6);
+            "></div>
+        </div>
+        <div style="
+            text-align: center; 
+            margin-top: 5px; 
+            font-family: 'Cinzel', serif; 
+            color: '#3a2c1a'; 
+            font-size: 0.9rem;
+        ">Ignite</div>
+    `;
+    scrollContent.appendChild(flameButton);
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes flicker {
+            0%, 100% {
+                transform: scale(1) translateY(0);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05) translateY(-2px);
+                opacity: 1;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    setTimeout(() => {
+        epicPage.style.opacity = '1';
+        
+        setTimeout(() => {
+            scroll.style.opacity = '1';
+            scroll.style.transform = 'scale(1)';
+            
+            setTimeout(() => {
+                epicText.style.opacity = '1';
+                epicText.style.transform = 'translateY(0)';
+                
+                // 播放旁白声音和火焰音效
+                playNarration();
+                playFireSound();
+            }, 500);
+        }, 500);
+    }, 100);
+
+    flameButton.addEventListener('click', function() {
+        startFlameAnimation();
+    });
+}
+
+function playNarration() {
+    // 停止之前的音频
+    if (narrationAudio) {
+        narrationAudio.pause();
+        narrationAudio.currentTime = 0;
+    }
+    
+    narrationAudio = new Audio('./assets/audio/prologue.m4a');
+    narrationAudio.volume = 0.7;
+    narrationAudio.play().catch(e => console.log('Audio play failed:', e));
+}
+
+function playFireSound() {
+    // 停止之前的火焰音频
+    if (fireAudio) {
+        fireAudio.pause();
+        fireAudio.currentTime = 0;
+    }
+    
+    fireAudio = new Audio('./assets/audio/fire-sound.mp3');
+    fireAudio.volume = 1.0; // 音量变为原来的两倍
+    fireAudio.loop = true;  // 循环播放
+    fireAudio.play().catch(e => console.log('Fire audio play failed:', e));
+}
+
+function startFlameAnimation() {
+    const flame = document.getElementById('flame');
+    const scroll = document.getElementById('epic-scroll');
+    const epicPage = document.getElementById('epic-scroll-page');
+    
+    // 创建火焰覆盖层 - 使用GIF动画
+    const flameOverlay = document.createElement('div');
+    flameOverlay.id = 'flame-overlay';
+    flameOverlay.style.position = 'fixed';
+    flameOverlay.style.top = '0';
+    flameOverlay.style.left = '0';
+    flameOverlay.style.width = '100%';
+    flameOverlay.style.height = '100%';
+    flameOverlay.style.background = 'url("./assets/animation/fire-animation.gif") center/cover no-repeat';
+    flameOverlay.style.zIndex = '1002';
+    flameOverlay.style.opacity = '0';
+    flameOverlay.style.transition = 'opacity 1.5s ease-in-out';
+    document.body.appendChild(flameOverlay);
+    
+    // 渐入效果
+    setTimeout(() => {
+        flameOverlay.style.opacity = '1';
+        
+        // 转场到博客页面
+        setTimeout(() => {
+            transitionToBlogPage();
+        }, 4000);
+    }, 100);
+}
+
+function stopAllSounds() {
+    if (narrationAudio) {
+        narrationAudio.pause();
+        narrationAudio.currentTime = 0;
+    }
+    if (fireAudio) {
+        fireAudio.pause();
+        fireAudio.currentTime = 0;
+    }
+}
+
+function transitionToBlogPage() {
+    stopAllSounds(); // 停止所有声音
+    
     const blogPage = document.createElement('div');
     blogPage.id = 'blog-page';
     blogPage.style.position = 'fixed';
@@ -146,8 +393,8 @@ function showBlogPage() {
     blogPage.style.zIndex = '1003';
     blogPage.style.overflow = 'hidden';
     document.body.appendChild(blogPage);
-
-    // 创建背景层
+    
+    // 添加背景图片
     const background = document.createElement('div');
     background.id = 'blog-background';
     background.style.position = 'fixed';
@@ -159,367 +406,214 @@ function showBlogPage() {
     background.style.backgroundSize = 'cover';
     background.style.backgroundPosition = 'center';
     background.style.backgroundAttachment = 'fixed';
-    background.style.zIndex = '0';
+    background.style.zIndex = '-1';
     blogPage.appendChild(background);
-
-    // 创建内容容器
+    
+    // 添加博客容器
     const blogContainer = document.createElement('div');
     blogContainer.id = 'blog-container';
-    blogContainer.style.position = 'absolute';
-    blogContainer.style.top = '0';
-    blogContainer.style.left = '0';
+    blogContainer.style.position = 'relative';
     blogContainer.style.width = '100%';
     blogContainer.style.height = '100%';
-    blogContainer.style.display = 'flex';
-    blogContainer.style.flexDirection = 'column';
-    blogContainer.style.zIndex = '1';
+    blogContainer.style.overflow = 'hidden';
     blogPage.appendChild(blogContainer);
-
-    // 创建导航栏
+    
+    // 添加导航栏
     const navBar = document.createElement('div');
     navBar.id = 'blog-nav';
+    navBar.style.position = 'fixed';
+    navBar.style.top = '0';
+    navBar.style.left = '0';
     navBar.style.width = '100%';
-    navBar.style.padding = '20px 0';
-    navBar.style.textAlign = 'center';
-    navBar.style.background = 'linear-gradient(to right, rgba(10, 25, 15, 0.9), rgba(20, 50, 30, 0.9))';
+    navBar.style.height = '80px';
+    navBar.style.zIndex = '10';
+    navBar.style.display = 'flex';
+    navBar.style.justifyContent = 'center';
+    navBar.style.alignItems = 'center';
+    navBar.style.background = 'linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7))';
     navBar.style.backdropFilter = 'blur(5px)';
-    navBar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+    navBar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
     blogContainer.appendChild(navBar);
-
-    // 博客标题
+    
+    // 添加博客标题
     const blogTitle = document.createElement('h1');
     blogTitle.id = 'blog-title';
     blogTitle.textContent = 'Personal Blog';
-    blogTitle.style.fontFamily = '"Great Vibes", cursive, "Allura", cursive';
-    blogTitle.style.fontSize = '3rem';
-    blogTitle.style.color = '#fff';
-    blogTitle.style.margin = '0 0 20px 0';
-    blogTitle.style.textShadow = '0 0 10px rgba(0, 255, 100, 0.5)';
+    blogTitle.style.fontFamily = '"Allura", cursive, "Great Vibes", cursive';
+    blogTitle.style.fontSize = '2.5rem';
+    blogTitle.style.fontWeight = 'normal';
+    blogTitle.style.color = '#333';
+    blogTitle.style.margin = '0';
+    blogTitle.style.textShadow = '1px 1px 3px rgba(0,0,0,0.1)';
     navBar.appendChild(blogTitle);
-
-    // 导航标签
-    const navTabs = document.createElement('div');
-    navTabs.id = 'blog-tabs';
-    navTabs.style.display = 'flex';
-    navTabs.style.justifyContent = 'center';
-    navTabs.style.gap = '30px';
-    navBar.appendChild(navTabs);
-
-    const tabs = ['Post', 'Favorite', 'Research'];
-    tabs.forEach(tab => {
-        const tabElement = document.createElement('div');
-        tabElement.className = 'blog-tab';
-        tabElement.textContent = tab;
-        tabElement.style.fontFamily = '"Cinzel", serif';
-        tabElement.style.fontSize = '1.2rem';
-        tabElement.style.color = '#aaa';
-        tabElement.style.cursor = 'pointer';
-        tabElement.style.padding = '10px 20px';
-        tabElement.style.borderRadius = '5px';
-        tabElement.style.transition = 'all 0.3s ease';
+    
+    // 添加页面导航
+    const pageNav = document.createElement('div');
+    pageNav.id = 'blog-page-nav';
+    pageNav.style.position = 'absolute';
+    pageNav.style.bottom = '0';
+    pageNav.style.left = '0';
+    pageNav.style.width = '100%';
+    pageNav.style.height = '50px';
+    pageNav.style.display = 'flex';
+    pageNav.style.justifyContent = 'center';
+    pageNav.style.alignItems = 'center';
+    pageNav.style.background = 'rgba(255,255,255,0.7)';
+    pageNav.style.borderTop = '1px solid rgba(0,0,0,0.1)';
+    navBar.appendChild(pageNav);
+    
+    // 添加导航按钮
+    const pages = ['Post', 'Favorite', 'Research'];
+    pages.forEach((page, index) => {
+        const navItem = document.createElement('div');
+        navItem.className = 'blog-nav-item';
+        navItem.textContent = page;
+        navItem.style.padding = '0 20px';
+        navItem.style.fontFamily = '"Georgia", serif';
+        navItem.style.fontSize = '1.1rem';
+        navItem.style.color = '#555';
+        navItem.style.cursor = 'pointer';
+        navItem.style.transition = 'all 0.3s ease';
         
-        if (tab === 'Post') {
-            tabElement.style.color = '#fff';
-            tabElement.style.background = 'rgba(0, 255, 100, 0.2)';
-            tabElement.style.borderBottom = '2px solid #0f0';
+        if (index < pages.length - 1) {
+            const separator = document.createElement('span');
+            separator.style.margin = '0 10px';
+            separator.style.color = '#ccc';
+            separator.textContent = '✦';
+            pageNav.appendChild(separator);
         }
         
-        tabElement.addEventListener('click', () => {
-            document.querySelectorAll('.blog-tab').forEach(t => {
-                t.style.color = '#aaa';
-                t.style.background = 'transparent';
-                t.style.borderBottom = 'none';
-            });
-            tabElement.style.color = '#fff';
-            tabElement.style.background = 'rgba(0, 255, 100, 0.2)';
-            tabElement.style.borderBottom = '2px solid #0f0';
-            showBlogSection(tab);
-        });
-        
-        navTabs.appendChild(tabElement);
-        
-        // 添加分隔符（除了最后一个）
-        if (tab !== tabs[tabs.length - 1]) {
-            const separator = document.createElement('div');
-            separator.className = 'tab-separator';
-            separator.innerHTML = '✧';
-            separator.style.color = '#555';
-            separator.style.fontSize = '1.5rem';
-            separator.style.display = 'flex';
-            separator.style.alignItems = 'center';
-            navTabs.appendChild(separator);
-        }
+        pageNav.appendChild(navItem);
     });
-
-    // 创建内容区域
-    const contentWrapper = document.createElement('div');
-    contentWrapper.id = 'blog-content-wrapper';
-    contentWrapper.style.flex = '1';
-    contentWrapper.style.display = 'flex';
-    contentWrapper.style.overflow = 'hidden';
-    contentWrapper.style.position = 'relative';
-    blogContainer.appendChild(contentWrapper);
-
-    // 创建滚动按钮
-    const leftScrollBtn = document.createElement('div');
-    leftScrollBtn.id = 'blog-scroll-left';
-    leftScrollBtn.innerHTML = '&larr;';
-    leftScrollBtn.style.position = 'fixed';
-    leftScrollBtn.style.left = '0';
-    leftScrollBtn.style.top = '50%';
-    leftScrollBtn.style.transform = 'translateY(-50%)';
-    leftScrollBtn.style.width = '40px';
-    leftScrollBtn.style.height = '40px';
-    leftScrollBtn.style.borderRadius = '50%';
-    leftScrollBtn.style.background = 'rgba(255, 255, 255, 0.2)';
-    leftScrollBtn.style.color = '#fff';
-    leftScrollBtn.style.display = 'flex';
-    leftScrollBtn.style.alignItems = 'center';
-    leftScrollBtn.style.justifyContent = 'center';
-    leftScrollBtn.style.cursor = 'pointer';
-    leftScrollBtn.style.zIndex = '10';
-    leftScrollBtn.style.opacity = '0';
-    leftScrollBtn.style.transition = 'all 0.3s ease';
-    leftScrollBtn.style.fontSize = '1.2rem';
-    leftScrollBtn.style.backdropFilter = 'blur(5px)';
-    leftScrollBtn.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
-    blogContainer.appendChild(leftScrollBtn);
-
-    const rightScrollBtn = document.createElement('div');
-    rightScrollBtn.id = 'blog-scroll-right';
-    rightScrollBtn.innerHTML = '&rarr;';
-    rightScrollBtn.style.position = 'fixed';
-    rightScrollBtn.style.right = '0';
-    rightScrollBtn.style.top = '50%';
-    rightScrollBtn.style.transform = 'translateY(-50%)';
-    rightScrollBtn.style.width = '40px';
-    rightScrollBtn.style.height = '40px';
-    rightScrollBtn.style.borderRadius = '50%';
-    rightScrollBtn.style.background = 'rgba(255, 255, 255, 0.2)';
-    rightScrollBtn.style.color = '#fff';
-    rightScrollBtn.style.display = 'flex';
-    rightScrollBtn.style.alignItems = 'center';
-    rightScrollBtn.style.justifyContent = 'center';
-    rightScrollBtn.style.cursor = 'pointer';
-    rightScrollBtn.style.zIndex = '10';
-    rightScrollBtn.style.opacity = '0';
-    rightScrollBtn.style.transition = 'all 0.3s ease';
-    rightScrollBtn.style.fontSize = '1.2rem';
-    rightScrollBtn.style.backdropFilter = 'blur(5px)';
-    rightScrollBtn.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
-    blogContainer.appendChild(rightScrollBtn);
-
-    // 创建内容区域
-    const contentContainer = document.createElement('div');
-    contentContainer.id = 'blog-content-container';
-    contentContainer.style.display = 'flex';
-    contentContainer.style.width = '300%';
-    contentContainer.style.height = '100%';
-    contentContainer.style.transition = 'transform 0.5s ease';
-    contentWrapper.appendChild(contentContainer);
-
-    // 创建三个部分
-    const sections = ['post', 'favorite', 'research'];
-    sections.forEach((section, index) => {
-        const sectionElement = document.createElement('div');
-        sectionElement.className = 'blog-section';
-        sectionElement.id = `blog-${section}`;
-        sectionElement.style.width = '33.333%';
-        sectionElement.style.height = '100%';
-        sectionElement.style.padding = '20px';
-        sectionElement.style.boxSizing = 'border-box';
-        sectionElement.style.overflowY = 'auto';
-        sectionElement.style.background = 'linear-gradient(to bottom, rgba(10, 25, 15, 0.85), rgba(20, 50, 30, 0.85))';
-        sectionElement.style.backdropFilter = 'blur(10px)';
-        sectionElement.style.borderRadius = '15px';
-        sectionElement.style.margin = '0 10px';
-        sectionElement.style.boxShadow = '0 0 30px rgba(0, 0, 0, 0.5)';
+    
+    // 添加页面容器
+    const pagesContainer = document.createElement('div');
+    pagesContainer.id = 'blog-pages';
+    pagesContainer.style.position = 'absolute';
+    pagesContainer.style.top = '80px';
+    pagesContainer.style.left = '0';
+    pagesContainer.style.width = '300%';
+    pagesContainer.style.height = 'calc(100% - 80px)';
+    pagesContainer.style.display = 'flex';
+    pagesContainer.style.transition = 'transform 0.5s ease-in-out';
+    blogContainer.appendChild(pagesContainer);
+    
+    // 添加三个页面
+    pages.forEach((page, index) => {
+        const pageElement = document.createElement('div');
+        pageElement.className = 'blog-page';
+        pageElement.id = `blog-${page.toLowerCase()}`;
+        pageElement.style.width = '33.333%';
+        pageElement.style.height = '100%';
+        pageElement.style.padding = '20px';
+        pageElement.style.boxSizing = 'border-box';
+        pageElement.style.overflowY = 'auto';
         
-        // 右侧固定区域
-        const sidebar = document.createElement('div');
-        sidebar.className = 'blog-sidebar';
-        sidebar.style.position = 'absolute';
-        sidebar.style.right = '5%';
-        sidebar.style.top = '20%';
-        sidebar.style.width = '25%';
-        sidebar.style.padding = '20px';
-        sidebar.style.background = 'rgba(15, 35, 20, 0.8)';
-        sidebar.style.borderRadius = '15px';
-        sidebar.style.backdropFilter = 'blur(5px)';
-        sidebar.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.4)';
-        sectionElement.appendChild(sidebar);
-
-        // 头像框
-        const avatarFrame = document.createElement('div');
-        avatarFrame.className = 'blog-avatar-frame';
-        avatarFrame.style.width = '100px';
-        avatarFrame.style.height = '100px';
-        avatarFrame.style.borderRadius = '50%';
-        avatarFrame.style.overflow = 'hidden';
-        avatarFrame.style.margin = '0 auto 15px';
-        avatarFrame.style.border = '3px solid rgba(0, 255, 100, 0.5)';
-        avatarFrame.style.boxShadow = '0 0 15px rgba(0, 255, 100, 0.3)';
-        
-        const avatarImg = document.createElement('img');
-        avatarImg.src = './avatar.jpg';
-        avatarImg.style.width = '100%';
-        avatarImg.style.height = '100%';
-        avatarImg.style.objectFit = 'cover';
-        avatarFrame.appendChild(avatarImg);
-        sidebar.appendChild(avatarFrame);
-
-        // 名字
-        const name = document.createElement('div');
-        name.className = 'blog-name';
-        name.textContent = 'Stardust';
-        name.style.fontFamily = '"Great Vibes", cursive';
-        name.style.fontSize = '1.8rem';
-        name.style.color = '#fff';
-        name.style.textAlign = 'center';
-        name.style.marginBottom = '10px';
-        name.style.textShadow = '0 0 5px rgba(0, 255, 100, 0.5)';
-        sidebar.appendChild(name);
-
-        // 座右铭
-        const motto = document.createElement('div');
-        motto.className = 'blog-motto';
-        motto.textContent = 'Turn this imperfect story into the way we hope it to be.';
-        motto.style.fontFamily = '"Allura", cursive';
-        motto.style.fontSize = '1.2rem';
-        motto.style.color = '#aaa';
-        motto.style.textAlign = 'center';
-        motto.style.fontStyle = 'italic';
-        sidebar.appendChild(motto);
-
-        // 根据部分类型添加内容
-        if (section === 'post') {
-            // Posts 部分
-            const postsContainer = document.createElement('div');
-            postsContainer.className = 'blog-posts';
-            postsContainer.style.width = '60%';
-            postsContainer.style.marginLeft = '5%';
-            sectionElement.insertBefore(postsContainer, sidebar);
-
-            // 添加示例文章
-            const samplePosts = [
+        // 添加页面内容
+        if (page === 'Post') {
+            // Posts页面
+            pageElement.style.display = 'flex';
+            pageElement.style.flexDirection = 'column';
+            pageElement.style.alignItems = 'center';
+            
+            // 示例文章
+            const posts = [
                 {
                     title: 'The Beauty of Mathematics',
                     date: '2023-10-15',
-                    content: 'Mathematics, rightly viewed, possesses not only truth but supreme beauty—a beauty cold and austere, like that of sculpture, without appeal to any part of our weaker nature, without the gorgeous trappings of painting or music, yet sublimely pure, and capable of a stern perfection such as only the greatest art can show...',
+                    content: 'Mathematics, rightly viewed, possesses not only truth but supreme beauty—a beauty cold and austere, like that of sculpture...',
                     link: '#'
                 },
                 {
-                    title: 'Exploring Quantum Mechanics',
+                    title: 'Exploring the Universe',
                     date: '2023-09-28',
-                    content: 'Quantum mechanics is the body of scientific laws that describe the wacky behavior of photons, electrons and the other particles that make up the universe. At the scale of atoms and electrons, many of the equations of classical mechanics, which describe how things move at everyday sizes and speeds, cease to be useful...',
+                    content: 'The cosmos is all that is or ever was or ever will be. Our feeblest contemplations of the Cosmos stir us...',
                     link: '#'
                 },
                 {
-                    title: 'The Art of Problem Solving',
-                    date: '2023-08-10',
-                    content: 'Problem solving is the essence of what mathematicians do. When faced with a problem, a mathematician seeks not only to solve it but to understand why the solution works and how it connects to other mathematical ideas. This process often involves creativity, persistence, and the ability to see patterns and make connections...',
+                    title: 'Artificial Intelligence Ethics',
+                    date: '2023-08-12',
+                    content: 'The development of full artificial intelligence could spell the end of the human race. It would take off on its own...',
                     link: '#'
                 }
             ];
-
-            samplePosts.forEach(post => {
+            
+            posts.forEach(post => {
                 const postElement = document.createElement('div');
                 postElement.className = 'blog-post';
-                postElement.style.background = 'rgba(20, 40, 25, 0.7)';
-                postElement.style.borderRadius = '10px';
-                postElement.style.padding = '20px';
-                postElement.style.marginBottom = '20px';
-                postElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
-                postElement.style.transition = 'all 0.3s ease';
-
-                // 标题和日期行
-                const titleRow = document.createElement('div');
-                titleRow.style.display = 'flex';
-                titleRow.style.justifyContent = 'space-between';
-                titleRow.style.alignItems = 'center';
-                titleRow.style.marginBottom = '15px';
-
-                const title = document.createElement('h3');
-                title.textContent = post.title;
-                title.style.fontFamily = '"Cinzel", serif';
-                title.style.fontSize = '1.3rem';
-                title.style.color = '#0f0';
-                title.style.margin = '0';
-
-                const date = document.createElement('span');
-                date.textContent = post.date;
-                date.style.fontFamily = 'Arial, sans-serif';
-                date.style.fontSize = '0.9rem';
-                date.style.color = '#aaa';
-
-                titleRow.appendChild(title);
-                titleRow.appendChild(date);
-                postElement.appendChild(titleRow);
-
-                // 内容
-                const content = document.createElement('p');
-                content.textContent = post.content;
-                content.style.fontFamily = 'Georgia, serif';
-                content.style.fontSize = '1rem';
-                content.style.color = '#ddd';
-                content.style.lineHeight = '1.6';
-                content.style.marginBottom = '15px';
-                postElement.appendChild(content);
-
+                postElement.style.width = 'calc(66.666% - 40px)';
+                postElement.style.margin = '20px';
+                postElement.style.padding = '25px';
+                postElement.style.background = 'rgba(255,255,255,0.85)';
+                postElement.style.borderRadius = '15px';
+                postElement.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                
+                // 文章标题和日期
+                const postHeader = document.createElement('div');
+                postHeader.style.display = 'flex';
+                postHeader.style.justifyContent = 'space-between';
+                postHeader.style.marginBottom = '15px';
+                postHeader.style.paddingBottom = '10px';
+                postHeader.style.borderBottom = '1px solid rgba(0,0,0,0.1)';
+                
+                const postTitle = document.createElement('h3');
+                postTitle.textContent = post.title;
+                postTitle.style.margin = '0';
+                postTitle.style.fontFamily = '"Georgia", serif';
+                postTitle.style.color = '#333';
+                
+                const postDate = document.createElement('span');
+                postDate.textContent = post.date;
+                postDate.style.fontFamily = '"Arial", sans-serif';
+                postDate.style.color = '#777';
+                postDate.style.fontSize = '0.9rem';
+                
+                postHeader.appendChild(postTitle);
+                postHeader.appendChild(postDate);
+                postElement.appendChild(postHeader);
+                
+                // 文章内容
+                const postContent = document.createElement('p');
+                postContent.textContent = post.content;
+                postContent.style.fontFamily = '"Georgia", serif';
+                postContent.style.color = '#555';
+                postContent.style.lineHeight = '1.6';
+                postContent.style.marginBottom = '20px';
+                postElement.appendChild(postContent);
+                
                 // 阅读更多按钮
                 const readMore = document.createElement('a');
-                readMore.href = post.link;
                 readMore.textContent = 'Read more →';
-                readMore.style.fontFamily = 'Arial, sans-serif';
-                readMore.style.fontSize = '0.9rem';
-                readMore.style.color = '#0f0';
+                readMore.href = post.link;
+                readMore.style.fontFamily = '"Arial", sans-serif';
+                readMore.style.color = '#3498db';
                 readMore.style.textDecoration = 'none';
-                readMore.style.float = 'right';
-                readMore.style.transition = 'all 0.3s ease';
-
+                readMore.style.fontWeight = 'bold';
+                readMore.style.transition = 'color 0.3s ease';
                 readMore.addEventListener('mouseenter', () => {
-                    readMore.style.color = '#fff';
-                    readMore.style.textShadow = '0 0 5px rgba(0, 255, 100, 0.5)';
+                    readMore.style.color = '#2980b9';
                 });
-
                 readMore.addEventListener('mouseleave', () => {
-                    readMore.style.color = '#0f0';
-                    readMore.style.textShadow = 'none';
+                    readMore.style.color = '#3498db';
                 });
-
                 postElement.appendChild(readMore);
-
-                // 悬停效果
-                postElement.addEventListener('mouseenter', () => {
-                    postElement.style.transform = 'translateY(-5px)';
-                    postElement.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
-                });
-
-                postElement.addEventListener('mouseleave', () => {
-                    postElement.style.transform = 'none';
-                    postElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
-                });
-
-                postsContainer.appendChild(postElement);
+                
+                pageElement.appendChild(postElement);
             });
-        } else if (section === 'favorite') {
-            // Favorite 部分
-            const favoritesContainer = document.createElement('div');
-            favoritesContainer.className = 'blog-favorites';
-            favoritesContainer.style.width = '60%';
-            favoritesContainer.style.marginLeft = '5%';
-            favoritesContainer.style.display = 'grid';
-            favoritesContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
-            favoritesContainer.style.gap = '20px';
-            sectionElement.insertBefore(favoritesContainer, sidebar);
-
-            // 添加示例收藏
-            const sampleFavorites = [
+        } else if (page === 'Favorite') {
+            // Favorites页面
+            pageElement.style.display = 'flex';
+            pageElement.style.flexWrap = 'wrap';
+            pageElement.style.justifyContent = 'center';
+            pageElement.style.alignContent = 'flex-start';
+            
+            // 示例收藏项
+            const favorites = [
                 {
                     type: 'image',
-                    title: 'Northern Lights',
-                    content: 'The aurora borealis, also known as the northern lights, is one of the most spectacular displays in the night sky.',
-                    image: 'https://example.com/northern-lights.jpg',
+                    title: 'Starry Night',
+                    content: 'A beautiful night sky full of stars',
+                    image: 'https://example.com/starry-night.jpg',
                     link: '#'
                 },
                 {
@@ -531,296 +625,368 @@ function showBlogPage() {
                 },
                 {
                     type: 'image',
-                    title: 'Mountain Sunset',
-                    content: 'The beauty of nature captured at the perfect moment when the sun dips below the mountain peaks.',
-                    image: 'https://example.com/mountain-sunset.jpg',
+                    title: 'Mountain View',
+                    content: 'Majestic mountains at sunrise',
+                    image: 'https://example.com/mountain-view.jpg',
                     link: '#'
                 }
             ];
-
-            sampleFavorites.forEach((fav, idx) => {
+            
+            favorites.forEach((fav, i) => {
                 const favElement = document.createElement('div');
                 favElement.className = 'blog-favorite';
-                favElement.style.background = 'rgba(20, 40, 25, 0.7)';
-                favElement.style.borderRadius = '10px';
+                favElement.style.width = 'calc(50% - 40px)';
+                favElement.style.margin = '20px';
+                favElement.style.background = 'rgba(255,255,255,0.85)';
+                favElement.style.borderRadius = '15px';
+                favElement.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
                 favElement.style.overflow = 'hidden';
                 favElement.style.position = 'relative';
-                favElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
-                favElement.style.transition = 'all 0.3s ease';
-
+                
                 if (fav.type === 'image') {
-                    const imageContainer = document.createElement('div');
-                    imageContainer.style.height = '200px';
-                    imageContainer.style.overflow = 'hidden';
-                    imageContainer.style.position = 'relative';
-
-                    const image = document.createElement('div');
-                    image.style.height = '100%';
-                    image.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url(${fav.image})`;
-                    image.style.backgroundSize = 'cover';
-                    image.style.backgroundPosition = 'center';
-                    imageContainer.appendChild(image);
-
+                    const imgContainer = document.createElement('div');
+                    imgContainer.style.height = '200px';
+                    imgContainer.style.overflow = 'hidden';
+                    imgContainer.style.position = 'relative';
+                    
+                    const img = document.createElement('div');
+                    img.style.height = '100%';
+                    img.style.backgroundImage = `url(${fav.image})`;
+                    img.style.backgroundSize = 'cover';
+                    img.style.backgroundPosition = 'center';
+                    img.style.filter = 'blur(2px)';
+                    img.style.transition = 'filter 0.3s ease';
+                    
                     const overlay = document.createElement('div');
                     overlay.style.position = 'absolute';
-                    overlay.style.bottom = '0';
+                    overlay.style.top = '0';
                     overlay.style.left = '0';
-                    overlay.style.right = '0';
-                    overlay.style.height = '50%';
-                    overlay.style.background = 'linear-gradient(to top, rgba(10, 25, 15, 0.9), transparent)';
-                    overlay.style.pointerEvents = 'none';
-                    imageContainer.appendChild(overlay);
-
-                    const title = document.createElement('h3');
-                    title.textContent = fav.title;
-                    title.style.position = 'absolute';
-                    title.style.bottom = '20px';
-                    title.style.left = '20px';
-                    title.style.fontFamily = '"Cinzel", serif';
-                    title.style.fontSize = '1.2rem';
-                    title.style.color = '#fff';
-                    title.style.textShadow = '0 0 5px rgba(0, 0, 0, 0.5)';
-                    title.style.margin = '0';
-                    imageContainer.appendChild(title);
-
-                    favElement.appendChild(imageContainer);
-
-                    const content = document.createElement('p');
-                    content.textContent = fav.content;
-                    content.style.fontFamily = 'Georgia, serif';
-                    content.style.fontSize = '0.9rem';
-                    content.style.color = '#ddd';
-                    content.style.padding = '15px';
-                    content.style.margin = '0';
-                    favElement.appendChild(content);
-
-                    // 查看和下载按钮
-                    const buttons = document.createElement('div');
-                    buttons.style.display = 'flex';
-                    buttons.style.justifyContent = 'flex-end';
-                    buttons.style.padding = '0 15px 15px';
-
-                    const viewBtn = document.createElement('a');
-                    viewBtn.href = fav.link;
-                    viewBtn.textContent = 'View';
-                    viewBtn.style.fontFamily = 'Arial, sans-serif';
-                    viewBtn.style.fontSize = '0.8rem';
-                    viewBtn.style.color = '#0f0';
-                    viewBtn.style.textDecoration = 'none';
-                    viewBtn.style.padding = '5px 10px';
-                    viewBtn.style.borderRadius = '3px';
-                    viewBtn.style.background = 'rgba(0, 255, 100, 0.2)';
-                    viewBtn.style.marginLeft = '10px';
-                    viewBtn.style.transition = 'all 0.3s ease';
-
-                    const downloadBtn = document.createElement('a');
-                    downloadBtn.href = fav.image;
-                    downloadBtn.download = '';
-                    downloadBtn.textContent = 'Download';
-                    downloadBtn.style.fontFamily = 'Arial, sans-serif';
-                    downloadBtn.style.fontSize = '0.8rem';
-                    downloadBtn.style.color = '#0f0';
-                    downloadBtn.style.textDecoration = 'none';
-                    downloadBtn.style.padding = '5px 10px';
-                    downloadBtn.style.borderRadius = '3px';
-                    downloadBtn.style.background = 'rgba(0, 255, 100, 0.2)';
-                    downloadBtn.style.transition = 'all 0.3s ease';
-
-                    viewBtn.addEventListener('mouseenter', () => {
-                        viewBtn.style.background = 'rgba(0, 255, 100, 0.4)';
-                        viewBtn.style.color = '#fff';
+                    overlay.style.width = '100%';
+                    overlay.style.height = '100%';
+                    overlay.style.background = 'rgba(0,0,0,0.3)';
+                    overlay.style.display = 'flex';
+                    overlay.style.justifyContent = 'center';
+                    overlay.style.alignItems = 'center';
+                    overlay.style.color = 'white';
+                    overlay.style.fontFamily = '"Georgia", serif';
+                    overlay.style.fontSize = '1.5rem';
+                    overlay.style.textShadow = '1px 1px 3px rgba(0,0,0,0.5)';
+                    overlay.textContent = fav.title;
+                    
+                    imgContainer.appendChild(img);
+                    imgContainer.appendChild(overlay);
+                    favElement.appendChild(imgContainer);
+                    
+                    // 悬停效果
+                    favElement.addEventListener('mouseenter', () => {
+                        img.style.filter = 'none';
                     });
-
-                    viewBtn.addEventListener('mouseleave', () => {
-                        viewBtn.style.background = 'rgba(0, 255, 100, 0.2)';
-                        viewBtn.style.color = '#0f0';
+                    favElement.addEventListener('mouseleave', () => {
+                        img.style.filter = 'blur(2px)';
                     });
-
-                    downloadBtn.addEventListener('mouseenter', () => {
-                        downloadBtn.style.background = 'rgba(0, 255, 100, 0.4)';
-                        downloadBtn.style.color = '#fff';
-                    });
-
-                    downloadBtn.addEventListener('mouseleave', () => {
-                        downloadBtn.style.background = 'rgba(0, 255, 100, 0.2)';
-                        downloadBtn.style.color = '#0f0';
-                    });
-
-                    buttons.appendChild(downloadBtn);
-                    buttons.appendChild(viewBtn);
-                    favElement.appendChild(buttons);
                 } else {
                     const quoteContainer = document.createElement('div');
-                    quoteContainer.style.padding = '20px';
-                    quoteContainer.style.position = 'relative';
-
-                    const quoteText = document.createElement('blockquote');
-                    quoteText.textContent = fav.content;
-                    quoteText.style.fontFamily = 'Georgia, serif';
-                    quoteText.style.fontSize = '1.1rem';
-                    quoteText.style.color = '#ddd';
-                    quoteText.style.fontStyle = 'italic';
-                    quoteText.style.lineHeight = '1.6';
-                    quoteText.style.margin = '0 0 15px 0';
-                    quoteText.style.position = 'relative';
-                    quoteText.style.paddingLeft = '30px';
-
-                    const quoteMark = document.createElement('span');
-                    quoteMark.textContent = '"';
-                    quoteMark.style.position = 'absolute';
-                    quoteMark.style.left = '0';
-                    quoteMark.style.top = '0';
-                    quoteMark.style.fontSize = '3rem';
-                    quoteMark.style.fontFamily = 'Georgia, serif';
-                    quoteMark.style.color = 'rgba(0, 255, 100, 0.3)';
-                    quoteMark.style.lineHeight = '1';
-                    quoteText.appendChild(quoteMark);
-
-                    quoteContainer.appendChild(quoteText);
-
-                    const quoteAuthor = document.createElement('div');
+                    quoteContainer.style.padding = '25px';
+                    quoteContainer.style.fontFamily = '"Georgia", serif';
+                    quoteContainer.style.color = '#555';
+                    quoteContainer.style.lineHeight = '1.6';
+                    
+                    const quoteContent = document.createElement('blockquote');
+                    quoteContent.textContent = fav.content;
+                    quoteContent.style.fontSize = '1.1rem';
+                    quoteContent.style.fontStyle = 'italic';
+                    quoteContent.style.margin = '0 0 15px 0';
+                    
+                    const quoteAuthor = document.createElement('p');
                     quoteAuthor.textContent = `— ${fav.author}`;
-                    quoteAuthor.style.fontFamily = 'Arial, sans-serif';
-                    quoteAuthor.style.fontSize = '0.9rem';
-                    quoteAuthor.style.color = '#aaa';
                     quoteAuthor.style.textAlign = 'right';
+                    quoteAuthor.style.fontSize = '0.9rem';
+                    quoteAuthor.style.color = '#777';
+                    
+                    quoteContainer.appendChild(quoteContent);
                     quoteContainer.appendChild(quoteAuthor);
-
-                    const viewBtn = document.createElement('a');
-                    viewBtn.href = fav.link;
-                    viewBtn.textContent = 'View';
-                    viewBtn.style.fontFamily = 'Arial, sans-serif';
-                    viewBtn.style.fontSize = '0.8rem';
-                    viewBtn.style.color = '#0f0';
-                    viewBtn.style.textDecoration = 'none';
-                    viewBtn.style.padding = '5px 10px';
-                    viewBtn.style.borderRadius = '3px';
-                    viewBtn.style.background = 'rgba(0, 255, 100, 0.2)';
-                    viewBtn.style.position = 'absolute';
-                    viewBtn.style.bottom = '15px';
-                    viewBtn.style.right = '15px';
-                    viewBtn.style.transition = 'all 0.3s ease';
-
-                    viewBtn.addEventListener('mouseenter', () => {
-                        viewBtn.style.background = 'rgba(0, 255, 100, 0.4)';
-                        viewBtn.style.color = '#fff';
-                    });
-
-                    viewBtn.addEventListener('mouseleave', () => {
-                        viewBtn.style.background = 'rgba(0, 255, 100, 0.2)';
-                        viewBtn.style.color = '#0f0';
-                    });
-
-                    quoteContainer.appendChild(viewBtn);
                     favElement.appendChild(quoteContainer);
                 }
-
-                // 悬停效果
-                favElement.addEventListener('mouseenter', () => {
-                    favElement.style.transform = 'translateY(-5px)';
-                    favElement.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+                
+                // 查看按钮
+                const viewBtn = document.createElement('a');
+                viewBtn.textContent = 'View';
+                viewBtn.href = fav.link;
+                viewBtn.style.position = 'absolute';
+                viewBtn.style.bottom = '15px';
+                viewBtn.style.right = '15px';
+                viewBtn.style.padding = '8px 15px';
+                viewBtn.style.background = '#3498db';
+                viewBtn.style.color = 'white';
+                viewBtn.style.borderRadius = '20px';
+                viewBtn.style.fontFamily = '"Arial", sans-serif';
+                viewBtn.style.fontSize = '0.9rem';
+                viewBtn.style.textDecoration = 'none';
+                viewBtn.style.transition = 'all 0.3s ease';
+                viewBtn.addEventListener('mouseenter', () => {
+                    viewBtn.style.background = '#2980b9';
+                    viewBtn.style.transform = 'translateY(-2px)';
                 });
-
-                favElement.addEventListener('mouseleave', () => {
-                    favElement.style.transform = 'none';
-                    favElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                viewBtn.addEventListener('mouseleave', () => {
+                    viewBtn.style.background = '#3498db';
+                    viewBtn.style.transform = 'none';
                 });
-
-                favoritesContainer.appendChild(favElement);
+                
+                // 如果是图片，添加下载按钮
+                if (fav.type === 'image') {
+                    const downloadBtn = document.createElement('a');
+                    downloadBtn.textContent = 'Download';
+                    downloadBtn.href = fav.image;
+                    downloadBtn.download = fav.title.toLowerCase().replace(/\s+/g, '-') + '.jpg';
+                    downloadBtn.style.position = 'absolute';
+                    downloadBtn.style.bottom = '15px';
+                    downloadBtn.style.left = '15px';
+                    downloadBtn.style.padding = '8px 15px';
+                    downloadBtn.style.background = '#2ecc71';
+                    downloadBtn.style.color = 'white';
+                    downloadBtn.style.borderRadius = '20px';
+                    downloadBtn.style.fontFamily = '"Arial", sans-serif';
+                    downloadBtn.style.fontSize = '0.9rem';
+                    downloadBtn.style.textDecoration = 'none';
+                    downloadBtn.style.transition = 'all 0.3s ease';
+                    downloadBtn.addEventListener('mouseenter', () => {
+                        downloadBtn.style.background = '#27ae60';
+                        downloadBtn.style.transform = 'translateY(-2px)';
+                    });
+                    downloadBtn.addEventListener('mouseleave', () => {
+                        downloadBtn.style.background = '#2ecc71';
+                        downloadBtn.style.transform = 'none';
+                    });
+                    favElement.appendChild(downloadBtn);
+                }
+                
+                favElement.appendChild(viewBtn);
+                pageElement.appendChild(favElement);
             });
         } else {
-            // Research 部分
-            const researchContainer = document.createElement('div');
-            researchContainer.className = 'blog-research';
-            researchContainer.style.width = '60%';
-            researchContainer.style.marginLeft = '5%';
-            researchContainer.style.display = 'flex';
-            researchContainer.style.flexDirection = 'column';
-            researchContainer.style.alignItems = 'center';
-            researchContainer.style.justifyContent = 'center';
-            researchContainer.style.height = '100%';
-            sectionElement.insertBefore(researchContainer, sidebar);
-
+            // Research页面
+            pageElement.style.display = 'flex';
+            pageElement.style.justifyContent = 'center';
+            pageElement.style.alignItems = 'center';
+            
             const placeholder = document.createElement('div');
-            placeholder.className = 'research-placeholder';
-            placeholder.textContent = 'Research content coming soon...';
-            placeholder.style.fontFamily = '"Cinzel", serif';
-            placeholder.style.fontSize = '1.5rem';
-            placeholder.style.color = '#aaa';
             placeholder.style.textAlign = 'center';
-            researchContainer.appendChild(placeholder);
+            placeholder.style.fontFamily = '"Georgia", serif';
+            placeholder.style.color = '#555';
+            placeholder.style.fontSize = '1.2rem';
+            placeholder.textContent = 'Research content will be added here in the future.';
+            pageElement.appendChild(placeholder);
         }
-
-        contentContainer.appendChild(sectionElement);
+        
+        pagesContainer.appendChild(pageElement);
     });
-
-    // 滚动按钮显示/隐藏逻辑
-    blogPage.addEventListener('mousemove', (e) => {
-        const pageWidth = blogPage.clientWidth;
+    
+    // 添加侧边栏
+    const sidebar = document.createElement('div');
+    sidebar.id = 'blog-sidebar';
+    sidebar.style.position = 'fixed';
+    sidebar.style.top = '80px';
+    sidebar.style.right = '5%'; // 右边留1/20
+    sidebar.style.width = 'calc(33.333% - 10%)'; // 右边1/3减去留白
+    sidebar.style.height = 'calc(100% - 80px)';
+    sidebar.style.padding = '20px';
+    sidebar.style.boxSizing = 'border-box';
+    sidebar.style.overflowY = 'auto';
+    blogContainer.appendChild(sidebar);
+    
+    // 添加头像和名字
+    const avatarContainer = document.createElement('div');
+    avatarContainer.style.textAlign = 'center';
+    avatarContainer.style.marginBottom = '30px';
+    
+    const sidebarAvatar = document.createElement('div');
+    sidebarAvatar.style.width = '120px';
+    sidebarAvatar.style.height = '120px';
+    sidebarAvatar.style.margin = '0 auto 15px';
+    sidebarAvatar.style.borderRadius = '50%';
+    sidebarAvatar.style.overflow = 'hidden';
+    sidebarAvatar.style.border = '3px solid rgba(255,255,255,0.8)';
+    sidebarAvatar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+    
+    const avatarImg = document.createElement('img');
+    avatarImg.src = './avatar.jpg';
+    avatarImg.style.width = '100%';
+    avatarImg.style.height = '100%';
+    avatarImg.style.objectFit = 'cover';
+    sidebarAvatar.appendChild(avatarImg);
+    
+    const sidebarName = document.createElement('h2');
+    sidebarName.textContent = 'Stardust';
+    sidebarName.style.fontFamily = '"Great Vibes", cursive';
+    sidebarName.style.fontSize = '1.8rem';
+    sidebarName.style.color = '#333';
+    sidebarName.style.margin = '0';
+    
+    avatarContainer.appendChild(sidebarAvatar);
+    avatarContainer.appendChild(sidebarName);
+    sidebar.appendChild(avatarContainer);
+    
+    // 添加座右铭
+    const motto = document.createElement('div');
+    motto.style.fontFamily = '"Georgia", serif';
+    motto.style.fontStyle = 'italic';
+    motto.style.color = '#555';
+    motto.style.textAlign = 'center';
+    motto.style.lineHeight = '1.6';
+    motto.textContent = 'Turn this imperfect story into the way we hope it to be.';
+    sidebar.appendChild(motto);
+    
+    // 添加导航按钮
+    const leftNav = document.createElement('div');
+    leftNav.id = 'blog-nav-left';
+    leftNav.style.position = 'fixed';
+    leftNav.style.left = '0';
+    leftNav.style.top = '50%';
+    leftNav.style.transform = 'translateY(-50%)';
+    leftNav.style.width = '50px';
+    leftNav.style.height = '50px';
+    leftNav.style.background = 'rgba(255,255,255,0.7)';
+    leftNav.style.borderRadius = '50%';
+    leftNav.style.display = 'flex';
+    leftNav.style.justifyContent = 'center';
+    leftNav.style.alignItems = 'center';
+    leftNav.style.cursor = 'pointer';
+    leftNav.style.opacity = '0';
+    leftNav.style.transition = 'all 0.3s ease';
+    leftNav.style.zIndex = '5';
+    leftNav.innerHTML = '<i class="fas fa-chevron-left" style="font-size: 1.2rem; color: #555;"></i>';
+    blogContainer.appendChild(leftNav);
+    
+    const rightNav = document.createElement('div');
+    rightNav.id = 'blog-nav-right';
+    rightNav.style.position = 'fixed';
+    rightNav.style.right = '0';
+    rightNav.style.top = '50%';
+    rightNav.style.transform = 'translateY(-50%)';
+    rightNav.style.width = '50px';
+    rightNav.style.height = '50px';
+    rightNav.style.background = 'rgba(255,255,255,0.7)';
+    rightNav.style.borderRadius = '50%';
+    rightNav.style.display = 'flex';
+    rightNav.style.justifyContent = 'center';
+    rightNav.style.alignItems = 'center';
+    rightNav.style.cursor = 'pointer';
+    rightNav.style.opacity = '0';
+    rightNav.style.transition = 'all 0.3s ease';
+    rightNav.style.zIndex = '5';
+    rightNav.innerHTML = '<i class="fas fa-chevron-right" style="font-size: 1.2rem; color: #555;"></i>';
+    blogContainer.appendChild(rightNav);
+    
+    // 添加导航按钮悬停效果
+    leftNav.addEventListener('mouseenter', () => {
+        leftNav.style.background = 'rgba(255,255,255,0.9)';
+        leftNav.style.transform = 'translateY(-50%) scale(1.1)';
+    });
+    leftNav.addEventListener('mouseleave', () => {
+        leftNav.style.background = 'rgba(255,255,255,0.7)';
+        leftNav.style.transform = 'translateY(-50%)';
+    });
+    
+    rightNav.addEventListener('mouseenter', () => {
+        rightNav.style.background = 'rgba(255,255,255,0.9)';
+        rightNav.style.transform = 'translateY(-50%) scale(1.1)';
+    });
+    rightNav.addEventListener('mouseleave', () => {
+        rightNav.style.background = 'rgba(255,255,255,0.7)';
+        rightNav.style.transform = 'translateY(-50%)';
+    });
+    
+    // 添加导航按钮显示/隐藏逻辑
+    blogContainer.addEventListener('mousemove', (e) => {
+        const containerWidth = blogContainer.offsetWidth;
         const mouseX = e.clientX;
         
-        if (mouseX < pageWidth / 8) {
-            leftScrollBtn.style.opacity = '1';
+        // 左侧1/8区域
+        if (mouseX < containerWidth / 8) {
+            leftNav.style.opacity = '1';
         } else {
-            leftScrollBtn.style.opacity = '0';
+            leftNav.style.opacity = '0';
         }
         
-        if (mouseX > pageWidth * 7 / 8) {
-            rightScrollBtn.style.opacity = '1';
+        // 右侧1/8区域
+        if (mouseX > containerWidth * 7 / 8) {
+            rightNav.style.opacity = '1';
         } else {
-            rightScrollBtn.style.opacity = '0';
-        }
-    });
-
-    // 滚动功能
-    let currentSection = 0;
-    
-    leftScrollBtn.addEventListener('click', () => {
-        if (currentSection > 0) {
-            currentSection--;
-            contentContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
-            updateActiveTab(currentSection);
+            rightNav.style.opacity = '0';
         }
     });
     
-    rightScrollBtn.addEventListener('click', () => {
-        if (currentSection < 2) {
-            currentSection++;
-            contentContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
-            updateActiveTab(currentSection);
+    // 添加导航功能
+    let currentPageIndex = 0;
+    const pageCount = pages.length;
+    
+    leftNav.addEventListener('click', () => {
+        if (currentPageIndex > 0) {
+            currentPageIndex--;
+            updatePagePosition();
+            updateNavHighlight();
         }
     });
-
-    function updateActiveTab(index) {
-        const tabs = document.querySelectorAll('.blog-tab');
-        tabs.forEach((tab, i) => {
-            tab.style.color = i === index ? '#fff' : '#aaa';
-            tab.style.background = i === index ? 'rgba(0, 255, 100, 0.2)' : 'transparent';
-            tab.style.borderBottom = i === index ? '2px solid #0f0' : 'none';
+    
+    rightNav.addEventListener('click', () => {
+        if (currentPageIndex < pageCount - 1) {
+            currentPageIndex++;
+            updatePagePosition();
+            updateNavHighlight();
+        }
+    });
+    
+    // 添加页面导航点击功能
+    const navItems = document.querySelectorAll('.blog-nav-item');
+    navItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentPageIndex = index;
+            updatePagePosition();
+            updateNavHighlight();
+        });
+    });
+    
+    function updatePagePosition() {
+        const translateX = -currentPageIndex * 33.333;
+        pagesContainer.style.transform = `translateX(${translateX}%)`;
+    }
+    
+    function updateNavHighlight() {
+        navItems.forEach((item, index) => {
+            if (index === currentPageIndex) {
+                item.style.color = '#3498db';
+                item.style.fontWeight = 'bold';
+            } else {
+                item.style.color = '#555';
+                item.style.fontWeight = 'normal';
+            }
         });
     }
-
-    function showBlogSection(section) {
-        const sections = ['post', 'favorite', 'research'];
-        const index = sections.indexOf(section.toLowerCase());
-        if (index >= 0) {
-            currentSection = index;
-            contentContainer.style.transform = `translateX(-${currentSection * 33.333}%)`;
-        }
-    }
-
-    // 隐藏时钟控制按钮
-    const clockToggle = document.querySelector('.clock-toggle');
-    if (clockToggle) clockToggle.style.display = 'none';
-}
-
-function stopAllSounds() {
-    if (narrationAudio) {
-        narrationAudio.pause();
-        narrationAudio.currentTime = 0;
-    }
-    if (fireAudio) {
-        fireAudio.pause();
-        fireAudio.currentTime = 0;
+    
+    // 初始化高亮
+    updateNavHighlight();
+    
+    // 添加滚动时侧边栏固定效果
+    const mainContent = document.querySelectorAll('.blog-page');
+    mainContent.forEach(content => {
+        content.addEventListener('scroll', () => {
+            const scrollTop = content.scrollTop;
+            sidebar.style.transform = `translateY(${-scrollTop}px)`;
+        });
+    });
+    
+    // 显示博客页面
+    blogPage.style.opacity = '1';
+    
+    const epicPage = document.getElementById('epic-scroll-page');
+    const flameOverlay = document.getElementById('flame-overlay');
+    
+    if (epicPage) {
+        epicPage.style.opacity = '0';
+        
+        setTimeout(() => {
+            epicPage.remove();
+            if (flameOverlay) flameOverlay.remove();
+        }, 1000);
     }
 }
