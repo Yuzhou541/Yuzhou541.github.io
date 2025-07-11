@@ -576,6 +576,7 @@ function transitionToBlogPage() {
     toggleIndicator.style.fontSize = '0.8rem';
     toggleIndicator.style.color = '#fff';
     toggleIndicator.style.transition = 'all 0.5s ease';
+    toggleIndicator.style.cursor = 'pointer';
     profileSidebar.appendChild(toggleIndicator);
     
     // 页面容器
@@ -652,7 +653,7 @@ function transitionToBlogPage() {
         pagesContainer.appendChild(pageSection);
     });
     
-    // 创建左右导航按钮
+    // 创建左右导航按钮 - 修改为更小的尺寸
     const leftNav = document.createElement('div');
     leftNav.id = 'blog-nav-left';
     leftNav.className = 'blog-nav-button';
@@ -677,18 +678,18 @@ function transitionToBlogPage() {
     rightNav.style.transition = 'opacity 0.3s ease';
     blogContainer.appendChild(rightNav);
     
-    // 添加导航按钮样式
+    // 添加导航按钮样式 - 修改为更小的尺寸
     const navStyle = document.createElement('style');
     navStyle.textContent = `
         .blog-nav-button {
-            width: 50px;
-            height: 50px;
+            width: 40px;  /* 减小按钮尺寸 */
+            height: 40px; /* 减小按钮尺寸 */
             background: rgba(255,255,255,0.7);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* 减小字体大小 */
             color: #333;
             cursor: pointer;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -790,10 +791,10 @@ function transitionToBlogPage() {
         toggleProfile();
     });
     
-    profileSidebar.addEventListener('click', () => {
-        if (isProfileCollapsed) {
-            toggleProfile();
-        }
+    // 添加指示器点击事件 - 修复功能
+    toggleIndicator.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleProfile();
     });
     
     function toggleProfile() {
@@ -812,10 +813,12 @@ function transitionToBlogPage() {
             profileName.style.opacity = '0';
             profileName.style.height = '0';
             profileName.style.margin = '0';
+            profileName.style.overflow = 'hidden';
             
             profileSlogan.style.opacity = '0';
             profileSlogan.style.height = '0';
             profileSlogan.style.margin = '0';
+            profileSlogan.style.overflow = 'hidden';
             
             toggleIndicator.innerHTML = '<i class="fas fa-chevron-down"></i>';
             toggleIndicator.style.bottom = '5px';
@@ -836,10 +839,12 @@ function transitionToBlogPage() {
             profileName.style.opacity = '1';
             profileName.style.height = 'auto';
             profileName.style.margin = '0 0 10px 0';
+            profileName.style.overflow = 'visible';
             
             profileSlogan.style.opacity = '1';
             profileSlogan.style.height = 'auto';
             profileSlogan.style.margin = '0';
+            profileSlogan.style.overflow = 'visible';
             
             toggleIndicator.innerHTML = '<i class="fas fa-chevron-up"></i>';
             toggleIndicator.style.bottom = '10px';
