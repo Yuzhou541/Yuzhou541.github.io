@@ -144,7 +144,7 @@ function showEpicScrollPage() {
     epicPage.style.width = '100%';
     epicPage.style.height = '100%';
     epicPage.style.zIndex = '1001';
-    epicPage.style.background = 'url("./assets/images/background.jpg") center/cover no-repeat';
+    epicPage.style.background = 'url(".background.png") center/cover no-repeat';
     epicPage.style.display = 'flex';
     epicPage.style.flexDirection = 'column';
     epicPage.style.justifyContent = 'center';
@@ -411,7 +411,7 @@ function transitionToBlogPage() {
     blogBackground.style.left = '0';
     blogBackground.style.width = '100%';
     blogBackground.style.height = '100%';
-    blogBackground.style.background = 'url("./assets/images/background.jpg") center/cover no-repeat';
+    blogBackground.style.background = 'url(".background.png") center/cover no-repeat';
     blogBackground.style.zIndex = '-1';
     blogBackground.style.filter = 'brightness(0.8)';
     blogPage.appendChild(blogBackground);
