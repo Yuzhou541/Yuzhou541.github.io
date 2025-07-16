@@ -1803,7 +1803,7 @@
     display: none; /* 初始隐藏 */
   }
 
-  /* USTC Timetable样式 */
+  /* USTC Timetable样式 - 修复颜色问题 */
   #ustc-timetable {
     width: 100%;
     border-collapse: collapse;
@@ -1824,6 +1824,7 @@
   }
   
   #ustc-timetable td {
+    background-color: white;
     height: 50px;
     vertical-align: middle;
     position: relative;
@@ -1851,6 +1852,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 2px;
+    color: #2c3e50; /* 添加文本颜色 */
   }
   
   .class-time {
@@ -1910,12 +1912,39 @@
     gap: 5px;
   }
   
+  /* 暗黑模式USTC Timetable样式 */
+  body.dark-mode #ustc-timetable th {
+    background-color: #6a3093;
+    border-color: #444;
+  }
+  
+  body.dark-mode #ustc-timetable td {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #ffffff;
+  }
+  
+  body.dark-mode #ustc-timetable .period-header {
+    background-color: #3d3d3d;
+    color: #ffffff;
+  }
+  
   body.dark-mode #ustc-timetable td.has-class {
     background-color: rgba(106, 48, 147, 0.1);
   }
   
+  body.dark-mode .ustc-class-info {
+    color: #ffffff;
+  }
+  
   body.dark-mode .ustc-classes-table th {
     background-color: #6a3093;
+  }
+  
+  body.dark-mode .ustc-classes-table td {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #cccccc;
   }
 </style>
 </head>
