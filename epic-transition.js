@@ -334,7 +334,7 @@ function playFireSound() {
     }
     
     fireAudio = new Audio('./assets/audio/fire-sound.mp3');
-    fireAudio.volume = 1.0; // 音量变为原来的两倍
+    fireAudio.volume = 2.0; // 音量变为原来的两倍
     fireAudio.loop = true;  // 循环播放
     fireAudio.play().catch(e => console.log('Fire audio play failed:', e));
 }
