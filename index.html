@@ -15,7 +15,7 @@
 <link rel="preload" href="./assets/images/scroll-texture.png" as="image">
 <link rel="preload" href="./assets/animation/fire-animation.gif" as="image">
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="epic-transition.js"></script>
 <style>
   /* 图片加载优化 */
   #avatar-frame img {
@@ -132,7 +132,7 @@
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+    background: url("./cover.jpg") no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -564,7 +564,7 @@
     border-radius: 50%;
   }
 
-  #toggle-btn:hover::before, #toggle-btn-social:hover::before, #toolkit-btn:hover::before, #schedule-btn:hover::before {
+  #toggle-btn:hover::before, #toggle-btn-social:hover::before, #toggle-btn-toolkit:hover::before, #toggle-btn-schedule:hover::before {
     opacity: 1;
   }
 
@@ -1152,10 +1152,10 @@
   .toolkit-icon.iqiyi-icon { background: linear-gradient(135deg, #00be06, #00d70a); }
   .toolkit-icon.tencent-icon { background: linear-gradient(135deg, #0084ff, #0066cc); }
   .toolkit-icon.qqmail-icon { background: linear-gradient(135deg, #12b7f5, #0d8ecf); }
-  .tool极客时间kit-icon.qqmusic-icon { background: linear-gradient(135deg, #31c27c, #1eae5a); }
+  .toolkit-icon.qqmusic-icon { background: linear-gradient(135deg, #31c27c, #1eae5a); }
   .toolkit-icon.neteasemusic-icon { background: linear-gradient(135deg, #e60026, #cc0022); }
   .toolkit-icon.neteasemail-icon { background: linear-gradient(135deg, #e60026, #cc0022); }
-  .toolkit-icon.kugou-icon { background: linear-gradient极客时间(135deg, #2ca2f9, #1a8fd8); }
+  .toolkit-icon.kugou-icon { background: linear-gradient(135deg, #2ca2f9, #1a8fd8); }
   .toolkit-icon.wikipedia-icon { background: linear-gradient(135deg, #000, #666); }
   .toolkit-icon.maple-icon { background: linear-gradient(135deg, #0066cc, #004d99); }
   .toolkit-icon.notion-icon { background: linear-gradient(135deg, #000000, #3d3d3d); }
@@ -1195,7 +1195,7 @@
   body.dark-mode .toolkit-icon.zlib-icon { background: linear-gradient(135deg, #3d8b40, #4caf50); }
   body.dark-mode .toolkit-icon.matlab-icon { background: linear-gradient(135deg, #006080, #0082a1); }
   body.dark-mode .toolkit-icon.mathematica-icon { background: linear-gradient(135deg, #b80e00, #d32f2f); }
-  body.dark-mode .toolkit-icon.wolfram-icon { background: linear-gradient(135deg, #b80e00, #d32f极客时间2f); }
+  body.dark-mode .toolkit-icon.wolfram-icon { background: linear-gradient(135deg, #b80e00, #d32f2f); }
   body.dark-mode .toolkit-icon.deepl-icon { background: linear-gradient(135deg, #0c2038, #142d4d); }
   body.dark-mode .toolkit-icon.cnki-icon { background: linear-gradient(135deg, #c62828, #d32f2f); }
   body.dark-mode .toolkit-icon.geogebra-icon { background: linear-gradient(135deg, #2e7d32, #388e3c); }
@@ -1405,7 +1405,7 @@
 
   body.dark-mode .fc-button:hover {
     background-color: #4a148c !important;
-    border-color: #4a148极客时间c !important;
+    border-color: #4a148c !important;
   }
 
   .fc-daygrid-day-number {
@@ -1761,7 +1761,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 极客时间0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .week-nav-btn:hover {
@@ -1871,7 +1871,6 @@
   .course-name {
     font-weight: bold;
     text-align: center;
-    margin: 5px 0;
   }
   
   .instructor {
@@ -2004,7 +2003,7 @@
           <span class="subheading-title">University of Science and Technology of China</span>
           <span>Expected June 2027</span>
         </div>
-        <div class极客时间="subsubheading">Bachelor of Science in Mathematics (Information and Computing Science)</div>
+        <div class="subsubheading">Bachelor of Science in Mathematics (Information and Computing Science)</div>
         <div class="subsubheading">Minor in Computer Science and Technology</div>
       </div>
       
@@ -2096,11 +2095,11 @@
         
         <!-- TikTok卡片 -->
         <div class="social-card">
-          <div class="social-icon"><i class="fab fa-tiktok"></极客时间i></div>
+          <div class="social-icon"><i class="fab fa-tiktok"></i></div>
           <div class="social-title">TikTok (Chinese)</div>
           <div class="social-description">Short-form videos in Chinese</div>
           <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
-            <a href="https://www.douyin.com/user/MS4极客时间wLjABAAAAqb9M45SaGeb8yI28lL3lDFHm48c4kl32Xq7BfRk3I24" class="social-link" target="_blank">Link 1</a>
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAqb9M45SaGeb8yI28lL3lDFHm48c4kl32Xq7BfRk3I24" class="social-link" target="_blank">Link 1</a>
             <span class="social-divider">/</span>
             <a href="https://v.douyin.com/PzIS6mSXJGY/" class="social-link" target="_blank">Link 2</a>
           </div>
@@ -2232,7 +2231,7 @@
           <div class="toolkit-card" data-title="deepl" data-categories="development">
             <div class="toolkit-icon deepl-icon">
               <i class="fas fa-language"></i>
-            </极客时间div>
+            </div>
             <div class="toolkit-title">DeepL</div>
             <a href="https://www.deepl.com/zh/translator" class="toolkit-link" target="_blank">Visit</a>
           </div>
@@ -2573,7 +2572,7 @@
             <div class="toolkit-icon tencentdocs-icon">
               <i class="fas fa-file-alt"></i>
             </div>
-            <div class="toolkit-title">Tencent Docs</div>
+            <极客时间>Tencent Docs</div>
             <a href="https://docs.qq.com/" class="toolkit-link" target="_blank">Visit</a>
           </div>
 
@@ -2583,7 +2582,7 @@
               <i class="fas fa-edit"></i>
             </div>
             <div class="toolkit-title">Typora</div>
-            <a href="https://typora.io/" class="toolkit-link" target="_blank">Visit</a>
+            <a href="https://typora.io/" class="toolkit-link" target="_blank">Visit</极客时间>
           </div>
 
           <!-- Yuque -->
@@ -2596,7 +2595,7 @@
           </div>
 
           <!-- Canva -->
-          <div class="toolkit-card" data-title="canva" data-categories="productivity">
+          <div class="toolkit-card" data-title="can极客时间" data-categories="productivity">
             <div class="toolkit-icon" style="background:linear-gradient(135deg,#00c4cc,#00a2ff)">
               <i class="fas fa-palette"></i>
             </div>
@@ -2657,11 +2656,11 @@
     
           <!-- Academia -->
           <div class="toolkit-card" data-title="academia" data-categories="reference">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#3498db,#2980b9)">
+            <div class极客时间"toolkit-icon" style="background:linear-gradient(135deg,#3498db,#2980b9)">
               <i class="fas fa-graduation-cap"></i>
             </div>
             <div class="toolkit-title">Academia</div>
-            <a href="https://www.academia.edu/" class="toolkit-link" target="_blank">Visit极客时间</a>
+            <a href="https://www.academia.edu/" class="toolkit-link" target="_blank">Visit</a>
           </div>
         </div>
       </div>
@@ -2848,7 +2847,7 @@
                 <tr>
                   <td data-period="2" data-day="1">2</td>
                   <td data-period="2" data-day="2"></td>
-                  <td data-period="2" data-day="3"></td>
+                  <td data-period="2" data-day="极客时间3"></td>
                   <td data-period="2" data-day="4"></td>
                   <td data-period="2" data-day="5"></td>
                   <td data-period="2" data-day="6"></td>
@@ -2857,9 +2856,9 @@
                 <tr>
                   <td data-period="3" data-day="1">3</td>
                   <td data-period="3" data-day="2"></td>
-                  <td data-period极客时间="3" data-day="3"></td>
+                  <td data-period="3" data-day="3"></td>
                   <td data-period="3" data-day="4"></td>
-                  <td data-period="3" data-day="5"></极客时间td>
+                  <td data-period="3" data-day="5"></td>
                   <td data-period="3" data-day="6"></td>
                   <td data-period="3" data-day="0"></td>
                 </tr>
@@ -2876,7 +2875,7 @@
                   <td data-period="5" data-day="1">5</td>
                   <td data-period="5" data-day="2"></td>
                   <td data-period="5" data-day="3"></td>
-                  <td data-period="5" data-day="4"></td>
+                  <td data-period="5" data-day="4"></极客时间td>
                   <td data-period="5" data-day="5"></td>
                   <td data-period="5" data-day="6"></td>
                   <td data-period="5" data-day="0"></td>
@@ -2889,7 +2888,7 @@
                   <td data-period="6" data-day="2"></td>
                   <td data-period="6" data-day="3"></td>
                   <td data-period="6" data-day="4"></td>
-                  <td data-period="6" data-day极客时间="5"></td>
+                  <td data-period="6" data-day="5"></td>
                   <td data-period="6" data-day="6"></td>
                   <td data-period="6" data-day="0"></td>
                 </tr>
@@ -3074,6 +3073,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script>
     // USTC Timetable的时间映射
     const periodTimes = {
@@ -3089,7 +3089,7 @@
       10: { start: '17:35', end: '18:20' },
       11: { start: '19:30', end: '20:15' },
       12: { start: '20:20', end: '21:05' },
-      13: { start: '21:10', end: '21:55' }
+      13: { start: '21:10', end极客时间: '21:55' }
     };
 
     // USTC课程存储
@@ -3587,7 +3587,7 @@
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,time极客时间GridDay'
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         events: calendarEvents,
         eventClick: function(info) {
@@ -3726,6 +3726,7 @@
       const modal = document.getElementById('event-modal');
       const form = document.getElementById('event-form');
       const deleteBtn = document.getElementById('event-delete-btn');
+      const recurringContainer = document.getElementById('recurring-container');
       const ustcFields = document.querySelectorAll('.ustc-field');
       
       // Hide USTC specific fields
@@ -3743,6 +3744,9 @@
       // Show/hide delete button
       deleteBtn.style.display = event ? 'block' : 'none';
       
+      // Show/hide recurring option (only for calendar)
+      recurringContainer.style.display = type === 'calendar' ? 'block' : 'none';
+      
       // Populate form with event data or preset data
       if (event) {
         document.getElementById('event-id').value = event.id || event._id;
@@ -3755,6 +3759,11 @@
         
         document.getElementById('event-start').value = formatDateTimeForInput(start);
         document.getElementById('event-end').value = formatDateTimeForInput(end);
+        
+        // Set recurring if it's a recurring event
+        if (event.extendedProps?.recurring) {
+          document.getElementById('event-recurring').checked = true;
+        }
       } else if (presetData) {
         document.getElementById('event-start').value = formatDateTimeForInput(presetData.start);
         document.getElementById('event-end').value = formatDateTimeForInput(presetData.end);
@@ -3772,13 +3781,15 @@
       const form = document.getElementById('event-form');
       const type = document.getElementById('event-type').value;
       const eventId = document.getElementById('event-id').value;
+      const isRecurring = document.getElementById('event-recurring').checked;
       
       const eventData = {
         id: eventId || generateId(),
         title: document.getElementById('event-title').value,
         start: document.getElementById('event-start').value,
         end: document.getElementById('event-end').value,
-        description: document.getElementById('event-description').value
+        description: document.getElementById('event-description').value,
+        recurring: isRecurring
       };
       
       if (type === 'calendar') {
@@ -3903,56 +3914,31 @@
       // Add classes to timetable
       ustcClasses.forEach(cls => {
         cls.days.forEach(day => {
-          const startPeriod = parseInt(cls.periodStart);
-          const endPeriod = parseInt(cls.periodEnd);
-          
-          // 遍历这个课程的每个时间段
-          for (let period = startPeriod; period <= endPeriod; period++) {
+          for (let period = parseInt(cls.periodStart); period <= parseInt(cls.periodEnd); period++) {
             const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
             if (cell) {
               cell.classList.add('has-class');
-              let classInfo = cell.querySelector('.ustc-class-info');
-              const isFirst = period === startPeriod;
-              const isLast = period === endPeriod;
               
-              // 如果是第一个时间段，显示开始时间和课程信息
-              if (isFirst) {
-                if (!classInfo) {
-                  classInfo = document.createElement('div');
-                  classInfo.className = 'ustc-class-info';
-                  cell.appendChild(classInfo);
-                }
+              // Only show class info in the first period
+              if (period === parseInt(cls.periodStart)) {
+                const classInfo = document.createElement('div');
+                classInfo.className = 'ustc-class-info';
+                classInfo.dataset.id = cls.id;
                 
-                const startTime = periodTimes[period].start;
-                const startTimeEl = document.createElement('div');
-                startTimeEl.className = 'class-time start-time';
-                startTimeEl.textContent = startTime;
-                classInfo.appendChild(startTimeEl);
+                // Show start and end times
+                const startTime = periodTimes[cls.periodStart].start;
+                const endTime = periodTimes[cls.periodEnd].end;
                 
-                const courseNameEl = document.createElement('div');
-                courseNameEl.className = 'course-name';
-                courseNameEl.textContent = cls.courseName;
-                classInfo.appendChild(courseNameEl);
+                classInfo.innerHTML = `
+                  <div class="class-time start-time">${startTime}</div>
+                  <div class="class-details">
+                    <div class="course-name">${cls.courseName}</div>
+                    <div class="instructor">${cls.instructor}</div>
+                  </div>
+                  <div class="class-time end-time">${endTime}</div>
+                `;
                 
-                const instructorEl = document.createElement('div');
-                instructorEl.className = 'instructor';
-                instructorEl.textContent = cls.instructor;
-                classInfo.appendChild(instructorEl);
-              }
-              
-              // 如果是最后一个时间段，显示结束时间
-              if (isLast) {
-                if (!classInfo) {
-                  classInfo = document.createElement('div');
-                  classInfo.className = 'ustc-class-info';
-                  cell.appendChild(classInfo);
-                }
-                
-                const endTime = periodTimes[period].end;
-                const endTimeEl = document.createElement('div');
-                endTimeEl.className = 'class-time end-time';
-                endTimeEl.textContent = endTime;
-                classInfo.appendChild(endTimeEl);
+                cell.appendChild(classInfo);
               }
             }
           }
@@ -4035,7 +4021,7 @@
       localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
       
       // Update UI
-      renderU极客时间tcClassesTable();
+      renderUstcClassesTable();
       renderUstcTimetable();
       
       // Close modal
