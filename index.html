@@ -1838,23 +1838,8 @@
     width: 80px;
   }
   
-  /* USTC Timetable高亮样式 */
   #ustc-timetable td.has-class {
     background-color: rgba(52, 152, 219, 0.1);
-    cursor: pointer;
-    position: relative;
-  }
-  
-  #ustc-timetable td.has-class:hover {
-    background-color: rgba(52, 152, 219, 0.2);
-  }
-  
-  body.dark-mode #ustc-timetable td.has-class {
-    background-color: rgba(106, 48, 147, 0.1);
-  }
-  
-  body.dark-mode #ustc-timetable td.has-class:hover {
-    background-color: rgba(106, 48, 147, 0.2);
   }
   
   .ustc-class-info {
@@ -1865,13 +1850,9 @@
     bottom: 2px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     padding: 2px;
-    overflow: hidden;
-    text-align: center;
-    font-size: 0.85em;
-    z-index: 2;
+    color: #2c3e50; /* 添加文本颜色 */
   }
   
   .class-time {
@@ -1889,12 +1870,13 @@
   
   .course-name {
     font-weight: bold;
-    margin-bottom: 2px;
+    text-align: center;
   }
   
   .instructor {
+    font-size: 0.9em;
+    text-align: center;
     font-style: italic;
-    font-size: 0.8em;
   }
   
   .ustc-classes-container {
@@ -3885,53 +3867,40 @@
           deleteUstcClass(id);
         }
       });
-
-      document.querySelectorAll('#ustc-timetable td[data-period]').forEach(cell => {
-        cell.addEventListener('click', function() {
-          const period = this.dataset.period;
-          const day = this.parentNode.rowIndex - 1; // 获取行索引
-        
-          // 打开添加课程模态框
-          openUstcClassModal(null, {
-            periodStart: period,
-            periodEnd: period,
-            day: day
-          });
-        });
-      });
     }
     
-    function renderUstcTimetable() {
-      // 清除所有单元格的has-class类
-      document.querySelectorAll('#ustc-timetable td[data-period]').forEach(td => {
-        td.classList.remove('has-class');
-        td.innerHTML = '';
-      });
-    
-      // 添加课程到时间表
-      ustcClasses.forEach(cls => {
-        cls.days.forEach(day => {
-          for (let period = parseInt(cls.periodStart); period <= parseInt(cls.periodEnd); period++) {
-            const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
-            if (cell) {
-              cell.classList.add('has-class');
-            
-              // 只在第一个课时显示课程信息
-              if (period === parseInt(cls.periodStart)) {
-                const classInfo = document.createElement('div');
-                classInfo.className = 'ustc-class-info';
-                classInfo.dataset.id = cls.id;
-              
-                classInfo.innerHTML = `
-                  <div class="course-name">${cls.courseName}</div>
-                  <div class="instructor">${cls.instructor}</div>
-                `;
-              
-                cell.appendChild(classInfo);
-              }
-            }
-          }
-        });
+    function renderUstcClassesTable() {
+      const tbody = document.getElementById('ustc-classes-body');
+      tbody.innerHTML = '';
+      
+      ustcClasses.forEach((cls, index) => {
+        const row = document.createElement('tr');
+        row.dataset.id = cls.id;
+        
+        // Get period range string
+        let periodRange = '';
+        if (cls.periodStart === cls.periodEnd) {
+          periodRange = `Period ${cls.periodStart}`;
+        } else {
+          periodRange = `Periods ${cls.periodStart}-${cls.periodEnd}`;
+        }
+        
+        // Get days string
+        const daysMap = {0: 'Sun', 1: 'Mon', 2: 'Tue', 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat'};
+        const days = cls.days.map(day => daysMap[day]).join(', ');
+        
+        row.innerHTML = `
+          <td>${periodRange}</td>
+          <td>${cls.courseName}</td>
+          <td>${cls.instructor}</td>
+          <td>${days}</td>
+          <td>
+            <button class="edit-ustc-class" data-id="${cls.id}">Edit</button>
+            <button class="delete-ustc-class" data-id="${cls.id}">Delete</button>
+          </td>
+        `;
+        
+        tbody.appendChild(row);
       });
     }
     
@@ -4012,23 +3981,6 @@
         document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
           checkbox.checked = cls.days.includes(parseInt(checkbox.value));
         });
-      }
-
-      // 如果有预设数据，填充表单
-      if (presetData) {
-        if (presetData.periodStart) {
-          document.getElementById('ustc-period-start').value = presetData.periodStart;
-        }
-        if (presetData.periodEnd) {
-          document.getElementById('ustc-period-end').value = presetData.periodEnd;
-        }
-        if (presetData.day !== undefined) {
-          // 选中对应的星期
-          const dayCheckbox = document.querySelector(`input[name="ustc-day"][value="${presetData.day}"]`);
-          if (dayCheckbox) {
-            dayCheckbox.checked = true;
-          }
-        }
       }
       
       // Show modal
