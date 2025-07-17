@@ -15,7 +15,7 @@
 <link rel="preload" href="./assets/images/scroll-texture.png" as="image">
 <link rel="preload" href="./assets/animation/fire-animation.gif" as="image">
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&display=swap" rel="stylesheet">
-<script src="epic-transition.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 <style>
   /* 图片加载优化 */
   #avatar-frame img {
@@ -1946,6 +1946,44 @@
     border-color: #444;
     color: #cccccc;
   }
+
+  /* 修复USTC Timetable结束时间位置 */
+  .end-info {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 0.8em;
+    padding: 2px;
+  }
+  
+  .start-info {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 0.8em;
+    padding: 2px;
+  }
+  
+  .course-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    padding: 0 5px;
+  }
+  
+  .course-name {
+    font-weight: bold;
+    display: block;
+  }
+  
+  .instructor {
+    font-style: italic;
+    display: block;
+    font-size: 0.9em;
+  }
 </style>
 </head>
 <body>
@@ -3073,7 +3111,6 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script>
     // USTC Timetable的时间映射
     const periodTimes = {
@@ -3919,26 +3956,28 @@
             if (cell) {
               cell.classList.add('has-class');
               
-              // Only show class info in the first period
+              // 在第一个时间段显示课程名称和教师
               if (period === parseInt(cls.periodStart)) {
-                const classInfo = document.createElement('div');
-                classInfo.className = 'ustc-class-info';
-                classInfo.dataset.id = cls.id;
+                const startInfo = document.createElement('div');
+                startInfo.className = 'start-info';
+                startInfo.innerHTML = `<div class="class-time">${periodTimes[cls.periodStart].start}</div>`;
+                cell.appendChild(startInfo);
                 
-                // Show start and end times
-                const startTime = periodTimes[cls.periodStart].start;
-                const endTime = periodTimes[cls.periodEnd].end;
-                
-                classInfo.innerHTML = `
-                  <div class="class-time start-time">${startTime}</div>
-                  <div class="class-details">
-                    <div class="course-name">${cls.courseName}</div>
-                    <div class="instructor">${cls.instructor}</div>
-                  </div>
-                  <div class="class-time end-time">${endTime}</div>
+                const courseInfo = document.createElement('div');
+                courseInfo.className = 'course-info';
+                courseInfo.innerHTML = `
+                  <div class="course-name">${cls.courseName}</div>
+                  <div class="instructor">${cls.instructor}</div>
                 `;
-                
-                cell.appendChild(classInfo);
+                cell.appendChild(courseInfo);
+              }
+              
+              // 在最后一个时间段显示结束时间
+              if (period === parseInt(cls.periodEnd)) {
+                const endInfo = document.createElement('div');
+                endInfo.className = 'end-info';
+                endInfo.innerHTML = `<div class="class-time">${periodTimes[cls.periodEnd].end}</div>`;
+                cell.appendChild(endInfo);
               }
             }
           }
