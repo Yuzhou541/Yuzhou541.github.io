@@ -1946,6 +1946,46 @@
     border-color: #444;
     color: #cccccc;
   }
+
+  #ustc-timetable .timetable-event {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 0.9em;
+    padding: 2px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  #ustc-timetable .timetable-event:hover {
+    background-color: #2980b9;
+    transform: scale(1.02);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  body.dark-mode #ustc-timetable .timetable-event {
+    background-color: #6a3093;
+  }
+
+  body.dark-mode #ustc-timetable .timetable-event:hover {
+    background-color: #4a148c;
+  }
+
+  /* 确保单元格有相对定位 */
+  #ustc-timetable td {
+    position: relative;
+  }
 </style>
 </head>
 <body>
@@ -3910,7 +3950,7 @@
         td.innerHTML = '';
         td.classList.remove('has-class');
       });
-      
+    
       // Add classes to timetable
       ustcClasses.forEach(cls => {
         cls.days.forEach(day => {
@@ -3918,28 +3958,29 @@
             const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
             if (cell) {
               cell.classList.add('has-class');
-              
-              // Only show class info in the first period
+            
+              // 创建事件元素（与普通Timetable一致）
+              const eventElement = document.createElement('div');
+              eventElement.className = 'timetable-event';
+              eventElement.dataset.id = cls.id;
+            
+              // 在第一个课时显示详细信息，其他课时只显示课程名称
               if (period === parseInt(cls.periodStart)) {
-                const classInfo = document.createElement('div');
-                classInfo.className = 'ustc-class-info';
-                classInfo.dataset.id = cls.id;
-                
-                // Show start and end times
-                const startTime = periodTimes[cls.periodStart].start;
-                const endTime = periodTimes[cls.periodEnd].end;
-                
-                classInfo.innerHTML = `
-                  <div class="class-time start-time">${startTime}</div>
-                  <div class="class-details">
-                    <div class="course-name">${cls.courseName}</div>
-                    <div class="instructor">${cls.instructor}</div>
-                  </div>
-                  <div class="class-time end-time">${endTime}</div>
+                eventElement.innerHTML = `
+                  <strong>${cls.courseName}</strong>
+                  ${cls.instructor ? `<small>${cls.instructor}</small>` : ''}
                 `;
-                
-                cell.appendChild(classInfo);
+              } else {
+                eventElement.innerHTML = `<span>${cls.courseName}</span>`;
               }
+            
+              // 添加点击事件，用于编辑
+              eventElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                editUstcClass(cls.id);
+              });
+            
+              cell.appendChild(eventElement);
             }
           }
         });
