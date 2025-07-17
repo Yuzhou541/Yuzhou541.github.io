@@ -1840,11 +1840,6 @@
   
   #ustc-timetable td.has-class {
     background-color: rgba(52, 152, 219, 0.1);
-    position: relative;
-  }
-
-  #ustc-timetable td.has-class:hover {
-    background-color: rgba(52, 152, 219, 0.2);
   }
   
   .ustc-class-info {
@@ -1855,12 +1850,9 @@
     bottom: 2px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     padding: 2px;
-    font-size: 0.8em;
-    text-align: center;
-    overflow: hidden;
+    color: #2c3e50; /* 添加文本颜色 */
   }
   
   .class-time {
@@ -1879,11 +1871,6 @@
   .course-name {
     font-weight: bold;
     text-align: center;
-  }
-
-  .course-name-abbr {
-    font-weight: bold;
-    margin-bottom: 2px;
   }
   
   .instructor {
@@ -1944,10 +1931,6 @@
   
   body.dark-mode #ustc-timetable td.has-class {
     background-color: rgba(106, 48, 147, 0.1);
-  }
-
-  body.dark-mode #ustc-timetable td.has-class:hover {
-    background-color: rgba(106, 48, 147, 0.2);
   }
   
   body.dark-mode .ustc-class-info {
@@ -3927,7 +3910,7 @@
         td.innerHTML = '';
         td.classList.remove('has-class');
       });
-    
+      
       // Add classes to timetable
       ustcClasses.forEach(cls => {
         cls.days.forEach(day => {
@@ -3935,30 +3918,28 @@
             const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
             if (cell) {
               cell.classList.add('has-class');
-            
-              // 创建课程信息元素
-              const classInfo = document.createElement('div');
-              classInfo.className = 'ustc-class-info';
-              classInfo.dataset.id = cls.id;
-            
-              // 获取课程名称缩写（取前两个字符）
-              let courseAbbr = cls.courseName;
-              if (cls.courseName.length > 2) {
-                courseAbbr = cls.courseName.substring(0, 2);
+              
+              // Only show class info in the first period
+              if (period === parseInt(cls.periodStart)) {
+                const classInfo = document.createElement('div');
+                classInfo.className = 'ustc-class-info';
+                classInfo.dataset.id = cls.id;
+                
+                // Show start and end times
+                const startTime = periodTimes[cls.periodStart].start;
+                const endTime = periodTimes[cls.periodEnd].end;
+                
+                classInfo.innerHTML = `
+                  <div class="class-time start-time">${startTime}</div>
+                  <div class="class-details">
+                    <div class="course-name">${cls.courseName}</div>
+                    <div class="instructor">${cls.instructor}</div>
+                  </div>
+                  <div class="class-time end-time">${endTime}</div>
+                `;
+                
+                cell.appendChild(classInfo);
               }
-            
-              classInfo.innerHTML = `
-                <div class="course-name-abbr">${courseAbbr}</div>
-                <div class="instructor-abbr">${cls.instructor.charAt(0)}</div>
-              `;
-            
-              // 添加点击事件用于编辑
-              classInfo.addEventListener('click', (e) => {
-                e.stopPropagation();
-                editUstcClass(cls.id);
-              });
-            
-              cell.appendChild(classInfo);
             }
           }
         });
@@ -4004,11 +3985,6 @@
       
       // Show modal
       modal.style.display = 'flex';
-
-      classInfo.addEventListener('click', (e) => {
-        e.stopPropagation();
-        editUstcClass(cls.id);
-      });
     }
     
     function saveUstcClass() {
