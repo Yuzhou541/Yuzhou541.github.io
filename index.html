@@ -1635,6 +1635,7 @@
   .event-form-control:focus {
     outline: none;
     border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
   }
 
   body.dark-mode .event-form-control {
@@ -1645,6 +1646,7 @@
 
   body.dark-mode .event-form-control:focus {
     border-color: #6a3093;
+    box-shadow: 0 0 0 2px rgba(106, 48, 147, 0.2);
   }
 
   .event-form-actions {
@@ -1845,10 +1847,10 @@
   
   .ustc-class-info {
     position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1973,6 +1975,10 @@
     text-align: center;
     width: 100%;
     padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .course-name {
@@ -1984,6 +1990,21 @@
     font-style: italic;
     display: block;
     font-size: 0.9em;
+  }
+
+  /* 修复单元格居中问题 */
+  #ustc-timetable td {
+    position: relative;
+  }
+  
+  /* 课程信息居中 */
+  .course-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
   }
 </style>
 </head>
@@ -3159,6 +3180,8 @@
 
     // USTC课程存储
     let ustcClasses = JSON.parse(localStorage.getItem('ustcClasses')) || [];
+    let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+    let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
 
     // 初始化自定义光标
     document.addEventListener('DOMContentLoaded', function() {
@@ -3543,12 +3566,10 @@
     
     // Schedule Page Functionality
     let calendar;
-    let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     let currentWeek = new Date();
     currentWeek.setHours(0, 0, 0, 0);
     // Set to Monday of current week
     currentWeek.setDate(currentWeek.getDate() - (currentWeek.getDay() + 6) % 7);
-    let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
     
     function initSchedulePage() {
       // Initialize calendar and timetable
@@ -3881,7 +3902,10 @@
         // Save calendar event
         if (eventId) {
           // Update existing event
-          calendarEvents = calendarEvents.map(e => e.id === eventId ? eventData : e);
+          const index = calendarEvents.findIndex(e => e.id === eventId);
+          if (index !== -1) {
+            calendarEvents[index] = eventData;
+          }
         } else {
           // Add new event
           calendarEvents.push(eventData);
@@ -3893,7 +3917,10 @@
         // Save timetable event
         if (eventId) {
           // Update existing event
-          timetableEvents = timetableEvents.map(e => e.id === eventId ? eventData : e);
+          const index = timetableEvents.findIndex(e => e.id === eventId);
+          if (index !== -1) {
+            timetableEvents[index] = eventData;
+          }
         } else {
           // Add new event
           timetableEvents.push(eventData);
@@ -4011,13 +4038,21 @@
                 startInfo.innerHTML = `<div class="class-time">${periodTimes[cls.periodStart].start}</div>`;
                 cell.appendChild(startInfo);
                 
-                const courseInfo = document.createElement('div');
-                courseInfo.className = 'course-info';
-                courseInfo.innerHTML = `
-                  <div class="course-name">${cls.courseName}</div>
-                  <div class="instructor">${cls.instructor}</div>
-                `;
-                cell.appendChild(courseInfo);
+                // 使用新的居中容器
+                const courseCenter = document.createElement('div');
+                courseCenter.className = 'course-center';
+                
+                const courseNameElem = document.createElement('div');
+                courseNameElem.className = 'course-name';
+                courseNameElem.textContent = cls.courseName;
+                
+                const instructorElem = document.createElement('div');
+                instructorElem.className = 'instructor';
+                instructorElem.textContent = cls.instructor;
+                
+                courseCenter.appendChild(courseNameElem);
+                courseCenter.appendChild(instructorElem);
+                cell.appendChild(courseCenter);
               }
               
               // 在最后一个时间段显示结束时间
