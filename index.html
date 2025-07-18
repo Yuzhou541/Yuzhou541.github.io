@@ -1845,10 +1845,10 @@
   
   .ustc-class-info {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -2205,17 +2205,17 @@
       </div>
       
       <!-- 分类筛选器 -->
-  <div class="toolkit-filter">
-    <button class="filter-btn active" data-category="all">All</button>
-    <button class="filter-btn" data-category="development">Development</button>
-    <button class="filter-btn" data-category="communication">Communication</button>
-    <button class="filter-btn" data-category="media">Media & Video</button>
-    <button class="filter-btn" data-category="music">Music</button>
-    <button class="filter-btn" data-category="knowledge">Knowledge</button>
-    <button class="filter-btn" data-category="productivity">Productivity</button>
-    <button class="filter-btn" data-category="reference">Document and Management</button>
-    <button class="filter-btn" data-category="ustc">USTC Services</button>
-  </div>
+      <div class="toolkit-filter">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="development">Development</button>
+        <button class="filter-btn" data-category="communication">Communication</button>
+        <button class="filter-btn" data-category="media">Media & Video</button>
+        <button class="filter-btn" data-category="music">Music</button>
+        <button class="filter-btn" data-category="knowledge">Knowledge</button>
+        <button class="filter-btn" data-category="productivity">Productivity</button>
+        <button class="filter-btn" data-category="reference">Document and Management</button>
+        <button class="filter-btn" data-category="ustc">USTC Services</button>
+      </div>
       
       <!-- Development 分类 -->
       <div class="category-section" data-category="development">
@@ -2611,8 +2611,7 @@
             <div class="toolkit-icon tencentdocs-icon">
               <i class="fas fa-file-alt"></i>
             </div>
-            <极
-<div class="toolkit-title">Tencent Docs</div>
+            <div class="toolkit-title">Tencent Docs</div>
             <a href="https://docs.qq.com/" class="toolkit-link" target="_blank">Visit</a>
           </div>
 
@@ -2626,8 +2625,11 @@
           </div>
 
           <!-- Yuque -->
-          <div class="toolkit-card极
-<div class="toolkit-title">Yuque</div>
+          <div class="toolkit-card" data-title="yuque" data-categories="productivity">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#00b0ff,#0081cb)">
+              <i class="fas fa-feather-alt"></i>
+            </div>
+            <div class="toolkit-title">Yuque</div>
             <a href="https://www.yuque.com/" class="toolkit-link" target="_blank">Visit</a>
           </div>
 
@@ -2675,8 +2677,10 @@
     
           <!-- Zotero -->
           <div class="toolkit-card" data-title="zotero" data-categories="reference">
-            <div class="toolkit-icon" style="background:linear-gradient(135极
-<div class="toolkit-title">Zotero</div>
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3949ab)">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="toolkit-title">Zotero</div>
             <a href="https://www.zotero.org/" class="toolkit-link" target="_blank">Visit</a>
           </div>
     
@@ -2753,8 +2757,8 @@
           <div class="toolkit-card" data-title="ustc icourse" data-categories="ustc">
             <div class="toolkit-icon ustc-icourse-icon">
               <i class="fas fa-comments"></i>
-            </极
-<div class="toolkit-title">Course Review Community</div>
+            </div>
+            <div class="toolkit-title">Course Review Community</div>
             <a href="https://icourse.club/" class="toolkit-link" target="_blank">Visit</a>
           </div>
     
@@ -2885,8 +2889,7 @@
                   <td data-period="2" data-day="3"></td>
                   <td data-period="2" data-day="4"></td>
                   <td data-period="2" data-day="5"></td>
-                  <td data-period="2" data-day极
-</td>
+                  <td data-period="2" data-day="6"></td>
                   <td data-period="2" data-day="0"></td>
                 </tr>
                 <tr>
@@ -2929,8 +2932,7 @@
                   <td data-period="6" data-day="0"></td>
                 </tr>
                 <tr>
-                  <td data-period="7" data-day="1">7</极
-</td>
+                  <td data-period="7" data-day="1">7</td>
                   <td data-period="7" data-day="2"></td>
                   <td data-period="7" data-day="3"></td>
                   <td data-period="7" data-day="4"></td>
@@ -3122,8 +3124,7 @@
               <label><input type="checkbox" name="ustc-day" value="3"> Wed</label>
               <label><input type="checkbox" name="ustc-day" value="4"> Thu</label>
               <label><input type="checkbox" name="ustc-day" value="5"> Fri</label>
-              <label><input type="checkbox极
-</label>
+              <label><input type="checkbox" name="ustc-day" value="6"> Sat</label>
               <label><input type="checkbox" name="ustc-day" value="0"> Sun</label>
             </div>
           </div>
@@ -3149,8 +3150,7 @@
       6: { start: '14:00', end: '14:45' },
       7: { start: '14:50', end: '15:35' },
       8: { start: '15:55', end: '16:40' },
-      9: { start: '极
-', end: '17:30' },
+      9: { start: '16:45', end: '17:30' },
       10: { start: '17:35', end: '18:20' },
       11: { start: '19:30', end: '20:15' },
       12: { start: '20:20', end: '21:05' },
@@ -3369,8 +3369,7 @@
     toolkitBtn.addEventListener("click", () => showPage('toolkit'));
     scheduleBtn.addEventListener("click", () => showPage('schedule'));
     resumeBackBtn.addEventListener("click", backToCover);
-    socialBackBtn.addEventListener("click", back极
-);
+    socialBackBtn.addEventListener("click", backToCover);
     toolkitBackBtn.addEventListener("click", backToCover);
     scheduleBackBtn.addEventListener("click", backToCover);
 
@@ -4005,7 +4004,7 @@
             if (cell) {
               cell.classList.add('has-class');
               
-              // Only add content to the first period of the class
+              // 在第一个时间段显示课程名称和教师
               if (period === parseInt(cls.periodStart)) {
                 const startInfo = document.createElement('div');
                 startInfo.className = 'start-info';
@@ -4021,7 +4020,7 @@
                 cell.appendChild(courseInfo);
               }
               
-              // Only add content to the last period of the class
+              // 在最后一个时间段显示结束时间
               if (period === parseInt(cls.periodEnd)) {
                 const endInfo = document.createElement('div');
                 endInfo.className = 'end-info';
