@@ -16,6 +16,7 @@
 <link rel="preload" href="./assets/animation/fire-animation.gif" as="image">
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="epic-transition.js"></script>
 <style>
   /* 图片加载优化 */
   #avatar-frame img {
@@ -1314,6 +1315,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    width: 100%; /* 新增：确保宽度占满 */
   }
 
   .schedule-switcher {
@@ -1803,7 +1805,7 @@
     display: none; /* 初始隐藏 */
   }
 
-  /* USTC Timetable样式 - 修复颜色问题 */
+  /* USTC Timetable样式 - 优化版本 */
   #ustc-timetable {
     width: 100%;
     border-collapse: collapse;
@@ -1815,6 +1817,7 @@
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+    position: relative;
   }
   
   #ustc-timetable th {
@@ -1827,7 +1830,6 @@
     background-color: white;
     height: 50px;
     vertical-align: middle;
-    position: relative;
   }
   
   #ustc-timetable .period-header {
@@ -1842,43 +1844,80 @@
     background-color: rgba(52, 152, 219, 0.1);
   }
   
-  .ustc-class-info {
+  /* 新样式：事件覆盖层 */
+  .ustc-event-overlay {
     position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 2px;
-    color: #2c3e50; /* 添加文本颜色 */
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background: rgba(52, 152, 219, 0.15);
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
   }
   
-  .class-time {
-    font-size: 0.8em;
-    padding: 2px;
-  }
-  
-  .start-time {
-    align-self: flex-start;
-  }
-  
-  .end-time {
-    align-self: flex-end;
+  .ustc-event-overlay:hover {
+    background: rgba(52, 152, 219, 0.25);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
   }
   
   .course-name {
     font-weight: bold;
-    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 2px;
+    color: #2c3e50;
   }
   
   .instructor {
-    font-size: 0.9em;
-    text-align: center;
+    font-size: 0.8em;
     font-style: italic;
+    color: #34495e;
   }
   
+  /* 暗黑模式USTC Timetable样式 */
+  body.dark-mode #ustc-timetable th {
+    background-color: #6a3093;
+    border-color: #444;
+  }
+  
+  body.dark-mode #ustc-timetable td {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #ffffff;
+  }
+  
+  body.dark-mode #ustc-timetable .period-header {
+    background-color: #3d3d3d;
+    color: #ffffff;
+  }
+  
+  body.dark-mode #ustc-timetable td.has-class {
+    background-color: rgba(106, 48, 147, 0.1);
+  }
+  
+  body.dark-mode .course-name {
+    color: #ffffff;
+  }
+  
+  body.dark-mode .instructor {
+    color: #cccccc;
+  }
+  
+  body.dark-mode .ustc-event-overlay {
+    background: rgba(106, 48, 147, 0.15);
+  }
+  
+  body.dark-mode .ustc-event-overlay:hover {
+    background: rgba(106, 48, 147, 0.25);
+  }
+  
+  /* USTC Classes Table */
   .ustc-classes-container {
     margin-top: 30px;
   }
@@ -1912,31 +1951,6 @@
     gap: 5px;
   }
   
-  /* 暗黑模式USTC Timetable样式 */
-  body.dark-mode #ustc-timetable th {
-    background-color: #6a3093;
-    border-color: #444;
-  }
-  
-  body.dark-mode #ustc-timetable td {
-    background-color: #2d2d2d;
-    border-color: #444;
-    color: #ffffff;
-  }
-  
-  body.dark-mode #ustc-timetable .period-header {
-    background-color: #3d3d3d;
-    color: #ffffff;
-  }
-  
-  body.dark-mode #ustc-timetable td.has-class {
-    background-color: rgba(106, 48, 147, 0.1);
-  }
-  
-  body.dark-mode .ustc-class-info {
-    color: #ffffff;
-  }
-  
   body.dark-mode .ustc-classes-table th {
     background-color: #6a3093;
   }
@@ -1947,42 +1961,82 @@
     color: #cccccc;
   }
 
-  /* 修复USTC Timetable结束时间位置 */
-  .end-info {
+  /* Schedule页面容器宽度优化 */
+  #schedule .container {
+    max-width: 95%; /* 更宽的容器 */
+    width: 100%;
+    padding: 30px 15px;
+  }
+  
+  /* USTC课程表样式优化 */
+  .ustc-class-cell {
+    position: relative;
+    height: 100%;
+  }
+  
+  .ustc-class-info {
     position: absolute;
-    bottom: 2px;
-    right: 2px;
-    font-size: 0.8em;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+  }
+  
+  /* 时间信息样式 */
+  .time-info {
+    position: absolute;
+    font-size: 0.7em;
     padding: 2px;
+    z-index: 20;
   }
   
   .start-info {
-    position: absolute;
     top: 2px;
     left: 2px;
-    font-size: 0.8em;
-    padding: 2px;
   }
   
-  .course-info {
+  .end-info {
+    bottom: 2px;
+    right: 2px;
+  }
+  
+  /* 高级事件单元格样式 */
+  .event-cell {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .event-cell:hover {
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.1);
+    transform: scale(1.01);
+  }
+  
+  .event-cell::before {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 0 5px;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    transition: all 0.3s ease;
   }
   
-  .course-name {
-    font-weight: bold;
-    display: block;
+  .event-cell:hover::before {
+    height: 5px;
   }
   
-  .instructor {
-    font-style: italic;
-    display: block;
-    font-size: 0.9em;
+  body.dark-mode .event-cell::before {
+    background: linear-gradient(90deg, #6a3093, #9b59b6);
   }
 </style>
 </head>
@@ -3946,38 +4000,55 @@
       document.querySelectorAll('#ustc-timetable td[data-period]').forEach(td => {
         td.innerHTML = '';
         td.classList.remove('has-class');
+        td.classList.remove('event-cell');
       });
       
       // Add classes to timetable
       ustcClasses.forEach(cls => {
+        const startPeriod = parseInt(cls.periodStart);
+        const endPeriod = parseInt(cls.periodEnd);
+        const rowSpan = endPeriod - startPeriod + 1;
+        
         cls.days.forEach(day => {
-          for (let period = parseInt(cls.periodStart); period <= parseInt(cls.periodEnd); period++) {
-            const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
-            if (cell) {
-              cell.classList.add('has-class');
-              
-              // 在第一个时间段显示课程名称和教师
-              if (period === parseInt(cls.periodStart)) {
-                const startInfo = document.createElement('div');
-                startInfo.className = 'start-info';
-                startInfo.innerHTML = `<div class="class-time">${periodTimes[cls.periodStart].start}</div>`;
-                cell.appendChild(startInfo);
+          // Find the first cell for this class
+          const firstCell = document.querySelector(`#ustc-timetable td[data-period="${startPeriod}"][data-day="${day}"]`);
+          
+          if (firstCell) {
+            // Mark all cells in the range
+            for (let period = startPeriod; period <= endPeriod; period++) {
+              const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
+              if (cell) {
+                cell.classList.add('has-class', 'event-cell');
+                cell.innerHTML = '';
                 
-                const courseInfo = document.createElement('div');
-                courseInfo.className = 'course-info';
-                courseInfo.innerHTML = `
-                  <div class="course-name">${cls.courseName}</div>
-                  <div class="instructor">${cls.instructor}</div>
-                `;
-                cell.appendChild(courseInfo);
-              }
-              
-              // 在最后一个时间段显示结束时间
-              if (period === parseInt(cls.periodEnd)) {
-                const endInfo = document.createElement('div');
-                endInfo.className = 'end-info';
-                endInfo.innerHTML = `<div class="class-time">${periodTimes[cls.periodEnd].end}</div>`;
-                cell.appendChild(endInfo);
+                // Add overlay for entire event
+                if (period === startPeriod) {
+                  const overlay = document.createElement('div');
+                  overlay.className = 'ustc-event-overlay';
+                  overlay.innerHTML = `
+                    <div class="course-name">${cls.courseName}</div>
+                    <div class="instructor">${cls.instructor}</div>
+                  `;
+                  overlay.addEventListener('click', () => {
+                    editUstcClass(cls.id);
+                  });
+                  cell.appendChild(overlay);
+                }
+                
+                // Add time indicators
+                if (period === startPeriod) {
+                  const startInfo = document.createElement('div');
+                  startInfo.className = 'time-info start-info';
+                  startInfo.textContent = periodTimes[cls.periodStart].start;
+                  cell.appendChild(startInfo);
+                }
+                
+                if (period === endPeriod) {
+                  const endInfo = document.createElement('div');
+                  endInfo.className = 'time-info end-info';
+                  endInfo.textContent = periodTimes[cls.periodEnd].end;
+                  cell.appendChild(endInfo);
+                }
               }
             }
           }
