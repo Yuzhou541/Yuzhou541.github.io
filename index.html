@@ -1205,7 +1205,7 @@
   body.dark-mode .toolkit-icon.camscanner-icon { background: linear-gradient(135deg, #3d8b40, #4caf50); }
   body.dark-mode .toolkit-icon.mars-icon { background: linear-gradient(135deg, #5d4037, #6d4b41); }
   body.dark-mode .toolkit-icon.xmol-icon { background: linear-gradient(135deg, #0d47a1, #1565c0); }
-  body.dark-mode .toolkit-icon.ablesci-icon { background: linear-gradient(135deg, #3949ab, #5c6bc0); }
+  body.dark-mode .toolkit-icon.ablesci-icon { background: linear-gradient(135deg, #4a58a3, #324497); }
   body.dark-mode .toolkit-icon.sciencedirect-icon { background: linear-gradient(135deg, #e65100, #f57c00); }
   body.dark-mode .toolkit-icon.kaggle-icon { background: linear-gradient(135deg, #0088cc, #00a0e0); }
   body.dark-mode .toolkit-icon.csmr-icon { background: linear-gradient(135deg, #455a64, #546e7a); }
@@ -2073,6 +2073,25 @@
   
   body.dark-mode .ustc-course-info:hover {
     background: rgba(106, 48, 147, 0.2);
+  }
+  
+  /* 新增：合并单元格样式 */
+  .merged-cell {
+    border: none !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    height: 0 !important;
+  }
+  
+  .course-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    position: relative;
   }
 </style>
 </head>
@@ -3271,6 +3290,10 @@
     let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
     
+    // 保存USTC Timetable的初始HTML
+    const timetableTbody = document.querySelector('#ustc-timetable tbody');
+    const timetableTbodyInitialHTML = timetableTbody.innerHTML;
+    
     // 初始化自定义光标
     document.addEventListener('DOMContentLoaded', function() {
       const cursorOuter = document.querySelector('.cursor-outer');
@@ -3918,64 +3941,96 @@
     
     // USTC Timetable functionality
     function renderUstcTimetable() {
-      // Clear all class cells
-      document.querySelectorAll('#ustc-timetable td[data-period]').forEach(td => {
-        td.innerHTML = '';
-        td.classList.remove('has-class');
-        td.classList.remove('event-cell');
-      });
+      // 恢复初始表格结构
+      timetableTbody.innerHTML = timetableTbodyInitialHTML;
       
-      // Add classes to timetable
+      // 获取所有的行
+      const rows = timetableTbody.querySelectorAll('tr');
+      
+      // 将课程按照起始课时从小到大排序
+      ustcClasses.sort((a, b) => a.periodStart - b.periodStart);
+      
+      // 遍历每个课程
       ustcClasses.forEach(cls => {
-        const startPeriod = parseInt(cls.periodStart);
-        const endPeriod = parseInt(cls.periodEnd);
-        const rowSpan = endPeriod - startPeriod + 1;
+        const periodStart = parseInt(cls.periodStart);
+        const periodEnd = parseInt(cls.periodEnd);
+        const rowSpan = periodEnd - periodStart + 1;
         
+        // 遍历该课程的每一天
         cls.days.forEach(day => {
-          // Find the first cell for this class
-          const firstCell = document.querySelector(`#ustc-timetable td[data-period="${startPeriod}"][data-day="${day}"]`);
+          // 找到起始课时对应的行索引
+          const startRowIndex = periodStart - 1;
+          if (startRowIndex < 0 || startRowIndex >= rows.length) return;
           
-          if (firstCell) {
-            // Create the course info element
-            const courseInfo = document.createElement('div');
-            courseInfo.className = 'ustc-course-info';
-            courseInfo.innerHTML = `
-              <div class="course-name">${cls.courseName}</div>
-              <div class="instructor">${cls.instructor}</div>
-            `;
-            courseInfo.addEventListener('click', () => {
-              editUstcClass(cls.id);
-            });
+          const startRow = rows[startRowIndex];
+          // 找到起始课时对应的单元格
+          const cells = startRow.querySelectorAll('td:not(.period-header)');
+          let targetCell = null;
+          
+          for (let cell of cells) {
+            if (cell.getAttribute('data-day') === day.toString()) {
+              targetCell = cell;
+              break;
+            }
+          }
+          
+          if (!targetCell) return;
+          
+          // 设置rowspan属性
+          targetCell.rowSpan = rowSpan;
+          targetCell.classList.add('has-class', 'event-cell');
+          
+          // 创建课程内容容器
+          const courseContainer = document.createElement('div');
+          courseContainer.className = 'course-container';
+          
+          // 添加课程名称和教师
+          const courseName = document.createElement('div');
+          courseName.className = 'course-name';
+          courseName.textContent = cls.courseName;
+          courseContainer.appendChild(courseName);
+          
+          const instructor = document.createElement('div');
+          instructor.className = 'instructor';
+          instructor.textContent = cls.instructor;
+          courseContainer.appendChild(instructor);
+          
+          // 添加时间信息
+          const startInfo = document.createElement('div');
+          startInfo.className = 'time-info start-info';
+          startInfo.textContent = periodTimes[periodStart].start;
+          courseContainer.appendChild(startInfo);
+          
+          const endInfo = document.createElement('div');
+          endInfo.className = 'time-info end-info';
+          endInfo.textContent = periodTimes[periodEnd].end;
+          courseContainer.appendChild(endInfo);
+          
+          // 清空单元格并添加课程容器
+          targetCell.innerHTML = '';
+          targetCell.appendChild(courseContainer);
+          
+          // 移除后续行中相同星期几的单元格
+          for (let p = periodStart + 1; p <= periodEnd; p++) {
+            const rowIndex = p - 1;
+            if (rowIndex >= rows.length) break;
             
-            // Clear the first cell and add the course info
-            firstCell.innerHTML = '';
-            firstCell.appendChild(courseInfo);
-            firstCell.classList.add('has-class', 'event-cell');
+            const row = rows[rowIndex];
+            const cellsInRow = row.querySelectorAll('td:not(.period-header)');
             
-            // Add time indicators
-            const startInfo = document.createElement('div');
-            startInfo.className = 'time-info start-info';
-            startInfo.textContent = periodTimes[cls.periodStart].start;
-            firstCell.appendChild(startInfo);
-            
-            const endInfo = document.createElement('div');
-            endInfo.className = 'time-info end-info';
-            endInfo.textContent = periodTimes[cls.periodEnd].end;
-            firstCell.appendChild(endInfo);
-            
-            // Mark subsequent cells in the range as occupied
-            for (let period = startPeriod + 1; period <= endPeriod; period++) {
-              const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
-              if (cell) {
-                cell.innerHTML = '';
-                cell.classList.add('has-class', 'event-cell');
+            for (let i = 0; i < cellsInRow.length; i++) {
+              const cell = cellsInRow[i];
+              if (cell.getAttribute('data-day') === day.toString()) {
+                // 移除这个单元格
+                cell.remove();
+                break;
               }
             }
           }
         });
       });
       
-      // Update classes table
+      // 更新课程列表
       renderUstcClassesTable();
     }
     
@@ -4086,7 +4141,9 @@
         selectedDays.push(parseInt(checkbox.value));
       });
       
-      const classData = {
+      // Create or update class
+      const existingIndex = ustcClasses.findIndex(c => c.id === id);
+      const newClass = {
         id,
         periodStart,
         periodEnd,
@@ -4095,16 +4152,10 @@
         days: selectedDays
       };
       
-      // Update or add class
-      if (document.getElementById('event-id').value) {
-        // Update existing class
-        const index = ustcClasses.findIndex(c => c.id === id);
-        if (index !== -1) {
-          ustcClasses[index] = classData;
-        }
+      if (existingIndex >= 0) {
+        ustcClasses[existingIndex] = newClass;
       } else {
-        // Add new class
-        ustcClasses.push(classData);
+        ustcClasses.push(newClass);
       }
       
       // Save to localStorage
@@ -4129,22 +4180,18 @@
         id = document.getElementById('event-id').value;
       }
       
-      if (id) {
-        ustcClasses = ustcClasses.filter(c => c.id !== id);
-        localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
-        renderUstcTimetable();
-      }
+      if (!id) return;
       
-      // Close modal if open
+      ustcClasses = ustcClasses.filter(c => c.id !== id);
+      localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
+      renderUstcTimetable();
       document.getElementById('event-modal').style.display = 'none';
     }
     
-    // General Event Modal Functionality
-    function openGeneralEventModal(type, event = null, presetData = null) {
+    function openGeneralEventModal(type, event = null, preset = null) {
       const modal = document.getElementById('general-event-modal');
       const form = document.getElementById('general-event-form');
       const deleteBtn = document.getElementById('general-event-delete-btn');
-      const recurringContainer = document.getElementById('recurring-container');
       
       // Reset form
       form.reset();
@@ -4158,77 +4205,71 @@
       // Show/hide delete button
       deleteBtn.style.display = event ? 'block' : 'none';
       
-      // Show/hide recurring option (only for calendar)
-      recurringContainer.style.display = type === 'calendar' ? 'block' : 'none';
-      
-      // Populate form with event data or preset data
+      // Populate form data
       if (event) {
-        document.getElementById('general-event-id').value = event.id || event._id;
-        document.getElementById('event-title').value = event.title || event._def.title;
-        document.getElementById('event-description').value = event.extendedProps?.description || '';
+        document.getElementById('general-event-id').value = event.id;
+        document.getElementById('event-title').value = event.title;
+        document.getElementById('event-description').value = event.description || '';
         
-        // Format dates for datetime-local input
-        const start = event.start ? new Date(event.start) : new Date(event._instance.range.start);
-        const end = event.end ? new Date(event.end) : new Date(event._instance.range.end);
+        const start = new Date(event.start);
+        const end = new Date(event.end);
         
-        document.getElementById('event-start').value = formatDateTimeForInput(start);
-        document.getElementById('event-end').value = formatDateTimeForInput(end);
-        
-        // Set recurring if it's a recurring event
-        if (event.extendedProps?.recurring) {
-          document.getElementById('event-recurring').checked = true;
-        }
-      } else if (presetData) {
-        document.getElementById('event-start').value = formatDateTimeForInput(presetData.start);
-        document.getElementById('event-end').value = formatDateTimeForInput(presetData.end);
+        document.getElementById('event-start').value = formatDateTimeLocal(start);
+        document.getElementById('event-end').value = formatDateTimeLocal(end);
+      } else if (preset) {
+        document.getElementById('event-start').value = formatDateTimeLocal(preset.start);
+        document.getElementById('event-end').value = formatDateTimeLocal(preset.end);
       }
       
       // Show modal
       modal.style.display = 'flex';
     }
     
-    function formatDateTimeForInput(date) {
-      return date.toISOString().slice(0, 16);
-    }
-    
     function saveGeneralEvent() {
       const form = document.getElementById('general-event-form');
+      const id = document.getElementById('general-event-id').value || generateId();
       const type = document.getElementById('general-event-type').value;
-      const eventId = document.getElementById('general-event-id').value || generateId();
-      const isRecurring = document.getElementById('event-recurring').checked;
+      const title = document.getElementById('event-title').value;
+      const description = document.getElementById('event-description').value;
+      const start = new Date(document.getElementById('event-start').value);
+      const end = new Date(document.getElementById('event-end').value);
       
-      const eventData = {
-        id: eventId,
-        title: document.getElementById('event-title').value,
-        start: document.getElementById('event-start').value,
-        end: document.getElementById('event-end').value,
-        description: document.getElementById('event-description').value,
-        recurring: isRecurring
+      // Create event object
+      const event = {
+        id,
+        title,
+        description,
+        start: start.toISOString(),
+        end: end.toISOString()
       };
       
+      // Add to appropriate storage
+      let events, storageKey;
       if (type === 'calendar') {
-        // Save calendar event
-        if (document.getElementById('general-event-id').value) {
-          // Update existing event
-          calendarEvents = calendarEvents.map(e => e.id === eventId ? eventData : e);
-        } else {
-          // Add new event
-          calendarEvents.push(eventData);
-        }
-        
-        localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
-        calendar.refetchEvents();
+        events = calendarEvents;
+        storageKey = 'calendarEvents';
+      } else if (type === 'timetable') {
+        events = timetableEvents;
+        storageKey = 'timetableEvents';
+      }
+      
+      // Update or add event
+      const existingIndex = events.findIndex(e => e.id === id);
+      if (existingIndex >= 0) {
+        events[existingIndex] = event;
       } else {
-        // Save timetable event
-        if (document.getElementById('general-event-id').value) {
-          // Update existing event
-          timetableEvents = timetableEvents.map(e => e.id === eventId ? eventData : e);
-        } else {
-          // Add new event
-          timetableEvents.push(eventData);
-        }
-        
-        localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
+        events.push(event);
+      }
+      
+      // Save to localStorage
+      localStorage.setItem(storageKey, JSON.stringify(events));
+      
+      // Update UI
+      if (type === 'calendar') {
+        calendar.removeAllEvents();
+        calendar.addEventSource(calendarEvents);
+        calendar.render();
+      } else if (type === 'timetable') {
         updateTimetable();
       }
       
@@ -4237,16 +4278,30 @@
     }
     
     function deleteGeneralEvent() {
-      const eventId = document.getElementById('general-event-id').value;
+      const id = document.getElementById('general-event-id').value;
       const type = document.getElementById('general-event-type').value;
       
+      if (!id) return;
+      
+      let events, storageKey;
       if (type === 'calendar') {
-        calendarEvents = calendarEvents.filter(e => e.id !== eventId);
-        localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
-        calendar.refetchEvents();
-      } else {
-        timetableEvents = timetableEvents.filter(e => e.id !== eventId);
-        localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
+        events = calendarEvents;
+        storageKey = 'calendarEvents';
+      } else if (type === 'timetable') {
+        events = timetableEvents;
+        storageKey = 'timetableEvents';
+      }
+      
+      // Remove event
+      events = events.filter(e => e.id !== id);
+      localStorage.setItem(storageKey, JSON.stringify(events));
+      
+      // Update UI
+      if (type === 'calendar') {
+        calendar.removeAllEvents();
+        calendar.addEventSource(calendarEvents);
+        calendar.render();
+      } else if (type === 'timetable') {
         updateTimetable();
       }
       
@@ -4255,7 +4310,17 @@
     }
     
     function generateId() {
-      return Date.now().toString(36) + Math.random().toString(36).substr(2);
+      return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+    }
+    
+    function formatDateTimeLocal(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      
+      return `${year}-${month}-${day}T${hours}:${minutes}`;
     }
   </script>
 </body>
