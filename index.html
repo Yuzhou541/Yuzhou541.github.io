@@ -16,7 +16,6 @@
 <link rel="preload" href="./assets/animation/fire-animation.gif" as="image">
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-<script src="epic-transition.js"></script>
 <style>
   /* 图片加载优化 */
   #avatar-frame img {
@@ -1529,6 +1528,7 @@
   body.dark-mode .timetable td {
     background-color: #2d2d2d;
     border-color: #444;
+    color: #ffffff;
   }
 
   body.dark-mode .timetable td.time-cell {
@@ -2037,6 +2037,41 @@
   
   body.dark-mode .event-cell::before {
     background: linear-gradient(90deg, #6a3093, #9b59b6);
+  }
+  
+  /* 修复USTC Timetable中的单元格合并问题 */
+  .ustc-timetable-cell {
+    position: relative;
+    height: 50px;
+  }
+  
+  .ustc-course-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    z-index: 5;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 4px;
+  }
+  
+  .ustc-course-info:hover {
+    background: rgba(52, 152, 219, 0.2);
+  }
+  
+  body.dark-mode .ustc-course-info {
+    background: rgba(106, 48, 147, 0.1);
+  }
+  
+  body.dark-mode .ustc-course-info:hover {
+    background: rgba(106, 48, 147, 0.2);
   }
 </style>
 </head>
@@ -3163,6 +3198,51 @@
         </form>
       </div>
     </div>
+    
+    <!-- 新增普通事件模态框 -->
+    <div class="event-modal" id="general-event-modal">
+      <div class="event-modal-content">
+        <span class="event-modal-close" id="general-event-modal-close">&times;</span>
+        <h3 class="event-modal-title" id="general-event-modal-title">Add New Event</h3>
+        
+        <form id="general-event-form">
+          <input type="hidden" id="general-event-id">
+          <input type="hidden" id="general-event-type">
+          
+          <div class="event-form-group">
+            <label for="event-title">Event Title</label>
+            <input type="text" id="event-title" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-description">Description</label>
+            <textarea id="event-description" class="event-form-control" rows="3"></textarea>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-start">Start</label>
+            <input type="datetime-local" id="event-start" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-end">End</label>
+            <input type="datetime-local" id="event-end" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group" id="recurring-container" style="display: none;">
+            <label>
+              <input type="checkbox" id="event-recurring"> Recurring Event
+            </label>
+          </div>
+          
+          <div class="event-form-actions">
+            <button type="button" class="event-form-btn event-form-btn-delete" id="general-event-delete-btn" style="display: none;">Delete</button>
+            <button type="button" class="event-form-btn event-form-btn-cancel" id="general-event-cancel-btn">Cancel</button>
+            <button type="submit" class="event-form-btn event-form-btn-save">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -3186,6 +3266,10 @@
     // USTC课程存储
     let ustcClasses = JSON.parse(localStorage.getItem('ustcClasses')) || [];
 
+    // 普通事件存储
+    let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+    let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
+    
     // 初始化自定义光标
     document.addEventListener('DOMContentLoaded', function() {
       const cursorOuter = document.querySelector('.cursor-outer');
@@ -3247,9 +3331,6 @@
       
       // 初始化时钟控制按钮
       initClockToggle();
-
-      // 初始化USTC Timetable
-      initUstcTimetable();
     });
 
     // 页面元素
@@ -3280,7 +3361,9 @@
 
     let coverHidden = false;
     let currentPage = null;
-
+    let calendar; // FullCalendar实例
+    let currentWeek = new Date(); // Timetable当前周
+    
     // 顺序显示封面元素
     function showCoverElements() {
       avatarFrame.classList.add("visible");
@@ -3568,14 +3651,6 @@
     }
     
     // Schedule Page Functionality
-    let calendar;
-    let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
-    let currentWeek = new Date();
-    currentWeek.setHours(0, 0, 0, 0);
-    // Set to Monday of current week
-    currentWeek.setDate(currentWeek.getDate() - (currentWeek.getDay() + 6) % 7);
-    let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
-    
     function initSchedulePage() {
       // Initialize calendar and timetable
       initCalendar();
@@ -3615,14 +3690,20 @@
       const eventCancelBtn = document.getElementById('event-cancel-btn');
       const eventForm = document.getElementById('event-form');
       
+      // 普通事件模态框
+      const generalEventModal = document.getElementById('general-event-modal');
+      const generalEventModalClose = document.getElementById('general-event-modal-close');
+      const generalEventCancelBtn = document.getElementById('general-event-cancel-btn');
+      const generalEventForm = document.getElementById('general-event-form');
+      
       // Open modal for new calendar event
       document.getElementById('add-calendar-event').addEventListener('click', () => {
-        openEventModal('calendar');
+        openGeneralEventModal('calendar');
       });
       
       // Open modal for new timetable event
       document.getElementById('add-timetable-event').addEventListener('click', () => {
-        openEventModal('timetable');
+        openGeneralEventModal('timetable');
       });
       
       // Open modal for new USTC class
@@ -3630,7 +3711,7 @@
         openUstcClassModal();
       });
       
-      // Close modal
+      // Close modals
       eventModalClose.addEventListener('click', () => {
         eventModal.style.display = 'none';
       });
@@ -3639,22 +3720,44 @@
         eventModal.style.display = 'none';
       });
       
-      // Close modal when clicking outside
+      generalEventModalClose.addEventListener('click', () => {
+        generalEventModal.style.display = 'none';
+      });
+      
+      generalEventCancelBtn.addEventListener('click', () => {
+        generalEventModal.style.display = 'none';
+      });
+      
+      // Close modals when clicking outside
       window.addEventListener('click', (e) => {
         if (e.target === eventModal) {
           eventModal.style.display = 'none';
         }
+        if (e.target === generalEventModal) {
+          generalEventModal.style.display = 'none';
+        }
       });
       
-      // Handle form submission
+      // Handle form submission for USTC classes
       eventForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const type = document.getElementById('event-type').value;
-        if (type === 'ustc-timetable') {
-          saveUstcClass();
-        } else {
-          saveEvent();
-        }
+        saveUstcClass();
+      });
+      
+      // Handle form submission for general events
+      generalEventForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        saveGeneralEvent();
+      });
+      
+      // Delete USTC class
+      document.getElementById('event-delete-btn').addEventListener('click', () => {
+        deleteUstcClass();
+      });
+      
+      // Delete general event
+      document.getElementById('general-event-delete-btn').addEventListener('click', () => {
+        deleteGeneralEvent();
       });
       
       // Week navigation for timetable
@@ -3682,7 +3785,7 @@
         },
         events: calendarEvents,
         eventClick: function(info) {
-          openEventModal('calendar', info.event);
+          openGeneralEventModal('calendar', info.event);
         },
         eventDidMount: function(info) {
           // Apply dark mode styles if needed
@@ -3784,7 +3887,7 @@
           `;
           eventElement.addEventListener('click', (e) => {
             e.stopPropagation();
-            openEventModal('timetable', event);
+            openGeneralEventModal('timetable', event);
           });
           
           cell.appendChild(eventElement);
@@ -3806,158 +3909,73 @@
       endDate.setHours(hour + 1, 0, 0, 0);
       
       // Open modal with pre-filled times
-      openEventModal('timetable', null, {
+      openGeneralEventModal('timetable', null, {
         start: eventDate,
         end: endDate
       });
     }
     
-    // Event modal functionality
-    function openEventModal(type, event = null, presetData = null) {
-      const modal = document.getElementById('event-modal');
-      const form = document.getElementById('event-form');
-      const deleteBtn = document.getElementById('event-delete-btn');
-      const recurringContainer = document.getElementById('recurring-container');
-      const ustcFields = document.querySelectorAll('.ustc-field');
-      
-      // Hide USTC specific fields
-      ustcFields.forEach(field => field.style.display = 'none');
-      
-      // Reset form
-      form.reset();
-      document.getElementById('event-id').value = '';
-      document.getElementById('event-type').value = type;
-      
-      // Set title
-      document.getElementById('event-modal-title').textContent = 
-        event ? 'Edit Event' : 'Add New Event';
-      
-      // Show/hide delete button
-      deleteBtn.style.display = event ? 'block' : 'none';
-      
-      // Show/hide recurring option (only for calendar)
-      recurringContainer.style.display = type === 'calendar' ? 'block' : 'none';
-      
-      // Populate form with event data or preset data
-      if (event) {
-        document.getElementById('event-id').value = event.id || event._id;
-        document.getElementById('event-title').value = event.title || event._def.title;
-        document.getElementById('event-description').value = event.extendedProps?.description || '';
-        
-        // Format dates for datetime-local input
-        const start = event.start ? new Date(event.start) : new Date(event._instance.range.start);
-        const end = event.end ? new Date(event.end) : new Date(event._instance.range.end);
-        
-        document.getElementById('event-start').value = formatDateTimeForInput(start);
-        document.getElementById('event-end').value = formatDateTimeForInput(end);
-        
-        // Set recurring if it's a recurring event
-        if (event.extendedProps?.recurring) {
-          document.getElementById('event-recurring').checked = true;
-        }
-      } else if (presetData) {
-        document.getElementById('event-start').value = formatDateTimeForInput(presetData.start);
-        document.getElementById('event-end').value = formatDateTimeForInput(presetData.end);
-      }
-      
-      // Show modal
-      modal.style.display = 'flex';
-    }
-    
-    function formatDateTimeForInput(date) {
-      return date.toISOString().slice(0, 16);
-    }
-    
-    function saveEvent() {
-      const form = document.getElementById('event-form');
-      const type = document.getElementById('event-type').value;
-      const eventId = document.getElementById('event-id').value;
-      const isRecurring = document.getElementById('event-recurring').checked;
-      
-      const eventData = {
-        id: eventId || generateId(),
-        title: document.getElementById('event-title').value,
-        start: document.getElementById('event-start').value,
-        end: document.getElementById('event-end').value,
-        description: document.getElementById('event-description').value,
-        recurring: isRecurring
-      };
-      
-      if (type === 'calendar') {
-        // Save calendar event
-        if (eventId) {
-          // Update existing event
-          calendarEvents = calendarEvents.map(e => e.id === eventId ? eventData : e);
-        } else {
-          // Add new event
-          calendarEvents.push(eventData);
-        }
-        
-        localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
-        calendar.refetchEvents();
-      } else {
-        // Save timetable event
-        if (eventId) {
-          // Update existing event
-          timetableEvents = timetableEvents.map(e => e.id === eventId ? eventData : e);
-        } else {
-          // Add new event
-          timetableEvents.push(eventData);
-        }
-        
-        localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
-        updateTimetable();
-      }
-      
-      // Close modal
-      document.getElementById('event-modal').style.display = 'none';
-    }
-    
-    function deleteEvent() {
-      const eventId = document.getElementById('event-id').value;
-      const type = document.getElementById('event-type').value;
-      
-      if (type === 'calendar') {
-        calendarEvents = calendarEvents.filter(e => e.id !== eventId);
-        localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
-        calendar.refetchEvents();
-      } else {
-        timetableEvents = timetableEvents.filter(e => e.id !== eventId);
-        localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
-        updateTimetable();
-      }
-      
-      // Close modal
-      document.getElementById('event-modal').style.display = 'none';
-    }
-    
-    function generateId() {
-      return Date.now().toString(36) + Math.random().toString(36).substr(2);
-    }
-    
-    // Set up delete button
-    document.getElementById('event-delete-btn').addEventListener('click', deleteEvent);
-
     // USTC Timetable functionality
-    function initUstcTimetable() {
-      // Render classes table
-      renderUstcClassesTable();
-      
-      // Render timetable
-      renderUstcTimetable();
-      
-      // Add event listeners for edit and delete buttons
-      document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('edit-ustc-class')) {
-          const id = e.target.dataset.id;
-          editUstcClass(id);
-        }
-        
-        if (e.target.classList.contains('delete-ustc-class')) {
-          const id = e.target.dataset.id;
-          deleteUstcClass(id);
-        }
+    function renderUstcTimetable() {
+      // Clear all class cells
+      document.querySelectorAll('#ustc-timetable td[data-period]').forEach(td => {
+        td.innerHTML = '';
+        td.classList.remove('has-class');
+        td.classList.remove('event-cell');
       });
+      
+      // Add classes to timetable
+      ustcClasses.forEach(cls => {
+        const startPeriod = parseInt(cls.periodStart);
+        const endPeriod = parseInt(cls.periodEnd);
+        const rowSpan = endPeriod - startPeriod + 1;
+        
+        cls.days.forEach(day => {
+          // Find the first cell for this class
+          const firstCell = document.querySelector(`#ustc-timetable td[data-period="${startPeriod}"][data-day="${day}"]`);
+          
+          if (firstCell) {
+            // Create the course info element
+            const courseInfo = document.createElement('div');
+            courseInfo.className = 'ustc-course-info';
+            courseInfo.innerHTML = `
+              <div class="course-name">${cls.courseName}</div>
+              <div class="instructor">${cls.instructor}</div>
+            `;
+            courseInfo.addEventListener('click', () => {
+              editUstcClass(cls.id);
+            });
+            
+            // Clear the first cell and add the course info
+            firstCell.innerHTML = '';
+            firstCell.appendChild(courseInfo);
+            firstCell.classList.add('has-class', 'event-cell');
+            
+            // Add time indicators
+            const startInfo = document.createElement('div');
+            startInfo.className = 'time-info start-info';
+            startInfo.textContent = periodTimes[cls.periodStart].start;
+            firstCell.appendChild(startInfo);
+            
+            const endInfo = document.createElement('div');
+            endInfo.className = 'time-info end-info';
+            endInfo.textContent = periodTimes[cls.periodEnd].end;
+            firstCell.appendChild(endInfo);
+            
+            // Mark subsequent cells in the range as occupied
+            for (let period = startPeriod + 1; period <= endPeriod; period++) {
+              const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
+              if (cell) {
+                cell.innerHTML = '';
+                cell.classList.add('has-class', 'event-cell');
+              }
+            }
+          }
+        });
+      });
+      
+      // Update classes table
+      renderUstcClassesTable();
     }
     
     function renderUstcClassesTable() {
@@ -3993,65 +4011,19 @@
         
         tbody.appendChild(row);
       });
-    }
-    
-    function renderUstcTimetable() {
-      // Clear all class cells
-      document.querySelectorAll('#ustc-timetable td[data-period]').forEach(td => {
-        td.innerHTML = '';
-        td.classList.remove('has-class');
-        td.classList.remove('event-cell');
+      
+      // Add event listeners for edit and delete buttons
+      document.querySelectorAll('.edit-ustc-class').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.target.dataset.id;
+          editUstcClass(id);
+        });
       });
       
-      // Add classes to timetable
-      ustcClasses.forEach(cls => {
-        const startPeriod = parseInt(cls.periodStart);
-        const endPeriod = parseInt(cls.periodEnd);
-        const rowSpan = endPeriod - startPeriod + 1;
-        
-        cls.days.forEach(day => {
-          // Find the first cell for this class
-          const firstCell = document.querySelector(`#ustc-timetable td[data-period="${startPeriod}"][data-day="${day}"]`);
-          
-          if (firstCell) {
-            // Mark all cells in the range
-            for (let period = startPeriod; period <= endPeriod; period++) {
-              const cell = document.querySelector(`#ustc-timetable td[data-period="${period}"][data-day="${day}"]`);
-              if (cell) {
-                cell.classList.add('has-class', 'event-cell');
-                cell.innerHTML = '';
-                
-                // Add overlay for entire event
-                if (period === startPeriod) {
-                  const overlay = document.createElement('div');
-                  overlay.className = 'ustc-event-overlay';
-                  overlay.innerHTML = `
-                    <div class="course-name">${cls.courseName}</div>
-                    <div class="instructor">${cls.instructor}</div>
-                  `;
-                  overlay.addEventListener('click', () => {
-                    editUstcClass(cls.id);
-                  });
-                  cell.appendChild(overlay);
-                }
-                
-                // Add time indicators
-                if (period === startPeriod) {
-                  const startInfo = document.createElement('div');
-                  startInfo.className = 'time-info start-info';
-                  startInfo.textContent = periodTimes[cls.periodStart].start;
-                  cell.appendChild(startInfo);
-                }
-                
-                if (period === endPeriod) {
-                  const endInfo = document.createElement('div');
-                  endInfo.className = 'time-info end-info';
-                  endInfo.textContent = periodTimes[cls.periodEnd].end;
-                  cell.appendChild(endInfo);
-                }
-              }
-            }
-          }
+      document.querySelectorAll('.delete-ustc-class').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.target.dataset.id;
+          deleteUstcClass(id);
         });
       });
     }
@@ -4060,12 +4032,6 @@
       const modal = document.getElementById('event-modal');
       const form = document.getElementById('event-form');
       const deleteBtn = document.getElementById('event-delete-btn');
-      const ustcFields = document.querySelectorAll('.ustc-field');
-      const regularFields = document.querySelectorAll('.regular-field');
-      
-      // Hide regular fields and show USTC fields
-      regularFields.forEach(field => field.style.display = 'none');
-      ustcFields.forEach(field => field.style.display = 'block');
       
       // Reset form
       form.reset();
@@ -4087,9 +4053,17 @@
         document.getElementById('ustc-course-name').value = cls.courseName;
         document.getElementById('ustc-instructor').value = cls.instructor;
         
-        // Check selected days
+        // Clear previous day selections
         document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
-          checkbox.checked = cls.days.includes(parseInt(checkbox.value));
+          checkbox.checked = false;
+        });
+        
+        // Set selected days
+        cls.days.forEach(day => {
+          const checkbox = document.querySelector(`input[name="ustc-day"][value="${day}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+          }
         });
       }
       
@@ -4098,6 +4072,7 @@
     }
     
     function saveUstcClass() {
+      const form = document.getElementById('event-form');
       const id = document.getElementById('event-id').value || generateId();
       const periodStart = document.getElementById('ustc-period-start').value;
       const periodEnd = document.getElementById('ustc-period-end').value;
@@ -4105,9 +4080,9 @@
       const instructor = document.getElementById('ustc-instructor').value;
       
       // Get selected days
-      const days = [];
+      const selectedDays = [];
       document.querySelectorAll('input[name="ustc-day"]:checked').forEach(checkbox => {
-        days.push(parseInt(checkbox.value));
+        selectedDays.push(parseInt(checkbox.value));
       });
       
       const classData = {
@@ -4116,14 +4091,18 @@
         periodEnd,
         courseName,
         instructor,
-        days
+        days: selectedDays
       };
       
       // Update or add class
-      const existingIndex = ustcClasses.findIndex(c => c.id === id);
-      if (existingIndex !== -1) {
-        ustcClasses[existingIndex] = classData;
+      if (document.getElementById('event-id').value) {
+        // Update existing class
+        const index = ustcClasses.findIndex(c => c.id === id);
+        if (index !== -1) {
+          ustcClasses[index] = classData;
+        }
       } else {
+        // Add new class
         ustcClasses.push(classData);
       }
       
@@ -4131,7 +4110,6 @@
       localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
       
       // Update UI
-      renderUstcClassesTable();
       renderUstcTimetable();
       
       // Close modal
@@ -4146,10 +4124,137 @@
     }
     
     function deleteUstcClass(id) {
-      ustcClasses = ustcClasses.filter(c => c.id !== id);
-      localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
-      renderUstcClassesTable();
-      renderUstcTimetable();
+      if (!id) {
+        id = document.getElementById('event-id').value;
+      }
+      
+      if (id) {
+        ustcClasses = ustcClasses.filter(c => c.id !== id);
+        localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
+        renderUstcTimetable();
+      }
+      
+      // Close modal if open
+      document.getElementById('event-modal').style.display = 'none';
+    }
+    
+    // General Event Modal Functionality
+    function openGeneralEventModal(type, event = null, presetData = null) {
+      const modal = document.getElementById('general-event-modal');
+      const form = document.getElementById('general-event-form');
+      const deleteBtn = document.getElementById('general-event-delete-btn');
+      const recurringContainer = document.getElementById('recurring-container');
+      
+      // Reset form
+      form.reset();
+      document.getElementById('general-event-id').value = '';
+      document.getElementById('general-event-type').value = type;
+      
+      // Set title
+      document.getElementById('general-event-modal-title').textContent = 
+        event ? 'Edit Event' : 'Add New Event';
+      
+      // Show/hide delete button
+      deleteBtn.style.display = event ? 'block' : 'none';
+      
+      // Show/hide recurring option (only for calendar)
+      recurringContainer.style.display = type === 'calendar' ? 'block' : 'none';
+      
+      // Populate form with event data or preset data
+      if (event) {
+        document.getElementById('general-event-id').value = event.id || event._id;
+        document.getElementById('event-title').value = event.title || event._def.title;
+        document.getElementById('event-description').value = event.extendedProps?.description || '';
+        
+        // Format dates for datetime-local input
+        const start = event.start ? new Date(event.start) : new Date(event._instance.range.start);
+        const end = event.end ? new Date(event.end) : new Date(event._instance.range.end);
+        
+        document.getElementById('event-start').value = formatDateTimeForInput(start);
+        document.getElementById('event-end').value = formatDateTimeForInput(end);
+        
+        // Set recurring if it's a recurring event
+        if (event.extendedProps?.recurring) {
+          document.getElementById('event-recurring').checked = true;
+        }
+      } else if (presetData) {
+        document.getElementById('event-start').value = formatDateTimeForInput(presetData.start);
+        document.getElementById('event-end').value = formatDateTimeForInput(presetData.end);
+      }
+      
+      // Show modal
+      modal.style.display = 'flex';
+    }
+    
+    function formatDateTimeForInput(date) {
+      return date.toISOString().slice(0, 16);
+    }
+    
+    function saveGeneralEvent() {
+      const form = document.getElementById('general-event-form');
+      const type = document.getElementById('general-event-type').value;
+      const eventId = document.getElementById('general-event-id').value || generateId();
+      const isRecurring = document.getElementById('event-recurring').checked;
+      
+      const eventData = {
+        id: eventId,
+        title: document.getElementById('event-title').value,
+        start: document.getElementById('event-start').value,
+        end: document.getElementById('event-end').value,
+        description: document.getElementById('event-description').value,
+        recurring: isRecurring
+      };
+      
+      if (type === 'calendar') {
+        // Save calendar event
+        if (document.getElementById('general-event-id').value) {
+          // Update existing event
+          calendarEvents = calendarEvents.map(e => e.id === eventId ? eventData : e);
+        } else {
+          // Add new event
+          calendarEvents.push(eventData);
+        }
+        
+        localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
+        calendar.refetchEvents();
+      } else {
+        // Save timetable event
+        if (document.getElementById('general-event-id').value) {
+          // Update existing event
+          timetableEvents = timetableEvents.map(e => e.id === eventId ? eventData : e);
+        } else {
+          // Add new event
+          timetableEvents.push(eventData);
+        }
+        
+        localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
+        updateTimetable();
+      }
+      
+      // Close modal
+      document.getElementById('general-event-modal').style.display = 'none';
+    }
+    
+    function deleteGeneralEvent() {
+      const eventId = document.getElementById('general-event-id').value;
+      const type = document.getElementById('general-event-type').value;
+      
+      if (type === 'calendar') {
+        calendarEvents = calendarEvents.filter(e => e.id !== eventId);
+        localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
+        calendar.refetchEvents();
+      } else {
+        timetableEvents = timetableEvents.filter(e => e.id !== eventId);
+        localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
+        updateTimetable();
+      }
+      
+      // Close modal
+      document.getElementById('general-event-modal').style.display = 'none';
+    }
+    
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2);
     }
   </script>
 </body>
