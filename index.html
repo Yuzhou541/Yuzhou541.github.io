@@ -2093,6 +2093,28 @@
     text-align: center;
     position: relative;
   }
+  
+  /* USTC Timetable 时间段分组样式 */
+  .period-group-header {
+    font-weight: bold;
+    background-color: #f1f3f5;
+    text-align: center;
+  }
+  
+  body.dark-mode .period-group-header {
+    background-color: #3d3d3d;
+  }
+  
+  .period-cell {
+    font-weight: bold;
+    background-color: #e9ecef;
+    text-align: center;
+    width: 60px;
+  }
+  
+  body.dark-mode .period-cell {
+    background-color: #3a3a3a;
+  }
 </style>
 </head>
 <body>
@@ -2969,7 +2991,10 @@
             <table class="timetable" id="ustc-timetable">
               <thead>
                 <tr>
-                  <th>Period</th>
+                  <th rowspan="2">Period</th>
+                  <th colspan="7">Weekday</th>
+                </tr>
+                <tr>
                   <th>Monday</th>
                   <th>Tuesday</th>
                   <th>Wednesday</th>
@@ -2980,130 +3005,152 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Morning Section -->
+                <!-- 时间段分组标题行 -->
                 <tr>
-                  <td rowspan="5" class="period-header">Morning</td>
-                  <td data-period="1" data-day="1">1</td>
-                  <td data-period="1" data-day="2"></td>
-                  <td data-period="1" data-day="3"></td>
-                  <td data-period="1" data-day="4"></td>
-                  <td data-period="1" data-day="5"></td>
-                  <td data-period="1" data-day="6"></td>
-                  <td data-period="1" data-day="0"></td>
+                  <td class="period-group-header" colspan="8">Morning</td>
+                </tr>
+                <!-- 时间段1-5 -->
+                <tr>
+                  <td class="period-cell">1 (7:50-8:35)</td>
+                  <td data-day="1" data-period="1"></td>
+                  <td data-day="2" data-period="1"></td>
+                  <td data-day="3" data-period="1"></td>
+                  <td data-day="4" data-period="1"></td>
+                  <td data-day="5" data-period="1"></td>
+                  <td data-day="6" data-period="1"></td>
+                  <td data-day="0" data-period="1"></td>
                 </tr>
                 <tr>
-                  <td data-period="2" data-day="1">2</td>
-                  <td data-period="2" data-day="2"></td>
-                  <td data-period="2" data-day="3"></td>
-                  <td data-period="2" data-day="4"></td>
-                  <td data-period="2" data-day="5"></td>
-                  <td data-period="2" data-day="6"></td>
-                  <td data-period="2" data-day="0"></td>
+                  <td class="period-cell">2 (8:40-9:25)</td>
+                  <td data-day="1" data-period="2"></td>
+                  <td data-day="2" data-period="2"></td>
+                  <td data-day="3" data-period="2"></td>
+                  <td data-day="4" data-period="2"></td>
+                  <td data-day="5" data-period="2"></td>
+                  <td data-day="6" data-period="2"></td>
+                  <td data-day="0" data-period="2"></td>
                 </tr>
                 <tr>
-                  <td data-period="3" data-day="1">3</td>
-                  <td data-period="3" data-day="2"></td>
-                  <td data-period="3" data-day="3"></td>
-                  <td data-period="3" data-day="4"></td>
-                  <td data-period="3" data-day="5"></td>
-                  <td data-period="3" data-day="6"></td>
-                  <td data-period="3" data-day="0"></td>
+                  <td class="period-cell">3 (9:45-10:30)</td>
+                  <td data-day="1" data-period="3"></td>
+                  <td data-day="2" data-period="3"></td>
+                  <td data-day="3" data-period="3"></td>
+                  <td data-day="4" data-period="3"></td>
+                  <td data-day="5" data-period="3"></td>
+                  <td data-day="6" data-period="3"></td>
+                  <td data-day="0" data-period="3"></td>
                 </tr>
                 <tr>
-                  <td data-period="4" data-day="1">4</td>
-                  <td data-period="4" data-day="2"></td>
-                  <td data-period="4" data-day="3"></td>
-                  <td data-period="4" data-day="4"></td>
-                  <td data-period="4" data-day="5"></td>
-                  <td data-period="4" data-day="6"></td>
-                  <td data-period="4" data-day="0"></td>
+                  <td class="period-cell">4 (10:35-11:20)</td>
+                  <td data-day="1" data-period="4"></td>
+                  <td data-day="2" data-period="4"></td>
+                  <td data-day="3" data-period="4"></td>
+                  <td data-day="4" data-period="4"></td>
+                  <td data-day="5" data-period="4"></td>
+                  <td data-day="6" data-period="4"></td>
+                  <td data-day="0" data-period="4"></td>
                 </tr>
                 <tr>
-                  <td data-period="5" data-day="1">5</td>
-                  <td data-period="5" data-day="2"></td>
-                  <td data-period="5" data-day="3"></td>
-                  <td data-period="5" data-day="4"></td>
-                  <td data-period="5" data-day="5"></td>
-                  <td data-period="5" data-day="6"></td>
-                  <td data-period="5" data-day="0"></td>
-                </tr>
-                
-                <!-- Afternoon Section -->
-                <tr>
-                  <td rowspan="5" class="period-header">Afternoon</td>
-                  <td data-period="6" data-day="1">6</td>
-                  <td data-period="6" data-day="2"></td>
-                  <td data-period="6" data-day="3"></td>
-                  <td data-period="6" data-day="4"></td>
-                  <td data-period="6" data-day="5"></td>
-                  <td data-period="6" data-day="6"></td>
-                  <td data-period="6" data-day="0"></td>
-                </tr>
-                <tr>
-                  <td data-period="7" data-day="1">7</td>
-                  <td data-period="7" data-day="2"></td>
-                  <td data-period="7" data-day="3"></td>
-                  <td data-period="7" data-day="4"></td>
-                  <td data-period="7" data-day="5"></td>
-                  <td data-period="7" data-day="6"></td>
-                  <td data-period="7" data-day="0"></td>
-                </tr>
-                <tr>
-                  <td data-period="8" data-day="1">8</td>
-                  <td data-period="8" data-day="2"></td>
-                  <td data-period="8" data-day="3"></td>
-                  <td data-period="8" data-day="4"></td>
-                  <td data-period="8" data-day="5"></td>
-                  <td data-period="8" data-day="6"></td>
-                  <td data-period="8" data-day="0"></td>
-                </tr>
-                <tr>
-                  <td data-period="9" data-day="1">9</td>
-                  <td data-period="9" data-day="2"></td>
-                  <td data-period="9" data-day="3"></td>
-                  <td data-period="9" data-day="4"></td>
-                  <td data-period="9" data-day="5"></td>
-                  <td data-period="9" data-day="6"></td>
-                  <td data-period="9" data-day="0"></td>
-                </tr>
-                <tr>
-                  <td data-period="10" data-day="1">10</td>
-                  <td data-period="10" data-day="2"></td>
-                  <td data-period="10" data-day="3"></td>
-                  <td data-period="10" data-day="4"></td>
-                  <td data-period="10" data-day="5"></td>
-                  <td data-period="10" data-day="6"></td>
-                  <td data-period="10" data-day="0"></td>
+                  <td class="period-cell">5 (11:25-12:10)</td>
+                  <td data-day="1" data-period="5"></td>
+                  <td data-day="2" data-period="5"></td>
+                  <td data-day="3" data-period="5"></td>
+                  <td data-day="4" data-period="5"></td>
+                  <td data-day="5" data-period="5"></td>
+                  <td data-day="6" data-period="5"></td>
+                  <td data-day="0" data-period="5"></td>
                 </tr>
                 
-                <!-- Evening Section -->
+                <!-- 时间段分组标题行 -->
                 <tr>
-                  <td rowspan="3" class="period-header">Evening</td>
-                  <td data-period="11" data-day="1">11</td>
-                  <td data-period="11" data-day="2"></td>
-                  <td data-period="11" data-day="3"></td>
-                  <td data-period="11" data-day="4"></td>
-                  <td data-period="11" data-day="5"></td>
-                  <td data-period="11" data-day="6"></td>
-                  <td data-period="11" data-day="0"></td>
+                  <td class="period-group-header" colspan="8">Afternoon</td>
+                </tr>
+                <!-- 时间段6-10 -->
+                <tr>
+                  <td class="period-cell">6 (14:00-14:45)</td>
+                  <td data-day="1" data-period="6"></td>
+                  <td data-day="2" data-period="6"></td>
+                  <td data-day="3" data-period="6"></td>
+                  <td data-day="4" data-period="6"></td>
+                  <td data-day="5" data-period="6"></td>
+                  <td data-day="6" data-period="6"></td>
+                  <td data-day="0" data-period="6"></td>
                 </tr>
                 <tr>
-                  <td data-period="12" data-day="1">12</td>
-                  <td data-period="12" data-day="2"></td>
-                  <td data-period="12" data-day="3"></td>
-                  <td data-period="12" data-day="4"></td>
-                  <td data-period="12" data-day="5"></td>
-                  <td data-period="12" data-day="6"></td>
-                  <td data-period="12" data-day="0"></td>
+                  <td class="period-cell">7 (14:50-15:35)</td>
+                  <td data-day="1" data-period="7"></td>
+                  <td data-day="2" data-period="7"></td>
+                  <td data-day="3" data-period="7"></td>
+                  <td data-day="4" data-period="7"></td>
+                  <td data-day="5" data-period="7"></td>
+                  <td data-day="6" data-period="7"></td>
+                  <td data-day="0" data-period="7"></td>
                 </tr>
                 <tr>
-                  <td data-period="13" data-day="1">13</td>
-                  <td data-period="13" data-day="2"></td>
-                  <td data-period="13" data-day="3"></td>
-                  <td data-period="13" data-day="4"></td>
-                  <td data-period="13" data-day="5"></td>
-                  <td data-period="13" data-day="6"></td>
-                  <td data-period="13" data-day="0"></td>
+                  <td class="period-cell">8 (15:55-16:40)</td>
+                  <td data-day="1" data-period="8"></td>
+                  <td data-day="2" data-period="8"></td>
+                  <td data-day="3" data-period="8"></td>
+                  <td data-day="4" data-period="8"></td>
+                  <td data-day="5" data-period="8"></td>
+                  <td data-day="6" data-period="8"></td>
+                  <td data-day="0" data-period="8"></td>
+                </tr>
+                <tr>
+                  <td class="period-cell">9 (16:45-17:30)</td>
+                  <td data-day="1" data-period="9"></td>
+                  <td data-day="2" data-period="9"></td>
+                  <td data-day="3" data-period="9"></td>
+                  <td data-day="4" data-period="9"></td>
+                  <td data-day="5" data-period="9"></td>
+                  <td data-day="6" data-period="9"></td>
+                  <td data-day="0" data-period="9"></td>
+                </tr>
+                <tr>
+                  <td class="period-cell">10 (17:35-18:20)</td>
+                  <td data-day="1" data-period="10"></td>
+                  <td data-day="2" data-period="10"></td>
+                  <td data-day="3" data-period="10"></td>
+                  <td data-day="4" data-period="10"></td>
+                  <td data-day="5" data-period="10"></td>
+                  <td data-day="6" data-period="10"></td>
+                  <td data-day="0" data-period="10"></td>
+                </tr>
+                
+                <!-- 时间段分组标题行 -->
+                <tr>
+                  <td class="period-group-header" colspan="8">Evening</td>
+                </tr>
+                <!-- 时间段11-13 -->
+                <tr>
+                  <td class="period-cell">11 (19:30-20:15)</td>
+                  <td data-day="1" data-period="11"></td>
+                  <td data-day="2" data-period="11"></td>
+                  <td data-day="3" data-period="11"></td>
+                  <td data-day="4" data-period="11"></td>
+                  <td data-day="5" data-period="11"></td>
+                  <td data-day="6" data-period="11"></td>
+                  <td data-day="0" data-period="11"></td>
+                </tr>
+                <tr>
+                  <td class="period-cell">12 (20:20-21:05)</td>
+                  <td data-day="1" data-period="12"></td>
+                  <td data-day="2" data-period="12"></td>
+                  <td data-day="3" data-period="12"></td>
+                  <td data-day="4" data-period="12"></td>
+                  <td data-day="5" data-period="12"></td>
+                  <td data-day="6" data-period="12"></td>
+                  <td data-day="0" data-period="12"></td>
+                </tr>
+                <tr>
+                  <td class="period-cell">13 (21:10-21:55)</td>
+                  <td data-day="1" data-period="13"></td>
+                  <td data-day="2" data-period="13"></td>
+                  <td data-day="3" data-period="13"></td>
+                  <td data-day="4" data-period="13"></td>
+                  <td data-day="5" data-period="13"></td>
+                  <td data-day="6" data-period="13"></td>
+                  <td data-day="0" data-period="13"></td>
                 </tr>
               </tbody>
             </table>
