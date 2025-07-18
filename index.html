@@ -16,6 +16,7 @@
 <link rel="preload" href="./assets/animation/fire-animation.gif" as="image">
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="epic-transition.js"></script>
 <style>
   /* 图片加载优化 */
   #avatar-frame img {
@@ -1224,7 +1225,7 @@
   body.dark-mode .toolkit-icon.qqmusic-icon { background: linear-gradient(135deg, #269a5a, #31c27c); }
   body.dark-mode .toolkit-icon.neteasemusic-icon { background: linear-gradient(135deg, #cc0022, #e60026); }
   body.dark-mode .toolkit-icon.neteasemail-icon { background: linear-gradient(135deg, #cc0022, #e60026); }
-  body.dark-mode .toolkit-icon.kugou-icon { background: linear-gradient(135deg, #1a8fd8, #2ca2f9); }
+  body.dark-mode .toolkit.icon.kugou-icon { background: linear-gradient(135deg, #1a8fd8, #2ca2f9); }
   body.dark-mode .toolkit-icon.wikipedia-icon { background: linear-gradient(135deg, #111111, #333333); }
   body.dark-mode .toolkit-icon.maple-icon { background: linear-gradient(135deg, #004d99, #0066cc); }
   body.dark-mode .toolkit-icon.notion-icon { background: linear-gradient(135deg, #111111, #333333); }
@@ -1634,6 +1635,7 @@
   .event-form-control:focus {
     outline: none;
     border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
   }
 
   body.dark-mode .event-form-control {
@@ -1644,6 +1646,7 @@
 
   body.dark-mode .event-form-control:focus {
     border-color: #6a3093;
+    box-shadow: 0 0 0 2px rgba(106, 48, 147, 0.2);
   }
 
   .event-form-actions {
@@ -1871,12 +1874,21 @@
   .course-name {
     font-weight: bold;
     text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
   
   .instructor {
     font-size: 0.9em;
     text-align: center;
     font-style: italic;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .ustc-classes-container {
@@ -1983,6 +1995,15 @@
     font-style: italic;
     display: block;
     font-size: 0.9em;
+  }
+
+  /* 修复：课程名称和教师居中 */
+  .course-name, .instructor {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
 </head>
@@ -3040,7 +3061,34 @@
           <input type="hidden" id="event-id">
           <input type="hidden" id="event-type">
           
-          <div class="event-form-group">
+          <div class="event-form-group regular-field">
+            <label for="event-title">Event Title</label>
+            <input type="text" id="event-title" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group regular-field">
+            <label for="event-description">Description</label>
+            <textarea id="event-description" class="event-form-control" rows="3"></textarea>
+          </div>
+          
+          <div class="event-form-group regular-field">
+            <label for="event-start">Start Time</label>
+            <input type="datetime-local" id="event-start" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group regular-field">
+            <label for="event-end">End Time</label>
+            <input type="datetime-local" id="event-end" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group regular-field" id="recurring-container">
+            <label>
+              <input type="checkbox" id="event-recurring">
+              Recurring Event
+            </label>
+          </div>
+          
+          <div class="event-form-group ustc-field">
             <label for="ustc-period-start">Period Start</label>
             <select id="ustc-period-start" class="event-form-control" required>
               <option value="1">1 (7:50-8:35)</option>
@@ -3059,7 +3107,7 @@
             </select>
           </div>
           
-          <div class="event-form-group">
+          <div class="event-form-group ustc-field">
             <label for="ustc-period-end">Period End</label>
             <select id="ustc-period-end" class="event-form-control" required>
               <option value="1">1 (7:50-8:35)</option>
@@ -3078,17 +3126,17 @@
             </select>
           </div>
           
-          <div class="event-form-group">
+          <div class="event-form-group ustc-field">
             <label for="ustc-course-name">Course Name</label>
             <input type="text" id="ustc-course-name" class="event-form-control" required>
           </div>
           
-          <div class="event-form-group">
+          <div class="event-form-group ustc-field">
             <label for="ustc-instructor">Instructor</label>
             <input type="text" id="ustc-instructor" class="event-form-control" required>
           </div>
           
-          <div class="event-form-group">
+          <div class="event-form-group ustc-field">
             <label>Days</label>
             <div class="days-container">
               <label><input type="checkbox" name="ustc-day" value="1"> Mon</label>
@@ -3765,24 +3813,33 @@
       const deleteBtn = document.getElementById('event-delete-btn');
       const recurringContainer = document.getElementById('recurring-container');
       const ustcFields = document.querySelectorAll('.ustc-field');
-      
-      // Hide USTC specific fields
-      ustcFields.forEach(field => field.style.display = 'none');
+      const regularFields = document.querySelectorAll('.regular-field');
       
       // Reset form
       form.reset();
       document.getElementById('event-id').value = '';
-      document.getElementById('event-type').value = type;
+      document.getElementById('event-type').value = type; // 确保设置事件类型
       
       // Set title
       document.getElementById('event-modal-title').textContent = 
-        event ? 'Edit Event' : 'Add New Event';
+        event ? 'Edit Event' : type === 'ustc-timetable' ? 'Add New Class' : 'Add New Event';
       
       // Show/hide delete button
       deleteBtn.style.display = event ? 'block' : 'none';
       
       // Show/hide recurring option (only for calendar)
       recurringContainer.style.display = type === 'calendar' ? 'block' : 'none';
+      
+      // Show/hide USTC fields and regular fields based on type
+      if (type === 'ustc-timetable') {
+        // Hide regular fields and show USTC fields
+        regularFields.forEach(field => field.style.display = 'none');
+        ustcFields.forEach(field => field.style.display = 'block');
+      } else {
+        // Show regular fields and hide USTC fields
+        regularFields.forEach(field => field.style.display = 'block');
+        ustcFields.forEach(field => field.style.display = 'none');
+      }
       
       // Populate form with event data or preset data
       if (event) {
@@ -3804,6 +3861,17 @@
       } else if (presetData) {
         document.getElementById('event-start').value = formatDateTimeForInput(presetData.start);
         document.getElementById('event-end').value = formatDateTimeForInput(presetData.end);
+      } else if (type === 'ustc-timetable' && event) {
+        // USTC class editing
+        document.getElementById('ustc-period-start').value = event.periodStart;
+        document.getElementById('ustc-period-end').value = event.periodEnd;
+        document.getElementById('ustc-course-name').value = event.courseName;
+        document.getElementById('ustc-instructor').value = event.instructor;
+        
+        // Check selected days
+        document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
+          checkbox.checked = event.days.includes(parseInt(checkbox.value));
+        });
       }
       
       // Show modal
@@ -3999,7 +4067,7 @@
       // Reset form
       form.reset();
       document.getElementById('event-id').value = '';
-      document.getElementById('event-type').value = 'ustc-timetable';
+      document.getElementById('event-type').value = 'ustc-timetable'; // 确保设置事件类型
       
       // Set title
       document.getElementById('event-modal-title').textContent = 
