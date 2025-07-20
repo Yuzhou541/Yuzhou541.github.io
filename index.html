@@ -2108,131 +2108,121 @@
     border-color: #555;
   }
 
-  /* 课程重叠解决方案样式 */
-  .course-stack {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .course-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2px;
+  /* 重叠课程优化样式 */
+  .course-stack-container {
     position: relative;
-    overflow: hidden;
-    min-height: 20px;
-    transition: all 0.3s ease;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
   }
-  
-  .course-item:hover {
-    background: rgba(255, 255, 255, 0.2);
-    z-index: 5;
-  }
-  
-  .course-item .course-name {
-    font-size: 0.75em;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    margin-bottom: 2px;
-  }
-  
-  .course-item .instructor {
-    font-size: 0.65em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-  
-  .course-counter {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.65em;
-    z-index: 10;
-  }
-  
-  .course-preview {
+
+  .course-card {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.95);
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 20;
-    padding: 5px;
-    display: none;
-    flex-direction: column;
-    overflow-y: auto;
-  }
-  
-  .course-preview-item {
-    padding: 4px 0;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .course-preview-item:last-child {
-    border-bottom: none;
-  }
-  
-  .course-preview-item .course-name {
-    font-weight: bold;
-    font-size: 0.85em;
-  }
-  
-  .course-preview-item .instructor {
-    font-size: 0.75em;
-    color: #666;
-  }
-  
-  body.dark-mode .course-preview {
-    background: rgba(30, 30, 30, 0.95);
-  }
-  
-  body.dark-mode .course-preview-item {
-    border-bottom: 1px solid #444;
-  }
-  
-  body.dark-mode .course-preview-item .instructor {
-    color: #aaa;
-  }
-  
-  .preview-close {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 0.7em;
-    cursor: pointer;
+    padding: 2px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1;
+    overflow: hidden;
   }
-  
-  .course-stack:hover .course-preview {
-    display: flex;
+
+  .course-card:hover {
+    z-index: 10 !important;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .course-card:nth-child(1) {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    z-index: 3;
+  }
+
+  .course-card:nth-child(2) {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    top: 4px;
+    left: 4px;
+    z-index: 2;
+  }
+
+  .course-card:nth-child(3) {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    top: 8px;
+    left: 8px;
+    z-index: 1;
+  }
+
+  .course-card .course-abbr {
+    font-weight: bold;
+    font-size: 0.8em;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+
+  .course-card .course-time {
+    font-size: 0.6em;
+    color: rgba(255,255,255,0.8);
+    margin-top: 2px;
+  }
+
+  .conflict-warning {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 12px;
+    height: 12px;
+    background: #e74c3c;
+    border-radius: 50%;
+    border: 2px solid white;
+    z-index: 20;
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+    animation: pulse-warning 1.5s infinite;
+  }
+
+  @keyframes pulse-warning {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .course-detail-tooltip {
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .course-card:hover .course-detail-tooltip {
+    opacity: 1;
+  }
+
+  .course-detail-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.8) transparent transparent transparent;
   }
 </style>
 </head>
@@ -4105,110 +4095,116 @@
       // 将课程按照起始课时从小到大排序
       ustcClasses.sort((a, b) => a.periodStart - b.periodStart);
       
-      // 创建课程映射（按时间段和星期几分组）
-      const courseMap = {};
+      // 创建一个冲突检测对象
+      const conflictMap = {};
       
       // 遍历每个课程
       ustcClasses.forEach(cls => {
         const periodStart = parseInt(cls.periodStart);
         const periodEnd = parseInt(cls.periodEnd);
+        const rowSpan = periodEnd - periodStart + 1;
         
         // 遍历该课程的每一天
         cls.days.forEach(day => {
-          // 遍历每个课时
-          for (let period = periodStart; period <= periodEnd; period++) {
-            const key = `${period}-${day}`;
-            if (!courseMap[key]) {
-              courseMap[key] = [];
+          // 找到起始课时对应的行索引
+          const startRowIndex = periodStart - 1;
+          if (startRowIndex < 0 || startRowIndex >= rows.length) return;
+          
+          const startRow = rows[startRowIndex];
+          // 找到起始课时对应的单元格
+          const cells = startRow.querySelectorAll('td:not(.period-header):not(.period-number)');
+          let targetCell = null;
+          
+          for (let cell of cells) {
+            if (cell.getAttribute('data-day') === day.toString()) {
+              targetCell = cell;
+              break;
             }
-            courseMap[key].push(cls);
+          }
+          
+          if (!targetCell) return;
+          
+          // 创建课程卡片容器
+          if (!targetCell.querySelector('.course-stack-container')) {
+            const stackContainer = document.createElement('div');
+            stackContainer.className = 'course-stack-container';
+            targetCell.appendChild(stackContainer);
+          }
+          
+          const stackContainer = targetCell.querySelector('.course-stack-container');
+          
+          // 创建课程卡片
+          const courseCard = document.createElement('div');
+          courseCard.className = 'course-card';
+          
+          // 添加课程缩写
+          const courseAbbr = document.createElement('div');
+          courseAbbr.className = 'course-abbr';
+          courseAbbr.textContent = getCourseAbbreviation(cls.courseName);
+          courseCard.appendChild(courseAbbr);
+          
+          // 添加时间信息
+          const courseTime = document.createElement('div');
+          courseTime.className = 'course-time';
+          courseTime.textContent = `${periodTimes[periodStart].start}-${periodTimes[periodEnd].end}`;
+          courseCard.appendChild(courseTime);
+          
+          // 添加悬浮提示
+          const tooltip = document.createElement('div');
+          tooltip.className = 'course-detail-tooltip';
+          tooltip.textContent = `${cls.courseName} (${cls.instructor})`;
+          courseCard.appendChild(tooltip);
+          
+          // 添加到卡片容器
+          stackContainer.appendChild(courseCard);
+          
+          // 检查冲突
+          const cellKey = `d${day}p${periodStart}`;
+          if (!conflictMap[cellKey]) {
+            conflictMap[cellKey] = [];
+          }
+          conflictMap[cellKey].push(cls.id);
+          
+          // 标记冲突
+          if (conflictMap[cellKey].length > 1) {
+            // 添加冲突警告标志
+            const conflictWarning = document.createElement('div');
+            conflictWarning.className = 'conflict-warning';
+            courseCard.appendChild(conflictWarning);
+          }
+          
+          // 移除后续行中相同星期几的单元格
+          for (let p = periodStart + 1; p <= periodEnd; p++) {
+            const rowIndex = p - 1;
+            if (rowIndex >= rows.length) break;
+            
+            const row = rows[rowIndex];
+            const cellsInRow = row.querySelectorAll('td:not(.period-header):not(.period-number)');
+            
+            for (let i = 0; i < cellsInRow.length; i++) {
+              const cell = cellsInRow[i];
+              if (cell.getAttribute('data-day') === day.toString()) {
+                // 移除这个单元格
+                cell.remove();
+                break;
+              }
+            }
           }
         });
       });
       
-      // 填充表格
-      const cells = document.querySelectorAll('#ustc-timetable td[data-period]');
-      cells.forEach(cell => {
-        const period = cell.getAttribute('data-period');
-        const day = cell.getAttribute('data-day');
-        const key = `${period}-${day}`;
-        const courses = courseMap[key] || [];
-        
-        if (courses.length > 0) {
-          cell.classList.add('has-class', 'event-cell');
-          
-          // 创建课程堆叠容器
-          const courseStack = document.createElement('div');
-          courseStack.className = 'course-stack';
-          
-          // 最多显示3个课程，其余的用计数器表示
-          const maxVisible = 3;
-          const visibleCourses = courses.slice(0, maxVisible);
-          const extraCount = courses.length - maxVisible;
-          
-          // 添加可见课程
-          visibleCourses.forEach((course, index) => {
-            const courseItem = document.createElement('div');
-            courseItem.className = 'course-item';
-            
-            const courseName = document.createElement('div');
-            courseName.className = 'course-name';
-            courseName.textContent = course.courseName;
-            
-            const instructor = document.createElement('div');
-            instructor.className = 'instructor';
-            instructor.textContent = course.instructor;
-            
-            courseItem.appendChild(courseName);
-            courseItem.appendChild(instructor);
-            courseStack.appendChild(courseItem);
-          });
-          
-          // 添加额外的课程计数器
-          if (extraCount > 0) {
-            const counter = document.createElement('div');
-            counter.className = 'course-counter';
-            counter.textContent = `+${extraCount}`;
-            courseStack.appendChild(counter);
-          }
-          
-          // 创建课程预览（悬浮显示所有课程）
-          const coursePreview = document.createElement('div');
-          coursePreview.className = 'course-preview';
-          
-          const closePreview = document.createElement('div');
-          closePreview.className = 'preview-close';
-          closePreview.innerHTML = '×';
-          closePreview.addEventListener('click', (e) => {
-            e.stopPropagation();
-            coursePreview.style.display = 'none';
-          });
-          coursePreview.appendChild(closePreview);
-          
-          courses.forEach(course => {
-            const previewItem = document.createElement('div');
-            previewItem.className = 'course-preview-item';
-            
-            const previewName = document.createElement('div');
-            previewName.className = 'course-name';
-            previewName.textContent = course.courseName;
-            
-            const previewInstructor = document.createElement('div');
-            previewInstructor.className = 'instructor';
-            previewInstructor.textContent = course.instructor;
-            
-            previewItem.appendChild(previewName);
-            previewItem.appendChild(previewInstructor);
-            coursePreview.appendChild(previewItem);
-          });
-          
-          courseStack.appendChild(coursePreview);
-          cell.appendChild(courseStack);
-        }
-      });
-      
       // 更新课程列表
       renderUstcClassesTable();
+    }
+    
+    // 课程名称缩写函数
+    function getCourseAbbreviation(courseName) {
+      // 如果是中文，取前两个字符
+      if (/^[\u4e00-\u9fa5]+$/.test(courseName)) {
+        return courseName.substring(0, 2);
+      }
+      // 否则取前三个字母
+      return courseName.substring(0, 3);
     }
     
     function renderUstcClassesTable() {
