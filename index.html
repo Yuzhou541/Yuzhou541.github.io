@@ -2107,25 +2107,6 @@
     background-color: #3d3d3d;
     border-color: #555;
   }
-
-  /* 重叠课程容器样式 */
-  .overlap-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  
-  .overlap-course {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2px 0;
-    overflow: hidden;
-  }
 </style>
 </head>
 <body>
@@ -3988,118 +3969,94 @@
     
     // USTC Timetable functionality
     function renderUstcTimetable() {
-      // 恢复表格的初始结构
-      const timetable = document.getElementById('ustc-timetable');
-      const tbody = timetable.querySelector('tbody');
-      tbody.innerHTML = timetableTbodyInitialHTML;
+      // 恢复初始表格结构
+      timetableTbody.innerHTML = timetableTbodyInitialHTML;
       
-      // 获取所有单元格
-      const cells = Array.from(tbody.querySelectorAll('td[data-period][data-day]'));
-      
-      // 初始化占用状态数组
-      const occupied = Array(14).fill().map(() => Array(7).fill(false));
-      
-      // 先清空所有单元格内容
-      cells.forEach(cell => {
-        cell.innerHTML = '';
-        cell.rowSpan = 1;
-        cell.className = '';
-      });
+      // 获取所有的行
+      const rows = timetableTbody.querySelectorAll('tr');
       
       // 将课程按照起始课时从小到大排序
       ustcClasses.sort((a, b) => a.periodStart - b.periodStart);
       
-      // 存储每个单元格的课程信息
-      const cellCourses = Array(14).fill().map(() => Array(7).fill().map(() => []));
-      
-      // 收集每个单元格的课程
+      // 遍历每个课程
       ustcClasses.forEach(cls => {
         const periodStart = parseInt(cls.periodStart);
         const periodEnd = parseInt(cls.periodEnd);
+        const rowSpan = periodEnd - periodStart + 1;
         
+        // 遍历该课程的每一天
         cls.days.forEach(day => {
-          for (let period = periodStart; period <= periodEnd; period++) {
-            if (period >= 1 && period <= 13) {
-              cellCourses[period][day].push({
-                id: cls.id,
-                courseName: cls.courseName,
-                instructor: cls.instructor,
-                periodStart: cls.periodStart,
-                periodEnd: cls.periodEnd
-              });
-            }
-          }
-        });
-      });
-      
-      // 渲染课程到单元格
-      for (let period = 1; period <= 13; period++) {
-        for (let day = 0; day <= 6; day++) {
-          const courses = cellCourses[period][day];
-          if (courses.length === 0) continue;
+          // 找到起始课时对应的行索引
+          const startRowIndex = periodStart - 1;
+          if (startRowIndex < 0 || startRowIndex >= rows.length) return;
           
-          // 查找当前单元格
-          const cell = tbody.querySelector(`td[data-period="${period}"][data-day="${day}"]`);
-          if (!cell) continue;
+          const startRow = rows[startRowIndex];
+          // 找到起始课时对应的单元格
+          const cells = startRow.querySelectorAll('td:not(.period-header):not(.period-number)');
+          let targetCell = null;
           
-          // 如果这个单元格已经被合并，跳过
-          if (occupied[period][day]) continue;
-          
-          // 检查是否有重叠的课程（完全重叠或部分重叠）
-          let maxPeriod = period;
-          for (let p = period; p <= 13; p++) {
-            // 检查当前时间段的所有课程是否在所有后续时间段都存在
-            const allExist = courses.every(course => 
-              cellCourses[p][day].some(c => c.id === course.id)
-            );
-            
-            if (allExist) {
-              maxPeriod = p;
-            } else {
+          for (let cell of cells) {
+            if (cell.getAttribute('data-day') === day.toString()) {
+              targetCell = cell;
               break;
             }
           }
           
-          // 计算需要合并的行数
-          const rowSpan = maxPeriod - period + 1;
+          if (!targetCell) return;
           
-          // 标记这些行为已占用
-          for (let p = period; p <= maxPeriod; p++) {
-            occupied[p][day] = true;
-          }
+          // 设置rowspan属性
+          targetCell.rowSpan = rowSpan;
+          targetCell.classList.add('has-class', 'event-cell');
           
-          // 设置合并单元格
-          cell.rowSpan = rowSpan;
-          cell.className = 'has-class event-cell';
+          // 创建课程内容容器
+          const courseContainer = document.createElement('div');
+          courseContainer.className = 'course-container';
           
-          // 创建课程容器
-          const container = document.createElement('div');
-          container.className = 'overlap-container';
+          // 添加课程名称和教师
+          const courseName = document.createElement('div');
+          courseName.className = 'course-name';
+          courseName.textContent = cls.courseName;
+          courseContainer.appendChild(courseName);
           
-          // 添加每个课程的信息
-          courses.forEach(course => {
-            const courseDiv = document.createElement('div');
-            courseDiv.className = 'overlap-course';
-            courseDiv.innerHTML = `
-              <div class="course-name">${course.courseName}</div>
-              <div class="instructor">${course.instructor}</div>
-            `;
-            container.appendChild(courseDiv);
-          });
+          const instructor = document.createElement('div');
+          instructor.className = 'instructor';
+          instructor.textContent = cls.instructor;
+          courseContainer.appendChild(instructor);
           
-          // 清空单元格并添加容器
-          cell.innerHTML = '';
-          cell.appendChild(container);
+          // 添加时间信息
+          const startInfo = document.createElement('div');
+          startInfo.className = 'time-info start-info';
+          startInfo.textContent = periodTimes[periodStart].start;
+          courseContainer.appendChild(startInfo);
           
-          // 移除被合并的单元格
-          for (let p = period + 1; p <= maxPeriod; p++) {
-            const nextCell = tbody.querySelector(`td[data-period="${p}"][data-day="${day}"]`);
-            if (nextCell) {
-              nextCell.style.display = 'none';
+          const endInfo = document.createElement('div');
+          endInfo.className = 'time-info end-info';
+          endInfo.textContent = periodTimes[periodEnd].end;
+          courseContainer.appendChild(endInfo);
+          
+          // 清空单元格并添加课程容器
+          targetCell.innerHTML = '';
+          targetCell.appendChild(courseContainer);
+          
+          // 移除后续行中相同星期几的单元格
+          for (let p = periodStart + 1; p <= periodEnd; p++) {
+            const rowIndex = p - 1;
+            if (rowIndex >= rows.length) break;
+            
+            const row = rows[rowIndex];
+            const cellsInRow = row.querySelectorAll('td:not(.period-header):not(.period-number)');
+            
+            for (let i = 0; i < cellsInRow.length; i++) {
+              const cell = cellsInRow[i];
+              if (cell.getAttribute('data-day') === day.toString()) {
+                // 移除这个单元格
+                cell.remove();
+                break;
+              }
             }
           }
-        }
-      }
+        });
+      });
       
       // 更新课程列表
       renderUstcClassesTable();
