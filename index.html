@@ -2107,25 +2107,6 @@
     background-color: #3d3d3d;
     border-color: #555;
   }
-
-  /* 重叠课程容器样式 */
-  .overlap-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  
-  .overlap-course {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2px 0;
-    overflow: hidden;
-  }
 </style>
 </head>
 <body>
@@ -2641,7 +2622,6 @@
             <div class="toolkit-icon spotify-icon">
               <i class="fab fa-spotify"></i>
             </div>
-           极简
             <div class="toolkit-title">Spotify</div>
             <a href="https://open.spotify.com/" class="toolkit-link" target="_blank">Visit</a>
           </div>
@@ -2655,7 +2635,7 @@
           <!-- Wikipedia -->
           <div class="toolkit-card" data-title="wikipedia" data-categories="knowledge">
             <div class="toolkit-icon wikipedia-icon">
-              <i class="fab fa-wikipedia-w"></极简>
+              <i class="fab fa-wikipedia-w"></i>
             </div>
             <div class="toolkit-title">Wikipedia</div>
             <a href="https://www.wikipedia.org/" class="toolkit-link" target="_blank">Visit</a>
@@ -2680,7 +2660,7 @@
           </div>
           
           <!-- CNKI -->
-          <div class="toolkit-card" data-title="cnki" data极简="knowledge">
+          <div class="toolkit-card" data-title="cnki" data-categories="knowledge">
             <div class="toolkit-icon cnki-icon">
               <i class="fas fa-search"></i>
             </div>
@@ -2763,7 +2743,7 @@
               <i class="fas fa-edit"></i>
             </div>
             <div class="toolkit-title">Typora</div>
-            <a href极简"https://typora.io/" class="toolkit-link" target="_blank">Visit</a>
+            <a href="https://typora.io/" class="toolkit-link" target="_blank">Visit</a>
           </div>
 
           <!-- Yuque -->
@@ -2852,7 +2832,7 @@
         <div class="toolkit-grid">
           <!-- Blackboard -->
           <div class="toolkit-card" data-title="ustc blackboard" data-categories="ustc">
-            <div class极简="toolkit-icon ustc-blackboard-icon">
+            <div class="toolkit-icon ustc-blackboard-icon">
               <i class="fas fa-chalkboard"></i>
             </div>
             <div class="toolkit-title">USTC Blackboard</div>
@@ -3024,7 +3004,7 @@
                   <td data-period="1" data-day="3"></td>
                   <td data-period="1" data-day="4"></td>
                   <td data-period="1" data-day="5"></td>
-                  <td data-period="1" data-day="6"></极简>
+                  <td data-period="1" data-day="6"></td>
                   <td data-period="1" data-day="0"></td>
                 </tr>
                 <tr>
@@ -3224,7 +3204,7 @@
               <option value="3">3 (9:45-10:30)</option>
               <option value="4">4 (10:35-11:20)</option>
               <option value="5">5 (11:25-12:10)</option>
-              <option value="极简">6 (14:00-14:45)</option>
+              <option value="6">6 (14:00-14:45)</option>
               <option value="7">7 (14:50-15:35)</option>
               <option value="8">8 (15:55-16:40)</option>
               <option value="9">9 (16:45-17:30)</option>
@@ -3632,7 +3612,7 @@
         
         // 更新所有时钟的状态
         clocks.forEach(clockElement => {
-          if (clocks极简) {
+          if (clocksCollapsed) {
             clockElement.classList.add("collapsed");
           } else {
             clockElement.classList.remove("collapsed");
@@ -3796,7 +3776,7 @@
         generalEventModal.style.display = 'none';
       });
       
-      generalEventCancelBtn.addEventListener('click', ()极简 {
+      generalEventCancelBtn.addEventListener('click', () => {
         generalEventModal.style.display = 'none';
       });
       
@@ -3806,7 +3786,7 @@
           eventModal.style.display = 'none';
         }
         if (e.target === generalEventModal) {
-          generalEventModal.style.display = '极简;
+          generalEventModal.style.display = 'none';
         }
       });
       
@@ -3989,421 +3969,386 @@
     
     // USTC Timetable functionality
     function renderUstcTimetable() {
-      // 恢复表格的初始结构
-      const timetable = document.getElementById('ustc-timetable');
-      const tbody = timetable.querySelector('tbody');
-      tbody.innerHTML = timetableTbodyInitialHTML;
+      // 恢复初始表格结构
+      timetableTbody.innerHTML = timetableTbodyInitialHTML;
       
-      // 获取所有单元格
-      const cells = Array.from(tbody.querySelectorAll('td[data-period][data-day]'));
-      
-      // 初始化占用状态数组
-      const occupied = Array(14).fill().map(() => Array(7).fill(false));
-      
-      // 先清空所有单元格内容
-      cells.forEach(cell => {
-        cell.innerHTML = '';
-        cell.rowSpan = 1;
-        cell.className = '';
-      });
+      // 获取所有的行
+      const rows = timetableTbody.querySelectorAll('tr');
       
       // 将课程按照起始课时从小到大排序
       ustcClasses.sort((a, b) => a.periodStart - b.periodStart);
       
-      // 存储每个单元格的课程信息
-      const cellCourses = Array(14).fill().map(() => Array(7).fill().map(() => []));
-      
-      // 收集每个单元格的课程
+      // 遍历每个课程
       ustcClasses.forEach(cls => {
         const periodStart = parseInt(cls.periodStart);
         const periodEnd = parseInt(cls.periodEnd);
+        const rowSpan = periodEnd - periodStart + 1;
         
+        // 遍历该课程的每一天
         cls.days.forEach(day => {
-          for (let period = periodStart; period <= periodEnd; period++) {
-            if (period >= 1 && period <= 13) {
-              cellCourses[period][day].push({
-                id: cls.id,
-                courseName: cls.courseName,
-                instructor: cls.instructor,
-                periodStart: cls.periodStart,
-                periodEnd: cls.periodEnd
-              });
-            }
-          }
-        });
-      });
-      
-      // 渲染课程到单元格
-      for (let period = 1; period <= 13; period++) {
-        for (let day = 0; day <= 6; day++) {
-          const courses = cellCourses[period][day];
-          if (courses.length === 0) continue;
+          // 找到起始课时对应的行索引
+          const startRowIndex = periodStart - 1;
+          if (startRowIndex < 0 || startRowIndex >= rows.length) return;
           
-          // 查找当前单元格
-          const cell = tbody.querySelector(`td[data-period="${period}"][data-day="${day}"]`);
-          if (!cell) continue;
+          const startRow = rows[startRowIndex];
+          // 找到起始课时对应的单元格
+          const cells = startRow.querySelectorAll('td:not(.period-header):not(.period-number)');
+          let targetCell = null;
           
-          // 如果这个单元格已经被合并，跳过
-          if (occupied[period][day]) continue;
-          
-          // 检查是否有重叠的课程（完全重叠或部分重叠）
-          let maxPeriod = period;
-          for (let p = period; p <= 13; p++) {
-            // 检查当前时间段的所有课程是否在所有后续时间段都存在
-            const allExist = courses.every(course => 
-              cellCourses[p][day].some(c => c.id === course.id)
-            );
-            
-            if (allExist) {
-              maxPeriod = p;
-            } else {
+          for (let cell of cells) {
+            if (cell.getAttribute('data-day') === day.toString()) {
+              targetCell = cell;
               break;
             }
           }
           
-          // 计算需要合并的行数
-          const rowSpan = maxPeriod - period + 1;
+          if (!targetCell) return;
           
-          // 标记这些行为已占用
-          for (let p = period; p <= maxPeriod; p++) {
-            occupied[p][day] = true;
-          }
+          // 设置rowspan属性
+          targetCell.rowSpan = rowSpan;
+          targetCell.classList.add('has-class', 'event-cell');
           
-          // 设置合并单元格
-          cell.rowSpan = rowSpan;
-          cell.className = 'has-class event-cell';
+          // 创建课程内容容器
+          const courseContainer = document.createElement('div');
+          courseContainer.className = 'course-container';
           
-          // 创建课程容器
-          const container = document.createElement('div');
-          container.className = 'overlap-container';
+          // 添加课程名称和教师
+          const courseName = document.createElement('div');
+          courseName.className = 'course-name';
+          courseName.textContent = cls.courseName;
+          courseContainer.appendChild(courseName);
           
-          // 添加每个课程的信息
-          courses.forEach(course => {
-            const courseDiv = document.createElement('div');
-            courseDiv.className = 'overlap-course';
-            courseDiv.innerHTML = `
-              <div class="course-name">${course.courseName}</div>
-              <div class="instructor">${course.instructor}</div>
-            `;
-            container.appendChild(courseDiv);
-          });
-          
-          // 清空单元格并添加容器
-          cell.innerHTML = '';
-          cell.appendChild(container);
+          const instructor = document.createElement('div');
+          instructor.className = 'instructor';
+          instructor.textContent = cls.instructor;
+          courseContainer.appendChild(instructor);
           
           // 添加时间信息
-          const startInfo = document.createElement('span');
+          const startInfo = document.createElement('div');
           startInfo.className = 'time-info start-info';
-          startInfo.textContent = periodTimes[period].start;
-          cell.appendChild(startInfo);
+          startInfo.textContent = periodTimes[periodStart].start;
+          courseContainer.appendChild(startInfo);
           
-          const endInfo = document.createElement('span');
+          const endInfo = document.createElement('div');
           endInfo.className = 'time-info end-info';
-          endInfo.textContent = periodTimes[maxPeriod].end;
-          cell.appendChild(endInfo);
+          endInfo.textContent = periodTimes[periodEnd].end;
+          courseContainer.appendChild(endInfo);
           
-          // 移除被合并的单元格
-          for (let p = period + 1; p <= maxPeriod; p++) {
-            const nextCell = tbody.querySelector(`td[data-period="${p}"][data-day="${day}"]`);
-            if (nextCell) {
-              nextCell.parentNode.removeChild(nextCell);
+          // 清空单元格并添加课程容器
+          targetCell.innerHTML = '';
+          targetCell.appendChild(courseContainer);
+          
+          // 移除后续行中相同星期几的单元格
+          for (let p = periodStart + 1; p <= periodEnd; p++) {
+            const rowIndex = p - 1;
+            if (rowIndex >= rows.length) break;
+            
+            const row = rows[rowIndex];
+            const cellsInRow = row.querySelectorAll('td:not(.period-header):not(.period-number)');
+            
+            for (let i = 0; i < cellsInRow.length; i++) {
+              const cell = cellsInRow[i];
+              if (cell.getAttribute('data-day') === day.toString()) {
+                // 移除这个单元格
+                cell.remove();
+                break;
+              }
             }
           }
-        }
-      }
+        });
+      });
       
-      // 渲染课程列表
-      renderUstcClassesList();
+      // 更新课程列表
+      renderUstcClassesTable();
     }
     
-    function renderUstcClassesList() {
-      const classesBody = document.getElementById('ustc-classes-body');
-      classesBody.innerHTML = '';
+    function renderUstcClassesTable() {
+      const tbody = document.getElementById('ustc-classes-body');
+      tbody.innerHTML = '';
       
-      ustcClasses.forEach(cls => {
+      ustcClasses.forEach((cls, index) => {
         const row = document.createElement('tr');
+        row.dataset.id = cls.id;
         
-        const periodRangeCell = document.createElement('td');
-        periodRangeCell.textContent = `${cls.periodStart} - ${cls.periodEnd}`;
+        // Get period range string
+        let periodRange = '';
+        if (cls.periodStart === cls.periodEnd) {
+          periodRange = `Period ${cls.periodStart}`;
+        } else {
+          periodRange = `Periods ${cls.periodStart}-${cls.periodEnd}`;
+        }
         
-        const courseNameCell = document.createElement('td');
-        courseNameCell.textContent = cls.courseName;
+        // Get days string
+        const daysMap = {0: 'Sun', 1: 'Mon', 2: 'Tue', 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat'};
+        const days = cls.days.map(day => daysMap[day]).join(', ');
         
-        const instructorCell = document.createElement('td');
-        instructorCell.textContent = cls.instructor;
+        row.innerHTML = `
+          <td>${periodRange}</td>
+          <td>${cls.courseName}</td>
+          <td>${cls.instructor}</td>
+          <td>${days}</td>
+          <td>
+            <button class="edit-ustc-class" data-id="${cls.id}">Edit</button>
+            <button class="delete-ustc-class" data-id="${cls.id}">Delete</button>
+          </td>
+        `;
         
-        const daysCell = document.createElement('td');
-        daysCell.textContent = cls.days.map(day => {
-          switch(parseInt(day)) {
-            case 0: return 'Sun';
-            case 1: return 'Mon';
-            case 2: return 'Tue';
-            case 3: return 'Wed';
-            case 4: return 'Thu';
-            case 5: return 'Fri';
-            case 6: return 'Sat';
-            default: return '';
-          }
-        }).join(', ');
-        
-        const actionsCell = document.createElement('td');
-        const editButton = document.createElement('button');
-        editButton.className = 'event-form-btn event-form-btn-save';
-        editButton.textContent = 'Edit';
-        editButton.addEventListener('click', () => {
-          openUstcClassModal(cls);
+        tbody.appendChild(row);
+      });
+      
+      // Add event listeners for edit and delete buttons
+      document.querySelectorAll('.edit-ustc-class').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.target.dataset.id;
+          editUstcClass(id);
         });
-        
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'event-form-btn event-form-btn-delete';
-        deleteButton.textContent = 'Delete';
-        deleteButton.addEventListener('click', () => {
-          deleteUstcClass(cls.id);
+      });
+      
+      document.querySelectorAll('.delete-ustc-class').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.target.dataset.id;
+          deleteUstcClass(id);
         });
-        
-        actionsCell.appendChild(editButton);
-        actionsCell.appendChild(deleteButton);
-        
-        row.appendChild(periodRangeCell);
-        row.appendChild(courseNameCell);
-        row.appendChild(instructorCell);
-        row.appendChild(daysCell);
-        row.appendChild(actionsCell);
-        
-        classesBody.appendChild(row);
       });
     }
     
     function openUstcClassModal(cls = null) {
-      const eventModal = document.getElementById('event-modal');
-      const eventForm = document.getElementById('event-form');
+      const modal = document.getElementById('event-modal');
+      const form = document.getElementById('event-form');
       const deleteBtn = document.getElementById('event-delete-btn');
       
-      // 重置表单
-      eventForm.reset();
+      // Reset form
+      form.reset();
+      document.getElementById('event-id').value = '';
+      document.getElementById('event-type').value = 'ustc-timetable';
       
+      // Set title
+      document.getElementById('event-modal-title').textContent = 
+        cls ? 'Edit Class' : 'Add New Class';
+      
+      // Show/hide delete button
+      deleteBtn.style.display = cls ? 'block' : 'none';
+      
+      // Populate form data
       if (cls) {
-        // 编辑模式
         document.getElementById('event-id').value = cls.id;
         document.getElementById('ustc-period-start').value = cls.periodStart;
         document.getElementById('ustc-period-end').value = cls.periodEnd;
         document.getElementById('ustc-course-name').value = cls.courseName;
         document.getElementById('ustc-instructor').value = cls.instructor;
         
-        // 清除所有复选框
+        // Clear previous day selections
         document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
           checkbox.checked = false;
         });
         
-        // 设置选中的日期
+        // Set selected days
         cls.days.forEach(day => {
           const checkbox = document.querySelector(`input[name="ustc-day"][value="${day}"]`);
           if (checkbox) {
             checkbox.checked = true;
           }
         });
-        
-        // 显示删除按钮
-        deleteBtn.style.display = 'block';
-      } else {
-        // 添加模式
-        document.getElementById('event-id').value = '';
-        deleteBtn.style.display = 'none';
       }
       
-      // 显示模态框
-      eventModal.style.display = 'flex';
+      // Show modal
+      modal.style.display = 'flex';
     }
     
     function saveUstcClass() {
-      const id = document.getElementById('event-id').value;
+      const form = document.getElementById('event-form');
+      const id = document.getElementById('event-id').value || generateId();
       const periodStart = document.getElementById('ustc-period-start').value;
       const periodEnd = document.getElementById('ustc-period-end').value;
       const courseName = document.getElementById('ustc-course-name').value;
       const instructor = document.getElementById('ustc-instructor').value;
-      const days = Array.from(document.querySelectorAll('input[name="ustc-day"]:checked')).map(checkbox => checkbox.value);
       
-      const classData = {
-        id: id || Date.now().toString(),
+      // Get selected days
+      const selectedDays = [];
+      document.querySelectorAll('input[name="ustc-day"]:checked').forEach(checkbox => {
+        selectedDays.push(parseInt(checkbox.value));
+      });
+      
+      // Create or update class
+      const existingIndex = ustcClasses.findIndex(c => c.id === id);
+      const newClass = {
+        id,
         periodStart,
         periodEnd,
         courseName,
         instructor,
-        days
+        days: selectedDays
       };
       
-      // 更新或添加课程
-      const index = ustcClasses.findIndex(c => c.id === classData.id);
-      if (index !== -1) {
-        ustcClasses[index] = classData;
+      if (existingIndex >= 0) {
+        ustcClasses[existingIndex] = newClass;
       } else {
-        ustcClasses.push(classData);
+        ustcClasses.push(newClass);
       }
       
-      // 保存到本地存储
+      // Save to localStorage
       localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
       
-      // 关闭模态框
-      document.getElementById('event-modal').style.display = 'none';
-      
-      // 重新渲染USTC Timetable
+      // Update UI
       renderUstcTimetable();
+      
+      // Close modal
+      document.getElementById('event-modal').style.display = 'none';
     }
     
-    function deleteUstcClass(id = null) {
+    function editUstcClass(id) {
+      const cls = ustcClasses.find(c => c.id === id);
+      if (cls) {
+        openUstcClassModal(cls);
+      }
+    }
+    
+    function deleteUstcClass(id) {
       if (!id) {
         id = document.getElementById('event-id').value;
       }
       
-      if (id) {
-        // 删除课程
-        ustcClasses = ustcClasses.filter(c => c.id !== id);
-        
-        // 保存到本地存储
-        localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
-        
-        // 关闭模态框
-        document.getElementById('event-modal').style.display = 'none';
-        
-        // 重新渲染USTC Timetable
-        renderUstcTimetable();
-      }
+      if (!id) return;
+      
+      ustcClasses = ustcClasses.filter(c => c.id !== id);
+      localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
+      renderUstcTimetable();
+      document.getElementById('event-modal').style.display = 'none';
     }
     
     function openGeneralEventModal(type, event = null, preset = null) {
-      const generalEventModal = document.getElementById('general-event-modal');
-      const generalEventForm = document.getElementById('general-event-form');
+      const modal = document.getElementById('general-event-modal');
+      const form = document.getElementById('general-event-form');
       const deleteBtn = document.getElementById('general-event-delete-btn');
       
-      // 重置表单
-      generalEventForm.reset();
-      
-      // 设置事件类型
+      // Reset form
+      form.reset();
+      document.getElementById('general-event-id').value = '';
       document.getElementById('general-event-type').value = type;
       
+      // Set title
+      document.getElementById('general-event-modal-title').textContent = 
+        event ? 'Edit Event' : 'Add New Event';
+      
+      // Show/hide delete button
+      deleteBtn.style.display = event ? 'block' : 'none';
+      
+      // Populate form data
       if (event) {
-        // 编辑模式
         document.getElementById('general-event-id').value = event.id;
         document.getElementById('event-title').value = event.title;
         document.getElementById('event-description').value = event.description || '';
-        document.getElementById('event-start').value = formatDateTimeForInput(new Date(event.start));
-        document.getElementById('event-end').value = formatDateTimeForInput(new Date(event.end));
         
-        // 显示删除按钮
-        deleteBtn.style.display = 'block';
-      } else {
-        // 添加模式
-        document.getElementById('general-event-id').value = '';
+        const start = new Date(event.start);
+        const end = new Date(event.end);
         
-        // 设置预设值
-        if (preset) {
-          document.getElementById('event-start').value = formatDateTimeForInput(preset.start);
-          document.getElementById('event-end').value = formatDateTimeForInput(preset.end);
-        }
-        
-        // 隐藏删除按钮
-        deleteBtn.style.display = 'none';
+        document.getElementById('event-start').value = formatDateTimeLocal(start);
+        document.getElementById('event-end').value = formatDateTimeLocal(end);
+      } else if (preset) {
+        document.getElementById('event-start').value = formatDateTimeLocal(preset.start);
+        document.getElementById('event-end').value = formatDateTimeLocal(preset.end);
       }
       
-      // 显示模态框
-      generalEventModal.style.display = 'flex';
-    }
-    
-    function formatDateTimeForInput(date) {
-      return date.toISOString().slice(0, 16);
+      // Show modal
+      modal.style.display = 'flex';
     }
     
     function saveGeneralEvent() {
-      const id = document.getElementById('general-event-id').value;
+      const form = document.getElementById('general-event-form');
+      const id = document.getElementById('general-event-id').value || generateId();
       const type = document.getElementById('general-event-type').value;
       const title = document.getElementById('event-title').value;
       const description = document.getElementById('event-description').value;
-      const start = document.getElementById('event-start').value;
-      const end = document.getElementById('event-end').value;
+      const start = new Date(document.getElementById('event-start').value);
+      const end = new Date(document.getElementById('event-end').value);
       
-      const eventData = {
-        id: id || Date.now().toString(),
+      // Create event object
+      const event = {
+        id,
         title,
         description,
-        start,
-        end
+        start: start.toISOString(),
+        end: end.toISOString()
       };
       
-      // 获取相应的事件数组
-      let eventsArray;
+      // Add to appropriate storage
+      let events, storageKey;
       if (type === 'calendar') {
-        eventsArray = calendarEvents;
+        events = calendarEvents;
+        storageKey = 'calendarEvents';
       } else if (type === 'timetable') {
-        eventsArray = timetableEvents;
-      } else {
-        return;
+        events = timetableEvents;
+        storageKey = 'timetableEvents';
       }
       
-      // 更新或添加事件
-      const index = eventsArray.findIndex(e => e.id === eventData.id);
-      if (index !== -1) {
-        eventsArray[index] = eventData;
+      // Update or add event
+      const existingIndex = events.findIndex(e => e.id === id);
+      if (existingIndex >= 0) {
+        events[existingIndex] = event;
       } else {
-        eventsArray.push(eventData);
+        events.push(event);
       }
       
-      // 保存到本地存储
-      localStorage.setItem(`${type}Events`, JSON.stringify(eventsArray));
+      // Save to localStorage
+      localStorage.setItem(storageKey, JSON.stringify(events));
       
-      // 关闭模态框
-      document.getElementById('general-event-modal').style.display = 'none';
-      
-      // 更新相应视图
+      // Update UI
       if (type === 'calendar') {
-        refreshCalendar();
+        calendar.removeAllEvents();
+        calendar.addEventSource(calendarEvents);
+        calendar.render();
       } else if (type === 'timetable') {
         updateTimetable();
       }
+      
+      // Close modal
+      document.getElementById('general-event-modal').style.display = 'none';
     }
     
     function deleteGeneralEvent() {
       const id = document.getElementById('general-event-id').value;
       const type = document.getElementById('general-event-type').value;
       
-      if (id && type) {
-        // 获取相应的事件数组
-        let eventsArray;
-        if (type === 'calendar') {
-          eventsArray = calendarEvents;
-        } else if (type === 'timetable') {
-          eventsArray = timetableEvents;
-        } else {
-          return;
-        }
-        
-        // 删除事件
-        if (type === 'calendar') {
-          calendarEvents = calendarEvents.filter(e => e.id !== id);
-          localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
-        } else if (type === 'timetable') {
-          timetableEvents = timetableEvents.filter(e => e.id !== id);
-          localStorage.setItem('timetableEvents', JSON.stringify(timetableEvents));
-        }
-        
-        // 关闭模态框
-        document.getElementById('general-event-modal').style.display = 'none';
-        
-        // 更新相应视图
-        if (type === 'calendar') {
-          refreshCalendar();
-        } else if (type === 'timetable') {
-          updateTimetable();
-        }
+      if (!id) return;
+      
+      let events, storageKey;
+      if (type === 'calendar') {
+        events = calendarEvents;
+        storageKey = 'calendarEvents';
+      } else if (type === 'timetable') {
+        events = timetableEvents;
+        storageKey = 'timetableEvents';
       }
-    }
-    
-    function refreshCalendar() {
-      if (calendar) {
+      
+      // Remove event
+      events = events.filter(e => e.id !== id);
+      localStorage.setItem(storageKey, JSON.stringify(events));
+      
+      // Update UI
+      if (type === 'calendar') {
         calendar.removeAllEvents();
         calendar.addEventSource(calendarEvents);
-        calendar.refetchEvents();
+        calendar.render();
+      } else if (type === 'timetable') {
+        updateTimetable();
       }
+      
+      // Close modal
+      document.getElementById('general-event-modal').style.display = 'none';
+    }
+    
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+    }
+    
+    function formatDateTimeLocal(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      
+      return `${year}-${month}-${day}T${hours}:${minutes}`;
     }
   </script>
 </body>
