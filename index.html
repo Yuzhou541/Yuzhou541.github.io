@@ -1833,6 +1833,8 @@
     background-color: white;
     height: 50px;
     vertical-align: middle;
+    position: relative; /* 添加相对定位 */
+    overflow: visible; /* 允许内容溢出 */
   }
   
   #ustc-timetable .period-header {
@@ -1875,12 +1877,20 @@
     font-size: 0.9em;
     margin-bottom: 2px;
     color: #2c3e50;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
   
   .instructor {
     font-size: 0.8em;
     font-style: italic;
     color: #34495e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
   
   /* 暗黑模式USTC Timetable样式 */
@@ -2106,6 +2116,62 @@
   body.dark-mode .period-number {
     background-color: #3d3d3d;
     border-color: #555;
+  }
+
+  /* 重叠课程解决方案 */
+  .course-stack-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    overflow-y: auto;
+    padding: 2px;
+    box-sizing: border-box;
+  }
+
+  .course-item {
+    flex: 1;
+    min-height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(52, 152, 219, 0.15);
+    border-radius: 3px;
+    margin-bottom: 2px;
+    padding: 3px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .course-item:hover {
+    background: rgba(52, 152, 219, 0.25);
+    transform: scale(1.02);
+    z-index: 30;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .course-item .course-name {
+    font-size: 0.8em;
+    line-height: 1.1;
+    margin-bottom: 1px;
+  }
+
+  .course-item .instructor {
+    font-size: 0.7em;
+    line-height: 1.1;
+  }
+
+  body.dark-mode .course-item {
+    background: rgba(106, 48, 147, 0.15);
+  }
+
+  body.dark-mode .course-item:hover {
+    background: rgba(106, 48, 147, 0.25);
   }
 </style>
 </head>
@@ -3972,90 +4038,91 @@
       // 恢复初始表格结构
       timetableTbody.innerHTML = timetableTbodyInitialHTML;
       
-      // 获取所有的行
-      const rows = timetableTbody.querySelectorAll('tr');
+      // 获取所有的单元格
+      const cells = document.querySelectorAll('#ustc-timetable td[data-period][data-day]');
       
-      // 将课程按照起始课时从小到大排序
-      ustcClasses.sort((a, b) => a.periodStart - b.periodStart);
+      // 清空所有单元格内容
+      cells.forEach(cell => {
+        cell.innerHTML = '';
+        cell.classList.remove('has-class');
+      });
       
-      // 遍历每个课程
+      // 创建一个数据结构来存储每个单元格的课程
+      const cellCourses = {};
+      
+      // 遍历所有课程
       ustcClasses.forEach(cls => {
         const periodStart = parseInt(cls.periodStart);
         const periodEnd = parseInt(cls.periodEnd);
-        const rowSpan = periodEnd - periodStart + 1;
         
-        // 遍历该课程的每一天
+        // 遍历课程的每一天
         cls.days.forEach(day => {
-          // 找到起始课时对应的行索引
-          const startRowIndex = periodStart - 1;
-          if (startRowIndex < 0 || startRowIndex >= rows.length) return;
-          
-          const startRow = rows[startRowIndex];
-          // 找到起始课时对应的单元格
-          const cells = startRow.querySelectorAll('td:not(.period-header):not(.period-number)');
-          let targetCell = null;
-          
-          for (let cell of cells) {
-            if (cell.getAttribute('data-day') === day.toString()) {
-              targetCell = cell;
-              break;
-            }
-          }
-          
-          if (!targetCell) return;
-          
-          // 设置rowspan属性
-          targetCell.rowSpan = rowSpan;
-          targetCell.classList.add('has-class', 'event-cell');
-          
-          // 创建课程内容容器
-          const courseContainer = document.createElement('div');
-          courseContainer.className = 'course-container';
-          
-          // 添加课程名称和教师
-          const courseName = document.createElement('div');
-          courseName.className = 'course-name';
-          courseName.textContent = cls.courseName;
-          courseContainer.appendChild(courseName);
-          
-          const instructor = document.createElement('div');
-          instructor.className = 'instructor';
-          instructor.textContent = cls.instructor;
-          courseContainer.appendChild(instructor);
-          
-          // 添加时间信息
-          const startInfo = document.createElement('div');
-          startInfo.className = 'time-info start-info';
-          startInfo.textContent = periodTimes[periodStart].start;
-          courseContainer.appendChild(startInfo);
-          
-          const endInfo = document.createElement('div');
-          endInfo.className = 'time-info end-info';
-          endInfo.textContent = periodTimes[periodEnd].end;
-          courseContainer.appendChild(endInfo);
-          
-          // 清空单元格并添加课程容器
-          targetCell.innerHTML = '';
-          targetCell.appendChild(courseContainer);
-          
-          // 移除后续行中相同星期几的单元格
-          for (let p = periodStart + 1; p <= periodEnd; p++) {
-            const rowIndex = p - 1;
-            if (rowIndex >= rows.length) break;
+          // 遍历课程的每个课时
+          for (let period = periodStart; period <= periodEnd; period++) {
+            const cellSelector = `#ustc-timetable td[data-period="${period}"][data-day="${day}"]`;
+            const cell = document.querySelector(cellSelector);
             
-            const row = rows[rowIndex];
-            const cellsInRow = row.querySelectorAll('td:not(.period-header):not(.period-number)');
-            
-            for (let i = 0; i < cellsInRow.length; i++) {
-              const cell = cellsInRow[i];
-              if (cell.getAttribute('data-day') === day.toString()) {
-                // 移除这个单元格
-                cell.remove();
-                break;
+            if (cell) {
+              // 初始化单元格课程数组
+              if (!cellCourses[cellSelector]) {
+                cellCourses[cellSelector] = [];
               }
+              
+              // 添加课程到单元格
+              cellCourses[cellSelector].push({
+                id: cls.id,
+                courseName: cls.courseName,
+                instructor: cls.instructor,
+                periodStart: periodStart,
+                periodEnd: periodEnd
+              });
+              
+              // 标记单元格有课程
+              cell.classList.add('has-class');
             }
           }
         });
+      });
+      
+      // 渲染每个单元格的课程
+      Object.entries(cellCourses).forEach(([selector, courses]) => {
+        const cell = document.querySelector(selector);
+        if (cell) {
+          // 创建课程堆叠容器
+          const courseStack = document.createElement('div');
+          courseStack.className = 'course-stack-container';
+          
+          // 对课程进行排序（按课时范围从短到长）
+          courses.sort((a, b) => {
+            const aLength = a.periodEnd - a.periodStart;
+            const bLength = b.periodEnd - b.periodStart;
+            return aLength - bLength;
+          });
+          
+          // 添加课程项
+          courses.forEach(course => {
+            const courseItem = document.createElement('div');
+            courseItem.className = 'course-item';
+            courseItem.dataset.id = course.id;
+            courseItem.innerHTML = `
+              <div class="course-name">${course.courseName}</div>
+              <div class="instructor">${course.instructor}</div>
+            `;
+            
+            // 添加点击事件
+            courseItem.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const cls = ustcClasses.find(c => c.id === course.id);
+              if (cls) {
+                openUstcClassModal(cls);
+              }
+            });
+            
+            courseStack.appendChild(courseItem);
+          });
+          
+          cell.appendChild(courseStack);
+        }
       });
       
       // 更新课程列表
