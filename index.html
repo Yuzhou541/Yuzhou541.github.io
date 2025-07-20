@@ -18,127 +18,6 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 <script src="epic-transition.js"></script>
 <style>
-  /* 新增：冲突检测相关样式 */
-  .conflict-warning {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background: #e74c3c;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 20;
-  }
-  
-  .conflict-marker {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: repeating-linear-gradient(
-      45deg,
-      #e74c3c,
-      #e74c3c 5px,
-      transparent 5px,
-      transparent 10px
-    );
-    z-index: 10;
-  }
-  
-  .conflict-tooltip {
-    position: absolute;
-    background: rgba(231, 76, 60, 0.9);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    z-index: 100;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
-    max-width: 200px;
-    text-align: center;
-  }
-  
-  .course-container:hover .conflict-tooltip {
-    opacity: 1;
-  }
-  
-  /* 新增：网格布局样式 */
-  .timetable-grid {
-    display: grid;
-    grid-template-columns: 80px repeat(7, 1fr);
-    grid-template-rows: auto repeat(13, 1fr);
-    gap: 1px;
-    background-color: #ddd;
-    border: 1px solid #ddd;
-  }
-  
-  .timetable-cell {
-    background: white;
-    min-height: 50px;
-    position: relative;
-    padding: 2px;
-  }
-  
-  body.dark-mode .timetable-cell {
-    background: #2d2d2d;
-  }
-  
-  .grid-period-header {
-    grid-column: 1;
-    background: #f1f3f5;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  body.dark-mode .grid-period-header {
-    background: #3d3d3d;
-  }
-  
-  .grid-day-header {
-    text-align: center;
-    padding: 8px 0;
-    font-weight: bold;
-    background: #f1f3f5;
-  }
-  
-  body.dark-mode .grid-day-header {
-    background: #3d3d3d;
-  }
-  
-  .grid-time-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8em;
-    background: #f8f9fa;
-    padding: 5px;
-  }
-  
-  body.dark-mode .grid-time-header {
-    background: #3d3d3d;
-  }
-  
-  .grid-time-header .time-range {
-    font-size: 0.75em;
-    color: #666;
-    margin-top: 2px;
-  }
-  
-  body.dark-mode .grid-time-header .time-range {
-    color: #aaa;
-  }
-  
   /* 图片加载优化 */
   #avatar-frame img {
     width: 100%;
@@ -2336,2149 +2215,2141 @@
         <h2>Publications</h2>
       </div>
       
-  <div class="section">
-    <h2>Additional Skills/Information</h2>
-    <ul>
-      <li><strong>Computer Skills:</strong> Mathematica (Proficient), Python (4 yr), C (2 yr), LaTeX (Proficient)</li>
-      <li><strong>Languages:</strong> Chinese (Native), English (Fluent -- TOEFL Score: Reading 22, Listening 21, Speaking 24, Writing 24)</li>
-      <li><strong>Hobbies:</strong> Playing Bamboo Flute, Swimming, Singing</li>
-      <li><strong>Reflections and Essays: </strong>''Stardust Meditations''</li>
-      <a class="download-link" href="./Stardust_Meditations.pdf" download>Click here to download: Stardust Meditations</a>
-    </ul>
+      <div class="section">
+        <h2>Additional Skills/Information</h2>
+        <ul>
+          <li><strong>Computer Skills:</strong> Mathematica (Proficient), Python (4 yr), C (2 yr), LaTeX (Proficient)</li>
+          <li><strong>Languages:</strong> Chinese (Native), English (Fluent -- TOEFL Score: Reading 22, Listening 21, Speaking 24, Writing 24)</li>
+          <li><strong>Hobbies:</strong> Playing Bamboo Flute, Swimming, Singing</li>
+          <li><strong>Reflections and Essays: </strong>''Stardust Meditations''</li>
+          <a class="download-link" href="./Stardust_Meditations.pdf" download>Click here to download: Stardust Meditations</a>
+        </ul>
+      </div>
+    </div>
+    
+    <a href="#" class="back-btn" id="resume-back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
   </div>
-</div>
 
-<a href="#" class="back-btn" id="resume-back-btn">
-  <i class="fas fa-arrow-left"></i>
-</a>
-</div>
-
-<!-- 社交页 -->
-<div id="social">
-  <button id="toggle-btn-social">
-    <span><i class="fas fa-sun"></i></span>
-  </button>
-  <div id="clock-social">GMT+8 00:00</div>
-  <div class="container">
-    <div class="social-heading">Connect With Me</div>
-    
-    <div class="social-grid">
-      <!-- YouTube卡片 -->
-      <div class="social-card">
-        <div class="social-icon"><i class="fab fa-youtube"></i></div>
-        <div class="social-title">YouTube</div>
-        <div class="social-description">My video content and playlists</div>
-        <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
-          <a href="https://www.youtube.com/channel/UCemKYMAMJk8FggZ5NI36i1Q" class="social-link" target="_blank">Channel</a>
-          <span class="social-divider">/</span>
-          <a href="https://www.youtube.com/@JinghaoChen-Stardust" class="social-link" target="_blank">Handle</a>
-        </div>
-      </div>
+  <!-- 社交页 -->
+  <div id="social">
+    <button id="toggle-btn-social">
+      <span><i class="fas fa-sun"></i></span>
+    </button>
+    <div id="clock-social">GMT+8 00:00</div>
+    <div class="container">
+      <div class="social-heading">Connect With Me</div>
       
-      <!-- TikTok卡片 -->
-      <div class="social-card">
-        <div class="social-icon"><i class="fab fa-tiktok"></i></div>
-        <div class="social-title">TikTok (Chinese)</div>
-        <div class="social-description">Short-form videos in Chinese</div>
-        <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
-          <a href="https://www.douyin.com/user/MS4wLjABAAAAqb9M45SaGeb8yI28lL3lDFHm48c4kl32Xq7BfRk3I24" class="social-link" target="_blank">Link 1</a>
-          <span class="social-divider">/</span>
-          <a href="https://v.douyin.com/PzIS6mSXJGY/" class="social-link" target="_blank">Link 2</a>
-        </div>
-      </div>
-      
-      <!-- REDnote (Xiaohongshu)卡片 -->
-      <div class="social-card">
-        <div class="social-icon"><i class="fas fa-book"></i></div>
-        <div class="social-title">REDnote</div>
-        <div class="social-description">Chinese lifestyle and knowledge sharing</div>
-        <a href="https://www.xiaohongshu.com/user/profile/64c696da000000000b005093" class="social-link" target="_blank">Profile</a>
-      </div>
-      
-      <!-- Quora卡片 -->
-      <div class="social-card">
-        <div class="social-icon"><i class="fab fa-quora"></i></div>
-        <div class="social-title">Quora</div>
-        <div class="social-description">Various questions and answers</div>
-        <a href="https://www.quora.com/profile/Jinghao-Chen-11/" class="social-link" target="_blank">Profile</a>
-      </div>
-      
-      <!-- Twitter/X卡片 -->
-      <div class="social-card">
-        <div class="social-icon"><i class="fab fa-twitter"></i></div>
-        <div class="social-title">X (Twitter)</div>
-        <div class="social-description">Notes and sharing</div>
-        <a href="https://x.com/stardust_math" class="social-link" target="_blank">Profile</a>
-      </div>
-      
-      <!-- Bilibili卡片 -->
-      <div class="social-card">
-        <svg class="bilibili-icon" viewBox="0 0 24 24" width="2.5rem" height="2.5rem" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.99 6.5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6.01a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h2.75l-1-3a.5.5 0 0 1 .33-.63l.94-.3a.5.5 0 0 1 .63.32l1.1 3.1h2.64l1.1-3.1a.5.5 0 0 1 .63-.32l.94.3a.5.5 0 0 1 .33.63l-1 3h2.75zm-2.74 2.5H8.75a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h6.5a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5z" fill="#3498db" stroke="#3498db" stroke-width="0.2"/>
-          <circle cx="10.5" cy="11.5" r="1" fill="#3498db"/>
-          <circle cx="13.5" cy="11.5" r="1" fill="#3498db"/>
-        </svg>
-        <div class="social-title">Bilibili</div>
-        <div class="social-description">Chinese video platform for my content</div>
-        <a href="https://space.bilibili.com/470364718" class="social-link" target="_blank">Channel</a>
-      </div>
-    </div>
-  </div>
-  
-  <a href="#" class="back-btn" id="social-back-btn">
-    <i class="fas fa-arrow-left"></i>
-  </a>
-</div>
-
-<!-- 工具包页 - 修改后的部分 -->
-<div id="toolkit">
-  <button id="toggle-btn-toolkit">
-    <span><i class="fas fa-sun"></i></span>
-  </button>
-  <div id="clock-toolkit">GMT+8 00:00</div>
-  <div class="container">
-    <div class="toolkit-heading">Academic Toolkit</div>
-    
-    <!-- 搜索框 -->
-    <div class="toolkit-search">
-      <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" class="search-input" placeholder="Search tools by name..." id="toolkit-search-input">
-      </div>
-    </div>
-    
-    <!-- 分类筛选器 -->
-    <div class="toolkit-filter">
-      <button class="filter-btn active" data-category="all">All</button>
-      <button class="filter-btn" data-category="development">Development</button>
-      <button class="filter-btn" data-category="communication">Communication</button>
-      <button class="filter-btn" data-category="media">Media & Video</button>
-      <button class="filter-btn" data-category="music">Music</button>
-      <button class="filter-btn" data-category="knowledge">Knowledge</button>
-      <button class="filter-btn" data-category="productivity">Productivity</button>
-      <button class="filter-btn" data-category="reference">Document and Management</button>
-      <button class="filter-btn" data-category="ustc">USTC Services</button>
-    </div>
-    
-    <!-- Development 分类 -->
-    <div class="category-section" data-category="development">
-      <h3 class="category-title">Development</h3>
-      <div class="toolkit-grid">
-        <!-- GitHub -->
-        <div class="toolkit-card" data-title="github" data-categories="development">
-          <div class="toolkit-icon github-icon">
-            <i class="fab fa-github"></i>
-          </div>
-          <div class="toolkit-title">GitHub</div>
-          <a href="https://github.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Maple -->
-        <div class="toolkit-card" data-title="maple" data-categories="development">
-          <div class="toolkit-icon maple-icon">
-            <i class="fas fa-calculator"></i>
-          </div>
-          <div class="toolkit-title">Maple</div>
-          <a href="https://learn.maplesoft.com/doc" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- DeepSeek -->
-        <div class="toolkit-card" data-title="deepseek" data-categories="development">
-          <div class="toolkit-icon deepseek-icon">
-            <i class="fas fa-robot"></i>
-          </div>
-          <div class="toolkit-title">DeepSeek</div>
-          <a href="https://chat.deepseek.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- ChatGPT -->
-        <div class="toolkit-card" data-title="chatgpt" data-categories="development">
-          <div class="toolkit-icon chatgpt-icon">
-            <i class="fas fa-comment-dots"></i>
-          </div>
-          <div class="toolkit-title">ChatGPT</div>
-          <a href="https://chatgpt.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Grok -->
-        <div class="toolkit-card" data-title="grok" data-categories="development">
-          <div class="toolkit-icon grok-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <div class="toolkit-title">Grok</div>
-          <a href="https://grok.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- DeepL -->
-        <div class="toolkit-card" data-title="deepl" data-categories="development">
-          <div class="toolkit-icon deepl-icon">
-            <i class="fas fa-language"></i>
-          </div>
-          <div class="toolkit-title">DeepL</div>
-          <a href="https://www.deepl.com/zh/translator" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Overleaf -->
-        <div class="toolkit-card" data-title="overleaf" data-categories="development">
-          <div class="toolkit-icon overleaf-icon">
-            <i class="fas fa-leaf"></i>
-          </div>
-          <div class="toolkit-title">Overleaf</div>
-          <a href="https://cn.overleaf.com/project" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Jupyter -->
-        <div class="toolkit-card" data-title="jupyter" data-categories="development">
-          <div class="toolkit-icon jupyter-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <div class="toolkit-title">Jupyter</div>
-          <a href="https://jupyter.org/try" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- Wolfram Alpha -->
-        <div class="toolkit-card" data-title="wolfram alpha" data-categories="development">
-          <div class="toolkit-icon wolfram-icon">
-            <i class="fas fa-infinity"></i>
-          </div>
-          <div class="toolkit-title">Wolfram Alpha</div>
-          <a href="https://www.wolframalpha.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- GitLab -->
-        <div class="toolkit-card" data-title="gitlab" data-categories="development">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#e24329,#6d4b41)">
-            <i class="fab fa-gitlab"></i>
-          </div>
-          <div class="toolkit-title">GitLab</div>
-          <a href="https://gitlab.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- CodeSandbox -->
-        <div class="toolkit-card" data-title="codesandbox" data-categories="development">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#000000,#3d3d3d)">
-            <i class="fas fa-laptop-code"></i>
-          </div>
-          <div class="toolkit-title">CodeSandbox</div>
-          <a href="https://codesandbox.io/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- LeetCode -->
-        <div class="toolkit-card" data-title="leetcode" data-categories="development">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#ffa116,#ff7b00)">
-            <i class="fas fa-code"></i>
-          </div>
-          <div class="toolkit-title">LeetCode</div>
-          <a href="https://leetcode.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- Tableau -->
-        <div class="toolkit-card" data-title="tableau" data-categories="datascience">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3f51b5)">
-            <i class="fas fa-chart-bar"></i>
-          </div>
-          <div class="toolkit-title">Tableau Public</div>
-          <a href="https://public.tableau.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- Colab -->
-        <div class="toolkit-card" data-title="colab" data-categories="datascience">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#4285f4,#34a853)">
-            <i class="fas fa-brain"></i>
-          </div>
-          <div class="toolkit-title">Colab</div>
-          <a href="https://colab.research.google.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Communication 分类 -->
-    <div class="category-section" data-category="communication">
-      <h3 class="category-title">Communication</h3>
-      <div class="toolkit-grid">
-        <!-- Gmail -->
-        <div class="toolkit-card" data-title="gmail" data-categories="communication">
-          <div class="toolkit-icon gmail-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="toolkit-title">Gmail</div>
-          <a href="https://mail.google.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- QQ Mail -->
-        <div class="toolkit-card" data-title="qq mail" data-categories="communication">
-          <div class="toolkit-icon qqmail-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="toolkit-title">QQ Mail</div>
-          <a href="https://mail.qq.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- NetEase Mail -->
-        <div class="toolkit-card" data-title="netease mail" data-categories="communication">
-          <div class="toolkit-icon neteasemail-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="toolkit-title">NetEase Mail</div>
-          <a href="https://email.163.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Quora -->
-        <div class="toolkit-card" data-title="quora" data-categories="communication">
-          <div class="toolkit-icon quora-icon">
-            <i class="fab fa-quora"></i>
-          </div>
-          <div class="toolkit-title">Quora</div>
-          <a href="https://www.quora.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Twitter/X -->
-        <div class="toolkit-card" data-title="twitter" data-categories="communication">
-          <div class="toolkit-icon twitter-icon">
-            <i class="fab fa-twitter"></i>
-          </div>
-          <div class="toolkit-title">X (Twitter)</div>
-          <a href="https://x.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Media & Video 分类 -->
-    <div class="category-section" data-category="media">
-      <h3 class="category-title">Media & Video</h3>
-      <div class="toolkit-grid">
-        <!-- YouTube -->
-        <div class="toolkit-card" data-title="youtube" data-categories="media">
-          <div class="toolkit-icon youtube-icon">
-            <i class="fab fa-youtube"></i>
-          </div>
-          <div class="toolkit-title">YouTube</div>
-          <a href="https://www.youtube.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- TikTok -->
-        <div class="toolkit-card" data-title="tiktok" data-categories="media">
-          <div class="toolkit-icon tiktok-icon">
-            <i class="fab fa-tiktok"></i>
-          </div>
-          <div class="toolkit-title">TikTok</div>
-          <a href="https://www.douyin.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- REDnote -->
-        <div class="toolkit-card" data-title="rednote" data-categories="media">
-          <div class="toolkit-icon rednote-icon">
-            <i class="fas fa-book"></i>
-          </div>
-          <div class="toolkit-title">REDnote</div>
-          <a href="https://www.xiaohongshu.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Bilibili -->
-        <div class="toolkit-card" data-title="bilibili" data-categories="media">
-          <div class="toolkit-icon bilibili-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-          <div class="toolkit-title">Bilibili</div>
-          <a href="https://www.bilibili.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- iQIYI -->
-        <div class="toolkit-card" data-title="iqiyi" data-categories="media">
-          <div class="toolkit-icon iqiyi-icon">
-            <i class="fas fa-film"></i>
-          </div>
-          <div class="toolkit-title">iQIYI</div>
-          <a href="https://www.iqiyi.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Tencent Video/WeTV -->
-        <div class="toolkit-card" data-title="tencent video" data-categories="media">
-          <div class="toolkit-icon tencent-icon">
-            <i class="fas fa-tv"></i>
-          </div>
-          <div class="toolkit-title">Tencent Video</div>
+      <div class="social-grid">
+        <!-- YouTube卡片 -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fab fa-youtube"></i></div>
+          <div class="social-title">YouTube</div>
+          <div class="social-description">My video content and playlists</div>
           <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
-            <a href="https://v.qq.com/" class="toolkit-link" target="_blank">Visit 1</a>
+            <a href="https://www.youtube.com/channel/UCemKYMAMJk8FggZ5NI36i1Q" class="social-link" target="_blank">Channel</a>
             <span class="social-divider">/</span>
-            <a href="https://wetv.vip/" class="toolkit-link" target="_blank">Visit 2</a>
+            <a href="https://www.youtube.com/@JinghaoChen-Stardust" class="social-link" target="_blank">Handle</a>
           </div>
+        </div>
+        
+        <!-- TikTok卡片 -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fab fa-tiktok"></i></div>
+          <div class="social-title">TikTok (Chinese)</div>
+          <div class="social-description">Short-form videos in Chinese</div>
+          <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAqb9M45SaGeb8yI28lL3lDFHm48c4kl32Xq7BfRk3I24" class="social-link" target="_blank">Link 1</a>
+            <span class="social-divider">/</span>
+            <a href="https://v.douyin.com/PzIS6mSXJGY/" class="social-link" target="_blank">Link 2</a>
+          </div>
+        </div>
+        
+        <!-- REDnote (Xiaohongshu)卡片 -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fas fa-book"></i></div>
+          <div class="social-title">REDnote</div>
+          <div class="social-description">Chinese lifestyle and knowledge sharing</div>
+          <a href="https://www.xiaohongshu.com/user/profile/64c696da000000000b005093" class="social-link" target="_blank">Profile</a>
+        </div>
+        
+        <!-- Quora卡片 -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fab fa-quora"></i></div>
+          <div class="social-title">Quora</div>
+          <div class="social-description">Various questions and answers</div>
+          <a href="https://www.quora.com/profile/Jinghao-Chen-11/" class="social-link" target="_blank">Profile</a>
+        </div>
+        
+        <!-- Twitter/X卡片 -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fab fa-twitter"></i></div>
+          <div class="social-title">X (Twitter)</div>
+          <div class="social-description">Notes and sharing</div>
+          <a href="https://x.com/stardust_math" class="social-link" target="_blank">Profile</a>
+        </div>
+        
+        <!-- Bilibili卡片 -->
+        <div class="social-card">
+          <svg class="bilibili-icon" viewBox="0 0 24 24" width="2.5rem" height="2.5rem" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.99 6.5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6.01a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h2.75l-1-3a.5.5 0 0 1 .33-.63l.94-.3a.5.5 0 0 1 .63.32l1.1 3.1h2.64l1.1-3.1a.5.5 0 0 1 .63-.32l.94.3a.5.5 0 0 1 .33.63l-1 3h2.75zm-2.74 2.5H8.75a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h6.5a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5z" fill="#3498db" stroke="#3498db" stroke-width="0.2"/>
+            <circle cx="10.5" cy="11.5" r="1" fill="#3498db"/>
+            <circle cx="13.5" cy="11.5" r="1" fill="#3498db"/>
+          </svg>
+          <div class="social-title">Bilibili</div>
+          <div class="social-description">Chinese video platform for my content</div>
+          <a href="https://space.bilibili.com/470364718" class="social-link" target="_blank">Channel</a>
         </div>
       </div>
     </div>
     
-    <!-- Music 分类 -->
-    <div class="category-section" data-category="music">
-      <h3 class="category-title">Music</h3>
-      <div class="toolkit-grid">
-        <!-- QQ Music -->
-        <div class="toolkit-card" data-title="qq music" data-categories="music">
-          <div class="toolkit-icon qqmusic-icon">
-            <i class="fas fa-music"></i>
-          </div>
-          <div class="toolkit-title">QQ Music</div>
-          <a href="https://y.qq.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- NetEase Cloud Music -->
-        <div class="toolkit-card" data-title="netease cloud music" data-categories="music">
-          <div class="toolkit-icon neteasemusic-icon">
-            <i class="fas fa-music"></i>
-          </div>
-          <div class="toolkit-title">NetEase Cloud Music</div>
-          <a href="https://music.163.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- KuGou Music -->
-        <div class="toolkit-card" data-title="kugou music" data-categories="music">
-          <div class="toolkit-icon kugou-icon">
-            <i class="fas fa-music"></i>
-          </div>
-          <div class="toolkit-title">KuGou Music</div>
-          <a href="https://www.kugou.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Spotify -->
-        <div class="toolkit-card" data-title="spotify" data-categories="music">
-          <div class="toolkit-icon spotify-icon">
-            <i class="fab fa-spotify"></i>
-          </div>
-          <div class="toolkit-title">Spotify</div>
-          <a href="https://open.spotify.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Knowledge 分类 -->
-    <div class="category-section" data-category="knowledge">
-      <h3 class="category-title">Knowledge</h3>
-      <div class="toolkit-grid">
-        <!-- Wikipedia -->
-        <div class="toolkit-card" data-title="wikipedia" data-categories="knowledge">
-          <div class="toolkit-icon wikipedia-icon">
-            <i class="fab fa-wikipedia-w"></i>
-          </div>
-          <div class="toolkit-title">Wikipedia</div>
-          <a href="https://www.wikipedia.org/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Google Scholar -->
-        <div class="toolkit-card" data-title="google scholar" data-categories="knowledge">
-          <div class="toolkit-icon scholar-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <div class="toolkit-title">Google Scholar</div>
-          <a href="https://scholar.google.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Z-Library -->
-        <div class="toolkit-card" data-title="z-library" data-categories="knowledge">
-          <div class="toolkit-icon zlib-icon">
-            <i class="fas fa-book"></i>
-          </div>
-          <div class="toolkit-title">Z-Library</div>
-          <a href="https://zh.z-library.sk/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- CNKI -->
-        <div class="toolkit-card" data-title="cnki" data-categories="knowledge">
-          <div class="toolkit-icon cnki-icon">
-            <i class="fas fa-search"></i>
-          </div>
-          <div class="toolkit-title">CNKI</div>
-          <a href="https://www.cnki.net/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- ScienceDirect -->
-        <div class="toolkit-card" data-title="sciencedirect" data-categories="knowledge">
-          <div class="toolkit-icon sciencedirect-icon">
-            <i class="fas fa-book-open"></i>
-          </div>
-          <div class="toolkit-title">ScienceDirect</div>
-          <a href="https://www.sciencedirect.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-        
-        <!-- Web of Science -->
-        <div class="toolkit-card" data-title="web of science" data-categories="knowledge">
-          <div class="toolkit-icon webofscience-icon">
-            <i class="fas fa-globe"></i>
-          </div>
-          <div class="toolkit-title">Web of Science</div>
-          <a href="https://www.webofscience.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- MathOverflow -->
-        <div class="toolkit-card" data-title="mathoverflow" data-categories="knowledge">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#f39c12,#e67e22)">
-            <i class="fas fa-square-root-alt"></i>
-          </div>
-          <div class="toolkit-title">MathOverflow</div>
-          <a href="https://mathoverflow.net/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- OEIS -->
-        <div class="toolkit-card" data-title="oeis" data-categories="knowledge">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#27ae60,#2ecc71)">
-            <i class="fas fa-list-ol"></i>
-          </div>
-          <div class="toolkit-title">OEIS</div>
-          <a href="https://oeis.org/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Productivity 分类 -->
-    <div class="category-section" data-category="productivity">
-      <h3 class="category-title">Productivity</h3>
-      <div class="toolkit-grid">
-        <!-- Notion -->
-        <div class="toolkit-card" data-title="notion" data-categories="productivity">
-          <div class="toolkit-icon notion-icon">
-            <i class="fas fa-clipboard-list"></i>
-          </div>
-          <div class="toolkit-title">Notion</div>
-          <a href="https://www.notion.so/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- Obsidian -->
-        <div class="toolkit-card" data-title="obsidian" data-categories="productivity">
-          <div class="toolkit-icon obsidian-icon">
-            <i class="fas fa-book"></i>
-          </div>
-          <div class="toolkit-title">Obsidian</div>
-          <a href="https://obsidian.md/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- Tencent Docs -->
-        <div class="toolkit-card" data-title="tencent docs" data-categories="productivity">
-          <div class="toolkit-icon tencentdocs-icon">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <div class="toolkit-title">Tencent Docs</div>
-          <a href="https://docs.qq.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- Typora -->
-        <div class="toolkit-card" data-title="typora" data-categories="productivity">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#333333,#666666)">
-            <i class="fas fa-edit"></i>
-          </div>
-          <div class="toolkit-title">Typora</div>
-          <a href="https://typora.io/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- Yuque -->
-        <div class="toolkit-card" data-title="yuque" data-categories="productivity">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#00b0ff,#0081cb)">
-            <i class="fas fa-feather-alt"></i>
-          </div>
-          <div class="toolkit-title">Yuque</div>
-          <a href="https://www.yuque.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- Canva -->
-        <div class="toolkit-card" data-title="canva" data-categories="productivity">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#00c4cc,#00a2ff)">
-            <i class="fas fa-palette"></i>
-          </div>
-          <div class="toolkit-title">Canva</div>
-          <a href="https://www.canva.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- Remove.bg -->
-        <div class="toolkit-card" data-title="removebg" data-categories="productivity">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3949ab)">
-            <i class="fas fa-image"></i>
-          </div>
-          <div class="toolkit-title">Remove.bg</div>
-          <a href="https://www.remove.bg/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-
-        <!-- TinyPNG -->
-        <div class="toolkit-card" data-title="tinypng" data-categories="productivity">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#2ecc71,#27ae60)">
-            <i class="fas fa-compress-alt"></i>
-          </div>
-          <div class="toolkit-title">TinyPNG</div>
-          <a href="https://tinypng.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Document and Management -->
-    <div class="category-section" data-category="reference">
-      <h3 class="category-title">Document and Management</h3>
-      <div class="toolkit-grid">
-        <!-- EndNote -->
-        <div class="toolkit-card" data-title="endnote" data-categories="reference">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#2c3e50,#34495e)">
-            <i class="fas fa-quote-right"></i>
-          </div>
-          <div class="toolkit-title">EndNote</div>
-          <a href="http://www.myendnoteweb.com" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- Zotero -->
-        <div class="toolkit-card" data-title="zotero" data-categories="reference">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3949ab)">
-            <i class="fas fa-book"></i>
-          </div>
-          <div class="toolkit-title">Zotero</div>
-          <a href="https://www.zotero.org/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- Mendeley -->
-        <div class="toolkit-card" data-title="mendeley" data-categories="reference">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <div class="toolkit-title">Mendeley</div>
-          <a href="https://www.mendeley.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- Academia -->
-        <div class="toolkit-card" data-title="academia" data-categories="reference">
-          <div class="toolkit-icon" style="background:linear-gradient(135deg,#3498db,#2980b9)">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <div class="toolkit-title">Academia</div>
-          <a href="https://www.academia.edu/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- USTC Services -->
-    <div class="category-section" data-category="ustc">
-      <h3 class="category-title">USTC Services</h3>
-      <div class="toolkit-grid">
-        <!-- Blackboard -->
-        <div class="toolkit-card" data-title="ustc blackboard" data-categories="ustc">
-          <div class="toolkit-icon ustc-blackboard-icon">
-            <i class="fas fa-chalkboard"></i>
-          </div>
-          <div class="toolkit-title">USTC Blackboard</div>
-          <a href="https://www.bb.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- USTC Mail -->
-        <div class="toolkit-card" data-title="ustc mail" data-categories="ustc">
-          <div class="toolkit-icon ustc-mail-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="toolkit-title">USTC Mail</div>
-          <a href="https://email.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- USTC Flyer -->
-        <div class="toolkit-card" data-title="ustc flyer" data-categories="ustc">
-          <div class="toolkit-icon ustc-flyer-icon">
-            <i class="fas fa-paper-plane"></i>
-          </div>
-          <div class="toolkit-title">USTC Flyer</div>
-          <a href="https://ustcflyer.com/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- USTC Website -->
-        <div class="toolkit-card" data-title="ustc website" data-categories="ustc">
-          <div class="toolkit-icon ustc-website-icon">
-            <i class="fas fa-globe"></i>
-          </div>
-          <div class="toolkit-title">USTC Website</div>
-          <a href="https://www.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- Integrated Academic Affairs System -->
-        <div class="toolkit-card" data-title="ustc jw" data-categories="ustc">
-          <div class="toolkit-icon ustc-jw-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <div class="toolkit-title">Academic Affairs System</div>
-          <a href="https://jw.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- USTC Course Review Community -->
-        <div class="toolkit-card" data-title="ustc icourse" data-categories="ustc">
-          <div class="toolkit-icon ustc-icourse-icon">
-            <i class="fas fa-comments"></i>
-          </div>
-          <div class="toolkit-title">Course Review Community</div>
-          <a href="https://icourse.club/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- USTC Software -->
-        <div class="toolkit-card" data-title="ustc software" data-categories="ustc">
-          <div class="toolkit-icon ustc-software-icon">
-            <i class="fas fa-download"></i>
-          </div>
-          <div class="toolkit-title">USTC Software</div>
-          <a href="https://software.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-  
-        <!-- Hanhai Teaching Network -->
-        <div class="toolkit-card" data-title="ustc hanhai" data-categories="ustc">
-          <div class="toolkit-icon ustc-hanhai-icon">
-            <i class="fas fa-video"></i>
-          </div>
-          <div class="toolkit-title">Hanhai Teaching Network</div>
-          <a href="https://course.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
-        </div>
-      </div>
-    </div>
-    
-    <!-- 无结果提示 -->
-    <div class="no-results" style="display: none;">
-      No matching tools found. Try a different search term.
-    </div>
+    <a href="#" class="back-btn" id="social-back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
   </div>
-  
-  <a href="#" class="back-btn" id="toolkit-back-btn">
-    <i class="fas fa-arrow-left"></i>
-  </a>
-</div>
 
-<!-- Schedule Page -->
-<div id="schedule">
-  <button id="toggle-btn-schedule">
-    <span><i class="fas fa-sun"></i></span>
-  </button>
-  <div id="clock-schedule">GMT+8 00:00</div>
-  <div class="container">
-    <div class="schedule-heading">My Schedule</div>
+  <!-- 工具包页 - 修改后的部分 -->
+  <div id="toolkit">
+    <button id="toggle-btn-toolkit">
+      <span><i class="fas fa-sun"></i></span>
+    </button>
+    <div id="clock-toolkit">GMT+8 00:00</div>
+    <div class="container">
+      <div class="toolkit-heading">Academic Toolkit</div>
+      
+      <!-- 搜索框 -->
+      <div class="toolkit-search">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Search tools by name..." id="toolkit-search-input">
+        </div>
+      </div>
+      
+      <!-- 分类筛选器 -->
+      <div class="toolkit-filter">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="development">Development</button>
+        <button class="filter-btn" data-category="communication">Communication</button>
+        <button class="filter-btn" data-category="media">Media & Video</button>
+        <button class="filter-btn" data-category="music">Music</button>
+        <button class="filter-btn" data-category="knowledge">Knowledge</button>
+        <button class="filter-btn" data-category="productivity">Productivity</button>
+        <button class="filter-btn" data-category="reference">Document and Management</button>
+        <button class="filter-btn" data-category="ustc">USTC Services</button>
+      </div>
+      
+      <!-- Development 分类 -->
+      <div class="category-section" data-category="development">
+        <h3 class="category-title">Development</h3>
+        <div class="toolkit-grid">
+          <!-- GitHub -->
+          <div class="toolkit-card" data-title="github" data-categories="development">
+            <div class="toolkit-icon github-icon">
+              <i class="fab fa-github"></i>
+            </div>
+            <div class="toolkit-title">GitHub</div>
+            <a href="https://github.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Maple -->
+          <div class="toolkit-card" data-title="maple" data-categories="development">
+            <div class="toolkit-icon maple-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <div class="toolkit-title">Maple</div>
+            <a href="https://learn.maplesoft.com/doc" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- DeepSeek -->
+          <div class="toolkit-card" data-title="deepseek" data-categories="development">
+            <div class="toolkit-icon deepseek-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="toolkit-title">DeepSeek</div>
+            <a href="https://chat.deepseek.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- ChatGPT -->
+          <div class="toolkit-card" data-title="chatgpt" data-categories="development">
+            <div class="toolkit-icon chatgpt-icon">
+              <i class="fas fa-comment-dots"></i>
+            </div>
+            <div class="toolkit-title">ChatGPT</div>
+            <a href="https://chatgpt.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Grok -->
+          <div class="toolkit-card" data-title="grok" data-categories="development">
+            <div class="toolkit-icon grok-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="toolkit-title">Grok</div>
+            <a href="https://grok.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- DeepL -->
+          <div class="toolkit-card" data-title="deepl" data-categories="development">
+            <div class="toolkit-icon deepl-icon">
+              <i class="fas fa-language"></i>
+            </div>
+            <div class="toolkit-title">DeepL</div>
+            <a href="https://www.deepl.com/zh/translator" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Overleaf -->
+          <div class="toolkit-card" data-title="overleaf" data-categories="development">
+            <div class="toolkit-icon overleaf-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <div class="toolkit-title">Overleaf</div>
+            <a href="https://cn.overleaf.com/project" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Jupyter -->
+          <div class="toolkit-card" data-title="jupyter" data-categories="development">
+            <div class="toolkit-icon jupyter-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="toolkit-title">Jupyter</div>
+            <a href="https://jupyter.org/try" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- Wolfram Alpha -->
+          <div class="toolkit-card" data-title="wolfram alpha" data-categories="development">
+            <div class="toolkit-icon wolfram-icon">
+              <i class="fas fa-infinity"></i>
+            </div>
+            <div class="toolkit-title">Wolfram Alpha</div>
+            <a href="https://www.wolframalpha.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- GitLab -->
+          <div class="toolkit-card" data-title="gitlab" data-categories="development">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#e24329,#6d4b41)">
+              <i class="fab fa-gitlab"></i>
+            </div>
+            <div class="toolkit-title">GitLab</div>
+            <a href="https://gitlab.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- CodeSandbox -->
+          <div class="toolkit-card" data-title="codesandbox" data-categories="development">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#000000,#3d3d3d)">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="toolkit-title">CodeSandbox</div>
+            <a href="https://codesandbox.io/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- LeetCode -->
+          <div class="toolkit-card" data-title="leetcode" data-categories="development">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#ffa116,#ff7b00)">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="toolkit-title">LeetCode</div>
+            <a href="https://leetcode.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- Tableau -->
+          <div class="toolkit-card" data-title="tableau" data-categories="datascience">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3f51b5)">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="toolkit-title">Tableau Public</div>
+            <a href="https://public.tableau.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
     
-    <div class="schedule-container">
-      <div class="schedule-switcher">
-        <button class="schedule-switch-btn active" data-view="calendar">Calendar</button>
-        <button class="schedule-switch-btn" data-view="timetable">Timetable</button>
-        <!-- 添加USTC Timetable按钮 -->
-        <button class="schedule-switch-btn" data-view="ustc-timetable">USTC Timetable</button>
+          <!-- Colab -->
+          <div class="toolkit-card" data-title="colab" data-categories="datascience">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#4285f4,#34a853)">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="toolkit-title">Colab</div>
+            <a href="https://colab.research.google.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
       </div>
       
-      <!-- Calendar Section -->
-      <div class="schedule-section active" id="calendar-section">
-        <div id="calendar-container"></div>
-        <button class="add-event-btn" id="add-calendar-event">
-          <i class="fas fa-plus"></i> Add Event
-        </button>
+      <!-- Communication 分类 -->
+      <div class="category-section" data-category="communication">
+        <h3 class="category-title">Communication</h3>
+        <div class="toolkit-grid">
+          <!-- Gmail -->
+          <div class="toolkit-card" data-title="gmail" data-categories="communication">
+            <div class="toolkit-icon gmail-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="toolkit-title">Gmail</div>
+            <a href="https://mail.google.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- QQ Mail -->
+          <div class="toolkit-card" data-title="qq mail" data-categories="communication">
+            <div class="toolkit-icon qqmail-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="toolkit-title">QQ Mail</div>
+            <a href="https://mail.qq.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- NetEase Mail -->
+          <div class="toolkit-card" data-title="netease mail" data-categories="communication">
+            <div class="toolkit-icon neteasemail-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="toolkit-title">NetEase Mail</div>
+            <a href="https://email.163.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Quora -->
+          <div class="toolkit-card" data-title="quora" data-categories="communication">
+            <div class="toolkit-icon quora-icon">
+              <i class="fab fa-quora"></i>
+            </div>
+            <div class="toolkit-title">Quora</div>
+            <a href="https://www.quora.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Twitter/X -->
+          <div class="toolkit-card" data-title="twitter" data-categories="communication">
+            <div class="toolkit-icon twitter-icon">
+              <i class="fab fa-twitter"></i>
+            </div>
+            <div class="toolkit-title">X (Twitter)</div>
+            <a href="https://x.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
       </div>
       
-      <!-- Timetable Section -->
-      <div class="schedule-section" id="timetable-section">
-        <div class="week-navigation">
-          <button class="week-nav-btn" id="prev-week-btn">
-            <i class="fas fa-chevron-left"></i>
+      <!-- Media & Video 分类 -->
+      <div class="category-section" data-category="media">
+        <h3 class="category-title">Media & Video</h3>
+        <div class="toolkit-grid">
+          <!-- YouTube -->
+          <div class="toolkit-card" data-title="youtube" data-categories="media">
+            <div class="toolkit-icon youtube-icon">
+              <i class="fab fa-youtube"></i>
+            </div>
+            <div class="toolkit-title">YouTube</div>
+            <a href="https://www.youtube.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- TikTok -->
+          <div class="toolkit-card" data-title="tiktok" data-categories="media">
+            <div class="toolkit-icon tiktok-icon">
+              <i class="fab fa-tiktok"></i>
+            </div>
+            <div class="toolkit-title">TikTok</div>
+            <a href="https://www.douyin.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- REDnote -->
+          <div class="toolkit-card" data-title="rednote" data-categories="media">
+            <div class="toolkit-icon rednote-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="toolkit-title">REDnote</div>
+            <a href="https://www.xiaohongshu.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Bilibili -->
+          <div class="toolkit-card" data-title="bilibili" data-categories="media">
+            <div class="toolkit-icon bilibili-icon">
+              <i class="fas fa-play-circle"></i>
+            </div>
+            <div class="toolkit-title">Bilibili</div>
+            <a href="https://www.bilibili.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- iQIYI -->
+          <div class="toolkit-card" data-title="iqiyi" data-categories="media">
+            <div class="toolkit-icon iqiyi-icon">
+              <i class="fas fa-film"></i>
+            </div>
+            <div class="toolkit-title">iQIYI</div>
+            <a href="https://www.iqiyi.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Tencent Video/WeTV -->
+          <div class="toolkit-card" data-title="tencent video" data-categories="media">
+            <div class="toolkit-icon tencent-icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <div class="toolkit-title">Tencent Video</div>
+            <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+              <a href="https://v.qq.com/" class="toolkit-link" target="_blank">Visit 1</a>
+              <span class="social-divider">/</span>
+              <a href="https://wetv.vip/" class="toolkit-link" target="_blank">Visit 2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Music 分类 -->
+      <div class="category-section" data-category="music">
+        <h3 class="category-title">Music</h3>
+        <div class="toolkit-grid">
+          <!-- QQ Music -->
+          <div class="toolkit-card" data-title="qq music" data-categories="music">
+            <div class="toolkit-icon qqmusic-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <div class="toolkit-title">QQ Music</div>
+            <a href="https://y.qq.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- NetEase Cloud Music -->
+          <div class="toolkit-card" data-title="netease cloud music" data-categories="music">
+            <div class="toolkit-icon neteasemusic-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <div class="toolkit-title">NetEase Cloud Music</div>
+            <a href="https://music.163.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- KuGou Music -->
+          <div class="toolkit-card" data-title="kugou music" data-categories="music">
+            <div class="toolkit-icon kugou-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <div class="toolkit-title">KuGou Music</div>
+            <a href="https://www.kugou.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Spotify -->
+          <div class="toolkit-card" data-title="spotify" data-categories="music">
+            <div class="toolkit-icon spotify-icon">
+              <i class="fab fa-spotify"></i>
+            </div>
+            <div class="toolkit-title">Spotify</div>
+            <a href="https://open.spotify.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Knowledge 分类 -->
+      <div class="category-section" data-category="knowledge">
+        <h3 class="category-title">Knowledge</h3>
+        <div class="toolkit-grid">
+          <!-- Wikipedia -->
+          <div class="toolkit-card" data-title="wikipedia" data-categories="knowledge">
+            <div class="toolkit-icon wikipedia-icon">
+              <i class="fab fa-wikipedia-w"></i>
+            </div>
+            <div class="toolkit-title">Wikipedia</div>
+            <a href="https://www.wikipedia.org/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Google Scholar -->
+          <div class="toolkit-card" data-title="google scholar" data-categories="knowledge">
+            <div class="toolkit-icon scholar-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="toolkit-title">Google Scholar</div>
+            <a href="https://scholar.google.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Z-Library -->
+          <div class="toolkit-card" data-title="z-library" data-categories="knowledge">
+            <div class="toolkit-icon zlib-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="toolkit-title">Z-Library</div>
+            <a href="https://zh.z-library.sk/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- CNKI -->
+          <div class="toolkit-card" data-title="cnki" data-categories="knowledge">
+            <div class="toolkit-icon cnki-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="toolkit-title">CNKI</div>
+            <a href="https://www.cnki.net/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- ScienceDirect -->
+          <div class="toolkit-card" data-title="sciencedirect" data-categories="knowledge">
+            <div class="toolkit-icon sciencedirect-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="toolkit-title">ScienceDirect</div>
+            <a href="https://www.sciencedirect.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+          
+          <!-- Web of Science -->
+          <div class="toolkit-card" data-title="web of science" data-categories="knowledge">
+            <div class="toolkit-icon webofscience-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="toolkit-title">Web of Science</div>
+            <a href="https://www.webofscience.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- MathOverflow -->
+          <div class="toolkit-card" data-title="mathoverflow" data-categories="knowledge">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#f39c12,#e67e22)">
+              <i class="fas fa-square-root-alt"></i>
+            </div>
+            <div class="toolkit-title">MathOverflow</div>
+            <a href="https://mathoverflow.net/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- OEIS -->
+          <div class="toolkit-card" data-title="oeis" data-categories="knowledge">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#27ae60,#2ecc71)">
+              <i class="fas fa-list-ol"></i>
+            </div>
+            <div class="toolkit-title">OEIS</div>
+            <a href="https://oeis.org/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productivity 分类 -->
+      <div class="category-section" data-category="productivity">
+        <h3 class="category-title">Productivity</h3>
+        <div class="toolkit-grid">
+          <!-- Notion -->
+          <div class="toolkit-card" data-title="notion" data-categories="productivity">
+            <div class="toolkit-icon notion-icon">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div class="toolkit-title">Notion</div>
+            <a href="https://www.notion.so/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Obsidian -->
+          <div class="toolkit-card" data-title="obsidian" data-categories="productivity">
+            <div class="toolkit-icon obsidian-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="toolkit-title">Obsidian</div>
+            <a href="https://obsidian.md/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Tencent Docs -->
+          <div class="toolkit-card" data-title="tencent docs" data-categories="productivity">
+            <div class="toolkit-icon tencentdocs-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="toolkit-title">Tencent Docs</div>
+            <a href="https://docs.qq.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- Typora -->
+          <div class="toolkit-card" data-title="typora" data-categories="productivity">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#333333,#666666)">
+              <i class="fas fa-edit"></i>
+            </div>
+            <div class="toolkit-title">Typora</div>
+            <a href="https://typora.io/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- Yuque -->
+          <div class="toolkit-card" data-title="yuque" data-categories="productivity">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#00b0ff,#0081cb)">
+              <i class="fas fa-feather-alt"></i>
+            </div>
+            <div class="toolkit-title">Yuque</div>
+            <a href="https://www.yuque.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- Canva -->
+          <div class="toolkit-card" data-title="canva" data-categories="productivity">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#00c4cc,#00a2ff)">
+              <i class="fas fa-palette"></i>
+            </div>
+            <div class="toolkit-title">Canva</div>
+            <a href="https://www.canva.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- Remove.bg -->
+          <div class="toolkit-card" data-title="removebg" data-categories="productivity">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3949ab)">
+              <i class="fas fa-image"></i>
+            </div>
+            <div class="toolkit-title">Remove.bg</div>
+            <a href="https://www.remove.bg/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+
+          <!-- TinyPNG -->
+          <div class="toolkit-card" data-title="tinypng" data-categories="productivity">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#2ecc71,#27ae60)">
+              <i class="fas fa-compress-alt"></i>
+            </div>
+            <div class="toolkit-title">TinyPNG</div>
+            <a href="https://tinypng.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document and Management -->
+      <div class="category-section" data-category="reference">
+        <h3 class="category-title">Document and Management</h3>
+        <div class="toolkit-grid">
+          <!-- EndNote -->
+          <div class="toolkit-card" data-title="endnote" data-categories="reference">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#2c3e50,#34495e)">
+              <i class="fas fa-quote-right"></i>
+            </div>
+            <div class="toolkit-title">EndNote</div>
+            <a href="http://www.myendnoteweb.com" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Zotero -->
+          <div class="toolkit-card" data-title="zotero" data-categories="reference">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3949ab)">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="toolkit-title">Zotero</div>
+            <a href="https://www.zotero.org/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Mendeley -->
+          <div class="toolkit-card" data-title="mendeley" data-categories="reference">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="toolkit-title">Mendeley</div>
+            <a href="https://www.mendeley.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Academia -->
+          <div class="toolkit-card" data-title="academia" data-categories="reference">
+            <div class="toolkit-icon" style="background:linear-gradient(135deg,#3498db,#2980b9)">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="toolkit-title">Academia</div>
+            <a href="https://www.academia.edu/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- USTC Services -->
+      <div class="category-section" data-category="ustc">
+        <h3 class="category-title">USTC Services</h3>
+        <div class="toolkit-grid">
+          <!-- Blackboard -->
+          <div class="toolkit-card" data-title="ustc blackboard" data-categories="ustc">
+            <div class="toolkit-icon ustc-blackboard-icon">
+              <i class="fas fa-chalkboard"></i>
+            </div>
+            <div class="toolkit-title">USTC Blackboard</div>
+            <a href="https://www.bb.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Mail -->
+          <div class="toolkit-card" data-title="ustc mail" data-categories="ustc">
+            <div class="toolkit-icon ustc-mail-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="toolkit-title">USTC Mail</div>
+            <a href="https://email.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Flyer -->
+          <div class="toolkit-card" data-title="ustc flyer" data-categories="ustc">
+            <div class="toolkit-icon ustc-flyer-icon">
+              <i class="fas fa-paper-plane"></i>
+            </div>
+            <div class="toolkit-title">USTC Flyer</div>
+            <a href="https://ustcflyer.com/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Website -->
+          <div class="toolkit-card" data-title="ustc website" data-categories="ustc">
+            <div class="toolkit-icon ustc-website-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="toolkit-title">USTC Website</div>
+            <a href="https://www.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Integrated Academic Affairs System -->
+          <div class="toolkit-card" data-title="ustc jw" data-categories="ustc">
+            <div class="toolkit-icon ustc-jw-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="toolkit-title">Academic Affairs System</div>
+            <a href="https://jw.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Course Review Community -->
+          <div class="toolkit-card" data-title="ustc icourse" data-categories="ustc">
+            <div class="toolkit-icon ustc-icourse-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="toolkit-title">Course Review Community</div>
+            <a href="https://icourse.club/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- USTC Software -->
+          <div class="toolkit-card" data-title="ustc software" data-categories="ustc">
+            <div class="toolkit-icon ustc-software-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <div class="toolkit-title">USTC Software</div>
+            <a href="https://software.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+    
+          <!-- Hanhai Teaching Network -->
+          <div class="toolkit-card" data-title="ustc hanhai" data-categories="ustc">
+            <div class="toolkit-icon ustc-hanhai-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <div class="toolkit-title">Hanhai Teaching Network</div>
+            <a href="https://course.ustc.edu.cn/" class="toolkit-link" target="_blank">Visit</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 无结果提示 -->
+      <div class="no-results" style="display: none;">
+        No matching tools found. Try a different search term.
+      </div>
+    </div>
+    
+    <a href="#" class="back-btn" id="toolkit-back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+  </div>
+
+  <!-- Schedule Page -->
+  <div id="schedule">
+    <button id="toggle-btn-schedule">
+      <span><i class="fas fa-sun"></i></span>
+    </button>
+    <div id="clock-schedule">GMT+8 00:00</div>
+    <div class="container">
+      <div class="schedule-heading">My Schedule</div>
+      
+      <div class="schedule-container">
+        <div class="schedule-switcher">
+          <button class="schedule-switch-btn active" data-view="calendar">Calendar</button>
+          <button class="schedule-switch-btn" data-view="timetable">Timetable</button>
+          <!-- 添加USTC Timetable按钮 -->
+          <button class="schedule-switch-btn" data-view="ustc-timetable">USTC Timetable</button>
+        </div>
+        
+        <!-- Calendar Section -->
+        <div class="schedule-section active" id="calendar-section">
+          <div id="calendar-container"></div>
+          <button class="add-event-btn" id="add-calendar-event">
+            <i class="fas fa-plus"></i> Add Event
           </button>
-          <div class="week-title" id="current-week">Week of Mon, Jan 1 - Sun, Jan 7</div>
-          <button class="week-nav-btn" id="next-week-btn">
-            <i class="fas fa-chevron-right"></i>
+        </div>
+        
+        <!-- Timetable Section -->
+        <div class="schedule-section" id="timetable-section">
+          <div class="week-navigation">
+            <button class="week-nav-btn" id="prev-week-btn">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="week-title" id="current-week">Week of Mon, Jan 1 - Sun, Jan 7</div>
+            <button class="week-nav-btn" id="next-week-btn">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          
+          <div class="timetable-container">
+            <table class="timetable" id="timetable">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                  <th>Saturday</th>
+                  <th>Sunday</th>
+                </tr>
+              </thead>
+              <tbody id="timetable-body">
+                <!-- Timetable rows will be generated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          
+          <button class="add-event-btn" id="add-timetable-event">
+            <i class="fas fa-plus"></i> Add Class/Event
           </button>
         </div>
         
-        <div class="timetable-container">
-          <table class="timetable" id="timetable">
-            <thead>
-              <tr>
-                <th>Time</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-                <th>Sunday</th>
-              </tr>
-            </thead>
-            <tbody id="timetable-body">
-              <!-- Timetable rows will be generated by JavaScript -->
-            </tbody>
-          </table>
-        </div>
-        
-        <button class="add-event-btn" id="add-timetable-event">
-          <i class="fas fa-plus"></i> Add Class/Event
-        </button>
-      </div>
-      
-      <!-- USTC Timetable Section - 修改为网格布局 -->
-      <div class="schedule-section" id="ustc-timetable-section">
-        <div class="timetable-container">
-          <div class="timetable-grid" id="ustc-timetable-grid">
-            <!-- Grid headers will be generated by JavaScript -->
+        <!-- USTC Timetable Section -->
+        <div class="schedule-section" id="ustc-timetable-section">
+          <div class="timetable-container">
+            <table class="timetable" id="ustc-timetable">
+              <thead>
+                <tr>
+                  <th>Period</th>
+                  <th>Period Number</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                  <th>Saturday</th>
+                  <th>Sunday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Morning Section -->
+                <tr>
+                  <td rowspan="5" class="period-header">Morning</td>
+                  <td class="period-number">1</td>
+                  <td data-period="1" data-day="1"></td>
+                  <td data-period="1" data-day="2"></td>
+                  <td data-period="1" data-day="3"></td>
+                  <td data-period="1" data-day="4"></td>
+                  <td data-period="1" data-day="5"></td>
+                  <td data-period="1" data-day="6"></td>
+                  <td data-period="1" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">2</td>
+                  <td data-period="2" data-day="1"></td>
+                  <td data-period="2" data-day="2"></td>
+                  <td data-period="2" data-day="3"></td>
+                  <td data-period="2" data-day="4"></td>
+                  <td data-period="2" data-day="5"></td>
+                  <td data-period="2" data-day="6"></td>
+                  <td data-period="2" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">3</td>
+                  <td data-period="3" data-day="1"></td>
+                  <td data-period="3" data-day="2"></td>
+                  <td data-period="3" data-day="3"></td>
+                  <td data-period="3" data-day="4"></td>
+                  <td data-period="3" data-day="5"></td>
+                  <td data-period="3" data-day="6"></td>
+                  <td data-period="3" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">4</td>
+                  <td data-period="4" data-day="1"></td>
+                  <td data-period="4" data-day="2"></td>
+                  <td data-period="4" data-day="3"></td>
+                  <td data-period="4" data-day="4"></td>
+                  <td data-period="4" data-day="5"></td>
+                  <td data-period="4" data-day="6"></td>
+                  <td data-period="4" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">5</td>
+                  <td data-period="5" data-day="1"></td>
+                  <td data-period="5" data-day="2"></td>
+                  <td data-period="5" data-day="3"></td>
+                  <td data-period="5" data-day="4"></td>
+                  <td data-period="5" data-day="5"></td>
+                  <td data-period="5" data-day="6"></td>
+                  <td data-period="5" data-day="0"></td>
+                </tr>
+                
+                <!-- Afternoon Section -->
+                <tr>
+                  <td rowspan="5" class="period-header">Afternoon</td>
+                  <td class="period-number">6</td>
+                  <td data-period="6" data-day="1"></td>
+                  <td data-period="6" data-day="2"></td>
+                  <td data-period="6" data-day="3"></td>
+                  <td data-period="6" data-day="4"></td>
+                  <td data-period="6" data-day="5"></td>
+                  <td data-period="6" data-day="6"></td>
+                  <td data-period="6" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">7</td>
+                  <td data-period="7" data-day="1"></td>
+                  <td data-period="7" data-day="2"></td>
+                  <td data-period="7" data-day="3"></td>
+                  <td data-period="7" data-day="4"></td>
+                  <td data-period="7" data-day="5"></td>
+                  <td data-period="7" data-day="6"></td>
+                  <td data-period="7" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">8</td>
+                  <td data-period="8" data-day="1"></td>
+                  <td data-period="8" data-day="2"></td>
+                  <td data-period="8" data-day="3"></td>
+                  <td data-period="8" data-day="4"></td>
+                  <td data-period="8" data-day="5"></td>
+                  <td data-period="8" data-day="6"></td>
+                  <td data-period="8" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">9</td>
+                  <td data-period="9" data-day="1"></td>
+                  <td data-period="9" data-day="2"></td>
+                  <td data-period="9" data-day="3"></td>
+                  <td data-period="9" data-day="4"></td>
+                  <td data-period="9" data-day="5"></td>
+                  <td data-period="9" data-day="6"></td>
+                  <td data-period="9" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">10</td>
+                  <td data-period="10" data-day="1"></td>
+                  <td data-period="10" data-day="2"></td>
+                  <td data-period="10" data-day="3"></td>
+                  <td data-period="10" data-day="4"></td>
+                  <td data-period="10" data-day="5"></td>
+                  <td data-period="10" data-day="6"></td>
+                  <td data-period="10" data-day="0"></td>
+                </tr>
+                
+                <!-- Evening Section -->
+                <tr>
+                  <td rowspan="3" class="period-header">Evening</td>
+                  <td class="period-number">11</td>
+                  <td data-period="11" data-day="1"></td>
+                  <td data-period="11" data-day="2"></td>
+                  <td data-period="11" data-day="3"></td>
+                  <td data-period="11" data-day="4"></td>
+                  <td data-period="11" data-day="5"></td>
+                  <td data-period="11" data-day="6"></td>
+                  <td data-period="11" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">12</td>
+                  <td data-period="12" data-day="1"></td>
+                  <td data-period="12" data-day="2"></td>
+                  <td data-period="12" data-day="3"></td>
+                  <td data-period="12" data-day="4"></td>
+                  <td data-period="12" data-day="5"></td>
+                  <td data-period="12" data-day="6"></td>
+                  <td data-period="12" data-day="0"></td>
+                </tr>
+                <tr>
+                  <td class="period-number">13</td>
+                  <td data-period="13" data-day="1"></td>
+                  <td data-period="13" data-day="2"></td>
+                  <td data-period="13" data-day="3"></td>
+                  <td data-period="13" data-day="4"></td>
+                  <td data-period="13" data-day="5"></td>
+                  <td data-period="13" data-day="6"></td>
+                  <td data-period="13" data-day="0"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <button class="add-event-btn" id="add-ustc-event">
+            <i class="fas fa-plus"></i> Add Class
+          </button>
+          
+          <!-- USTC Classes List -->
+          <div class="ustc-classes-container" id="ustc-classes-container">
+            <h3 style="text-align: center; margin-top: 20px;">My Classes</h3>
+            <table class="ustc-classes-table" id="ustc-classes-table">
+              <thead>
+                <tr>
+                  <th>Period Range</th>
+                  <th>Course Name</th>
+                  <th>Instructor</th>
+                  <th>Days</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="ustc-classes-body">
+                <!-- Classes will be added here -->
+              </tbody>
+            </table>
           </div>
         </div>
-        
-        <button class="add-event-btn" id="add-ustc-event">
-          <i class="fas fa-plus"></i> Add Class
-        </button>
-        
-        <!-- USTC Classes List -->
-        <div class="ustc-classes-container" id="ustc-classes-container">
-          <h3 style="text-align: center; margin-top: 20px;">My Classes</h3>
-          <table class="ustc-classes-table" id="ustc-classes-table">
-            <thead>
-              <tr>
-                <th>Period Range</th>
-                <th>Course Name</th>
-                <th>Instructor</th>
-                <th>Days</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="ustc-classes-body">
-              <!-- Classes will be added here -->
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
-  </div>
-  
-  <a href="#" class="back-btn" id="schedule-back-btn">
-    <i class="fas fa-arrow-left"></i>
-  </a>
-  
-  <!-- Event Modal -->
-  <div class="event-modal" id="event-modal">
-    <div class="event-modal-content">
-      <span class="event-modal-close" id="event-modal-close">&times;</span>
-      <h3 class="event-modal-title" id="event-modal-title">Add New Class</h3>
-      
-      <form id="event-form">
-        <input type="hidden" id="event-id">
-        <input type="hidden" id="event-type">
-        
-        <div class="event-form-group">
-          <label for="ustc-period-start">Period Start</label>
-          <select id="ustc-period-start" class="event-form-control" required>
-            <option value="1">1 (7:50-8:35)</option>
-            <option value="2">2 (8:40-9:25)</option>
-            <option value="3">3 (9:45-10:30)</option>
-            <option value="4">4 (10:35-11:20)</option>
-            <option value="5">5 (11:25-12:10)</option>
-            <option value="6">6 (14:00-14:45)</option>
-            <option value="7">7 (14:50-15:35)</option>
-            <option value="8">8 (15:55-16:40)</option>
-            <option value="9">9 (16:45-17:30)</option>
-            <option value="10">10 (17:35-18:20)</option>
-            <option value="11">11 (19:30-20:15)</option>
-            <option value="12">12 (20:20-21:05)</option>
-            <option value="13">13 (21:10-21:55)</option>
-          </select>
-        </div>
-        
-        <div class="event-form-group">
-          <label for="ustc-period-end">Period End</label>
-          <select id="ustc-period-end" class="event-form-control" required>
-            <option value="1">1 (7:50-8:35)</option>
-            <option value="2">2 (8:40-9:25)</option>
-            <option value="3">3 (9:45-10:30)</option>
-            <option value="4">4 (10:35-11:20)</option>
-            <option value="5">5 (11:25-12:10)</option>
-            <option value="6">6 (14:00-14:45)</option>
-            <option value="7">7 (14:50-15:35)</option>
-            <option value="8">8 (15:55-16:40)</option>
-            <option value="9">9 (16:45-17:30)</option>
-            <option value="10">10 (17:35-18:20)</option>
-            <option value="11">11 (19:30-20:15)</option>
-            <option value="12">12 (20:20-21:05)</option>
-            <option value="13">13 (21:10-21:55)</option>
-          </select>
-        </div>
-        
-        <div class="event-form-group">
-          <label for="ustc-course-name">Course Name</label>
-          <input type="text" id="ustc-course-name" class="event-form-control" required>
-        </div>
-        
-        <div class="event-form-group">
-          <label for="ustc-instructor">Instructor</label>
-          <input type="text" id="ustc-instructor" class="event-form-control" required>
-        </div>
-        
-        <div class="event-form-group">
-          <label>Days</label>
-          <div class="days-container">
-            <label><input type="checkbox" name="ustc-day" value="1"> Mon</label>
-            <label><input type="checkbox" name="ustc-day" value="2"> Tue</label>
-            <label><input type="checkbox" name="ustc-day" value="3"> Wed</label>
-            <label><input type="checkbox" name="ustc-day" value="4"> Thu</label>
-            <label><input type="checkbox" name="ustc-day" value="5"> Fri</label>
-            <label><input type="checkbox" name="ustc-day" value="6"> Sat</label>
-            <label><input type="checkbox" name="ustc-day" value="0"> Sun</label>
-          </div>
-        </div>
-        
-        <div class="event-form-actions">
-          <button type="button" class="event-form-btn event-form-btn-delete" id="event-delete-btn" style="display: none;">Delete</button>
-          <button type="button" class="event-form-btn event-form-btn-cancel" id="event-cancel-btn">Cancel</button>
-          <button type="submit" class="event-form-btn event-form-btn-save">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
-  <!-- 新增普通事件模态框 -->
-  <div class="event-modal" id="general-event-modal">
-    <div class="event-modal-content">
-      <span class="event-modal-close" id="general-event-modal-close">&times;</span>
-      <h3 class="event-modal-title" id="general-event-modal-title">Add New Event</h3>
-      
-      <form id="general-event-form">
-        <input type="hidden" id="general-event-id">
-        <input type="hidden" id="general-event-type">
-        
-        <div class="event-form-group">
-          <label for="event-title">Event Title</label>
-          <input type="text" id="event-title" class="event-form-control" required>
-        </div>
-        
-        <div class="event-form-group">
-          <label for="event-description">Description</label>
-          <textarea id="event-description" class="event-form-control" rows="3"></textarea>
-        </div>
-        
-        <div class="event-form-group">
-          <label for="event-start">Start</label>
-          <input type="datetime-local" id="event-start" class="event-form-control" required>
-        </div>
-        
-        <div class="event-form-group">
-          <label for="event-end">End</label>
-          <input type="datetime-local" id="event-end" class="event-form-control" required>
-        </div>
-        
-        <div class="event-form-group" id="recurring-container" style="display: none;">
-          <label>
-            <input type="checkbox" id="event-recurring"> Recurring Event
-          </label>
-        </div>
-        
-        <div class="event-form-actions">
-          <button type="button" class="event-form-btn event-form-btn-delete" id="general-event-delete-btn" style="display: none;">Delete</button>
-          <button type="button" class="event-form-btn event-form-btn-cancel" id="general-event-cancel-btn">Cancel</button>
-          <button type="submit" class="event-form-btn event-form-btn-save">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<script>
-  // USTC Timetable的时间映射
-  const periodTimes = {
-    1: { start: '7:50', end: '8:35' },
-    2: { start: '8:40', end: '9:25' },
-    3: { start: '9:45', end: '10:30' },
-    4: { start: '10:35', end: '11:20' },
-    5: { start: '11:25', end: '12:10' },
-    6: { start: '14:00', end: '14:45' },
-    7: { start: '14:50', end: '15:35' },
-    8: { start: '15:55', end: '16:40' },
-    9: { start: '16:45', end: '17:30' },
-    10: { start: '17:35', end: '18:20' },
-    11: { start: '19:30', end: '20:15' },
-    12: { start: '20:20', end: '21:05' },
-    13: { start: '21:10', end: '21:55' }
-  };
-
-  // USTC课程存储
-  let ustcClasses = JSON.parse(localStorage.getItem('ustcClasses')) || [];
-
-  // 普通事件存储
-  let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
-  let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
-  
-  // 保存USTC Timetable的初始HTML
-  const timetableTbody = document.querySelector('#ustc-timetable tbody');
-  const timetableTbodyInitialHTML = timetableTbody ? timetableTbody.innerHTML : '';
-  
-  // 初始化自定义光标
-  document.addEventListener('DOMContentLoaded', function() {
-    const cursorOuter = document.querySelector('.cursor-outer');
-    const cursorInner = document.querySelector('.cursor-inner');
-    const positions = { mouseX: 0, mouseY: 0 };
     
-    // 跟踪光标位置
-    document.addEventListener('mousemove', (e) => {
-      positions.mouseX = e.clientX;
-      positions.mouseY = e.clientY;
+    <a href="#" class="back-btn" id="schedule-back-btn">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    
+    <!-- Event Modal -->
+    <div class="event-modal" id="event-modal">
+      <div class="event-modal-content">
+        <span class="event-modal-close" id="event-modal-close">&times;</span>
+        <h3 class="event-modal-title" id="event-modal-title">Add New Class</h3>
+        
+        <form id="event-form">
+          <input type="hidden" id="event-id">
+          <input type="hidden" id="event-type">
+          
+          <div class="event-form-group">
+            <label for="ustc-period-start">Period Start</label>
+            <select id="ustc-period-start" class="event-form-control" required>
+              <option value="1">1 (7:50-8:35)</option>
+              <option value="2">2 (8:40-9:25)</option>
+              <option value="3">3 (9:45-10:30)</option>
+              <option value="4">4 (10:35-11:20)</option>
+              <option value="5">5 (11:25-12:10)</option>
+              <option value="6">6 (14:00-14:45)</option>
+              <option value="7">7 (14:50-15:35)</option>
+              <option value="8">8 (15:55-16:40)</option>
+              <option value="9">9 (16:45-17:30)</option>
+              <option value="10">10 (17:35-18:20)</option>
+              <option value="11">11 (19:30-20:15)</option>
+              <option value="12">12 (20:20-21:05)</option>
+              <option value="13">13 (21:10-21:55)</option>
+            </select>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="ustc-period-end">Period End</label>
+            <select id="ustc-period-end" class="event-form-control" required>
+              <option value="1">1 (7:50-8:35)</option>
+              <option value="2">2 (8:40-9:25)</option>
+              <option value="3">3 (9:45-10:30)</option>
+              <option value="4">4 (10:35-11:20)</option>
+              <option value="5">5 (11:25-12:10)</option>
+              <option value="6">6 (14:00-14:45)</option>
+              <option value="7">7 (14:50-15:35)</option>
+              <option value="8">8 (15:55-16:40)</option>
+              <option value="9">9 (16:45-17:30)</option>
+              <option value="10">10 (17:35-18:20)</option>
+              <option value="11">11 (19:30-20:15)</option>
+              <option value="12">12 (20:20-21:05)</option>
+              <option value="13">13 (21:10-21:55)</option>
+            </select>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="ustc-course-name">Course Name</label>
+            <input type="text" id="ustc-course-name" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="ustc-instructor">Instructor</label>
+            <input type="text" id="ustc-instructor" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label>Days</label>
+            <div class="days-container">
+              <label><input type="checkbox" name="ustc-day" value="1"> Mon</label>
+              <label><input type="checkbox" name="ustc-day" value="2"> Tue</label>
+              <label><input type="checkbox" name="ustc-day" value="3"> Wed</label>
+              <label><input type="checkbox" name="ustc-day" value="4"> Thu</label>
+              <label><input type="checkbox" name="ustc-day" value="5"> Fri</label>
+              <label><input type="checkbox" name="ustc-day" value="6"> Sat</label>
+              <label><input type="checkbox" name="ustc-day" value="0"> Sun</label>
+            </div>
+          </div>
+          
+          <div class="event-form-actions">
+            <button type="button" class="event-form-btn event-form-btn-delete" id="event-delete-btn" style="display: none;">Delete</button>
+            <button type="button" class="event-form-btn event-form-btn-cancel" id="event-cancel-btn">Cancel</button>
+            <button type="submit" class="event-form-btn event-form-btn-save">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- 新增普通事件模态框 -->
+    <div class="event-modal" id="general-event-modal">
+      <div class="event-modal-content">
+        <span class="event-modal-close" id="general-event-modal-close">&times;</span>
+        <h3 class="event-modal-title" id="general-event-modal-title">Add New Event</h3>
+        
+        <form id="general-event-form">
+          <input type="hidden" id="general-event-id">
+          <input type="hidden" id="general-event-type">
+          
+          <div class="event-form-group">
+            <label for="event-title">Event Title</label>
+            <input type="text" id="event-title" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-description">Description</label>
+            <textarea id="event-description" class="event-form-control" rows="3"></textarea>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-start">Start</label>
+            <input type="datetime-local" id="event-start" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
+            <label for="event-end">End</label>
+            <input type="datetime-local" id="event-end" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group" id="recurring-container" style="display: none;">
+            <label>
+              <input type="checkbox" id="event-recurring"> Recurring Event
+            </label>
+          </div>
+          
+          <div class="event-form-actions">
+            <button type="button" class="event-form-btn event-form-btn-delete" id="general-event-delete-btn" style="display: none;">Delete</button>
+            <button type="button" class="event-form-btn event-form-btn-cancel" id="general-event-cancel-btn">Cancel</button>
+            <button type="submit" class="event-form-btn event-form-btn-save">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // USTC Timetable的时间映射
+    const periodTimes = {
+      1: { start: '7:50', end: '8:35' },
+      2: { start: '8:40', end: '9:25' },
+      3: { start: '9:45', end: '10:30' },
+      4: { start: '10:35', end: '11:20' },
+      5: { start: '11:25', end: '12:10' },
+      6: { start: '14:00', end: '14:45' },
+      7: { start: '14:50', end: '15:35' },
+      8: { start: '15:55', end: '16:40' },
+      9: { start: '16:45', end: '17:30' },
+      10: { start: '17:35', end: '18:20' },
+      11: { start: '19:30', end: '20:15' },
+      12: { start: '20:20', end: '21:05' },
+      13: { start: '21:10', end: '21:55' }
+    };
+
+    // USTC课程存储
+    let ustcClasses = JSON.parse(localStorage.getItem('ustcClasses')) || [];
+
+    // 普通事件存储
+    let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+    let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
+    
+    // 保存USTC Timetable的初始HTML
+    const timetableTbody = document.querySelector('#ustc-timetable tbody');
+    const timetableTbodyInitialHTML = timetableTbody.innerHTML;
+    
+    // 初始化自定义光标
+    document.addEventListener('DOMContentLoaded', function() {
+      const cursorOuter = document.querySelector('.cursor-outer');
+      const cursorInner = document.querySelector('.cursor-inner');
+      const positions = { mouseX: 0, mouseY: 0 };
       
-      cursorOuter.style.left = `${positions.mouseX}px`;
-      cursorOuter.style.top = `${positions.mouseY}px`;
-      cursorInner.style.left = `${positions.mouseX}px`;
-      cursorInner.style.top = `${positions.mouseY}px`;
+      // 跟踪光标位置
+      document.addEventListener('mousemove', (e) => {
+        positions.mouseX = e.clientX;
+        positions.mouseY = e.clientY;
+        
+        cursorOuter.style.left = `${positions.mouseX}px`;
+        cursorOuter.style.top = `${positions.mouseY}px`;
+        cursorInner.style.left = `${positions.mouseX}px`;
+        cursorInner.style.top = `${positions.mouseY}px`;
+      });
+      
+      // 点击效果
+      document.addEventListener('mousedown', (e) => {
+        cursorInner.classList.add('click');
+        
+        // 创建涟漪效果
+        const ripple = document.createElement('div');
+        ripple.classList.add('ripple');
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        
+        // 动画结束后清理
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+      
+      document.addEventListener('mouseup', () => {
+        cursorInner.classList.remove('click');
+      });
+      
+      // 悬停效果
+      const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn, #social-btn, #toolkit-btn, #schedule-btn');
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorInner.classList.add('hover');
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          cursorInner.classList.remove('hover');
+        });
+      });
+
+      // 初始化主题
+      initializeTheme();
+      
+      // 初始化工具包筛选和搜索功能
+      initToolkitFilter();
+      
+      // 初始化日程页面
+      initSchedulePage();
+      
+      // 初始化时钟控制按钮
+      initClockToggle();
     });
+
+    // 页面元素
+    const cover = document.getElementById("cover");
+    const resume = document.getElementById("resume");
+    const social = document.getElementById("social");
+    const toolkit = document.getElementById("toolkit");
+    const schedule = document.getElementById("schedule");
+    const avatarFrame = document.getElementById("avatar-frame");
+    const name = document.getElementById("name");
+    const slogan = document.getElementById("slogan");
+    const aboutBtn = document.getElementById("about-btn");
+    const socialBtn = document.getElementById("social-btn");
+    const toolkitBtn = document.getElementById("toolkit-btn");
+    const scheduleBtn = document.getElementById("schedule-btn");
+    const toggleBtn = document.getElementById("toggle-btn");
+    const toggleBtnSocial = document.getElementById("toggle-btn-social");
+    const toggleBtnToolkit = document.getElementById("toggle-btn-toolkit");
+    const toggleBtnSchedule = document.getElementById("toggle-btn-schedule");
+    const clock = document.getElementById("clock");
+    const clockSocial = document.getElementById("clock-social");
+    const clockToolkit = document.getElementById("clock-toolkit");
+    const clockSchedule = document.getElementById("clock-schedule");
+    const resumeBackBtn = document.getElementById("resume-back-btn");
+    const socialBackBtn = document.getElementById("social-back-btn");
+    const toolkitBackBtn = document.getElementById("toolkit-back-btn");
+    const scheduleBackBtn = document.getElementById("schedule-back-btn");
+
+    let coverHidden = false;
+    let currentPage = null;
+    let calendar; // FullCalendar实例
+    let currentWeek = new Date(); // Timetable当前周
     
-    // 点击效果
-    document.addEventListener('mousedown', (e) => {
-      cursorInner.classList.add('click');
-      
-      // 创建涟漪效果
-      const ripple = document.createElement('div');
-      ripple.classList.add('ripple');
-      ripple.style.left = `${e.clientX}px`;
-      ripple.style.top = `${e.clientY}px`;
-      document.body.appendChild(ripple);
-      
-      // 动画结束后清理
+    // 顺序显示封面元素
+    function showCoverElements() {
+      avatarFrame.classList.add("visible");
       setTimeout(() => {
-        ripple.remove();
-      }, 600);
-    });
-    
-    document.addEventListener('mouseup', () => {
-      cursorInner.classList.remove('click');
-    });
-    
-    // 悬停效果
-    const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn, #social-btn, #toolkit-btn, #schedule-btn');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorInner.classList.add('hover');
-      });
+        name.classList.add("visible");
+      }, 400);
+      setTimeout(() => {
+        slogan.classList.add("visible");
+      }, 800);
+      setTimeout(() => {
+        aboutBtn.classList.add("visible");
+        socialBtn.classList.add("visible");
+        toolkitBtn.classList.add("visible");
+        scheduleBtn.classList.add("visible");
+      }, 1200);
+
+      // 时钟控制按钮
+      const clockToggle = document.querySelector('.clock-toggle');
+      if (clockToggle) clockToggle.style.display = 'none';
+    }
+
+    // 从封面过渡到页面
+    function showPage(page) {
+      if (coverHidden && currentPage === page) return;
       
-      el.addEventListener('mouseleave', () => {
-        cursorInner.classList.remove('hover');
-      });
-    });
-
-    // 初始化主题
-    initializeTheme();
-    
-    // 初始化工具包筛选和搜索功能
-    initToolkitFilter();
-    
-    // 初始化日程页面
-    initSchedulePage();
-    
-    // 初始化时钟控制按钮
-    initClockToggle();
-  });
-
-  // 页面元素
-  const cover = document.getElementById("cover");
-  const resume = document.getElementById("resume");
-  const social = document.getElementById("social");
-  const toolkit = document.getElementById("toolkit");
-  const schedule = document.getElementById("schedule");
-  const avatarFrame = document.getElementById("avatar-frame");
-  const name = document.getElementById("name");
-  const slogan = document.getElementById("slogan");
-  const aboutBtn = document.getElementById("about-btn");
-  const socialBtn = document.getElementById("social-btn");
-  const toolkitBtn = document.getElementById("toolkit-btn");
-  const scheduleBtn = document.getElementById("schedule-btn");
-  const toggleBtn = document.getElementById("toggle-btn");
-  const toggleBtnSocial = document.getElementById("toggle-btn-social");
-  const toggleBtnToolkit = document.getElementById("toggle-btn-toolkit");
-  const toggleBtnSchedule = document.getElementById("toggle-btn-schedule");
-  const clock = document.getElementById("clock");
-  const clockSocial = document.getElementById("clock-social");
-  const clockToolkit = document.getElementById("clock-toolkit");
-  const clockSchedule = document.getElementById("clock-schedule");
-  const resumeBackBtn = document.getElementById("resume-back-btn");
-  const socialBackBtn = document.getElementById("social-back-btn");
-  const toolkitBackBtn = document.getElementById("toolkit-back-btn");
-  const scheduleBackBtn = document.getElementById("schedule-back-btn");
-
-  let coverHidden = false;
-  let currentPage = null;
-  let calendar; // FullCalendar实例
-  let currentWeek = new Date(); // Timetable当前周
-  
-  // 顺序显示封面元素
-  function showCoverElements() {
-    avatarFrame.classList.add("visible");
-    setTimeout(() => {
-      name.classList.add("visible");
-    }, 400);
-    setTimeout(() => {
-      slogan.classList.add("visible");
-    }, 800);
-    setTimeout(() => {
-      aboutBtn.classList.add("visible");
-      socialBtn.classList.add("visible");
-      toolkitBtn.classList.add("visible");
-      scheduleBtn.classList.add("visible");
-    }, 1200);
-
-    // 时钟控制按钮
-    const clockToggle = document.querySelector('.clock-toggle');
-    if (clockToggle) clockToggle.style.display = 'none';
-  }
-
-  // 从封面过渡到页面
-  function showPage(page) {
-    if (coverHidden && currentPage === page) return;
-    
-    cover.classList.add("hidden");
-    setTimeout(() => {
-      cover.style.display = "none";
-      document.body.style.overflow = "auto";
-      coverHidden = true;
+      cover.classList.add("hidden");
+      setTimeout(() => {
+        cover.style.display = "none";
+        document.body.style.overflow = "auto";
+        coverHidden = true;
+        
+        // 先隐藏所有页面
+        resume.classList.remove("visible");
+        social.classList.remove("visible");
+        toolkit.classList.remove("visible");
+        schedule.classList.remove("visible");
+        
+        // 显示选中的页面
+        if (page === 'resume') {
+          resume.classList.add("visible");
+          currentPage = 'resume';
+          setTimeout(() => {
+            resumeBackBtn.classList.add("visible");
+          }, 500);
+        } else if (page === 'social') {
+          social.classList.add("visible");
+          currentPage = 'social';
+          setTimeout(() => {
+            socialBackBtn.classList.add("visible");
+          }, 500);
+        } else if (page === 'toolkit') {
+          toolkit.classList.add("visible");
+          currentPage = 'toolkit';
+          setTimeout(() => {
+            toolkitBackBtn.classList.add("visible");
+          }, 500);
+        } else if (page === 'schedule') {
+          schedule.classList.add("visible");
+          currentPage = 'schedule';
+          setTimeout(() => {
+            scheduleBackBtn.classList.add("visible");
+          }, 500);
+        }
+      }, 1500);
       
-      // 先隐藏所有页面
+      avatarFrame.classList.remove("visible");
+      name.classList.remove("visible");
+      slogan.classList.remove("visible");
+      aboutBtn.classList.remove("visible");
+      socialBtn.classList.remove("visible");
+      toolkitBtn.classList.remove("visible");
+      scheduleBtn.classList.remove("visible");
+
+      // 显示时钟控制按钮
+      const clockToggle = document.querySelector('.clock-toggle');
+      if (clockToggle) clockToggle.style.display = 'flex';
+    }
+
+    // 返回封面
+    function backToCover() {
+      coverHidden = false;
+      cover.style.display = "flex";
+      cover.classList.remove("hidden");
+      
+      // 隐藏所有页面和返回按钮
       resume.classList.remove("visible");
       social.classList.remove("visible");
       toolkit.classList.remove("visible");
       schedule.classList.remove("visible");
+      resumeBackBtn.classList.remove("visible");
+      socialBackBtn.classList.remove("visible");
+      toolkitBackBtn.classList.remove("visible");
+      scheduleBackBtn.classList.remove("visible");
       
-      // 显示选中的页面
-      if (page === 'resume') {
-        resume.classList.add("visible");
-        currentPage = 'resume';
-        setTimeout(() => {
-          resumeBackBtn.classList.add("visible");
-        }, 500);
-      } else if (page === 'social') {
-        social.classList.add("visible");
-        currentPage = 'social';
-        setTimeout(() => {
-          socialBackBtn.classList.add("visible");
-        }, 500);
-      } else if (page === 'toolkit') {
-        toolkit.classList.add("visible");
-        currentPage = 'toolkit';
-        setTimeout(() => {
-          toolkitBackBtn.classList.add("visible");
-        }, 500);
-      } else if (page === 'schedule') {
-        schedule.classList.add("visible");
-        currentPage = 'schedule';
-        setTimeout(() => {
-          scheduleBackBtn.classList.add("visible");
-        }, 500);
-      }
-    }, 1500);
-    
-    avatarFrame.classList.remove("visible");
-    name.classList.remove("visible");
-    slogan.classList.remove("visible");
-    aboutBtn.classList.remove("visible");
-    socialBtn.classList.remove("visible");
-    toolkitBtn.classList.remove("visible");
-    scheduleBtn.classList.remove("visible");
+      // 重置封面元素
+      setTimeout(() => {
+        cover.classList.add("visible");
+        showCoverElements();
+      }, 100);
+    }
 
-    // 显示时钟控制按钮
-    const clockToggle = document.querySelector('.clock-toggle');
-    if (clockToggle) clockToggle.style.display = 'flex';
-  }
-
-  // 返回封面
-  function backToCover() {
-    coverHidden = false;
-    cover.style.display = "flex";
-    cover.classList.remove("hidden");
-    
-    // 隐藏所有页面和返回按钮
-    resume.classList.remove("visible");
-    social.classList.remove("visible");
-    toolkit.classList.remove("visible");
-    schedule.classList.remove("visible");
-    resumeBackBtn.classList.remove("visible");
-    socialBackBtn.classList.remove("visible");
-    toolkitBackBtn.classList.remove("visible");
-    scheduleBackBtn.classList.remove("visible");
-    
-    // 重置封面元素
-    setTimeout(() => {
+    // 页面加载时初始化
+    window.addEventListener("load", () => {
       cover.classList.add("visible");
       showCoverElements();
-    }, 100);
-  }
-
-  // 页面加载时初始化
-  window.addEventListener("load", () => {
-    cover.classList.add("visible");
-    showCoverElements();
-    startClock();
-  });
-
-  // 按钮点击处理
-  aboutBtn.addEventListener("click", () => showPage('resume'));
-  socialBtn.addEventListener("click", () => showPage('social'));
-  toolkitBtn.addEventListener("click", () => showPage('toolkit'));
-  scheduleBtn.addEventListener("click", () => showPage('schedule'));
-  resumeBackBtn.addEventListener("click", backToCover);
-  socialBackBtn.addEventListener("click", backToCover);
-  toolkitBackBtn.addEventListener("click", backToCover);
-  scheduleBackBtn.addEventListener("click", backToCover);
-
-  // 主题管理功能
-  function initializeTheme() {
-    const currentHour = new Date().getHours();
-    const isNightTime = currentHour >= 18 || currentHour < 6;
-    applyTheme(isNightTime ? 'dark' : 'light');
-    updateToggleBtnIcon();
-  }
-
-  // 主题切换功能
-  toggleBtn.addEventListener("click", toggleTheme);
-  toggleBtnSocial.addEventListener("click", toggleTheme);
-  toggleBtnToolkit.addEventListener("click", toggleTheme);
-  toggleBtnSchedule.addEventListener("click", toggleTheme);
-
-  function toggleTheme() {
-    document.body.classList.toggle("dark-mode");
-    updateToggleBtnIcon();
-    updateCalendarTheme();
-  }
-
-  function applyTheme(theme) {
-    if (theme === "dark") {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }
-
-  function updateToggleBtnIcon() {
-    const isDark = document.body.classList.contains("dark-mode");
-    
-    // 更新所有主题切换按钮的图标
-    const toggleButtons = document.querySelectorAll("#toggle-btn, #toggle-btn-social, #toggle-btn-toolkit, #toggle-btn-schedule");
-    
-    toggleButtons.forEach(button => {
-      const icon = button.querySelector("i");
-      if (isDark) {
-        icon.classList.remove("fa-sun");
-        icon.classList.add("fa-moon");
-      } else {
-        icon.classList.remove("fa-moon");
-        icon.classList.add("fa-sun");
-      }
+      startClock();
     });
-  }
 
-  // 时钟功能
-  function startClock() {
-    updateClock();
-    setInterval(updateClock, 1000);
-  }
+    // 按钮点击处理
+    aboutBtn.addEventListener("click", () => showPage('resume'));
+    socialBtn.addEventListener("click", () => showPage('social'));
+    toolkitBtn.addEventListener("click", () => showPage('toolkit'));
+    scheduleBtn.addEventListener("click", () => showPage('schedule'));
+    resumeBackBtn.addEventListener("click", backToCover);
+    socialBackBtn.addEventListener("click", backToCover);
+    toolkitBackBtn.addEventListener("click", backToCover);
+    scheduleBackBtn.addEventListener("click", backToCover);
 
-  function updateClock() {
-    const now = new Date();
-    const timeZoneName = now.toLocaleTimeString("en-us", { timeZoneName: "short" }).split(" ").pop();
-    const hours = now.getHours().toString().padStart(2, "0");
-    const mins = now.getMinutes().toString().padStart(2, "0");
-    const timeString = `${timeZoneName} ${hours}:${mins}`;
-    
-    clock.textContent = timeString;
-    clockSocial.textContent = timeString;
-    clockToolkit.textContent = timeString;
-    clockSchedule.textContent = timeString;
-  }
-  
-  // 时钟控制功能
-  function initClockToggle() {
-    const clockToggle = document.getElementById("clock-toggle");
-    const clocks = [clock, clockSocial, clockToolkit, clockSchedule];
-    
-    // 初始状态：时钟展开
-    let clocksCollapsed = false;
-    
-    clockToggle.addEventListener("click", () => {
-      clocksCollapsed = !clocksCollapsed;
+    // 主题管理功能
+    function initializeTheme() {
+      const currentHour = new Date().getHours();
+      const isNightTime = currentHour >= 18 || currentHour < 6;
+      applyTheme(isNightTime ? 'dark' : 'light');
+      updateToggleBtnIcon();
+    }
+
+    // 主题切换功能
+    toggleBtn.addEventListener("click", toggleTheme);
+    toggleBtnSocial.addEventListener("click", toggleTheme);
+    toggleBtnToolkit.addEventListener("click", toggleTheme);
+    toggleBtnSchedule.addEventListener("click", toggleTheme);
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      updateToggleBtnIcon();
+      updateCalendarTheme();
+    }
+
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    }
+
+    function updateToggleBtnIcon() {
+      const isDark = document.body.classList.contains("dark-mode");
       
-      // 更新所有时钟的状态
-      clocks.forEach(clockElement => {
+      // 更新所有主题切换按钮的图标
+      const toggleButtons = document.querySelectorAll("#toggle-btn, #toggle-btn-social, #toggle-btn-toolkit, #toggle-btn-schedule");
+      
+      toggleButtons.forEach(button => {
+        const icon = button.querySelector("i");
+        if (isDark) {
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+        } else {
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+        }
+      });
+    }
+
+    // 时钟功能
+    function startClock() {
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const timeZoneName = now.toLocaleTimeString("en-us", { timeZoneName: "short" }).split(" ").pop();
+      const hours = now.getHours().toString().padStart(2, "0");
+      const mins = now.getMinutes().toString().padStart(2, "0");
+      const timeString = `${timeZoneName} ${hours}:${mins}`;
+      
+      clock.textContent = timeString;
+      clockSocial.textContent = timeString;
+      clockToolkit.textContent = timeString;
+      clockSchedule.textContent = timeString;
+    }
+    
+    // 时钟控制功能
+    function initClockToggle() {
+      const clockToggle = document.getElementById("clock-toggle");
+      const clocks = [clock, clockSocial, clockToolkit, clockSchedule];
+      
+      // 初始状态：时钟展开
+      let clocksCollapsed = false;
+      
+      clockToggle.addEventListener("click", () => {
+        clocksCollapsed = !clocksCollapsed;
+        
+        // 更新所有时钟的状态
+        clocks.forEach(clockElement => {
+          if (clocksCollapsed) {
+            clockElement.classList.add("collapsed");
+          } else {
+            clockElement.classList.remove("collapsed");
+          }
+        });
+        
+        // 更新按钮图标
         if (clocksCollapsed) {
-          clockElement.classList.add("collapsed");
+          clockToggle.innerHTML = '<i class="fas fa-chevron-right"></i>';
         } else {
-          clockElement.classList.remove("collapsed");
+          clockToggle.innerHTML = '<i class="fas fa-clock"></i>';
         }
       });
-      
-      // 更新按钮图标
-      if (clocksCollapsed) {
-        clockToggle.innerHTML = '<i class="fas fa-chevron-right"></i>';
-      } else {
-        clockToggle.innerHTML = '<i class="fas fa-clock"></i>';
-      }
-    });
-  }
-  
-  // 工具包筛选和搜索功能
-  function initToolkitFilter() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const searchInput = document.getElementById('toolkit-search-input');
-    const toolkitCards = document.querySelectorAll('.toolkit-card');
-    const categorySections = document.querySelectorAll('.category-section');
-    const noResultsMessage = document.querySelector('.no-results');
-    
-    // 分类筛选功能
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const category = button.dataset.category;
-        
-        // 更新按钮状态
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        // 执行筛选
-        filterTools(category, searchInput.value.trim());
-      });
-    });
-    
-    // 搜索功能
-    searchInput.addEventListener('input', () => {
-      const activeCategory = document.querySelector('.filter-btn.active').dataset.category;
-      filterTools(activeCategory, searchInput.value.trim());
-    });
-    
-    // 筛选工具函数
-    function filterTools(category, searchTerm) {
-      let hasResults = false;
-      let totalVisible = 0;
-      
-      // 遍历所有卡片
-      toolkitCards.forEach(card => {
-        const cardCategories = card.dataset.categories.split(' ');
-        const cardTitle = card.dataset.title.toLowerCase();
-        const searchMatch = searchTerm === '' || cardTitle.includes(searchTerm.toLowerCase());
-        const categoryMatch = category === 'all' || cardCategories.includes(category);
-        
-        if (searchMatch && categoryMatch) {
-          card.style.display = 'flex';
-          totalVisible++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      
-      // 更新分类部分可见性
-      categorySections.forEach(section => {
-        const sectionCategory = section.dataset.category;
-        const hasVisibleCards = Array.from(section.querySelectorAll('.toolkit-card'))
-          .some(card => card.style.display !== 'none');
-        
-        if ((category === 'all' || sectionCategory === category) && hasVisibleCards) {
-          section.style.display = 'block';
-          hasResults = true;
-        } else {
-          section.style.display = 'none';
-        }
-      });
-      
-      // 显示/隐藏无结果消息
-      if (totalVisible === 0) {
-        noResultsMessage.style.display = 'block';
-      } else {
-        noResultsMessage.style.display = 'none';
-      }
     }
     
-    // 初始显示所有
-    filterTools('all', '');
-  }
-  
-  // Schedule Page Functionality
-  function initSchedulePage() {
-    // Initialize calendar and timetable
-    initCalendar();
-    initTimetable();
-    
-    // Switch between calendar and timetable views
-    const viewSwitchers = document.querySelectorAll('.schedule-switch-btn');
-    const calendarSection = document.getElementById('calendar-section');
-    const timetableSection = document.getElementById('timetable-section');
-    const ustcTimetableSection = document.getElementById('ustc-timetable-section');
-    
-    viewSwitchers.forEach(btn => {
-      btn.addEventListener('click', () => {
-        viewSwitchers.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const view = btn.dataset.view;
-        calendarSection.classList.remove('active');
-        timetableSection.classList.remove('active');
-        ustcTimetableSection.classList.remove('active');
-        
-        if (view === 'calendar') {
-          calendarSection.classList.add('active');
-        } else if (view === 'timetable') {
-          timetableSection.classList.add('active');
-          updateTimetable();
-        } else if (view === 'ustc-timetable') {
-          ustcTimetableSection.classList.add('active');
-          renderUstcTimetable();
-        }
+    // 工具包筛选和搜索功能
+    function initToolkitFilter() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const searchInput = document.getElementById('toolkit-search-input');
+      const toolkitCards = document.querySelectorAll('.toolkit-card');
+      const categorySections = document.querySelectorAll('.category-section');
+      const noResultsMessage = document.querySelector('.no-results');
+      
+      // 分类筛选功能
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const category = button.dataset.category;
+          
+          // 更新按钮状态
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          // 执行筛选
+          filterTools(category, searchInput.value.trim());
+        });
       });
-    });
+      
+      // 搜索功能
+      searchInput.addEventListener('input', () => {
+        const activeCategory = document.querySelector('.filter-btn.active').dataset.category;
+        filterTools(activeCategory, searchInput.value.trim());
+      });
+      
+      // 筛选工具函数
+      function filterTools(category, searchTerm) {
+        let hasResults = false;
+        let totalVisible = 0;
+        
+        // 遍历所有卡片
+        toolkitCards.forEach(card => {
+          const cardCategories = card.dataset.categories.split(' ');
+          const cardTitle = card.dataset.title.toLowerCase();
+          const searchMatch = searchTerm === '' || cardTitle.includes(searchTerm.toLowerCase());
+          const categoryMatch = category === 'all' || cardCategories.includes(category);
+          
+          if (searchMatch && categoryMatch) {
+            card.style.display = 'flex';
+            totalVisible++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        
+        // 更新分类部分可见性
+        categorySections.forEach(section => {
+          const sectionCategory = section.dataset.category;
+          const hasVisibleCards = Array.from(section.querySelectorAll('.toolkit-card'))
+            .some(card => card.style.display !== 'none');
+          
+          if ((category === 'all' || sectionCategory === category) && hasVisibleCards) {
+            section.style.display = 'block';
+            hasResults = true;
+          } else {
+            section.style.display = 'none';
+          }
+        });
+        
+        // 显示/隐藏无结果消息
+        if (totalVisible === 0) {
+          noResultsMessage.style.display = 'block';
+        } else {
+          noResultsMessage.style.display = 'none';
+        }
+      }
+      
+      // 初始显示所有
+      filterTools('all', '');
+    }
     
-    // Event modal functionality
-    const eventModal = document.getElementById('event-modal');
-    const eventModalClose = document.getElementById('event-modal-close');
-    const eventCancelBtn = document.getElementById('event-cancel-btn');
-    const eventForm = document.getElementById('event-form');
-    
-    // 普通事件模态框
-    const generalEventModal = document.getElementById('general-event-modal');
-    const generalEventModalClose = document.getElementById('general-event-modal-close');
-    const generalEventCancelBtn = document.getElementById('general-event-cancel-btn');
-    const generalEventForm = document.getElementById('general-event-form');
-    
-    // Open modal for new calendar event
-    document.getElementById('add-calendar-event').addEventListener('click', () => {
-      openGeneralEventModal('calendar');
-    });
-    
-    // Open modal for new timetable event
-    document.getElementById('add-timetable-event').addEventListener('click', () => {
-      openGeneralEventModal('timetable');
-    });
-    
-    // Open modal for new USTC class
-    document.getElementById('add-ustc-event').addEventListener('click', () => {
-      openUstcClassModal();
-    });
-    
-    // Close modals
-    eventModalClose.addEventListener('click', () => {
-      eventModal.style.display = 'none';
-    });
-    
-    eventCancelBtn.addEventListener('click', () => {
-      eventModal.style.display = 'none';
-    });
-    
-    generalEventModalClose.addEventListener('click', () => {
-      generalEventModal.style.display = 'none';
-    });
-    
-    generalEventCancelBtn.addEventListener('click', () => {
-      generalEventModal.style.display = 'none';
-    });
-    
-    // Close modals when clicking outside
-    window.addEventListener('click', (e) => {
-      if (e.target === eventModal) {
+    // Schedule Page Functionality
+    function initSchedulePage() {
+      // Initialize calendar and timetable
+      initCalendar();
+      initTimetable();
+      
+      // Switch between calendar and timetable views
+      const viewSwitchers = document.querySelectorAll('.schedule-switch-btn');
+      const calendarSection = document.getElementById('calendar-section');
+      const timetableSection = document.getElementById('timetable-section');
+      const ustcTimetableSection = document.getElementById('ustc-timetable-section');
+      
+      viewSwitchers.forEach(btn => {
+        btn.addEventListener('click', () => {
+          viewSwitchers.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          const view = btn.dataset.view;
+          calendarSection.classList.remove('active');
+          timetableSection.classList.remove('active');
+          ustcTimetableSection.classList.remove('active');
+          
+          if (view === 'calendar') {
+            calendarSection.classList.add('active');
+          } else if (view === 'timetable') {
+            timetableSection.classList.add('active');
+            updateTimetable();
+          } else if (view === 'ustc-timetable') {
+            ustcTimetableSection.classList.add('active');
+            renderUstcTimetable();
+          }
+        });
+      });
+      
+      // Event modal functionality
+      const eventModal = document.getElementById('event-modal');
+      const eventModalClose = document.getElementById('event-modal-close');
+      const eventCancelBtn = document.getElementById('event-cancel-btn');
+      const eventForm = document.getElementById('event-form');
+      
+      // 普通事件模态框
+      const generalEventModal = document.getElementById('general-event-modal');
+      const generalEventModalClose = document.getElementById('general-event-modal-close');
+      const generalEventCancelBtn = document.getElementById('general-event-cancel-btn');
+      const generalEventForm = document.getElementById('general-event-form');
+      
+      // Open modal for new calendar event
+      document.getElementById('add-calendar-event').addEventListener('click', () => {
+        openGeneralEventModal('calendar');
+      });
+      
+      // Open modal for new timetable event
+      document.getElementById('add-timetable-event').addEventListener('click', () => {
+        openGeneralEventModal('timetable');
+      });
+      
+      // Open modal for new USTC class
+      document.getElementById('add-ustc-event').addEventListener('click', () => {
+        openUstcClassModal();
+      });
+      
+      // Close modals
+      eventModalClose.addEventListener('click', () => {
         eventModal.style.display = 'none';
-      }
-      if (e.target === generalEventModal) {
+      });
+      
+      eventCancelBtn.addEventListener('click', () => {
+        eventModal.style.display = 'none';
+      });
+      
+      generalEventModalClose.addEventListener('click', () => {
         generalEventModal.style.display = 'none';
-      }
-    });
-    
-    // Handle form submission for USTC classes
-    eventForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      saveUstcClass();
-    });
-    
-    // Handle form submission for general events
-    generalEventForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      saveGeneralEvent();
-    });
-    
-    // Delete USTC class
-    document.getElementById('event-delete-btn').addEventListener('click', () => {
-      deleteUstcClass();
-    });
-    
-    // Delete general event
-    document.getElementById('general-event-delete-btn').addEventListener('click', () => {
-      deleteGeneralEvent();
-    });
-    
-    // Week navigation for timetable
-    document.getElementById('prev-week-btn').addEventListener('click', () => {
-      currentWeek.setDate(currentWeek.getDate() - 7);
-      updateTimetable();
-    });
-    
-    document.getElementById('next-week-btn').addEventListener('click', () => {
-      currentWeek.setDate(currentWeek.getDate() + 7);
-      updateTimetable();
-    });
-  }
-  
-  // Calendar functionality
-  function initCalendar() {
-    const calendarEl = document.getElementById('calendar-container');
-    
-    calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      events: calendarEvents,
-      eventClick: function(info) {
-        openGeneralEventModal('calendar', info.event);
-      },
-      eventDidMount: function(info) {
-        // Apply dark mode styles if needed
-        if (document.body.classList.contains('dark-mode')) {
-          info.el.style.backgroundColor = '#6a3093';
-          info.el.style.borderColor = '#6a3093';
+      });
+      
+      generalEventCancelBtn.addEventListener('click', () => {
+        generalEventModal.style.display = 'none';
+      });
+      
+      // Close modals when clicking outside
+      window.addEventListener('click', (e) => {
+        if (e.target === eventModal) {
+          eventModal.style.display = 'none';
         }
-      }
-    });
-    
-    calendar.render();
-    updateCalendarTheme();
-  }
-  
-  function updateCalendarTheme() {
-    if (!calendar) return;
-    
-    if (document.body.classList.contains('dark-mode')) {
-      calendar.setOption('themeSystem', 'standard');
-    } else {
-      calendar.setOption('themeSystem', 'standard');
-    }
-  }
-  
-  // Timetable functionality
-  function initTimetable() {
-    // Generate timetable structure
-    const timetableBody = document.getElementById('timetable-body');
-    timetableBody.innerHTML = '';
-    
-    // Create time slots from 8:00 to 22:00
-    for (let hour = 8; hour <= 22; hour++) {
-      const row = document.createElement('tr');
+        if (e.target === generalEventModal) {
+          generalEventModal.style.display = 'none';
+        }
+      });
       
-      // Time cell
-      const timeCell = document.createElement('td');
-      timeCell.className = 'time-cell';
-      timeCell.textContent = `${hour}:00 - ${hour + 1}:00`;
-      row.appendChild(timeCell);
+      // Handle form submission for USTC classes
+      eventForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        saveUstcClass();
+      });
       
-      // Day cells
-      for (let day = 0; day < 7; day++) {
-        const dayCell = document.createElement('td');
-        dayCell.dataset.day = day;
-        dayCell.dataset.hour = hour;
-        dayCell.addEventListener('click', () => {
-          handleTimetableCellClick(dayCell);
-        });
-        row.appendChild(dayCell);
-      }
+      // Handle form submission for general events
+      generalEventForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        saveGeneralEvent();
+      });
       
-      timetableBody.appendChild(row);
+      // Delete USTC class
+      document.getElementById('event-delete-btn').addEventListener('click', () => {
+        deleteUstcClass();
+      });
+      
+      // Delete general event
+      document.getElementById('general-event-delete-btn').addEventListener('click', () => {
+        deleteGeneralEvent();
+      });
+      
+      // Week navigation for timetable
+      document.getElementById('prev-week-btn').addEventListener('click', () => {
+        currentWeek.setDate(currentWeek.getDate() - 7);
+        updateTimetable();
+      });
+      
+      document.getElementById('next-week-btn').addEventListener('click', () => {
+        currentWeek.setDate(currentWeek.getDate() + 7);
+        updateTimetable();
+      });
     }
     
-    updateTimetable();
-  }
-  
-  function updateTimetable() {
-    // Update week title
-    const weekStart = new Date(currentWeek);
-    const weekEnd = new Date(currentWeek);
-    weekEnd.setDate(weekEnd.getDate() + 6);
-    
-    const options = { weekday: 'short', month: 'short', day: 'numeric' };
-    document.getElementById('current-week').textContent = 
-      `Week of ${weekStart.toLocaleDateString('en-US', options)} - ${weekEnd.toLocaleDateString('en-US', options)}`;
-    
-    // Clear all cells
-    const cells = document.querySelectorAll('#timetable-body td:not(.time-cell)');
-    cells.forEach(cell => {
-      cell.className = '';
-      cell.innerHTML = '';
-    });
-    
-    // Filter events for current week
-    const weekStartTime = currentWeek.getTime();
-    const weekEndTime = weekEnd.getTime() + 24 * 60 * 60 * 1000;
-    
-    const weekEvents = timetableEvents.filter(event => {
-      const eventDate = new Date(event.start).getTime();
-      return eventDate >= weekStartTime && eventDate < weekEndTime;
-    });
-    
-    // Populate events
-    weekEvents.forEach(event => {
-      const eventDate = new Date(event.start);
-      const day = (eventDate.getDay() + 6) % 7; // Convert to 0-6 (Mon-Sun)
-      const hour = eventDate.getHours();
+    // Calendar functionality
+    function initCalendar() {
+      const calendarEl = document.getElementById('calendar-container');
       
-      const cell = document.querySelector(`#timetable-body td[data-day="${day}"][data-hour="${hour}"]`);
-      if (cell) {
-        cell.className = 'has-event';
+      calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        events: calendarEvents,
+        eventClick: function(info) {
+          openGeneralEventModal('calendar', info.event);
+        },
+        eventDidMount: function(info) {
+          // Apply dark mode styles if needed
+          if (document.body.classList.contains('dark-mode')) {
+            info.el.style.backgroundColor = '#6a3093';
+            info.el.style.borderColor = '#6a3093';
+          }
+        }
+      });
+      
+      calendar.render();
+      updateCalendarTheme();
+    }
+    
+    function updateCalendarTheme() {
+      if (!calendar) return;
+      
+      if (document.body.classList.contains('dark-mode')) {
+        calendar.setOption('themeSystem', 'standard');
+      } else {
+        calendar.setOption('themeSystem', 'standard');
+      }
+    }
+    
+    // Timetable functionality
+    function initTimetable() {
+      // Generate timetable structure
+      const timetableBody = document.getElementById('timetable-body');
+      timetableBody.innerHTML = '';
+      
+      // Create time slots from 8:00 to 22:00
+      for (let hour = 8; hour <= 22; hour++) {
+        const row = document.createElement('tr');
         
-        const eventElement = document.createElement('div');
-        eventElement.className = 'timetable-event';
-        eventElement.innerHTML = `
-          <strong>${event.title}</strong>
-          ${event.description ? `<small>${event.description}</small>` : ''}
-        `;
-        eventElement.addEventListener('click', (e) => {
-          e.stopPropagation();
-          openGeneralEventModal('timetable', event);
-        });
+        // Time cell
+        const timeCell = document.createElement('td');
+        timeCell.className = 'time-cell';
+        timeCell.textContent = `${hour}:00 - ${hour + 1}:00`;
+        row.appendChild(timeCell);
         
-        cell.appendChild(eventElement);
-      }
-    });
-  }
-  
-  function handleTimetableCellClick(cell) {
-    const day = parseInt(cell.dataset.day);
-    const hour = parseInt(cell.dataset.hour);
-    
-    // Calculate date for this cell
-    const eventDate = new Date(currentWeek);
-    eventDate.setDate(eventDate.getDate() + day);
-    eventDate.setHours(hour, 0, 0, 0);
-    
-    // End time is 1 hour later
-    const endDate = new Date(eventDate);
-    endDate.setHours(hour + 1, 0, 0, 0);
-    
-    // Open modal with pre-filled times
-    openGeneralEventModal('timetable', null, {
-      start: eventDate,
-      end: endDate
-    });
-  }
-  
-  // USTC Timetable functionality - 使用网格布局
-  function renderUstcTimetable() {
-    const timetableGrid = document.getElementById('ustc-timetable-grid');
-    timetableGrid.innerHTML = '';
-    
-    // 创建网格标题行
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    
-    // 创建表头
-    const headerRow = document.createElement('div');
-    headerRow.style.gridColumn = '1 / span 8';
-    headerRow.style.display = 'grid';
-    headerRow.style.gridTemplateColumns = '80px repeat(7, 1fr)';
-    
-    // 左上角空白单元格
-    const cornerCell = document.createElement('div');
-    cornerCell.className = 'grid-period-header';
-    headerRow.appendChild(cornerCell);
-    
-    // 添加星期标题
-    days.forEach(day => {
-      const dayHeader = document.createElement('div');
-      dayHeader.className = 'grid-day-header';
-      dayHeader.textContent = day;
-      headerRow.appendChild(dayHeader);
-    });
-    
-    timetableGrid.appendChild(headerRow);
-    
-    // 创建时间行
-    for (let period = 1; period <= 13; period++) {
-      const row = document.createElement('div');
-      row.style.display = 'contents'; // 使用contents布局
-      
-      // 添加时间段标题
-      const periodCell = document.createElement('div');
-      periodCell.className = 'grid-period-header';
-      periodCell.textContent = `Period ${period}`;
-      row.appendChild(periodCell);
-      
-      // 添加时间范围
-      const timeCell = document.createElement('div');
-      timeCell.className = 'grid-time-header';
-      timeCell.innerHTML = `
-        <div>Period ${period}</div>
-        <div class="time-range">${periodTimes[period].start} - ${periodTimes[period].end}</div>
-      `;
-      row.appendChild(timeCell);
-      
-      // 添加每天的单元格
-      for (let day = 0; day < 7; day++) {
-        const cell = document.createElement('div');
-        cell.className = 'timetable-cell';
-        cell.dataset.period = period;
-        cell.dataset.day = day;
-        cell.addEventListener('click', () => {
-          handleUstcCellClick(cell);
-        });
-        row.appendChild(cell);
+        // Day cells
+        for (let day = 0; day < 7; day++) {
+          const dayCell = document.createElement('td');
+          dayCell.dataset.day = day;
+          dayCell.dataset.hour = hour;
+          dayCell.addEventListener('click', () => {
+            handleTimetableCellClick(dayCell);
+          });
+          row.appendChild(dayCell);
+        }
+        
+        timetableBody.appendChild(row);
       }
       
-      timetableGrid.appendChild(row);
+      updateTimetable();
     }
     
-    // 渲染所有课程
-    ustcClasses.forEach(cls => {
-      renderUstcClass(cls);
-    });
-    
-    // 检测并标记冲突
-    detectConflicts();
-    
-    // 更新课程列表
-    renderUstcClassesTable();
-  }
-  
-  function renderUstcClass(cls) {
-    const periodStart = parseInt(cls.periodStart);
-    const periodEnd = parseInt(cls.periodEnd);
-    const days = cls.days;
-    
-    days.forEach(day => {
-      for (let period = periodStart; period <= periodEnd; period++) {
-        const cell = document.querySelector(`.timetable-cell[data-period="${period}"][data-day="${day}"]`);
+    function updateTimetable() {
+      // Update week title
+      const weekStart = new Date(currentWeek);
+      const weekEnd = new Date(currentWeek);
+      weekEnd.setDate(weekEnd.getDate() + 6);
+      
+      const options = { weekday: 'short', month: 'short', day: 'numeric' };
+      document.getElementById('current-week').textContent = 
+        `Week of ${weekStart.toLocaleDateString('en-US', options)} - ${weekEnd.toLocaleDateString('en-US', options)}`;
+      
+      // Clear all cells
+      const cells = document.querySelectorAll('#timetable-body td:not(.time-cell)');
+      cells.forEach(cell => {
+        cell.className = '';
+        cell.innerHTML = '';
+      });
+      
+      // Filter events for current week
+      const weekStartTime = currentWeek.getTime();
+      const weekEndTime = weekEnd.getTime() + 24 * 60 * 60 * 1000;
+      
+      const weekEvents = timetableEvents.filter(event => {
+        const eventDate = new Date(event.start).getTime();
+        return eventDate >= weekStartTime && eventDate < weekEndTime;
+      });
+      
+      // Populate events
+      weekEvents.forEach(event => {
+        const eventDate = new Date(event.start);
+        const day = (eventDate.getDay() + 6) % 7; // Convert to 0-6 (Mon-Sun)
+        const hour = eventDate.getHours();
+        
+        const cell = document.querySelector(`#timetable-body td[data-day="${day}"][data-hour="${hour}"]`);
         if (cell) {
-          // 检查单元格是否已有内容
-          if (cell.innerHTML.trim() !== '') {
-            // 添加冲突标记
-            if (!cell.querySelector('.conflict-warning')) {
-              const conflictMarker = document.createElement('div');
-              conflictMarker.className = 'conflict-warning';
-              conflictMarker.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
-              conflictMarker.title = 'Time conflict!';
-              cell.appendChild(conflictMarker);
+          cell.className = 'has-event';
+          
+          const eventElement = document.createElement('div');
+          eventElement.className = 'timetable-event';
+          eventElement.innerHTML = `
+            <strong>${event.title}</strong>
+            ${event.description ? `<small>${event.description}</small>` : ''}
+          `;
+          eventElement.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openGeneralEventModal('timetable', event);
+          });
+          
+          cell.appendChild(eventElement);
+        }
+      });
+    }
+    
+    function handleTimetableCellClick(cell) {
+      const day = parseInt(cell.dataset.day);
+      const hour = parseInt(cell.dataset.hour);
+      
+      // Calculate date for this cell
+      const eventDate = new Date(currentWeek);
+      eventDate.setDate(eventDate.getDate() + day);
+      eventDate.setHours(hour, 0, 0, 0);
+      
+      // End time is 1 hour later
+      const endDate = new Date(eventDate);
+      endDate.setHours(hour + 1, 0, 0, 0);
+      
+      // Open modal with pre-filled times
+      openGeneralEventModal('timetable', null, {
+        start: eventDate,
+        end: endDate
+      });
+    }
+    
+    // USTC Timetable functionality
+    function renderUstcTimetable() {
+      // 恢复初始表格结构
+      timetableTbody.innerHTML = timetableTbodyInitialHTML;
+      
+      // 获取所有的行
+      const rows = timetableTbody.querySelectorAll('tr');
+      
+      // 将课程按照起始课时从小到大排序
+      ustcClasses.sort((a, b) => a.periodStart - b.periodStart);
+      
+      // 遍历每个课程
+      ustcClasses.forEach(cls => {
+        const periodStart = parseInt(cls.periodStart);
+        const periodEnd = parseInt(cls.periodEnd);
+        const rowSpan = periodEnd - periodStart + 1;
+        
+        // 遍历该课程的每一天
+        cls.days.forEach(day => {
+          // 找到起始课时对应的行索引
+          const startRowIndex = periodStart - 1;
+          if (startRowIndex < 0 || startRowIndex >= rows.length) return;
+          
+          const startRow = rows[startRowIndex];
+          // 找到起始课时对应的单元格
+          const cells = startRow.querySelectorAll('td:not(.period-header):not(.period-number)');
+          let targetCell = null;
+          
+          for (let cell of cells) {
+            if (cell.getAttribute('data-day') === day.toString()) {
+              targetCell = cell;
+              break;
             }
-            continue;
           }
           
+          if (!targetCell) return;
+          
+          // 设置rowspan属性
+          targetCell.rowSpan = rowSpan;
+          targetCell.classList.add('has-class', 'event-cell');
+          
+          // 创建课程内容容器
           const courseContainer = document.createElement('div');
           courseContainer.className = 'course-container';
-          courseContainer.style.backgroundColor = getCourseColor(cls.id);
-          courseContainer.style.borderRadius = '4px';
-          courseContainer.style.padding = '5px';
-          courseContainer.style.height = '100%';
-          courseContainer.style.overflow = 'hidden';
           
+          // 添加课程名称和教师
           const courseName = document.createElement('div');
           courseName.className = 'course-name';
           courseName.textContent = cls.courseName;
-          courseName.style.fontWeight = 'bold';
-          courseName.style.fontSize = '0.9em';
           courseContainer.appendChild(courseName);
           
           const instructor = document.createElement('div');
           instructor.className = 'instructor';
           instructor.textContent = cls.instructor;
-          instructor.style.fontSize = '0.8em';
-          instructor.style.fontStyle = 'italic';
           courseContainer.appendChild(instructor);
           
-          // 如果是第一节课，显示时间范围
-          if (period === periodStart) {
-            const timeInfo = document.createElement('div');
-            timeInfo.className = 'time-info';
-            timeInfo.textContent = `${periodTimes[periodStart].start} - ${periodTimes[periodEnd].end}`;
-            timeInfo.style.fontSize = '0.7em';
-            courseContainer.appendChild(timeInfo);
-          }
+          // 添加时间信息
+          const startInfo = document.createElement('div');
+          startInfo.className = 'time-info start-info';
+          startInfo.textContent = periodTimes[periodStart].start;
+          courseContainer.appendChild(startInfo);
           
-          cell.appendChild(courseContainer);
-        }
-      }
-    });
-  }
-  
-  // 为课程生成一致的颜色
-  function getCourseColor(courseId) {
-    const colors = [
-      'rgba(52, 152, 219, 0.2)',
-      'rgba(46, 204, 113, 0.2)',
-      'rgba(155, 89, 182, 0.2)',
-      'rgba(241, 196, 15, 0.2)',
-      'rgba(230, 126, 34, 0.2)',
-      'rgba(231, 76, 60, 0.2)',
-      'rgba(52, 73, 94, 0.2)'
-    ];
-    
-    // 使用课程ID生成哈希值来确定颜色
-    let hash = 0;
-    for (let i = 0; i < courseId.length; i++) {
-      hash = courseId.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    
-    return colors[Math.abs(hash) % colors.length];
-  }
-  
-  // 检测时间冲突
-  function detectConflicts() {
-    // 按天分组课程
-    const coursesByDay = {};
-    
-    ustcClasses.forEach(cls => {
-      cls.days.forEach(day => {
-        if (!coursesByDay[day]) coursesByDay[day] = [];
-        coursesByDay[day].push({
-          id: cls.id,
-          start: parseInt(cls.periodStart),
-          end: parseInt(cls.periodEnd),
-          day: day
+          const endInfo = document.createElement('div');
+          endInfo.className = 'time-info end-info';
+          endInfo.textContent = periodTimes[periodEnd].end;
+          courseContainer.appendChild(endInfo);
+          
+          // 清空单元格并添加课程容器
+          targetCell.innerHTML = '';
+          targetCell.appendChild(courseContainer);
+          
+          // 移除后续行中相同星期几的单元格
+          for (let p = periodStart + 1; p <= periodEnd; p++) {
+            const rowIndex = p - 1;
+            if (rowIndex >= rows.length) break;
+            
+            const row = rows[rowIndex];
+            const cellsInRow = row.querySelectorAll('td:not(.period-header):not(.period-number)');
+            
+            for (let i = 0; i < cellsInRow.length; i++) {
+              const cell = cellsInRow[i];
+              if (cell.getAttribute('data-day') === day.toString()) {
+                // 移除这个单元格
+                cell.remove();
+                break;
+              }
+            }
+          }
         });
       });
-    });
+      
+      // 更新课程列表
+      renderUstcClassesTable();
+    }
     
-    // 检查每天的冲突
-    Object.keys(coursesByDay).forEach(day => {
-      const courses = coursesByDay[day];
+    function renderUstcClassesTable() {
+      const tbody = document.getElementById('ustc-classes-body');
+      tbody.innerHTML = '';
       
-      // 按开始时间排序
-      courses.sort((a, b) => a.start - b.start);
+      ustcClasses.forEach((cls, index) => {
+        const row = document.createElement('tr');
+        row.dataset.id = cls.id;
+        
+        // Get period range string
+        let periodRange = '';
+        if (cls.periodStart === cls.periodEnd) {
+          periodRange = `Period ${cls.periodStart}`;
+        } else {
+          periodRange = `Periods ${cls.periodStart}-${cls.periodEnd}`;
+        }
+        
+        // Get days string
+        const daysMap = {0: 'Sun', 1: 'Mon', 2: 'Tue', 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat'};
+        const days = cls.days.map(day => daysMap[day]).join(', ');
+        
+        row.innerHTML = `
+          <td>${periodRange}</td>
+          <td>${cls.courseName}</td>
+          <td>${cls.instructor}</td>
+          <td>${days}</td>
+          <td>
+            <button class="edit-ustc-class" data-id="${cls.id}">Edit</button>
+            <button class="delete-ustc-class" data-id="${cls.id}">Delete</button>
+          </td>
+        `;
+        
+        tbody.appendChild(row);
+      });
       
-      // 检查重叠
-      for (let i = 0; i < courses.length - 1; i++) {
-        for (let j = i + 1; j < courses.length; j++) {
-          const courseA = courses[i];
-          const courseB = courses[j];
-          
-          // 检查是否重叠
-          if (courseA.start <= courseB.end && courseB.start <= courseA.end) {
-            // 标记冲突
-            markConflict(courseA, courseB);
+      // Add event listeners for edit and delete buttons
+      document.querySelectorAll('.edit-ustc-class').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.target.dataset.id;
+          editUstcClass(id);
+        });
+      });
+      
+      document.querySelectorAll('.delete-ustc-class').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.target.dataset.id;
+          deleteUstcClass(id);
+        });
+      });
+    }
+    
+    function openUstcClassModal(cls = null) {
+      const modal = document.getElementById('event-modal');
+      const form = document.getElementById('event-form');
+      const deleteBtn = document.getElementById('event-delete-btn');
+      
+      // Reset form
+      form.reset();
+      document.getElementById('event-id').value = '';
+      document.getElementById('event-type').value = 'ustc-timetable';
+      
+      // Set title
+      document.getElementById('event-modal-title').textContent = 
+        cls ? 'Edit Class' : 'Add New Class';
+      
+      // Show/hide delete button
+      deleteBtn.style.display = cls ? 'block' : 'none';
+      
+      // Populate form data
+      if (cls) {
+        document.getElementById('event-id').value = cls.id;
+        document.getElementById('ustc-period-start').value = cls.periodStart;
+        document.getElementById('ustc-period-end').value = cls.periodEnd;
+        document.getElementById('ustc-course-name').value = cls.courseName;
+        document.getElementById('ustc-instructor').value = cls.instructor;
+        
+        // Clear previous day selections
+        document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        
+        // Set selected days
+        cls.days.forEach(day => {
+          const checkbox = document.querySelector(`input[name="ustc-day"][value="${day}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
           }
-        }
+        });
       }
-    });
-  }
-  
-  // 标记冲突的课程
-  function markConflict(courseA, courseB) {
-    // 标记课程A
-    for (let period = courseA.start; period <= courseA.end; period++) {
-      const cell = document.querySelector(`.timetable-cell[data-period="${period}"][data-day="${courseA.day}"]`);
-      if (cell) {
-        if (!cell.querySelector('.conflict-marker')) {
-          const conflictMarker = document.createElement('div');
-          conflictMarker.className = 'conflict-marker';
-          cell.appendChild(conflictMarker);
-        }
-        
-        if (!cell.querySelector('.conflict-tooltip')) {
-          const tooltip = document.createElement('div');
-          tooltip.className = 'conflict-tooltip';
-          tooltip.textContent = 'Time conflict!';
-          cell.appendChild(tooltip);
-        }
-      }
-    }
-    
-    // 标记课程B
-    for (let period = courseB.start; period <= courseB.end; period++) {
-      const cell = document.querySelector(`.timetable-cell[data-period="${period}"][data-day="${courseB.day}"]`);
-      if (cell) {
-        if (!cell.querySelector('.conflict-marker')) {
-          const conflictMarker = document.createElement('div');
-          conflictMarker.className = 'conflict-marker';
-          cell.appendChild(conflictMarker);
-        }
-        
-        if (!cell.querySelector('.conflict-tooltip')) {
-          const tooltip = document.createElement('div');
-          tooltip.className = 'conflict-tooltip';
-          tooltip.textContent = 'Time conflict!';
-          cell.appendChild(tooltip);
-        }
-      }
-    }
-  }
-  
-  function handleUstcCellClick(cell) {
-    const period = parseInt(cell.dataset.period);
-    const day = parseInt(cell.dataset.day);
-    
-    // 创建新课程
-    openUstcClassModal(null, period, day);
-  }
-  
-  function renderUstcClassesTable() {
-    const tbody = document.getElementById('ustc-classes-body');
-    tbody.innerHTML = '';
-    
-    ustcClasses.forEach((cls, index) => {
-      const row = document.createElement('tr');
-      row.dataset.id = cls.id;
       
-      // Get period range string
-      let periodRange = '';
-      if (cls.periodStart === cls.periodEnd) {
-        periodRange = `Period ${cls.periodStart}`;
+      // Show modal
+      modal.style.display = 'flex';
+    }
+    
+    function saveUstcClass() {
+      const form = document.getElementById('event-form');
+      const id = document.getElementById('event-id').value || generateId();
+      const periodStart = document.getElementById('ustc-period-start').value;
+      const periodEnd = document.getElementById('ustc-period-end').value;
+      const courseName = document.getElementById('ustc-course-name').value;
+      const instructor = document.getElementById('ustc-instructor').value;
+      
+      // Get selected days
+      const selectedDays = [];
+      document.querySelectorAll('input[name="ustc-day"]:checked').forEach(checkbox => {
+        selectedDays.push(parseInt(checkbox.value));
+      });
+      
+      // Create or update class
+      const existingIndex = ustcClasses.findIndex(c => c.id === id);
+      const newClass = {
+        id,
+        periodStart,
+        periodEnd,
+        courseName,
+        instructor,
+        days: selectedDays
+      };
+      
+      if (existingIndex >= 0) {
+        ustcClasses[existingIndex] = newClass;
       } else {
-        periodRange = `Periods ${cls.periodStart}-${cls.periodEnd}`;
+        ustcClasses.push(newClass);
       }
       
-      // Get days string
-      const daysMap = {0: 'Sun', 1: 'Mon', 2: 'Tue', 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat'};
-      const days = cls.days.map(day => daysMap[day]).join(', ');
+      // Save to localStorage
+      localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
       
-      row.innerHTML = `
-        <td>${periodRange}</td>
-        <td>${cls.courseName}</td>
-        <td>${cls.instructor}</td>
-        <td>${days}</td>
-        <td>
-          <button class="edit-ustc-class" data-id="${cls.id}">Edit</button>
-          <button class="delete-ustc-class" data-id="${cls.id}">Delete</button>
-        </td>
-      `;
+      // Update UI
+      renderUstcTimetable();
       
-      tbody.appendChild(row);
-    });
+      // Close modal
+      document.getElementById('event-modal').style.display = 'none';
+    }
     
-    // Add event listeners for edit and delete buttons
-    document.querySelectorAll('.edit-ustc-class').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = e.target.dataset.id;
-        editUstcClass(id);
-      });
-    });
-    
-    document.querySelectorAll('.delete-ustc-class').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = e.target.dataset.id;
-        deleteUstcClass(id);
-      });
-    });
-  }
-  
-  function openUstcClassModal(cls = null, period = null, day = null) {
-    const modal = document.getElementById('event-modal');
-    const form = document.getElementById('event-form');
-    const deleteBtn = document.getElementById('event-delete-btn');
-    
-    // Reset form
-    form.reset();
-    document.getElementById('event-id').value = '';
-    document.getElementById('event-type').value = 'ustc-timetable';
-    
-    // Set title
-    document.getElementById('event-modal-title').textContent = 
-      cls ? 'Edit Class' : 'Add New Class';
-    
-    // Show/hide delete button
-    deleteBtn.style.display = cls ? 'block' : 'none';
-    
-    // Populate form data
-    if (cls) {
-      document.getElementById('event-id').value = cls.id;
-      document.getElementById('ustc-period-start').value = cls.periodStart;
-      document.getElementById('ustc-period-end').value = cls.periodEnd;
-      document.getElementById('ustc-course-name').value = cls.courseName;
-      document.getElementById('ustc-instructor').value = cls.instructor;
-      
-      // Clear previous day selections
-      document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
-        checkbox.checked = false;
-      });
-      
-      // Set selected days
-      cls.days.forEach(day => {
-        const checkbox = document.querySelector(`input[name="ustc-day"][value="${day}"]`);
-        if (checkbox) {
-          checkbox.checked = true;
-        }
-      });
-    } else if (period !== null && day !== null) {
-      // 设置默认时间段和日期
-      document.getElementById('ustc-period-start').value = period;
-      document.getElementById('ustc-period-end').value = period;
-      
-      // 设置默认日期
-      const checkbox = document.querySelector(`input[name="ustc-day"][value="${day}"]`);
-      if (checkbox) {
-        checkbox.checked = true;
+    function editUstcClass(id) {
+      const cls = ustcClasses.find(c => c.id === id);
+      if (cls) {
+        openUstcClassModal(cls);
       }
     }
     
-    // Show modal
-    modal.style.display = 'flex';
-  }
-  
-  function saveUstcClass() {
-    const form = document.getElementById('event-form');
-    const id = document.getElementById('event-id').value || generateId();
-    const periodStart = document.getElementById('ustc-period-start').value;
-    const periodEnd = document.getElementById('ustc-period-end').value;
-    const courseName = document.getElementById('ustc-course-name').value;
-    const instructor = document.getElementById('ustc-instructor').value;
-    
-    // Get selected days
-    const selectedDays = [];
-    document.querySelectorAll('input[name="ustc-day"]:checked').forEach(checkbox => {
-      selectedDays.push(parseInt(checkbox.value));
-    });
-    
-    // Create or update class
-    const existingIndex = ustcClasses.findIndex(c => c.id === id);
-    const newClass = {
-      id,
-      periodStart,
-      periodEnd,
-      courseName,
-      instructor,
-      days: selectedDays
-    };
-    
-    if (existingIndex >= 0) {
-      ustcClasses[existingIndex] = newClass;
-    } else {
-      ustcClasses.push(newClass);
-    }
-    
-    // Save to localStorage
-    localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
-    
-    // Update UI
-    renderUstcTimetable();
-    
-    // Close modal
-    document.getElementById('event-modal').style.display = 'none';
-  }
-  
-  function editUstcClass(id) {
-    const cls = ustcClasses.find(c => c.id === id);
-    if (cls) {
-      openUstcClassModal(cls);
-    }
-  }
-  
-  function deleteUstcClass(id) {
-    if (!id) {
-      id = document.getElementById('event-id').value;
-    }
-    
-    if (!id) return;
-    
-    ustcClasses = ustcClasses.filter(c => c.id !== id);
-    localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
-    renderUstcTimetable();
-    document.getElementById('event-modal').style.display = 'none';
-  }
-  
-  function openGeneralEventModal(type, event = null, preset = null) {
-    const modal = document.getElementById('general-event-modal');
-    const form = document.getElementById('general-event-form');
-    const deleteBtn = document.getElementById('general-event-delete-btn');
-    
-    // Reset form
-    form.reset();
-    document.getElementById('general-event-id').value = '';
-    document.getElementById('general-event-type').value = type;
-    
-    // Set title
-    document.getElementById('general-event-modal-title').textContent = 
-      event ? 'Edit Event' : 'Add New Event';
-    
-    // Show/hide delete button
-    deleteBtn.style.display = event ? 'block' : 'none';
-    
-    // Populate form data
-    if (event) {
-      document.getElementById('general-event-id').value = event.id;
-      document.getElementById('event-title').value = event.title;
-      document.getElementById('event-description').value = event.description || '';
+    function deleteUstcClass(id) {
+      if (!id) {
+        id = document.getElementById('event-id').value;
+      }
       
-      const start = new Date(event.start);
-      const end = new Date(event.end);
+      if (!id) return;
       
-      document.getElementById('event-start').value = formatDateTimeLocal(start);
-      document.getElementById('event-end').value = formatDateTimeLocal(end);
-    } else if (preset) {
-      document.getElementById('event-start').value = formatDateTimeLocal(preset.start);
-      document.getElementById('event-end').value = formatDateTimeLocal(preset.end);
+      ustcClasses = ustcClasses.filter(c => c.id !== id);
+      localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
+      renderUstcTimetable();
+      document.getElementById('event-modal').style.display = 'none';
     }
     
-    // Show modal
-    modal.style.display = 'flex';
-  }
-  
-  function saveGeneralEvent() {
-    const form = document.getElementById('general-event-form');
-    const id = document.getElementById('general-event-id').value || generateId();
-    const type = document.getElementById('general-event-type').value;
-    const title = document.getElementById('event-title').value;
-    const description = document.getElementById('event-description').value;
-    const start = new Date(document.getElementById('event-start').value);
-    const end = new Date(document.getElementById('event-end').value);
-    
-    // Create event object
-    const event = {
-      id,
-      title,
-      description,
-      start: start.toISOString(),
-      end: end.toISOString()
-    };
-    
-    // Add to appropriate storage
-    let events, storageKey;
-    if (type === 'calendar') {
-      events = calendarEvents;
-      storageKey = 'calendarEvents';
-    } else if (type === 'timetable') {
-      events = timetableEvents;
-      storageKey = 'timetableEvents';
+    function openGeneralEventModal(type, event = null, preset = null) {
+      const modal = document.getElementById('general-event-modal');
+      const form = document.getElementById('general-event-form');
+      const deleteBtn = document.getElementById('general-event-delete-btn');
+      
+      // Reset form
+      form.reset();
+      document.getElementById('general-event-id').value = '';
+      document.getElementById('general-event-type').value = type;
+      
+      // Set title
+      document.getElementById('general-event-modal-title').textContent = 
+        event ? 'Edit Event' : 'Add New Event';
+      
+      // Show/hide delete button
+      deleteBtn.style.display = event ? 'block' : 'none';
+      
+      // Populate form data
+      if (event) {
+        document.getElementById('general-event-id').value = event.id;
+        document.getElementById('event-title').value = event.title;
+        document.getElementById('event-description').value = event.description || '';
+        
+        const start = new Date(event.start);
+        const end = new Date(event.end);
+        
+        document.getElementById('event-start').value = formatDateTimeLocal(start);
+        document.getElementById('event-end').value = formatDateTimeLocal(end);
+      } else if (preset) {
+        document.getElementById('event-start').value = formatDateTimeLocal(preset.start);
+        document.getElementById('event-end').value = formatDateTimeLocal(preset.end);
+      }
+      
+      // Show modal
+      modal.style.display = 'flex';
     }
     
-    // Update or add event
-    const existingIndex = events.findIndex(e => e.id === id);
-    if (existingIndex >= 0) {
-      events[existingIndex] = event;
-    } else {
-      events.push(event);
+    function saveGeneralEvent() {
+      const form = document.getElementById('general-event-form');
+      const id = document.getElementById('general-event-id').value || generateId();
+      const type = document.getElementById('general-event-type').value;
+      const title = document.getElementById('event-title').value;
+      const description = document.getElementById('event-description').value;
+      const start = new Date(document.getElementById('event-start').value);
+      const end = new Date(document.getElementById('event-end').value);
+      
+      // Create event object
+      const event = {
+        id,
+        title,
+        description,
+        start: start.toISOString(),
+        end: end.toISOString()
+      };
+      
+      // Add to appropriate storage
+      let events, storageKey;
+      if (type === 'calendar') {
+        events = calendarEvents;
+        storageKey = 'calendarEvents';
+      } else if (type === 'timetable') {
+        events = timetableEvents;
+        storageKey = 'timetableEvents';
+      }
+      
+      // Update or add event
+      const existingIndex = events.findIndex(e => e.id === id);
+      if (existingIndex >= 0) {
+        events[existingIndex] = event;
+      } else {
+        events.push(event);
+      }
+      
+      // Save to localStorage
+      localStorage.setItem(storageKey, JSON.stringify(events));
+      
+      // Update UI
+      if (type === 'calendar') {
+        calendar.removeAllEvents();
+        calendar.addEventSource(calendarEvents);
+        calendar.render();
+      } else if (type === 'timetable') {
+        updateTimetable();
+      }
+      
+      // Close modal
+      document.getElementById('general-event-modal').style.display = 'none';
     }
     
-    // Save to localStorage
-    localStorage.setItem(storageKey, JSON.stringify(events));
-    
-    // Update UI
-    if (type === 'calendar') {
-      calendar.removeAllEvents();
-      calendar.addEventSource(calendarEvents);
-      calendar.render();
-    } else if (type === 'timetable') {
-      updateTimetable();
+    function deleteGeneralEvent() {
+      const id = document.getElementById('general-event-id').value;
+      const type = document.getElementById('general-event-type').value;
+      
+      if (!id) return;
+      
+      let events, storageKey;
+      if (type === 'calendar') {
+        events = calendarEvents;
+        storageKey = 'calendarEvents';
+      } else if (type === 'timetable') {
+        events = timetableEvents;
+        storageKey = 'timetableEvents';
+      }
+      
+      // Remove event
+      events = events.filter(e => e.id !== id);
+      localStorage.setItem(storageKey, JSON.stringify(events));
+      
+      // Update UI
+      if (type === 'calendar') {
+        calendar.removeAllEvents();
+        calendar.addEventSource(calendarEvents);
+        calendar.render();
+      } else if (type === 'timetable') {
+        updateTimetable();
+      }
+      
+      // Close modal
+      document.getElementById('general-event-modal').style.display = 'none';
     }
     
-    // Close modal
-    document.getElementById('general-event-modal').style.display = 'none';
-  }
-  
-  function deleteGeneralEvent() {
-    const id = document.getElementById('general-event-id').value;
-    const type = document.getElementById('general-event-type').value;
-    
-    if (!id) return;
-    
-    let events, storageKey;
-    if (type === 'calendar') {
-      events = calendarEvents;
-      storageKey = 'calendarEvents';
-    } else if (type === 'timetable') {
-      events = timetableEvents;
-      storageKey = 'timetableEvents';
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
     }
     
-    // Remove event
-    events = events.filter(e => e.id !== id);
-    localStorage.setItem(storageKey, JSON.stringify(events));
-    
-    // Update UI
-    if (type === 'calendar') {
-      calendar.removeAllEvents();
-      calendar.addEventSource(calendarEvents);
-      calendar.render();
-    } else if (type === 'timetable') {
-      updateTimetable();
+    function formatDateTimeLocal(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      
+      return `${year}-${month}-${day}T${hours}:${minutes}`;
     }
-    
-    // Close modal
-    document.getElementById('general-event-modal').style.display = 'none';
-  }
-  
-  function generateId() {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-  }
-  
-  function formatDateTimeLocal(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
-  }
-</script>
+  </script>
 </body>
 </html>
