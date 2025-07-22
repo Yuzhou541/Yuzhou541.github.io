@@ -1,19 +1,29 @@
 // epic-transition.js
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize avatar element and preload image for seamless transition
     const avatar = document.querySelector('#avatar-frame img');
-    // 预加载头像
+    
+    // Preload avatar image to ensure visual continuity
     const avatarImg = new Image();
     avatarImg.src = './assets/images/avatar.jpg';
+    
+    // Execute opacity transition after successful image loading
     avatarImg.onload = function() {
         document.querySelector('#avatar-frame img').style.opacity = '1';
     };
     
+    // Register click event handler for avatar element
     avatar.addEventListener('click', function() {
         startSwirlAnimation();
     });
 });
 
+/**
+ * Initiates the vortex animation sequence preceding the narrative transition
+ * Creates a multi-layered swirling visual effect centered at avatar position
+ */
 function startSwirlAnimation() {
+    // Create primary container for vortex visualization
     const swirlContainer = document.createElement('div');
     swirlContainer.id = 'swirl-container';
     swirlContainer.style.position = 'fixed';
@@ -25,6 +35,7 @@ function startSwirlAnimation() {
     swirlContainer.style.pointerEvents = 'none';
     document.body.appendChild(swirlContainer);
 
+    // Calculate geometric center of avatar element
     const avatar = document.querySelector('#avatar-frame');
     const avatarRect = avatar.getBoundingClientRect();
     const avatarCenter = {
@@ -32,7 +43,7 @@ function startSwirlAnimation() {
         y: avatarRect.top + avatarRect.height / 2
     };
 
-    // 创建5个漩涡层增强混沌效果
+    // Generate five distinct swirling layers for visual complexity
     const swirlLayers = [];
     for (let i = 0; i < 5; i++) {
         const swirl = document.createElement('div');
@@ -41,63 +52,69 @@ function startSwirlAnimation() {
         swirl.style.height = '150px';
         swirl.style.borderRadius = '50%';
         
-        // 不同层次的漩涡使用不同颜色和样式
-        if (i === 0) {
-            swirl.style.background = `
-                conic-gradient(
-                    from 0deg,
-                    rgba(0, 10, 20, 0.95) 0%,
-                    rgba(0, 30, 60, 0.95) 20%,
-                    rgba(5, 5, 15, 0.95) 30%,
-                    rgba(0, 30, 60, 0.95) 40%,
-                    rgba(5, 5, 15, 0.95) 50%,
-                    rgba(0, 30, 60, 0.95) 60%,
-                    rgba(5, 5, 15, 0.95) 70%,
-                    rgba(0, 30, 60, 0.95) 80%,
-                    rgba(5, 5, 15, 0.95) 90%,
-                    rgba(0, 10, 20, 0.95) 100%
-                )
-            `;
-        } else if (i === 1) {
-            swirl.style.background = `
-                radial-gradient(
-                    circle,
-                    rgba(0, 60, 120, 0.8) 0%,
-                    rgba(0, 30, 90, 0.9) 50%,
-                    rgba(0, 10, 40, 0.95) 100%
-                )
-            `;
-        } else if (i === 2) {
-            swirl.style.background = `
-                repeating-radial-gradient(
-                    circle at center,
-                    rgba(0, 80, 150, 0.7) 0%,
-                    rgba(0, 40, 100, 0.8) 10%,
-                    rgba(0, 20, 60, 0.9) 20%
-                )
-            `;
-        } else if (i === 3) {
-            swirl.style.background = `
-                conic-gradient(
-                    from 180deg,
-                    rgba(10, 0, 30, 0.8) 0%,
-                    rgba(20, 0, 60, 0.85) 25%,
-                    rgba(30, 0, 90, 0.9) 50%,
-                    rgba(20, 0, 60, 0.85) 75%,
-                    rgba(10, 0, 30, 0.8) 100%
-                )
-            `;
-        } else {
-            swirl.style.background = `
-                radial-gradient(
-                    circle,
-                    rgba(0, 0, 20, 0.9) 0%,
-                    rgba(0, 0, 40, 0.8) 50%,
-                    rgba(0, 0, 60, 0.7) 100%
-                )
-            `;
+        // Apply distinct gradient patterns to each layer
+        switch(i) {
+            case 0:
+                swirl.style.background = `
+                    conic-gradient(
+                        from 0deg,
+                        rgba(0, 10, 20, 0.95) 0%,
+                        rgba(0, 30, 60, 0.95) 20%,
+                        rgba(5, 5, 15, 0.95) 30%,
+                        rgba(0, 30, 60, 0.95) 40%,
+                        rgba(5, 5, 15, 0.95) 50%,
+                        rgba(0, 30, 60, 0.95) 60%,
+                        rgba(5, 5, 15, 0.95) 70%,
+                        rgba(0, 30, 60, 0.95) 80%,
+                        rgba(5, 5, 15, 0.95) 90%,
+                        rgba(0, 10, 20, 0.95) 100%
+                    )
+                `;
+                break;
+            case 1:
+                swirl.style.background = `
+                    radial-gradient(
+                        circle,
+                        rgba(0, 60, 120, 0.8) 0%,
+                        rgba(0, 30, 90, 0.9) 50%,
+                        rgba(0, 10, 40, 0.95) 100%
+                    )
+                `;
+                break;
+            case 2:
+                swirl.style.background = `
+                    repeating-radial-gradient(
+                        circle at center,
+                        rgba(0, 80, 150, 0.7) 0%,
+                        rgba(0, 40, 100, 0.8) 10%,
+                        rgba(0, 20, 60, 0.9) 20%
+                    )
+                `;
+                break;
+            case 3:
+                swirl.style.background = `
+                    conic-gradient(
+                        from 180deg,
+                        rgba(10, 0, 30, 0.8) 0%,
+                        rgba(20, 0, 60, 0.85) 25%,
+                        rgba(30, 0, 90, 0.9) 50%,
+                        rgba(20, 0, 60, 0.85) 75%,
+                        rgba(10, 0, 30, 0.8) 100%
+                    )
+                `;
+                break;
+            default:
+                swirl.style.background = `
+                    radial-gradient(
+                        circle,
+                        rgba(0, 0, 20, 0.9) 0%,
+                        rgba(0, 0, 40, 0.8) 50%,
+                        rgba(0, 0, 60, 0.7) 100%
+                    )
+                `;
         }
         
+        // Position swirl elements at avatar's geometric center
         swirl.style.left = `${avatarCenter.x - 75}px`;
         swirl.style.top = `${avatarCenter.y - 75}px`;
         swirl.style.transformOrigin = 'center center';
@@ -106,36 +123,46 @@ function startSwirlAnimation() {
         swirlLayers.push(swirl);
     }
 
-    // 更强烈的漩涡动画
+    // Initialize animation parameters
     let scale = 1;
     let opacity = 1;
-    const rotations = [0, 180, 90, 270, 45]; // 不同层次不同旋转方向
+    const rotations = [0, 180, 90, 270, 45]; // Initial rotation angles
+    
+    // Execute frame-by-frame animation sequence
     const swirlAnimation = setInterval(() => {
-        scale += 0.18;  // 加快放大速度
+        // Incrementally modify transformation parameters
+        scale += 0.18;
         opacity -= 0.012;
         
+        // Apply transformations to each layer
         swirlLayers.forEach((swirl, index) => {
-            rotations[index] += (index + 1) * 15;  // 不同层次不同旋转速度
+            rotations[index] += (index + 1) * 15;  // Layer-specific angular velocity
             swirl.style.transform = `scale(${scale * (1 + index * 0.15)}) rotate(${rotations[index]}deg)`;
             swirl.style.opacity = opacity * (1 - index * 0.08);
         });
         
+        // Termination condition for animation sequence
         if (scale > 20) {
             clearInterval(swirlAnimation);
             showEpicScrollPage();
         }
-    }, 10);
+    }, 10); // 100Hz animation frequency
 }
 
-let narrationAudio = null; // 全局保存音频对象
-let fireAudio = null;     // 全局保存火焰音频对象
+// Global audio context references
+let narrationAudio = null;
+let fireAudio = null;
 
+/**
+ * Constructs the narrative scroll interface following vortex animation
+ * Implements parchment-style visual presentation with audio accompaniment
+ */
 function showEpicScrollPage() {
+    // Cleanup previous animation container
     const swirlContainer = document.getElementById('swirl-container');
-    if (swirlContainer) {
-        swirlContainer.remove();
-    }
+    if (swirlContainer) swirlContainer.remove();
 
+    // Create primary container for narrative experience
     const epicPage = document.createElement('div');
     epicPage.id = 'epic-scroll-page';
     epicPage.style.position = 'fixed';
@@ -153,10 +180,11 @@ function showEpicScrollPage() {
     epicPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(epicPage);
 
-    // 隐藏时钟控制按钮
+    // Temporarily suppress clock interface elements
     const clockToggle = document.querySelector('.clock-toggle');
     if (clockToggle) clockToggle.style.display = 'none';
 
+    // Construct parchment-style scroll element
     const scroll = document.createElement('div');
     scroll.id = 'epic-scroll';
     scroll.style.position = 'relative';
@@ -180,7 +208,7 @@ function showEpicScrollPage() {
     scroll.style.overflow = 'hidden';
     epicPage.appendChild(scroll);
 
-    // 卷轴边缘装饰
+    // Implement left scroll edge decoration
     const scrollEdgeLeft = document.createElement('div');
     scrollEdgeLeft.style.position = 'absolute';
     scrollEdgeLeft.style.left = '0';
@@ -194,6 +222,7 @@ function showEpicScrollPage() {
     scrollEdgeLeft.style.boxShadow = 'inset 5px 0 10px rgba(0,0,0,0.2)';
     scroll.appendChild(scrollEdgeLeft);
 
+    // Implement right scroll edge decoration
     const scrollEdgeRight = document.createElement('div');
     scrollEdgeRight.style.position = 'absolute';
     scrollEdgeRight.style.right = '0';
@@ -207,6 +236,7 @@ function showEpicScrollPage() {
     scrollEdgeRight.style.boxShadow = 'inset -5px 0 10px rgba(0,0,0,0.2)';
     scroll.appendChild(scrollEdgeRight);
 
+    // Create content container for narrative text
     const scrollContent = document.createElement('div');
     scrollContent.style.position = 'relative';
     scrollContent.style.zIndex = '2';
@@ -218,6 +248,7 @@ function showEpicScrollPage() {
     scrollContent.style.textAlign = 'center';
     scroll.appendChild(scrollContent);
 
+    // Construct primary narrative text element
     const epicText = document.createElement('div');
     epicText.id = 'epic-text';
     epicText.innerHTML = `Traveler of silent paths, by your insight and unwavering will, the ancient seal lies broken. What once dwelt beyond mortal ken now unfolds before thine eyes: a hidden realm, long shrouded in shadow.`;
@@ -232,7 +263,7 @@ function showEpicScrollPage() {
     epicText.style.transition = 'all 1s ease-in-out 0.5s';
     scrollContent.appendChild(epicText);
 
-    // 修改后的火焰按钮
+    // Create interactive flame ignition element
     const flameButton = document.createElement('div');
     flameButton.id = 'flame-button';
     flameButton.style.position = 'absolute';
@@ -276,6 +307,7 @@ function showEpicScrollPage() {
     `;
     scrollContent.appendChild(flameButton);
 
+    // Define flame animation properties
     const style = document.createElement('style');
     style.textContent = `
         @keyframes flicker {
@@ -291,6 +323,7 @@ function showEpicScrollPage() {
     `;
     document.head.appendChild(style);
 
+    // Execute sequential entrance animations
     setTimeout(() => {
         epicPage.style.opacity = '1';
         
@@ -302,49 +335,64 @@ function showEpicScrollPage() {
                 epicText.style.opacity = '1';
                 epicText.style.transform = 'translateY(0)';
                 
-                // 播放旁白声音和火焰音效
+                // Activate audio components
                 playNarration();
                 playFireSound();
             }, 500);
         }, 500);
     }, 100);
 
+    // Register interaction handler for flame element
     flameButton.addEventListener('click', function() {
         startFlameAnimation();
     });
 }
 
+/**
+ * Manages narrative audio playback
+ * Ensures single instance operation and error handling
+ */
 function playNarration() {
-    // 停止之前的音频
+    // Terminate existing audio instance if present
     if (narrationAudio) {
         narrationAudio.pause();
         narrationAudio.currentTime = 0;
     }
     
+    // Initialize and activate audio component
     narrationAudio = new Audio('./assets/audio/prologue.m4a');
     narrationAudio.volume = 0.5;
     narrationAudio.play().catch(e => console.log('Audio play failed:', e));
 }
 
+/**
+ * Manages ambient fire sound playback
+ * Implements continuous looping functionality
+ */
 function playFireSound() {
-    // 停止之前的火焰音频
+    // Terminate existing audio instance if present
     if (fireAudio) {
         fireAudio.pause();
         fireAudio.currentTime = 0;
     }
     
+    // Initialize and activate looping audio component
     fireAudio = new Audio('./assets/audio/fire-sound.mp3');
     fireAudio.volume = 1.0;
-    fireAudio.loop = true;  // 循环播放
+    fireAudio.loop = true;
     fireAudio.play().catch(e => console.log('Fire audio play failed:', e));
 }
 
+/**
+ * Initiates flame propagation animation sequence
+ * Creates fullscreen fire overlay effect
+ */
 function startFlameAnimation() {
     const flame = document.getElementById('flame');
     const scroll = document.getElementById('epic-scroll');
     const epicPage = document.getElementById('epic-scroll-page');
     
-    // 创建火焰覆盖层 - 使用GIF动画
+    // Create animated flame overlay
     const flameOverlay = document.createElement('div');
     flameOverlay.id = 'flame-overlay';
     flameOverlay.style.position = 'fixed';
@@ -358,17 +406,21 @@ function startFlameAnimation() {
     flameOverlay.style.transition = 'opacity 1.5s ease-in-out';
     document.body.appendChild(flameOverlay);
     
-    // 渐入效果
+    // Execute flame propagation sequence
     setTimeout(() => {
         flameOverlay.style.opacity = '1';
         
-        // 转场到博客页面
+        // Transition to blog interface
         setTimeout(() => {
             transitionToBlogPage();
-        }, 4000);
+        }, 4000); // 4-second animation duration
     }, 100);
 }
 
+/**
+ * Terminates all active audio streams
+ * Ensures clean transition between interface states
+ */
 function stopAllSounds() {
     if (narrationAudio) {
         narrationAudio.pause();
@@ -380,9 +432,14 @@ function stopAllSounds() {
     }
 }
 
+/**
+ * Constructs the blog interface following flame animation
+ * Implements responsive multi-panel navigation system
+ */
 function transitionToBlogPage() {
-    stopAllSounds(); // 停止所有声音
+    stopAllSounds(); // Terminate audio components
     
+    // Create primary blog container
     const blogPage = document.createElement('div');
     blogPage.id = 'blog-page';
     blogPage.style.position = 'fixed';
@@ -399,11 +456,11 @@ function transitionToBlogPage() {
     blogPage.style.transition = 'opacity 1s ease-in-out';
     document.body.appendChild(blogPage);
     
-    // 隐藏时钟控制按钮
+    // Permanently suppress clock interface elements
     const clockToggle = document.querySelector('.clock-toggle');
     if (clockToggle) clockToggle.style.display = 'none';
     
-    // 博客背景 - 使用提供的背景图片
+    // Implement blog background with luminosity adjustment
     const blogBackground = document.createElement('div');
     blogBackground.id = 'blog-background';
     blogBackground.style.position = 'fixed';
@@ -416,7 +473,7 @@ function transitionToBlogPage() {
     blogBackground.style.filter = 'brightness(0.8)';
     blogPage.appendChild(blogBackground);
     
-    // 博客容器
+    // Create content management container
     const blogContainer = document.createElement('div');
     blogContainer.id = 'blog-container';
     blogContainer.style.position = 'relative';
@@ -427,7 +484,7 @@ function transitionToBlogPage() {
     blogContainer.style.flexDirection = 'column';
     blogPage.appendChild(blogContainer);
     
-    // 导航栏
+    // Construct navigation header
     const navbar = document.createElement('div');
     navbar.id = 'blog-navbar';
     navbar.style.position = 'fixed';
@@ -445,7 +502,7 @@ function transitionToBlogPage() {
     navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
     blogContainer.appendChild(navbar);
     
-    // 博客标题
+    // Implement blog title element
     const blogTitle = document.createElement('h1');
     blogTitle.id = 'blog-title';
     blogTitle.textContent = 'Personal Blog';
@@ -457,7 +514,7 @@ function transitionToBlogPage() {
     blogTitle.style.letterSpacing = '2px';
     navbar.appendChild(blogTitle);
     
-    // 导航链接
+    // Create navigation link container
     const navLinks = document.createElement('div');
     navLinks.id = 'blog-nav-links';
     navLinks.style.display = 'flex';
@@ -466,7 +523,7 @@ function transitionToBlogPage() {
     navLinks.style.marginTop = '15px';
     navbar.appendChild(navLinks);
     
-    // 创建导航项
+    // Generate navigation elements
     const pages = ['Post', 'Favorite', 'Research'];
     pages.forEach((page, index) => {
         const link = document.createElement('a');
@@ -481,7 +538,7 @@ function transitionToBlogPage() {
         link.style.borderRadius = '20px';
         link.style.transition = 'all 0.3s ease';
         
-        // 添加分隔符（除了最后一个）
+        // Add decorative separators between links
         if (index < pages.length - 1) {
             const separator = document.createElement('span');
             separator.textContent = '✦';
@@ -493,7 +550,7 @@ function transitionToBlogPage() {
         navLinks.appendChild(link);
     });
     
-    // 右侧个人信息栏
+    // Construct user profile sidebar
     const profileSidebar = document.createElement('div');
     profileSidebar.id = 'blog-profile';
     profileSidebar.style.position = 'fixed';
@@ -512,7 +569,7 @@ function transitionToBlogPage() {
     profileSidebar.style.transition = 'transform 0.3s ease, width 0.5s ease, height 0.5s ease';
     blogContainer.appendChild(profileSidebar);
     
-    // 头像容器 - 添加点击事件
+    // Create avatar container with interaction capabilities
     const avatarContainer = document.createElement('div');
     avatarContainer.id = 'avatar-container';
     avatarContainer.style.cursor = 'pointer';
@@ -522,7 +579,7 @@ function transitionToBlogPage() {
     avatarContainer.style.transition = 'all 0.5s ease';
     profileSidebar.appendChild(avatarContainer);
     
-    // 头像
+    // Implement profile avatar element
     const profileAvatar = document.createElement('img');
     profileAvatar.src = './assets/images/avatar.jpg';
     profileAvatar.alt = 'Profile Avatar';
@@ -535,7 +592,7 @@ function transitionToBlogPage() {
     profileAvatar.style.transition = 'all 0.5s ease';
     avatarContainer.appendChild(profileAvatar);
     
-    // 名字
+    // Implement user name display
     const profileName = document.createElement('h2');
     profileName.id = 'profile-name';
     profileName.textContent = 'Stardust';
@@ -546,7 +603,7 @@ function transitionToBlogPage() {
     profileName.style.transition = 'all 0.5s ease';
     avatarContainer.appendChild(profileName);
     
-    // 座右铭
+    // Implement motto display
     const profileSlogan = document.createElement('p');
     profileSlogan.id = 'profile-slogan';
     profileSlogan.textContent = 'Turn this imperfect story into the way we hope it to be.';
@@ -559,7 +616,7 @@ function transitionToBlogPage() {
     profileSlogan.style.transition = 'all 0.5s ease';
     avatarContainer.appendChild(profileSlogan);
     
-    // 展开/收起状态指示器
+    // Create collapsible panel indicator
     const toggleIndicator = document.createElement('div');
     toggleIndicator.id = 'toggle-indicator';
     toggleIndicator.innerHTML = '<i class="fas fa-chevron-up"></i>';
@@ -579,30 +636,30 @@ function transitionToBlogPage() {
     toggleIndicator.style.cursor = 'pointer';
     profileSidebar.appendChild(toggleIndicator);
     
-    // 页面容器
+    // Create multi-page content container
     const pagesContainer = document.createElement('div');
     pagesContainer.id = 'blog-pages';
     pagesContainer.style.position = 'absolute';
     pagesContainer.style.top = '100px';
     pagesContainer.style.left = '0';
-    pagesContainer.style.width = '300%';
+    pagesContainer.style.width = '300%'; // 3-page width
     pagesContainer.style.height = 'calc(100% - 100px)';
     pagesContainer.style.display = 'flex';
     pagesContainer.style.transition = 'transform 0.5s ease-in-out';
     blogContainer.appendChild(pagesContainer);
     
-    // 创建三个页面
+    // Generate content sections
     pages.forEach((page, index) => {
         const pageSection = document.createElement('div');
         pageSection.className = 'blog-page';
         pageSection.dataset.page = index;
-        pageSection.style.width = '33.3333%';
+        pageSection.style.width = '33.3333%'; // Equal width per page
         pageSection.style.height = '100%';
         pageSection.style.padding = '120px 5% 50px 5%';
         pageSection.style.overflowY = 'auto';
         pageSection.style.boxSizing = 'border-box';
         
-        // 添加渐变背景
+        // Apply distinct background gradients
         const gradientColors = [
             'linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,240,255,0.9))',
             'linear-gradient(135deg, rgba(255,255,240,0.9), rgba(255,240,240,0.9))',
@@ -613,7 +670,7 @@ function transitionToBlogPage() {
         pageSection.style.boxShadow = '0 0 30px rgba(0,0,0,0.1)';
         pageSection.style.margin = '0 2.5%';
         
-        // 页面标题
+        // Implement section title
         const pageTitle = document.createElement('h2');
         pageTitle.textContent = page;
         pageTitle.style.fontFamily = '"Cinzel", serif';
@@ -623,37 +680,36 @@ function transitionToBlogPage() {
         pageTitle.style.marginBottom = '30px';
         pageSection.appendChild(pageTitle);
         
-        // 根据页面类型添加内容
-        if (page === 'Post') {
-            // 添加博客文章
-            for (let i = 1; i <= 5; i++) {
-                const post = createBlogPost(i);
-                pageSection.appendChild(post);
-            }
-        } else if (page === 'Favorite') {
-            // 添加收藏项目
-            for (let i = 1; i <= 6; i++) {
-                const favorite = createFavoriteItem(i);
-                pageSection.appendChild(favorite);
-            }
-        } else if (page === 'Research') {
-            // 研究页面留白
-            const researchContent = document.createElement('div');
-            researchContent.innerHTML = `
-                <div style="text-align: center; padding: 50px;">
-                    <h3 style="font-family: 'Cinzel', serif; color: #555;">Research Section</h3>
-                    <p style="font-family: 'Georgia', serif; color: #777;">
-                        This section is currently under development. Check back soon for updates.
-                    </p>
-                </div>
-            `;
-            pageSection.appendChild(researchContent);
+        // Generate section-specific content
+        switch(page) {
+            case 'Post':
+                for (let i = 1; i <= 5; i++) {
+                    pageSection.appendChild(createBlogPost(i));
+                }
+                break;
+            case 'Favorite':
+                for (let i = 1; i <= 6; i++) {
+                    pageSection.appendChild(createFavoriteItem(i));
+                }
+                break;
+            case 'Research':
+                const researchContent = document.createElement('div');
+                researchContent.innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <h3 style="font-family: 'Cinzel', serif; color: #555;">Research Section</h3>
+                        <p style="font-family: 'Georgia', serif; color: #777;">
+                            This section is currently under development. Check back soon for updates.
+                        </p>
+                    </div>
+                `;
+                pageSection.appendChild(researchContent);
+                break;
         }
         
         pagesContainer.appendChild(pageSection);
     });
     
-    // 创建左右导航按钮 - 修改为更小的尺寸
+    // Create left navigation control
     const leftNav = document.createElement('div');
     leftNav.id = 'blog-nav-left';
     leftNav.className = 'blog-nav-button';
@@ -666,6 +722,7 @@ function transitionToBlogPage() {
     leftNav.style.transition = 'opacity 0.3s ease';
     blogContainer.appendChild(leftNav);
     
+    // Create right navigation control
     const rightNav = document.createElement('div');
     rightNav.id = 'blog-nav-right';
     rightNav.className = 'blog-nav-button';
@@ -678,18 +735,18 @@ function transitionToBlogPage() {
     rightNav.style.transition = 'opacity 0.3s ease';
     blogContainer.appendChild(rightNav);
     
-    // 添加导航按钮样式 - 修改为更小的尺寸
+    // Apply navigation button styling
     const navStyle = document.createElement('style');
     navStyle.textContent = `
         .blog-nav-button {
-            width: 40px;  /* 减小按钮尺寸 */
-            height: 40px; /* 减小按钮尺寸 */
+            width: 40px;
+            height: 40px;
             background: rgba(255,255,255,0.7);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.2rem; /* 减小字体大小 */
+            font-size: 1.2rem;
             color: #333;
             cursor: pointer;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -704,10 +761,10 @@ function transitionToBlogPage() {
     `;
     blogContainer.appendChild(navStyle);
     
-    // 当前页面索引
+    // Initialize navigation state
     let currentPageIndex = 0;
     
-    // 导航按钮事件
+    // Register navigation event handlers
     leftNav.addEventListener('click', () => {
         if (currentPageIndex > 0) {
             currentPageIndex--;
@@ -722,7 +779,7 @@ function transitionToBlogPage() {
         }
     });
     
-    // 导航链接事件
+    // Register page link handlers
     const navLinksElements = navLinks.querySelectorAll('a');
     navLinksElements.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -732,11 +789,15 @@ function transitionToBlogPage() {
         });
     });
     
-    // 导航到指定页面
+    /**
+     * Navigates to specified content section
+     * @param {number} index - Target section identifier
+     */
     function navigateToPage(index) {
+        // Calculate horizontal translation
         pagesContainer.style.transform = `translateX(-${index * 33.3333}%)`;
         
-        // 更新导航链接高亮
+        // Update navigation state indicators
         navLinksElements.forEach((link, i) => {
             if (i === index) {
                 link.style.background = 'rgba(255,255,255,0.3)';
@@ -748,22 +809,22 @@ function transitionToBlogPage() {
         });
     }
     
-    // 初始导航状态
+    // Initialize navigation state
     navigateToPage(0);
     
-    // 鼠标进入左右区域时显示导航按钮
+    // Implement hover-based navigation controls
     blogContainer.addEventListener('mousemove', (e) => {
         const containerWidth = blogContainer.clientWidth;
         const mouseX = e.clientX;
         
-        // 显示/隐藏左侧按钮
+        // Left navigation control logic
         if (mouseX < containerWidth / 8) {
             leftNav.style.opacity = '1';
         } else {
             leftNav.style.opacity = '0';
         }
         
-        // 显示/隐藏右侧按钮
+        // Right navigation control logic
         if (mouseX > containerWidth * 7/8) {
             rightNav.style.opacity = '1';
         } else {
@@ -771,37 +832,41 @@ function transitionToBlogPage() {
         }
     });
     
-    // 鼠标离开容器时隐藏按钮
+    // Hide navigation controls on mouse exit
     blogContainer.addEventListener('mouseleave', () => {
         leftNav.style.opacity = '0';
         rightNav.style.opacity = '0';
     });
     
-    // 添加滚动效果到个人信息栏
+    // Implement parallax scrolling effect
     blogContainer.addEventListener('scroll', () => {
         const scrollPosition = blogContainer.scrollTop;
         profileSidebar.style.transform = `translateY(${scrollPosition}px)`;
     });
     
-    // 头像点击事件 - 展开/收起个人信息
+    // Initialize profile state
     let isProfileCollapsed = false;
     
+    // Register profile interaction handlers
     profileAvatar.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleProfile();
     });
     
-    // 添加指示器点击事件 - 修复功能
     toggleIndicator.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleProfile();
     });
     
+    /**
+     * Toggles profile panel display state
+     * Implements smooth transition animations
+     */
     function toggleProfile() {
         isProfileCollapsed = !isProfileCollapsed;
         
         if (isProfileCollapsed) {
-            // 收起状态
+            // Collapsed state configuration
             profileSidebar.style.width = '100px';
             profileSidebar.style.height = '100px';
             profileSidebar.style.padding = '10px';
@@ -824,10 +889,10 @@ function transitionToBlogPage() {
             toggleIndicator.style.bottom = '5px';
             toggleIndicator.style.right = '5px';
             
-            // 添加收起动画
+            // Apply collapse transition
             profileSidebar.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
         } else {
-            // 展开状态
+            // Expanded state configuration
             profileSidebar.style.width = 'calc(30% - 50px)';
             profileSidebar.style.height = 'auto';
             profileSidebar.style.padding = '20px';
@@ -850,18 +915,19 @@ function transitionToBlogPage() {
             toggleIndicator.style.bottom = '10px';
             toggleIndicator.style.right = '10px';
             
-            // 添加展开动画
+            // Apply expand transition
             profileSidebar.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
         }
     }
     
-    // 渐入效果
+    // Execute entrance animation sequence
     setTimeout(() => {
         blogPage.style.opacity = '1';
         
         const epicPage = document.getElementById('epic-scroll-page');
         const flameOverlay = document.getElementById('flame-overlay');
         
+        // Cleanup previous interface elements
         if (epicPage) {
             epicPage.style.opacity = '0';
             
@@ -873,7 +939,11 @@ function transitionToBlogPage() {
     }, 100);
 }
 
-// 创建博客文章函数
+/**
+ * Generates a blog post content element
+ * @param {number} index - Post identifier
+ * @returns {HTMLElement} Constructed post element
+ */
 function createBlogPost(index) {
     const post = document.createElement('div');
     post.className = 'blog-post';
@@ -884,7 +954,7 @@ function createBlogPost(index) {
     post.style.boxShadow = '0 3px 10px rgba(0,0,0,0.1)';
     post.style.transition = 'transform 0.3s ease';
     
-    // 悬停效果
+    // Implement hover elevation effect
     post.addEventListener('mouseenter', () => {
         post.style.transform = 'translateY(-5px)';
     });
@@ -893,7 +963,7 @@ function createBlogPost(index) {
         post.style.transform = 'none';
     });
     
-    // 标题行
+    // Create header section
     const titleRow = document.createElement('div');
     titleRow.style.display = 'flex';
     titleRow.style.justifyContent = 'space-between';
@@ -916,7 +986,7 @@ function createBlogPost(index) {
     titleRow.appendChild(postDate);
     post.appendChild(titleRow);
     
-    // 内容
+    // Create content section
     const content = document.createElement('p');
     content.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
     content.style.fontFamily = '"Georgia", serif';
@@ -925,7 +995,7 @@ function createBlogPost(index) {
     content.style.marginBottom = '20px';
     post.appendChild(content);
     
-    // 阅读更多按钮
+    // Create interactive element
     const readMore = document.createElement('a');
     readMore.href = '#';
     readMore.textContent = 'Read more →';
@@ -938,6 +1008,7 @@ function createBlogPost(index) {
     readMore.style.borderRadius = '20px';
     readMore.style.transition = 'all 0.3s ease';
     
+    // Implement hover effects
     readMore.addEventListener('mouseenter', () => {
         readMore.style.background = 'rgba(52, 152, 219, 0.2)';
         readMore.style.transform = 'translateX(5px)';
@@ -953,7 +1024,11 @@ function createBlogPost(index) {
     return post;
 }
 
-// 创建收藏项目函数
+/**
+ * Generates a favorite content element
+ * @param {number} index - Item identifier
+ * @returns {HTMLElement} Constructed favorite element
+ */
 function createFavoriteItem(index) {
     const item = document.createElement('div');
     item.className = 'favorite-item';
@@ -966,7 +1041,7 @@ function createFavoriteItem(index) {
     item.style.overflow = 'hidden';
     item.style.transition = 'transform 0.3s ease';
     
-    // 悬停效果
+    // Implement hover elevation effect
     item.addEventListener('mouseenter', () => {
         item.style.transform = 'translateY(-5px)';
     });
@@ -975,7 +1050,7 @@ function createFavoriteItem(index) {
         item.style.transform = 'none';
     });
     
-    // 标题
+    // Create title element
     const title = document.createElement('h3');
     title.textContent = `Inspirational Quote ${index}`;
     title.style.fontFamily = '"Cinzel", serif';
@@ -983,7 +1058,7 @@ function createFavoriteItem(index) {
     title.style.margin = '0 0 15px 0';
     item.appendChild(title);
     
-    // 内容
+    // Create content container
     const content = document.createElement('div');
     content.style.position = 'relative';
     content.style.height = '150px';
@@ -997,7 +1072,7 @@ function createFavoriteItem(index) {
     quote.style.margin = '0';
     content.appendChild(quote);
     
-    // 模糊覆盖层
+    // Implement content fade effect
     const blurOverlay = document.createElement('div');
     blurOverlay.style.position = 'absolute';
     blurOverlay.style.bottom = '0';
@@ -1010,7 +1085,7 @@ function createFavoriteItem(index) {
     
     item.appendChild(content);
     
-    // 查看按钮
+    // Create interaction element
     const viewBtn = document.createElement('a');
     viewBtn.href = '#';
     viewBtn.textContent = 'View';
@@ -1026,6 +1101,7 @@ function createFavoriteItem(index) {
     viewBtn.style.transition = 'all 0.3s ease';
     viewBtn.style.zIndex = '2';
     
+    // Implement hover effects
     viewBtn.addEventListener('mouseenter', () => {
         viewBtn.style.background = 'rgba(106, 48, 147, 1)';
         viewBtn.style.transform = 'scale(1.05)';
