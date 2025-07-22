@@ -18,17 +18,20 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 <script src="./assets/js/epic-transition.js"></script>
 <style>
-  /* 图片加载优化 */
+  /* 
+    Image Loading Optimization: 
+    Ensures proper rendering and transition effects for profile avatar
+  */
   #avatar-frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    background-color: #f1f3f5; /* 加载时的背景色 */
+    background-color: #f1f3f5; /* Fallback background during loading */
     transition: opacity 0.5s ease;
   }
         
-  /* 预加载样式 */
+  /* Preloading technique for critical images */
   .preload-images {
     position: absolute;
     width: 0;
@@ -36,7 +39,7 @@
     overflow: hidden;
   }
     
-  /* 基础样式 */
+  /* Base document styling */
   body, html {
     margin: 0;
     padding: 0;
@@ -47,7 +50,7 @@
     color: #000;
   }
 
-  /* 自定义光标样式 */
+  /* Custom cursor implementation */
   * {
     cursor: none !important;
   }
@@ -78,12 +81,12 @@
     background-color: #333;
   }
   
-  /* 暗黑模式光标 */
+  /* Dark mode cursor styling */
   body.dark-mode .cursor-inner {
     background-color: #f8f9fa;
   }
   
-  /* 光标状态 */
+  /* Cursor interaction states */
   .custom-cursor.click {
     transform: translate(-50%, -50%) scale(0.8);
   }
@@ -93,7 +96,7 @@
     height: 40px;
   }
   
-  /* 涟漪效果 */
+  /* Ripple effect animation */
   .ripple {
     position: fixed;
     width: 20px;
@@ -117,7 +120,7 @@
     }
   }
   
-  /* 触摸设备支持 */
+  /* Touch device compatibility */
   @media (hover: none) {
     .custom-cursor {
       display: none;
@@ -128,7 +131,7 @@
     }
   }
 
-  /* 封面样式 */
+  /* Cover page styling */
   #cover {
     position: fixed;
     width: 100%;
@@ -144,7 +147,7 @@
     z-index: 100;
   }
 
-  /* 封面遮罩效果 */
+  /* Cover overlay effects */
   #cover::before {
     content: "";
     position: absolute;
@@ -183,7 +186,7 @@
     }
   }
 
-  /* 封面可见性 */
+  /* Cover visibility states */
   #cover.visible {
     opacity: 1;
   }
@@ -192,7 +195,7 @@
     pointer-events: none;
   }
 
-  /* 头像样式 */
+  /* Profile avatar styling */
   #avatar-frame {
     position: relative;
     width: 150px;
@@ -230,7 +233,7 @@
     display: block;
   }
 
-  /* 文本元素 */
+  /* Text element styling */
   #name,
   #slogan {
     position: relative;
@@ -269,7 +272,7 @@
       0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /* 按钮样式 */
+  /* Button styling */
   #about-btn, #social-btn, #toolkit-btn, #schedule-btn {
     position: relative;
     z-index: 20;
@@ -354,7 +357,7 @@
     transform: translateY(0);
   }
 
-  /* 简历内容 */
+  /* Resume content styling */
   #resume, #social, #toolkit, #schedule {
     position: relative;
     z-index: 1;
@@ -476,7 +479,7 @@
     margin-left: 20px;
   }
 
-  /* 暗黑模式样式 */
+  /* Dark mode styling */
   body.dark-mode {
     background-color: #121212;
     color: #ffffff;
@@ -524,7 +527,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
 
-  /* 主题切换按钮 - 修改为圆形 */
+  /* Theme toggle button styling */
   #toggle-btn, #toggle-btn-social, #toggle-btn-toolkit, #toggle-btn-schedule {
     position: fixed;
     top: 20px;
@@ -582,7 +585,7 @@
     padding: 0;
   }
 
-  /* 暗黑模式按钮 */
+  /* Dark mode toggle button */
   body.dark-mode #toggle-btn, body.dark-mode #toggle-btn-social, body.dark-mode #toggle-btn-toolkit, body.dark-mode #toggle-btn-schedule {
     background: linear-gradient(145deg, #6a3093, #4a148c);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
@@ -592,11 +595,11 @@
     background: linear-gradient(145deg, #4a148c, #6a3093);
   }
 
-  /* 时钟样式 */
+  /* Clock widget styling */
   #clock, #clock-social, #clock-toolkit, #clock-schedule {
     position: fixed;
     top: 20px;
-    left: 70px; /* 为时钟控制按钮留出空间 */
+    left: 70px; /* Space for clock toggle button */
     background: rgba(52, 152, 219, 0.9);
     color: white;
     padding: 12px 18px;
@@ -619,13 +622,13 @@
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
   }
 
-  /* 暗黑模式时钟 */
+  /* Dark mode clock */
   body.dark-mode #clock, body.dark-mode #clock-social, body.dark-mode #clock-toolkit, body.dark-mode #clock-schedule {
     background: rgba(106, 48, 147, 0.9);
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
   
-  /* 时钟控制按钮 */
+  /* Clock toggle button */
   .clock-toggle {
     position: fixed;
     top: 20px;
@@ -654,14 +657,14 @@
     box-shadow: 0 4px 15px rgba(106, 48, 147, 0.3);
   }
   
-  /* 时钟收起状态 */
+  /* Clock collapsed state */
   #clock.collapsed, #clock-social.collapsed, #clock-toolkit.collapsed, #clock-schedule.collapsed {
     transform: translateX(-150%);
     opacity: 0;
     pointer-events: none;
   }
 
-  /* 社交页面特定样式 */
+  /* Social page specific styling */
   .social-heading {
     font-size: 2.8em;
     text-align: center;
@@ -714,7 +717,7 @@
     transform: scale(1.2);
   }
 
-  /* Bilibili SVG图标样式 */
+  /* Bilibili SVG icon styling */
   .bilibili-icon {
     width: 2.5rem;
     height: 2.5rem;
@@ -793,7 +796,7 @@
     background: linear-gradient(90deg, #6a3093, #9b59b6);
   }
 
-  /* 社交链接分隔符 */
+  /* Social link separator */
   .social-divider {
     display: inline-flex;
     align-items: center;
@@ -808,7 +811,7 @@
     color: #bdc3c7;
   }
 
-  /* 返回按钮 */
+  /* Back button styling */
   .back-btn {
     position: fixed;
     bottom: 30px;
@@ -849,7 +852,7 @@
     background: #4a148c;
   }
 
-  /* 封面按钮容器 */
+  /* Cover buttons container */
   .cover-buttons {
     display: flex;
     gap: 20px;
@@ -870,7 +873,7 @@
     color: #ffffff;
   }
 
-  /* 分类筛选器样式 */
+  /* Category filter styling */
   .toolkit-filter {
     display: flex;
     justify-content: center;
@@ -915,7 +918,7 @@
     color: white;
   }
 
-  /* 搜索框样式 */
+  /* Search box styling */
   .toolkit-search {
     display: flex;
     justify-content: center;
@@ -968,7 +971,7 @@
     color: #bdc3c7;
   }
 
-  /* 分类网格布局 */
+  /* Category grid layout */
   .category-section {
     margin-bottom: 40px;
   }
@@ -1284,7 +1287,7 @@
     background: linear-gradient(135deg, #2a89c8, #21699e) !important;
   }
 
-  /* 无结果提示 */
+  /* No results message */
   .no-results {
     text-align: center;
     padding: 40px;
@@ -1315,7 +1318,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    width: 100%; /* 新增：确保宽度占满 */
+    width: 100%; /* Ensure full width */
   }
 
   .schedule-switcher {
@@ -1803,12 +1806,12 @@
     }
   }
 
-  /* 时钟初始隐藏 */
+  /* Clock initial state */
   .clock-toggle {
-    display: none; /* 初始隐藏 */
+    display: none; /* Hidden by default */
   }
 
-  /* USTC Timetable样式 - 优化版本 */
+  /* USTC Timetable styles */
   #ustc-timetable {
     width: 100%;
     border-collapse: collapse;
@@ -1847,7 +1850,7 @@
     background-color: rgba(52, 152, 219, 0.1);
   }
   
-  /* 新样式：事件覆盖层 */
+  /* Event overlay styling */
   .ustc-event-overlay {
     position: absolute;
     top: 0;
@@ -1883,7 +1886,7 @@
     color: #34495e;
   }
   
-  /* 暗黑模式USTC Timetable样式 */
+  /* Dark mode USTC Timetable */
   body.dark-mode #ustc-timetable th {
     background-color: #6a3093;
     border-color: #444;
@@ -1964,14 +1967,14 @@
     color: #cccccc;
   }
 
-  /* Schedule页面容器宽度优化 */
+  /* Schedule page container optimization */
   #schedule .container {
-    max-width: 95%; /* 更宽的容器 */
+    max-width: 95%; /* Wider container */
     width: 100%;
     padding: 30px 15px;
   }
   
-  /* USTC课程表样式优化 */
+  /* USTC timetable styling optimization */
   .ustc-class-cell {
     position: relative;
     height: 100%;
@@ -1991,7 +1994,7 @@
     padding: 5px;
   }
   
-  /* 时间信息样式 */
+  /* Time information styling */
   .time-info {
     position: absolute;
     font-size: 0.7em;
@@ -2014,7 +2017,7 @@
     right: 2px;
   }
   
-  /* 高级事件单元格样式 */
+  /* Advanced event cell styling */
   .event-cell {
     position: relative;
     overflow: hidden;
@@ -2047,7 +2050,7 @@
     background: linear-gradient(90deg, #6a3093, #9b59b6);
   }
   
-  /* 修复USTC Timetable中的单元格合并问题 */
+  /* Fix cell merging issues in USTC Timetable */
   .ustc-timetable-cell {
     position: relative;
     height: 50px;
@@ -2082,7 +2085,7 @@
     background: rgba(106, 48, 147, 0.2);
   }
   
-  /* 新增：合并单元格样式 */
+  /* Merged cell styling */
   .merged-cell {
     border: none !important;
     background-color: transparent !important;
@@ -2101,7 +2104,7 @@
     position: relative;
   }
   
-  /* 课时编号样式 */
+  /* Period number styling */
   .period-number {
     background-color: #f8f9fa;
     font-weight: bold;
@@ -2113,7 +2116,7 @@
     border-color: #555;
   }
 
-  /* 重叠课程容器样式 */
+  /* Overlapping course container styling */
   .overlap-container {
     display: flex;
     flex-direction: column;
@@ -2134,7 +2137,7 @@
 </style>
 </head>
 <body>
-  <!-- 预加载图片 -->
+  <!-- Preloaded images for performance optimization -->
   <div class="preload-images">
     <img src="./assets/images/avatar.jpg" alt="Preload Avatar">
     <img src="./assets/images/background.jpg" alt="Preload Background">
@@ -2143,16 +2146,16 @@
     <img src="./assets/animation/fire-animation.gif" alt="Preload Fire Animation">
   </div>
     
-  <!-- 光标元素 -->
+  <!-- Custom cursor elements -->
   <div class="custom-cursor cursor-outer"></div>
   <div class="custom-cursor cursor-inner"></div>
 
-  <!-- 时钟控制按钮 -->
+  <!-- Clock control button -->
   <div class="clock-toggle" id="clock-toggle">
     <i class="fas fa-clock"></i>
   </div>
 
-  <!-- 封面页 -->
+  <!-- Cover page -->
   <div id="cover">
     <div id="avatar-frame">
       <img src="./assets/images/avatar.jpg" alt="Profile Avatar" loading="lazy">
@@ -2167,7 +2170,7 @@
     </div>
   </div>
 
-  <!-- 简历页 -->
+  <!-- Resume page -->
   <div id="resume">
     <button id="toggle-btn">
       <span><i class="fas fa-sun"></i></span>
@@ -2256,7 +2259,7 @@
     </a>
   </div>
 
-  <!-- 社交页 -->
+  <!-- Social page -->
   <div id="social">
     <button id="toggle-btn-social">
       <span><i class="fas fa-sun"></i></span>
@@ -2266,7 +2269,7 @@
       <div class="social-heading">Connect With Me</div>
       
       <div class="social-grid">
-        <!-- YouTube卡片 -->
+        <!-- YouTube card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-youtube"></i></div>
           <div class="social-title">YouTube</div>
@@ -2278,7 +2281,7 @@
           </div>
         </div>
         
-        <!-- TikTok卡片 -->
+        <!-- TikTok card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-tiktok"></i></div>
           <div class="social-title">TikTok (Chinese)</div>
@@ -2290,7 +2293,7 @@
           </div>
         </div>
         
-        <!-- REDnote (Xiaohongshu)卡片 -->
+        <!-- REDnote (Xiaohongshu) card -->
         <div class="social-card">
           <div class="social-icon"><i class="fas fa-book"></i></div>
           <div class="social-title">REDnote</div>
@@ -2298,7 +2301,7 @@
           <a href="https://www.xiaohongshu.com/user/profile/64c696da000000000b005093" class="social-link" target="_blank">Profile</a>
         </div>
         
-        <!-- Quora卡片 -->
+        <!-- Quora card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-quora"></i></div>
           <div class="social-title">Quora</div>
@@ -2306,7 +2309,7 @@
           <a href="https://www.quora.com/profile/Jinghao-Chen-11/" class="social-link" target="_blank">Profile</a>
         </div>
         
-        <!-- Twitter/X卡片 -->
+        <!-- Twitter/X card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-twitter"></i></div>
           <div class="social-title">X (Twitter)</div>
@@ -2314,7 +2317,7 @@
           <a href="https://x.com/stardust_math" class="social-link" target="_blank">Profile</a>
         </div>
         
-        <!-- Bilibili卡片 -->
+        <!-- Bilibili card -->
         <div class="social-card">
           <svg class="bilibili-icon" viewBox="0 0 24 24" width="2.5rem" height="2.5rem" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.99 6.5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6.01a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h2.75l-1-3a.5.5 0 0 1 .33-.63l.94-.3a.5.5 0 0 1 .63.32l1.1 3.1h2.64l1.1-3.1a.5.5 0 0 1 .63-.32l.94.3a.5.5 0 0 1 .33.63l-1 3h2.75zm-2.74 2.5H8.75a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h6.5a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5z" fill="#3498db" stroke="#3498db" stroke-width="0.2"/>
@@ -2326,7 +2329,7 @@
           <a href="https://space.bilibili.com/470364718" class="social-link" target="_blank">Channel</a>
         </div>
 
-        <!-- GitHub卡片 -->
+        <!-- GitHub card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-github"></i></div>
           <div class="social-title">GitHub</div>
@@ -2341,7 +2344,7 @@
     </a>
   </div>
 
-  <!-- 工具包页 - 修改后的部分 -->
+  <!-- Toolkit page -->
   <div id="toolkit">
     <button id="toggle-btn-toolkit">
       <span><i class="fas fa-sun"></i></span>
@@ -2350,7 +2353,7 @@
     <div class="container">
       <div class="toolkit-heading">Academic Toolkit</div>
       
-      <!-- 搜索框 -->
+      <!-- Search box -->
       <div class="toolkit-search">
         <div class="search-container">
           <i class="fas fa-search search-icon"></i>
@@ -2358,7 +2361,7 @@
         </div>
       </div>
       
-      <!-- 分类筛选器 -->
+      <!-- Category filters -->
       <div class="toolkit-filter">
         <button class="filter-btn active" data-category="all">All</button>
         <button class="filter-btn" data-category="development">Development</button>
@@ -2371,7 +2374,7 @@
         <button class="filter-btn" data-category="ustc">USTC Services</button>
       </div>
       
-      <!-- Development 分类 -->
+      <!-- Development category -->
       <div class="category-section" data-category="development">
         <h3 class="category-title">Development</h3>
         <div class="toolkit-grid">
@@ -2503,7 +2506,7 @@
         </div>
       </div>
       
-      <!-- Communication 分类 -->
+      <!-- Communication category -->
       <div class="category-section" data-category="communication">
         <h3 class="category-title">Communication</h3>
         <div class="toolkit-grid">
@@ -2554,7 +2557,7 @@
         </div>
       </div>
       
-      <!-- Media & Video 分类 -->
+      <!-- Media & Video category -->
       <div class="category-section" data-category="media">
         <h3 class="category-title">Media & Video</h3>
         <div class="toolkit-grid">
@@ -2618,7 +2621,7 @@
         </div>
       </div>
       
-      <!-- Music 分类 -->
+      <!-- Music category -->
       <div class="category-section" data-category="music">
         <h3 class="category-title">Music</h3>
         <div class="toolkit-grid">
@@ -2660,7 +2663,7 @@
         </div>
       </div>
       
-      <!-- Knowledge 分类 -->
+      <!-- Knowledge category -->
       <div class="category-section" data-category="knowledge">
         <h3 class="category-title">Knowledge</h3>
         <div class="toolkit-grid">
@@ -2738,7 +2741,7 @@
         </div>
       </div>
 
-      <!-- Productivity 分类 -->
+      <!-- Productivity category -->
       <div class="category-section" data-category="productivity">
         <h3 class="category-title">Productivity</h3>
         <div class="toolkit-grid">
@@ -2936,7 +2939,7 @@
         </div>
       </div>
       
-      <!-- 无结果提示 -->
+      <!-- No results message -->
       <div class="no-results" style="display: none;">
         No matching tools found. Try a different search term.
       </div>
@@ -2960,7 +2963,7 @@
         <div class="schedule-switcher">
           <button class="schedule-switch-btn active" data-view="calendar">Calendar</button>
           <button class="schedule-switch-btn" data-view="timetable">Timetable</button>
-          <!-- 添加USTC Timetable按钮 -->
+          <!-- USTC Timetable button -->
           <button class="schedule-switch-btn" data-view="ustc-timetable">USTC Timetable</button>
         </div>
         
@@ -3279,7 +3282,7 @@
       </div>
     </div>
     
-    <!-- 新增普通事件模态框 -->
+    <!-- General event modal -->
     <div class="event-modal" id="general-event-modal">
       <div class="event-modal-content">
         <span class="event-modal-close" id="general-event-modal-close">&times;</span>
@@ -3326,7 +3329,7 @@
   </div>
 
   <script>
-    // USTC Timetable的时间映射
+    // USTC Timetable period definitions
     const periodTimes = {
       1: { start: '7:50', end: '8:35' },
       2: { start: '8:40', end: '9:25' },
@@ -3343,24 +3346,24 @@
       13: { start: '21:10', end: '21:55' }
     };
 
-    // USTC课程存储
+    // USTC classes storage
     let ustcClasses = JSON.parse(localStorage.getItem('ustcClasses')) || [];
 
-    // 普通事件存储
+    // General events storage
     let calendarEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     let timetableEvents = JSON.parse(localStorage.getItem('timetableEvents')) || [];
     
-    // 保存USTC Timetable的初始HTML
+    // Preserve initial timetable HTML
     const timetableTbody = document.querySelector('#ustc-timetable tbody');
     const timetableTbodyInitialHTML = timetableTbody.innerHTML;
     
-    // 初始化自定义光标
+    // Initialize custom cursor functionality
     document.addEventListener('DOMContentLoaded', function() {
       const cursorOuter = document.querySelector('.cursor-outer');
       const cursorInner = document.querySelector('.cursor-inner');
       const positions = { mouseX: 0, mouseY: 0 };
       
-      // 跟踪光标位置
+      // Track cursor position
       document.addEventListener('mousemove', (e) => {
         positions.mouseX = e.clientX;
         positions.mouseY = e.clientY;
@@ -3371,18 +3374,18 @@
         cursorInner.style.top = `${positions.mouseY}px`;
       });
       
-      // 点击效果
+      // Click effect
       document.addEventListener('mousedown', (e) => {
         cursorInner.classList.add('click');
         
-        // 创建涟漪效果
+        // Create ripple effect
         const ripple = document.createElement('div');
         ripple.classList.add('ripple');
         ripple.style.left = `${e.clientX}px`;
         ripple.style.top = `${e.clientY}px`;
         document.body.appendChild(ripple);
         
-        // 动画结束后清理
+        // Cleanup after animation
         setTimeout(() => {
           ripple.remove();
         }, 600);
@@ -3392,7 +3395,7 @@
         cursorInner.classList.remove('click');
       });
       
-      // 悬停效果
+      // Hover effect
       const hoverElements = document.querySelectorAll('a, button, [role="button"], #about-btn, #social-btn, #toolkit-btn, #schedule-btn');
       hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -3404,20 +3407,20 @@
         });
       });
 
-      // 初始化主题
+      // Initialize theme
       initializeTheme();
       
-      // 初始化工具包筛选和搜索功能
+      // Initialize toolkit filters
       initToolkitFilter();
       
-      // 初始化日程页面
+      // Initialize schedule page
       initSchedulePage();
       
-      // 初始化时钟控制按钮
+      // Initialize clock toggle
       initClockToggle();
     });
 
-    // 页面元素
+    // Page elements
     const cover = document.getElementById("cover");
     const resume = document.getElementById("resume");
     const social = document.getElementById("social");
@@ -3445,10 +3448,10 @@
 
     let coverHidden = false;
     let currentPage = null;
-    let calendar; // FullCalendar实例
-    let currentWeek = new Date(); // Timetable当前周
+    let calendar; // FullCalendar instance
+    let currentWeek = new Date(); // Timetable current week
     
-    // 顺序显示封面元素
+    // Animated display of cover elements
     function showCoverElements() {
       avatarFrame.classList.add("visible");
       setTimeout(() => {
@@ -3464,12 +3467,12 @@
         scheduleBtn.classList.add("visible");
       }, 1200);
 
-      // 时钟控制按钮
+      // Hide clock toggle initially
       const clockToggle = document.querySelector('.clock-toggle');
       if (clockToggle) clockToggle.style.display = 'none';
     }
 
-    // 从封面过渡到页面
+    // Transition from cover to content page
     function showPage(page) {
       if (coverHidden && currentPage === page) return;
       
@@ -3479,13 +3482,13 @@
         document.body.style.overflow = "auto";
         coverHidden = true;
         
-        // 先隐藏所有页面
+        // Hide all pages
         resume.classList.remove("visible");
         social.classList.remove("visible");
         toolkit.classList.remove("visible");
         schedule.classList.remove("visible");
         
-        // 显示选中的页面
+        // Show selected page
         if (page === 'resume') {
           resume.classList.add("visible");
           currentPage = 'resume';
@@ -3521,18 +3524,18 @@
       toolkitBtn.classList.remove("visible");
       scheduleBtn.classList.remove("visible");
 
-      // 显示时钟控制按钮
+      // Show clock toggle
       const clockToggle = document.querySelector('.clock-toggle');
       if (clockToggle) clockToggle.style.display = 'flex';
     }
 
-    // 返回封面
+    // Return to cover page
     function backToCover() {
       coverHidden = false;
       cover.style.display = "flex";
       cover.classList.remove("hidden");
       
-      // 隐藏所有页面和返回按钮
+      // Hide all pages and back buttons
       resume.classList.remove("visible");
       social.classList.remove("visible");
       toolkit.classList.remove("visible");
@@ -3542,21 +3545,21 @@
       toolkitBackBtn.classList.remove("visible");
       scheduleBackBtn.classList.remove("visible");
       
-      // 重置封面元素
+      // Reset cover elements
       setTimeout(() => {
         cover.classList.add("visible");
         showCoverElements();
       }, 100);
     }
 
-    // 页面加载时初始化
+    // Initialize on page load
     window.addEventListener("load", () => {
       cover.classList.add("visible");
       showCoverElements();
       startClock();
     });
 
-    // 按钮点击处理
+    // Button event handlers
     aboutBtn.addEventListener("click", () => showPage('resume'));
     socialBtn.addEventListener("click", () => showPage('social'));
     toolkitBtn.addEventListener("click", () => showPage('toolkit'));
@@ -3566,7 +3569,7 @@
     toolkitBackBtn.addEventListener("click", backToCover);
     scheduleBackBtn.addEventListener("click", backToCover);
 
-    // 主题管理功能
+    // Theme management functions
     function initializeTheme() {
       const currentHour = new Date().getHours();
       const isNightTime = currentHour >= 18 || currentHour < 6;
@@ -3574,7 +3577,7 @@
       updateToggleBtnIcon();
     }
 
-    // 主题切换功能
+    // Theme toggle functionality
     toggleBtn.addEventListener("click", toggleTheme);
     toggleBtnSocial.addEventListener("click", toggleTheme);
     toggleBtnToolkit.addEventListener("click", toggleTheme);
@@ -3597,7 +3600,7 @@
     function updateToggleBtnIcon() {
       const isDark = document.body.classList.contains("dark-mode");
       
-      // 更新所有主题切换按钮的图标
+      // Update all theme toggle buttons
       const toggleButtons = document.querySelectorAll("#toggle-btn, #toggle-btn-social, #toggle-btn-toolkit, #toggle-btn-schedule");
       
       toggleButtons.forEach(button => {
@@ -3612,7 +3615,7 @@
       });
     }
 
-    // 时钟功能
+    // Clock functionality
     function startClock() {
       updateClock();
       setInterval(updateClock, 1000);
@@ -3631,18 +3634,18 @@
       clockSchedule.textContent = timeString;
     }
     
-    // 时钟控制功能
+    // Clock toggle functionality
     function initClockToggle() {
       const clockToggle = document.getElementById("clock-toggle");
       const clocks = [clock, clockSocial, clockToolkit, clockSchedule];
       
-      // 初始状态：时钟展开
+      // Initial state: clocks expanded
       let clocksCollapsed = false;
       
       clockToggle.addEventListener("click", () => {
         clocksCollapsed = !clocksCollapsed;
         
-        // 更新所有时钟的状态
+        // Update all clocks
         clocks.forEach(clockElement => {
           if (clocksCollapsed) {
             clockElement.classList.add("collapsed");
@@ -3651,7 +3654,7 @@
           }
         });
         
-        // 更新按钮图标
+        // Update button icon
         if (clocksCollapsed) {
           clockToggle.innerHTML = '<i class="fas fa-chevron-right"></i>';
         } else {
@@ -3660,7 +3663,7 @@
       });
     }
     
-    // 工具包筛选和搜索功能
+    // Toolkit filtering and search functionality
     function initToolkitFilter() {
       const filterButtons = document.querySelectorAll('.filter-btn');
       const searchInput = document.getElementById('toolkit-search-input');
@@ -3668,32 +3671,32 @@
       const categorySections = document.querySelectorAll('.category-section');
       const noResultsMessage = document.querySelector('.no-results');
       
-      // 分类筛选功能
+      // Category filter functionality
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
           const category = button.dataset.category;
           
-          // 更新按钮状态
+          // Update button states
           filterButtons.forEach(btn => btn.classList.remove('active'));
           button.classList.add('active');
           
-          // 执行筛选
+          // Apply filters
           filterTools(category, searchInput.value.trim());
         });
       });
       
-      // 搜索功能
+      // Search functionality
       searchInput.addEventListener('input', () => {
         const activeCategory = document.querySelector('.filter-btn.active').dataset.category;
         filterTools(activeCategory, searchInput.value.trim());
       });
       
-      // 筛选工具函数
+      // Filter tools function
       function filterTools(category, searchTerm) {
         let hasResults = false;
         let totalVisible = 0;
         
-        // 遍历所有卡片
+        // Process all cards
         toolkitCards.forEach(card => {
           const cardCategories = card.dataset.categories.split(' ');
           const cardTitle = card.dataset.title.toLowerCase();
@@ -3708,7 +3711,7 @@
           }
         });
         
-        // 更新分类部分可见性
+        // Update category section visibility
         categorySections.forEach(section => {
           const sectionCategory = section.dataset.category;
           const hasVisibleCards = Array.from(section.querySelectorAll('.toolkit-card'))
@@ -3722,7 +3725,7 @@
           }
         });
         
-        // 显示/隐藏无结果消息
+        // Show/hide no results message
         if (totalVisible === 0) {
           noResultsMessage.style.display = 'block';
         } else {
@@ -3730,7 +3733,7 @@
         }
       }
       
-      // 初始显示所有
+      // Initial display: show all
       filterTools('all', '');
     }
     
@@ -3740,7 +3743,7 @@
       initCalendar();
       initTimetable();
       
-      // Switch between calendar and timetable views
+      // View switching functionality
       const viewSwitchers = document.querySelectorAll('.schedule-switch-btn');
       const calendarSection = document.getElementById('calendar-section');
       const timetableSection = document.getElementById('timetable-section');
@@ -3774,7 +3777,7 @@
       const eventCancelBtn = document.getElementById('event-cancel-btn');
       const eventForm = document.getElementById('event-form');
       
-      // 普通事件模态框
+      // General event modal
       const generalEventModal = document.getElementById('general-event-modal');
       const generalEventModalClose = document.getElementById('general-event-modal-close');
       const generalEventCancelBtn = document.getElementById('general-event-cancel-btn');
@@ -3822,13 +3825,13 @@
         }
       });
       
-      // Handle form submission for USTC classes
+      // Handle USTC class form submission
       eventForm.addEventListener('submit', (e) => {
         e.preventDefault();
         saveUstcClass();
       });
       
-      // Handle form submission for general events
+      // Handle general event form submission
       generalEventForm.addEventListener('submit', (e) => {
         e.preventDefault();
         saveGeneralEvent();
@@ -3872,7 +3875,7 @@
           openGeneralEventModal('calendar', info.event);
         },
         eventDidMount: function(info) {
-          // Apply dark mode styles if needed
+          // Apply dark mode styles
           if (document.body.classList.contains('dark-mode')) {
             info.el.style.backgroundColor = '#6a3093';
             info.el.style.borderColor = '#6a3093';
@@ -4001,31 +4004,31 @@
     
     // USTC Timetable functionality
     function renderUstcTimetable() {
-      // 恢复表格的初始结构
+      // Restore initial table structure
       const timetable = document.getElementById('ustc-timetable');
       const tbody = timetable.querySelector('tbody');
       tbody.innerHTML = timetableTbodyInitialHTML;
       
-      // 获取所有单元格
+      // Get all cells
       const cells = Array.from(tbody.querySelectorAll('td[data-period][data-day]'));
       
-      // 初始化占用状态数组
+      // Initialize occupied status array
       const occupied = Array(14).fill().map(() => Array(7).fill(false));
       
-      // 先清空所有单元格内容
+      // Clear cell content
       cells.forEach(cell => {
         cell.innerHTML = '';
         cell.rowSpan = 1;
         cell.className = '';
       });
       
-      // 将课程按照起始课时从小到大排序
+      // Sort classes by start period
       ustcClasses.sort((a, b) => a.periodStart - b.periodStart);
       
-      // 存储每个单元格的课程信息
+      // Store course information per cell
       const cellCourses = Array(14).fill().map(() => Array(7).fill().map(() => []));
       
-      // 收集每个单元格的课程
+      // Collect courses for each cell
       ustcClasses.forEach(cls => {
         const periodStart = parseInt(cls.periodStart);
         const periodEnd = parseInt(cls.periodEnd);
@@ -4045,23 +4048,23 @@
         });
       });
       
-      // 渲染课程到单元格
+      // Render courses to cells
       for (let period = 1; period <= 13; period++) {
         for (let day = 0; day <= 6; day++) {
           const courses = cellCourses[period][day];
           if (courses.length === 0) continue;
           
-          // 查找当前单元格
+          // Find current cell
           const cell = tbody.querySelector(`td[data-period="${period}"][data-day="${day}"]`);
           if (!cell) continue;
           
-          // 如果这个单元格已经被合并，跳过
+          // Skip if already merged
           if (occupied[period][day]) continue;
           
-          // 检查是否有重叠的课程（完全重叠或部分重叠）
+          // Find maximum period span
           let maxPeriod = period;
           for (let p = period; p <= 13; p++) {
-            // 检查当前时间段的所有课程是否在所有后续时间段都存在
+            // Check if all courses exist in subsequent periods
             const allExist = courses.every(course => 
               cellCourses[p][day].some(c => c.id === course.id)
             );
@@ -4073,40 +4076,40 @@
             }
           }
           
-          // 计算需要合并的行数
+          // Calculate row span
           const rowSpan = maxPeriod - period + 1;
           
-          // 标记这些行为已占用
+          // Mark periods as occupied
           for (let p = period; p <= maxPeriod; p++) {
             occupied[p][day] = true;
           }
           
-          // 设置合并单元格
+          // Set merged cell
           cell.rowSpan = rowSpan;
           cell.className = 'has-class event-cell';
           
-          // 计算结束课时
+          // Calculate end period
           const endPeriod = period + rowSpan - 1;
           
-          // 创建开始时间元素
+          // Create start time element
           const startInfo = document.createElement('div');
           startInfo.className = 'time-info start-info';
           startInfo.textContent = periodTimes[period].start;
           
-          // 创建结束时间元素
+          // Create end time element
           const endInfo = document.createElement('div');
           endInfo.className = 'time-info end-info';
           endInfo.textContent = periodTimes[endPeriod].end;
           
-          // 创建课程容器
+          // Create course container
           const container = document.createElement('div');
           container.className = 'overlap-container';
           
-          // 添加时间元素
+          // Add time elements
           cell.appendChild(startInfo);
           cell.appendChild(endInfo);
           
-          // 添加每个课程的信息
+          // Add course information
           courses.forEach(course => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'overlap-course';
@@ -4117,10 +4120,10 @@
             container.appendChild(courseDiv);
           });
           
-          // 添加容器到单元格
+          // Add container to cell
           cell.appendChild(container);
           
-          // 移除被合并的单元格
+          // Remove merged cells
           for (let p = period + 1; p <= maxPeriod; p++) {
             const nextCell = tbody.querySelector(`td[data-period="${p}"][data-day="${day}"]`);
             if (nextCell) {
@@ -4130,7 +4133,7 @@
         }
       }
       
-      // 渲染课程列表
+      // Render course list
       renderUstcClassesList();
     }
     
@@ -4153,7 +4156,7 @@
         tbody.appendChild(row);
       });
       
-      // 添加编辑和删除事件
+      // Add edit events
       document.querySelectorAll('.edit-ustc-class').forEach(btn => {
         btn.addEventListener('click', () => {
           const id = btn.dataset.id;
@@ -4164,6 +4167,7 @@
         });
       });
       
+      // Add delete events
       document.querySelectorAll('.delete-ustc-class').forEach(btn => {
         btn.addEventListener('click', () => {
           const id = btn.dataset.id;
@@ -4182,7 +4186,7 @@
       const deleteBtn = document.getElementById('event-delete-btn');
       
       if (cls) {
-        // 编辑模式
+        // Edit mode
         document.getElementById('event-modal-title').textContent = 'Edit Class';
         document.getElementById('event-id').value = cls.id;
         document.getElementById('ustc-period-start').value = cls.periodStart;
@@ -4190,12 +4194,12 @@
         document.getElementById('ustc-course-name').value = cls.courseName;
         document.getElementById('ustc-instructor').value = cls.instructor;
         
-        // 清除所有复选框
+        // Clear all checkboxes
         document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
           checkbox.checked = false;
         });
         
-        // 设置选中的天
+        // Set selected days
         cls.days.forEach(day => {
           const checkbox = document.querySelector(`input[name="ustc-day"][value="${day}"]`);
           if (checkbox) {
@@ -4203,10 +4207,10 @@
           }
         });
         
-        // 显示删除按钮
+        // Show delete button
         deleteBtn.style.display = 'inline-block';
       } else {
-        // 添加模式
+        // Add mode
         document.getElementById('event-modal-title').textContent = 'Add New Class';
         document.getElementById('event-id').value = '';
         document.getElementById('ustc-period-start').value = '1';
@@ -4214,12 +4218,12 @@
         document.getElementById('ustc-course-name').value = '';
         document.getElementById('ustc-instructor').value = '';
         
-        // 清除所有复选框
+        // Clear all checkboxes
         document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
           checkbox.checked = false;
         });
         
-        // 隐藏删除按钮
+        // Hide delete button
         deleteBtn.style.display = 'none';
       }
       
@@ -4233,7 +4237,7 @@
       const courseName = document.getElementById('ustc-course-name').value;
       const instructor = document.getElementById('ustc-instructor').value;
       
-      // 获取选中的天
+      // Get selected days
       const days = [];
       document.querySelectorAll('input[name="ustc-day"]:checked').forEach(checkbox => {
         days.push(parseInt(checkbox.value));
@@ -4250,7 +4254,7 @@
       }
       
       if (id) {
-        // 更新现有课程
+        // Update existing class
         const index = ustcClasses.findIndex(c => c.id === id);
         if (index !== -1) {
           ustcClasses[index] = {
@@ -4263,7 +4267,7 @@
           };
         }
       } else {
-        // 添加新课程
+        // Add new class
         const newClass = {
           id: Date.now().toString(),
           periodStart,
@@ -4275,13 +4279,13 @@
         ustcClasses.push(newClass);
       }
       
-      // 保存到本地存储
+      // Save to local storage
       localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
       
-      // 关闭模态框
+      // Close modal
       document.getElementById('event-modal').style.display = 'none';
       
-      // 重新渲染时间表
+      // Re-render timetable
       renderUstcTimetable();
     }
     
@@ -4292,21 +4296,21 @@
       
       if (!id) return;
       
-      // 确认删除
+      // Confirm deletion
       if (!confirm('Are you sure you want to delete this class?')) {
         return;
       }
       
-      // 从数组中删除
+      // Remove from array
       ustcClasses = ustcClasses.filter(c => c.id !== id);
       
-      // 保存到本地存储
+      // Save to local storage
       localStorage.setItem('ustcClasses', JSON.stringify(ustcClasses));
       
-      // 关闭模态框
+      // Close modal
       document.getElementById('event-modal').style.display = 'none';
       
-      // 重新渲染时间表
+      // Re-render timetable
       renderUstcTimetable();
     }
     
@@ -4315,7 +4319,7 @@
       const deleteBtn = document.getElementById('general-event-delete-btn');
       
       if (event) {
-        // 编辑模式
+        // Edit mode
         document.getElementById('general-event-modal-title').textContent = 'Edit Event';
         document.getElementById('general-event-id').value = event.id;
         document.getElementById('event-title').value = event.title;
@@ -4323,10 +4327,10 @@
         document.getElementById('event-start').value = formatDateTimeForInput(new Date(event.start));
         document.getElementById('event-end').value = formatDateTimeForInput(new Date(event.end));
         
-        // 显示删除按钮
+        // Show delete button
         deleteBtn.style.display = 'inline-block';
       } else {
-        // 添加模式
+        // Add mode
         document.getElementById('general-event-modal-title').textContent = 'Add New Event';
         document.getElementById('general-event-id').value = '';
         document.getElementById('event-title').value = '';
@@ -4342,11 +4346,11 @@
           document.getElementById('event-end').value = formatDateTimeForInput(oneHourLater);
         }
         
-        // 隐藏删除按钮
+        // Hide delete button
         deleteBtn.style.display = 'none';
       }
       
-      // 设置事件类型
+      // Set event type
       document.getElementById('general-event-type').value = type;
       
       modal.style.display = 'flex';
@@ -4385,27 +4389,27 @@
       }
       
       if (id) {
-        // 更新现有事件
+        // Update existing event
         const index = events.findIndex(e => e.id === id);
         if (index !== -1) {
           events[index] = event;
         }
       } else {
-        // 添加新事件
+        // Add new event
         events.push(event);
       }
       
-      // 保存到本地存储
+      // Save to local storage
       if (type === 'calendar') {
         localStorage.setItem('calendarEvents', JSON.stringify(events));
       } else {
         localStorage.setItem('timetableEvents', JSON.stringify(events));
       }
       
-      // 关闭模态框
+      // Close modal
       document.getElementById('general-event-modal').style.display = 'none';
       
-      // 更新UI
+      // Update UI
       if (type === 'calendar') {
         calendar.removeAllEvents();
         calendar.addEventSource(events);
@@ -4421,7 +4425,7 @@
       
       if (!id) return;
       
-      // 确认删除
+      // Confirm deletion
       if (!confirm('Are you sure you want to delete this event?')) {
         return;
       }
@@ -4433,23 +4437,23 @@
         events = timetableEvents;
       }
       
-      // 从数组中删除
+      // Remove from array
       const index = events.findIndex(e => e.id === id);
       if (index !== -1) {
         events.splice(index, 1);
       }
       
-      // 保存到本地存储
+      // Save to local storage
       if (type === 'calendar') {
         localStorage.setItem('calendarEvents', JSON.stringify(events));
       } else {
         localStorage.setItem('timetableEvents', JSON.stringify(events));
       }
       
-      // 关闭模态框
+      // Close modal
       document.getElementById('general-event-modal').style.display = 'none';
       
-      // 更新UI
+      // Update UI
       if (type === 'calendar') {
         calendar.removeAllEvents();
         calendar.addEventSource(events);
