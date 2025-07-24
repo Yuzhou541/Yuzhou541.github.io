@@ -24,9 +24,12 @@ The repository contains two primary files and an assets directory for static res
 |----------------------|-----------------------------------------------------------------------------|
 | `index.html`         | Defines the portfolio’s layout, content, and static elements.                |
 | `epic-transition.js` | Implements an optional animation sequence with a narrative scroll and blog.  |
-| `assets/images/`     | Stores images used in the website (e.g., `avatar.jpg`, `background.jpg`).    |
-| `assets/audio/`      | Contains audio files for the animation sequence (e.g., `prologue.m4a`).      |
-| `assets/animation/`  | Holds animation assets (e.g., `fire-animation.gif`).                         |
+| `assets/images/`     | Houses images used in the website (e.g., `avatar.jpg`, `background.jpg`).    |
+| `assets/audio/`      | Includes audio files for the animation sequence (e.g., `prologue.m4a`).      |
+| `assets/animation/`  | Stores animation assets (e.g., `fire-animation.gif`).                         |
+| `assets/js/`  | Contains additional .js files (e.g., `epic-transition.js`).                         |
+| `assets/fonts/`  | Holds font files(e.g., `CygnetRound.ttf`).                         |
+| `assets/pdf/`  | Retains pdf files reserved for downloading in links(e.g., `Reference_Answer_of_''Probability_Theory_and_Mathematical_Statistics''_(by Baiqi Miu and Weiping Zhang)`).                         |
 
 ## Functional Overview
 
