@@ -2185,6 +2185,109 @@
   body.dark-mode .week-display {
     color: #bdc3c7;
   }
+  
+  /* My Timetable Styles */
+  .semester-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .semester-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .semester-dropdown-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .semester-dropdown-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .semester-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 5px;
+  }
+  
+  .semester-dropdown-content a {
+    color: #2c3e50;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+  }
+  
+  .semester-dropdown-content a:hover {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .semester-dropdown:hover .semester-dropdown-content {
+    display: block;
+  }
+  
+  .semester-dropdown:hover .semester-dropdown-btn {
+    background-color: #2980b9;
+  }
+  
+  body.dark-mode .semester-dropdown-content {
+    background-color: #2d2d2d;
+  }
+  
+  body.dark-mode .semester-dropdown-content a {
+    color: #cccccc;
+  }
+  
+  body.dark-mode .semester-dropdown-content a:hover {
+    background-color: #6a3093;
+    color: white;
+  }
+  
+  /* Semester timetable container */
+  .semester-timetable-container {
+    display: none;
+    margin-top: 20px;
+  }
+  
+  .semester-timetable-container.active {
+    display: block;
+  }
+  
+  .semester-title {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-family: "Georgia", serif;
+  }
+  
+  body.dark-mode .semester-title {
+    color: #ffffff;
+  }
 </style>
 </head>
 <body>
@@ -3016,6 +3119,8 @@
           <button class="schedule-switch-btn" data-view="timetable">Timetable</button>
           <!-- USTC Timetable button -->
           <button class="schedule-switch-btn" data-view="ustc-timetable">USTC Timetable</button>
+          <!-- My Timetable button -->
+          <button class="schedule-switch-btn" data-view="my-timetable">My Timetable</button>
         </div>
         
         <!-- Calendar Section -->
@@ -3246,6 +3351,644 @@
                 <!-- Classes will be added here -->
               </tbody>
             </table>
+          </div>
+        </div>
+        
+        <!-- My Timetable Section -->
+        <div class="schedule-section" id="my-timetable-section">
+          <div class="semester-selector">
+            <div class="semester-dropdown">
+              <button class="semester-dropdown-btn">
+                Select Semester <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="semester-dropdown-content">
+                <a href="#" data-semester="freshman-first">Freshman Year - First Semester</a>
+                <a href="#" data-semester="freshman-second">Freshman Year - Second Semester</a>
+                <a href="#" data-semester="sophomore-first">Sophomore Year - First Semester</a>
+                <a href="#" data-semester="sophomore-second">Sophomore Year - Second Semester</a>
+                <a href="#" data-semester="junior-first">Junior Year - First Semester</a>
+                <a href="#" data-semester="junior-second">Junior Year - Second Semester</a>
+                <a href="#" data-semester="senior-first">Senior Year - First Semester</a>
+                <a href="#" data-semester="senior-second">Senior Year - Second Semester</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Freshman Year - First Semester -->
+          <div class="semester-timetable-container active" id="freshman-first">
+            <h3 class="semester-title">Freshman Year - First Semester</h3>
+            <div class="timetable-container">
+              <table class="timetable" id="freshman-first-timetable">
+                <thead>
+                  <tr>
+                    <th>Period</th>
+                    <th>Period Number</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Morning Section -->
+                  <tr>
+                    <td rowspan="5" class="period-header">Morning</td>
+                    <td class="period-number">1</td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">8:35</div>
+                      <div class="course-container">
+                        <div class="course-name">English Reading & Writing I</div>
+                        <div class="instructor">Sijun</div>
+                        <div class="location">2409</div>
+                        <div class="weeks">1-18 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">2</td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">8:40</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">Mathematical Analysis (A1)</div>
+                        <div class="instructor">Ren Guangbin</div>
+                        <div class="location">5102</div>
+                        <div class="weeks">1-18 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  
+                  <!-- Afternoon Section -->
+                  <tr>
+                    <td rowspan="5" class="period-header">Afternoon</td>
+                    <td class="period-number">6</td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">14:00</div>
+                      <div class="time-info end-info">14:45</div>
+                      <div class="course-container">
+                        <div class="course-name">Basic Physical Education</div>
+                        <div class="instructor">Tang Li</div>
+                        <div class="location">East Campus Playground</div>
+                        <div class="weeks">1-18 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">7</td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">14:50</div>
+                      <div class="time-info end-info">15:35</div>
+                      <div class="course-container">
+                        <div class="course-name">Basic Physical Education</div>
+                        <div class="instructor">Tang Li</div>
+                        <div class="location">East Campus Playground</div>
+                        <div class="weeks">1-18 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">8</td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">15:55</div>
+                      <div class="time-info end-info">16:40</div>
+                      <div class="course-container">
+                        <div class="course-name">Ethics and Rule of Law</div>
+                        <div class="instructor">Liu Hailong, Han Xiao</div>
+                        <div class="location">1302</div>
+                        <div class="weeks">1-18 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">9</td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">16:45</div>
+                      <div class="time-info end-info">17:30</div>
+                      <div class="course-container">
+                        <div class="course-name">Ethics and Rule of Law</div>
+                        <div class="instructor">Liu Hailong, Han Xiao</div>
+                        <div class="location">1302</div>
+                        <div class="weeks">1-18 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">10</td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">17:35</div>
+                      <div class="time-info end-info">18:20</div>
+                      <div class="course-container">
+                        <div class="course-name">Ethics and Rule of Law</div>
+                        <div class="instructor">Liu Hailong, Han Xiao</div>
+                        <div class="location">1302</div>
+                        <div class="weeks">1-18 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  
+                  <!-- Evening Section -->
+                  <tr>
+                    <td rowspan="3" class="period-header">Evening</td>
+                    <td class="period-number">11</td>
+                    <td></td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">19:30</div>
+                      <div class="time-info end-info">20:15</div>
+                      <div class="course-container">
+                        <div class="course-name">Fundamentals of Algebra</div>
+                        <div class="instructor">Ma Liming</div>
+                        <div class="location">5202</div>
+                        <div class="weeks">1-17 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">12</td>
+                    <td></td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">20:20</div>
+                      <div class="time-info end-info">21:05</div>
+                      <div class="course-container">
+                        <div class="course-name">Fundamentals of Algebra</div>
+                        <div class="instructor">Ma Liming</div>
+                        <div class="location">5202</div>
+                        <div class="weeks">1-17 weeks</div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">13</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Empty timetables for other semesters -->
+          <div class="semester-timetable-container" id="freshman-second">
+            <h3 class="semester-title">Freshman Year - Second Semester</h3>
+            <div class="timetable-container">
+              <table class="timetable" id="freshman-second-timetable">
+                <thead>
+                  <tr>
+                    <th>Period</th>
+                    <th>Period Number</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Morning Section -->
+                  <tr>
+                    <td rowspan="5" class="period-header">Morning</td>
+                    <td class="period-number">1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  
+                  <!-- Afternoon Section -->
+                  <tr>
+                    <td rowspan="5" class="period-header">Afternoon</td>
+                    <td class="period-number">6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">8</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">9</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">10</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  
+                  <!-- Evening Section -->
+                  <tr>
+                    <td rowspan="3" class="period-header">Evening</td>
+                    <td class="period-number">11</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">12</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">13</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="semester-timetable-container" id="sophomore-first">
+            <h3 class="semester-title">Sophomore Year - First Semester</h3>
+            <div class="timetable-container">
+              <table class="timetable" id="sophomore-first-timetable">
+                <!-- Empty timetable structure same as freshman-second -->
+                <thead>
+                  <tr>
+                    <th>Period</th>
+                    <th>Period Number</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Morning Section -->
+                  <tr>
+                    <td rowspan="5" class="period-header">Morning</td>
+                    <td class="period-number">1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  
+                  <!-- Afternoon Section -->
+                  <tr>
+                    <td rowspan="5" class="period-header">Afternoon</td>
+                    <td class="period-number">6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">8</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">9</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">10</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  
+                  <!-- Evening Section -->
+                  <tr>
+                    <td rowspan="3" class="period-header">Evening</td>
+                    <td class="period-number">11</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">12</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="period-number">13</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="semester-timetable-container" id="sophomore-second">
+            <h3 class="semester-title">Sophomore Year - Second Semester</h3>
+            <div class="timetable-container">
+              <table class="timetable" id="sophomore-second-timetable">
+                <!-- Empty timetable structure same as freshman-second -->
+                <!-- Content omitted for brevity, same structure as freshman-second -->
+              </table>
+            </div>
+          </div>
+          
+          <div class="semester-timetable-container" id="junior-first">
+            <h3 class="semester-title">Junior Year - First Semester</h3>
+            <div class="timetable-container">
+              <table class="timetable" id="junior-first-timetable">
+                <!-- Empty timetable structure same as freshman-second -->
+                <!-- Content omitted for brevity, same structure as freshman-second -->
+              </table>
+            </div>
+          </div>
+          
+          <div class="semester-timetable-container" id="junior-second">
+            <h3 class="semester-title">Junior Year - Second Semester</h3>
+            <div class="timetable-container">
+              <table class="timetable" id="junior-second-timetable">
+                <!-- Empty timetable structure same as freshman-second -->
+                <!-- Content omitted for brevity, same structure as freshman-second -->
+              </table>
+            </div>
+          </div>
+          
+          <div class="semester-timetable-container" id="senior-first">
+            <h3 class="semester-title">Senior Year - First Semester</h3>
+            <div class="timetable-container">
+              <table class="timetable" id="senior-first-timetable">
+                <!-- Empty timetable structure same as freshman-second -->
+                <!-- Content omitted for brevity, same structure as freshman-second -->
+              </table>
+            </div>
+          </div>
+          
+          <div class="semester-timetable-container" id="senior-second">
+            <h3 class="semester-title">Senior Year - Second Semester</h3>
+            <div class="timetable-container">
+              <table class="timetable" id="senior-second-timetable">
+                <!-- Empty timetable structure same as freshman-second -->
+                <!-- Content omitted for brevity, same structure as freshman-second -->
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -3487,6 +4230,9 @@
       
       // Initialize weeks selection
       initWeeksSelection();
+      
+      // Initialize semester selection
+      initSemesterSelection();
     });
 
     // Page elements
@@ -3817,6 +4563,7 @@
       const calendarSection = document.getElementById('calendar-section');
       const timetableSection = document.getElementById('timetable-section');
       const ustcTimetableSection = document.getElementById('ustc-timetable-section');
+      const myTimetableSection = document.getElementById('my-timetable-section');
       
       viewSwitchers.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -3827,6 +4574,7 @@
           calendarSection.classList.remove('active');
           timetableSection.classList.remove('active');
           ustcTimetableSection.classList.remove('active');
+          myTimetableSection.classList.remove('active');
           
           if (view === 'calendar') {
             calendarSection.classList.add('active');
@@ -3836,6 +4584,8 @@
           } else if (view === 'ustc-timetable') {
             ustcTimetableSection.classList.add('active');
             renderUstcTimetable();
+          } else if (view === 'my-timetable') {
+            myTimetableSection.classList.add('active');
           }
         });
       });
@@ -3925,6 +4675,30 @@
       document.getElementById('next-week-btn').addEventListener('click', () => {
         currentWeek.setDate(currentWeek.getDate() + 7);
         updateTimetable();
+      });
+    }
+    
+    // Semester selection functionality
+    function initSemesterSelection() {
+      const semesterLinks = document.querySelectorAll('.semester-dropdown-content a');
+      
+      semesterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const semester = link.dataset.semester;
+          
+          // Update dropdown button text
+          const dropdownBtn = document.querySelector('.semester-dropdown-btn');
+          dropdownBtn.innerHTML = `${link.textContent} <i class="fas fa-caret-down"></i>`;
+          
+          // Hide all semester timetables
+          document.querySelectorAll('.semester-timetable-container').forEach(container => {
+            container.classList.remove('active');
+          });
+          
+          // Show selected semester timetable
+          document.getElementById(semester).classList.add('active');
+        });
       });
     }
     
