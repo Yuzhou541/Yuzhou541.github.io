@@ -2142,6 +2142,49 @@
     padding: 2px 0;
     overflow: hidden;
   }
+
+  /* Weeks selection styling */
+  .weeks-container {
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .weeks-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #2c3e50;
+  }
+  
+  body.dark-mode .weeks-title {
+    color: #ffffff;
+  }
+  
+  .weeks-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  
+  .week-checkbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .week-checkbox label {
+    margin-left: 5px;
+    font-size: 0.9em;
+  }
+  
+  .week-display {
+    font-size: 0.85em;
+    color: #7f8c8d;
+    margin-top: 5px;
+    min-height: 20px;
+  }
+  
+  body.dark-mode .week-display {
+    color: #bdc3c7;
+  }
 </style>
 </head>
 <body>
@@ -3193,6 +3236,8 @@
                   <th>Period Range</th>
                   <th>Course Name</th>
                   <th>Instructor</th>
+                  <th>Location</th>
+                  <th>Weeks</th>
                   <th>Days</th>
                   <th>Actions</th>
                 </tr>
@@ -3269,6 +3314,11 @@
           </div>
           
           <div class="event-form-group">
+            <label for="ustc-location">Location</label>
+            <input type="text" id="ustc-location" class="event-form-control" required>
+          </div>
+          
+          <div class="event-form-group">
             <label>Days</label>
             <div class="days-container">
               <label><input type="checkbox" name="ustc-day" value="1"> Mon</label>
@@ -3279,6 +3329,14 @@
               <label><input type="checkbox" name="ustc-day" value="6"> Sat</label>
               <label><input type="checkbox" name="ustc-day" value="0"> Sun</label>
             </div>
+          </div>
+          
+          <div class="event-form-group weeks-container">
+            <div class="weeks-title">Teaching Weeks (1-18)</div>
+            <div class="weeks-grid" id="weeks-grid">
+              <!-- Weeks checkboxes will be generated here -->
+            </div>
+            <div class="week-display" id="week-display"></div>
           </div>
           
           <div class="event-form-actions">
@@ -3426,6 +3484,9 @@
       
       // Initialize clock toggle
       initClockToggle();
+      
+      // Initialize weeks selection
+      initWeeksSelection();
     });
 
     // Page elements
@@ -4010,6 +4071,90 @@
       });
     }
     
+    // Initialize weeks selection
+    function initWeeksSelection() {
+      const weeksGrid = document.getElementById('weeks-grid');
+      weeksGrid.innerHTML = '';
+      
+      for (let week = 1; week <= 18; week++) {
+        const checkboxContainer = document.createElement('div');
+        checkboxContainer.className = 'week-checkbox';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `week-${week}`;
+        checkbox.name = 'ustc-week';
+        checkbox.value = week;
+        
+        const label = document.createElement('label');
+        label.htmlFor = `week-${week}`;
+        label.textContent = week;
+        
+        checkbox.addEventListener('change', updateWeekDisplay);
+        
+        checkboxContainer.appendChild(checkbox);
+        checkboxContainer.appendChild(label);
+        weeksGrid.appendChild(checkboxContainer);
+      }
+    }
+    
+    // Update week display based on selected weeks
+    function updateWeekDisplay() {
+      const weekDisplay = document.getElementById('week-display');
+      const selectedWeeks = Array.from(document.querySelectorAll('input[name="ustc-week"]:checked'))
+        .map(checkbox => parseInt(checkbox.value))
+        .sort((a, b) => a - b);
+      
+      if (selectedWeeks.length === 0) {
+        weekDisplay.textContent = 'No weeks selected';
+        return;
+      }
+      
+      // Format weeks to ranges
+      const ranges = [];
+      let start = selectedWeeks[0];
+      let end = start;
+      
+      for (let i = 1; i < selectedWeeks.length; i++) {
+        if (selectedWeeks[i] === end + 1) {
+          end = selectedWeeks[i];
+        } else {
+          ranges.push(start === end ? start : `${start}-${end}`);
+          start = selectedWeeks[i];
+          end = start;
+        }
+      }
+      ranges.push(start === end ? start : `${start}-${end}`);
+      
+      weekDisplay.textContent = ranges.join(', ') + ' week(s)';
+    }
+    
+    // Format weeks for display
+    function formatWeeks(weeks) {
+      if (!weeks || weeks.length === 0) return '';
+      
+      // Sort weeks numerically
+      const sortedWeeks = [...weeks].sort((a, b) => a - b);
+      
+      // Create ranges
+      const ranges = [];
+      let start = sortedWeeks[0];
+      let end = start;
+      
+      for (let i = 1; i < sortedWeeks.length; i++) {
+        if (sortedWeeks[i] === end + 1) {
+          end = sortedWeeks[i];
+        } else {
+          ranges.push(start === end ? start : `${start}-${end}`);
+          start = sortedWeeks[i];
+          end = start;
+        }
+      }
+      ranges.push(start === end ? start : `${start}-${end}`);
+      
+      return ranges.join(', ');
+    }
+    
     // USTC Timetable functionality
     function renderUstcTimetable() {
       // Restore initial table structure
@@ -4048,6 +4193,8 @@
                 id: cls.id,
                 courseName: cls.courseName,
                 instructor: cls.instructor,
+                location: cls.location,
+                weeks: cls.weeks,
                 periodStart: cls.periodStart,
                 periodEnd: cls.periodEnd
               });
@@ -4124,6 +4271,7 @@
             courseDiv.innerHTML = `
               <div class="course-name">${course.courseName}</div>
               <div class="instructor">${course.instructor}</div>
+              <div class="location">${course.location}</div>
             `;
             container.appendChild(courseDiv);
           });
@@ -4155,6 +4303,8 @@
           <td>${cls.periodStart} - ${cls.periodEnd}</td>
           <td>${cls.courseName}</td>
           <td>${cls.instructor}</td>
+          <td>${cls.location}</td>
+          <td>${formatWeeks(cls.weeks)}</td>
           <td>${getDaysString(cls.days)}</td>
           <td>
             <button class="edit-ustc-class" data-id="${cls.id}">Edit</button>
@@ -4201,8 +4351,9 @@
         document.getElementById('ustc-period-end').value = cls.periodEnd;
         document.getElementById('ustc-course-name').value = cls.courseName;
         document.getElementById('ustc-instructor').value = cls.instructor;
+        document.getElementById('ustc-location').value = cls.location;
         
-        // Clear all checkboxes
+        // Clear all day checkboxes
         document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
           checkbox.checked = false;
         });
@@ -4215,6 +4366,24 @@
           }
         });
         
+        // Clear all week checkboxes
+        document.querySelectorAll('input[name="ustc-week"]').forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        
+        // Set selected weeks
+        if (cls.weeks && cls.weeks.length > 0) {
+          cls.weeks.forEach(week => {
+            const checkbox = document.querySelector(`input[name="ustc-week"][value="${week}"]`);
+            if (checkbox) {
+              checkbox.checked = true;
+            }
+          });
+        }
+        
+        // Update week display
+        updateWeekDisplay();
+        
         // Show delete button
         deleteBtn.style.display = 'inline-block';
       } else {
@@ -4225,11 +4394,20 @@
         document.getElementById('ustc-period-end').value = '1';
         document.getElementById('ustc-course-name').value = '';
         document.getElementById('ustc-instructor').value = '';
+        document.getElementById('ustc-location').value = '';
         
-        // Clear all checkboxes
+        // Clear all day checkboxes
         document.querySelectorAll('input[name="ustc-day"]').forEach(checkbox => {
           checkbox.checked = false;
         });
+        
+        // Clear all week checkboxes
+        document.querySelectorAll('input[name="ustc-week"]').forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        
+        // Update week display
+        updateWeekDisplay();
         
         // Hide delete button
         deleteBtn.style.display = 'none';
@@ -4244,6 +4422,7 @@
       const periodEnd = document.getElementById('ustc-period-end').value;
       const courseName = document.getElementById('ustc-course-name').value;
       const instructor = document.getElementById('ustc-instructor').value;
+      const location = document.getElementById('ustc-location').value;
       
       // Get selected days
       const days = [];
@@ -4251,7 +4430,13 @@
         days.push(parseInt(checkbox.value));
       });
       
-      if (!courseName || !instructor || days.length === 0) {
+      // Get selected weeks
+      const weeks = [];
+      document.querySelectorAll('input[name="ustc-week"]:checked').forEach(checkbox => {
+        weeks.push(parseInt(checkbox.value));
+      });
+      
+      if (!courseName || !instructor || !location || days.length === 0 || weeks.length === 0) {
         alert('Please fill in all required fields');
         return;
       }
@@ -4271,7 +4456,9 @@
             periodEnd,
             courseName,
             instructor,
-            days
+            location,
+            days,
+            weeks
           };
         }
       } else {
@@ -4282,7 +4469,9 @@
           periodEnd,
           courseName,
           instructor,
-          days
+          location,
+          days,
+          weeks
         };
         ustcClasses.push(newClass);
       }
