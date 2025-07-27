@@ -194,6 +194,8 @@ To tailor the portfolio to your needs, you can modify the content within each se
    - **Modify Modal Forms**:
      - Update options in `<select>` elements for `Period Start` and `Period End` to match your schedule structure.
      - Add or remove days in the `<div class="days-checkboxes">` block.
+   - **Modify Personal Courses**:
+     - Fill in, modify and integrate the course information according to the existing information in the code.
 
 #### Adding New Resources
 - **Assets**: Place images, PDFs, or other files in the `assets/` directory and reference them in `index.html` (e.g., `<img src="./assets/images/your-image.jpg">`).
@@ -300,6 +302,10 @@ graph TD
     A --> C[Social Section]
     A --> D[Toolkit Section]
     A --> E[Schedule Section]
+    E --> O[Calendar]
+    E --> P[Timetable]
+    E --> Q[USTC Timetable]
+    E --> R[My Timetable]
     A -->|Optional| F[epic-transition.js]
     F --> G[Avatar Click]
     G --> H[Vortex Animation]
