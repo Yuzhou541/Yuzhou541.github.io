@@ -147,7 +147,11 @@ To tailor the portfolio to your needs, you can modify the content within each se
   - **External CSS**: Move styles to a separate `.css` file and link it via `<link rel="stylesheet" href="styles.css">`.
 
 #### Section-Specific Modifications
-1. **About Section**:
+1. **Cover Images**:
+   - **Update and Change Cover Images**:
+     - Change the cover images from the ./assets/images to your own and change the number, names and suffixes in the last `<script>` before `</body>`.
+
+2. **About Section**:
    - **Update Personal Information**:
      - Edit the `<div class="col-md-4">` containing name, address, email, and phone number.
      - Example: Change `Jinghao Chen` to your name by modifying the `<h2>` text.
@@ -166,7 +170,7 @@ To tailor the portfolio to your needs, you can modify the content within each se
    - **Update Download Links**:
      - Replace `href` attributes in `<a>` tags with paths to your files.
 
-2. **Social Section**:
+3. **Social Section**:
    - **Add Social Media Profile**:
      - Duplicate a `<div class="col-md-4">` block under `<div class="row social-links">`.
      - Update the platform name, description, and links (e.g., `href="your-profile-url"`).
@@ -175,7 +179,7 @@ To tailor the portfolio to your needs, you can modify the content within each se
    - **Update Links**:
      - Modify `href` attributes to point to your profiles or handles.
 
-3. **Toolkit Section**:
+4. **Toolkit Section**:
    - **Add Tool Category**:
      - Duplicate a `<div class="toolkit-category">` block.
      - Update the `<h3>` title and add new `<div class="col-md-4">` blocks for tools.
@@ -185,7 +189,7 @@ To tailor the portfolio to your needs, you can modify the content within each se
    - **Remove Tool/Category**:
      - Delete the specific `<div class="col-md-4">` or `<div class="toolkit-category">` block.
 
-4. **Schedule Section**:
+5. **Schedule Section**:
    - **Update Calendar**:
      - Modify the `<div class="week-display">` text to reflect the desired week.
    - **Add Class/Event**:
