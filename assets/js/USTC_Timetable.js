@@ -634,9 +634,12 @@ function initTimetable() {
 }
     
 function updateTimetable() {
-  // Update week title
+  // Fix: Correct week calculation by using ISO week
   const weekStart = new Date(currentWeek);
-  const weekEnd = new Date(currentWeek);
+  // Adjust to Monday of the current week
+  weekStart.setDate(currentWeek.getDate() - (currentWeek.getDay() + 6) % 7);
+  
+  const weekEnd = new Date(weekStart);
   weekEnd.setDate(weekEnd.getDate() + 6);
       
   const options = { weekday: 'short', month: 'short', day: 'numeric' };
@@ -651,7 +654,7 @@ function updateTimetable() {
   });
       
   // Filter events for current week
-  const weekStartTime = currentWeek.getTime();
+  const weekStartTime = weekStart.getTime();
   const weekEndTime = weekEnd.getTime() + 24 * 60 * 60 * 1000;
       
   const weekEvents = timetableEvents.filter(event => {
@@ -691,6 +694,8 @@ function handleTimetableCellClick(cell) {
       
   // Calculate date for this cell
   const eventDate = new Date(currentWeek);
+  // Adjust to Monday of the current week
+  eventDate.setDate(currentWeek.getDate() - (currentWeek.getDay() + 6) % 7);
   eventDate.setDate(eventDate.getDate() + day);
   eventDate.setHours(hour, 0, 0, 0);
       
