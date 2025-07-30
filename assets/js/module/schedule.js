@@ -512,6 +512,7 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
@@ -579,6 +580,7 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
@@ -620,9 +622,15 @@ document.write(`
                     <td class="period-number">12</td>
                     <td></td>
                     <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -811,6 +819,7 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
@@ -873,6 +882,8 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -941,6 +952,8 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                   </tr>
                   <tr>
@@ -1046,6 +1059,7 @@ document.write(`
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                   </tr>
                 </tbody>
               </table>
@@ -1121,6 +1135,9 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
@@ -1196,6 +1213,7 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
@@ -1209,7 +1227,6 @@ document.write(`
                         <div class="weeks">14 week(s)</div>
                       </div>
                     </td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -1258,6 +1275,8 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                   </tr>
@@ -1318,11 +1337,11 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -1362,9 +1381,17 @@ document.write(`
                   <tr>
                     <td class="period-number">12</td>
                     <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                   </tr>
                 </tbody>
@@ -1441,6 +1468,9 @@ document.write(`
                   <tr>
                     <td class="period-number">2</td>
                     <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
@@ -1498,11 +1528,12 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -1550,6 +1581,7 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -1627,6 +1659,8 @@ document.write(`
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
