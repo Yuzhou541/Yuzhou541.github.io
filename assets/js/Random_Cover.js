@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'cover_10.jpg',
     'cover_11.jpg',
     'cover_12.jpg',
-    'cover_13.png',
+    'cover_13.jpg',
     'cover_14.jpg',
     'cover_15.jpg',
     'cover_16.png',
