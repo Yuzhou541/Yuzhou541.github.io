@@ -1,5 +1,5 @@
 document.write(`
-<div id="resume">
+  <div id="resume">
     <button id="toggle-btn">
       <span><i class="fas fa-sun"></i></span>
     </button>
