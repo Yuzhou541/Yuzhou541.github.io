@@ -1,0 +1,1002 @@
+/* Schedule Page Styles */
+#schedule {
+  position: relative;
+  z-index: 1;
+  display: none;
+  padding: 40px 20px;
+  background: linear-gradient(
+      rgba(241, 243, 245, 0.9),
+      rgba(241, 243, 245, 0.9)
+    ),
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  min-height: 100vh;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+  
+#schedule.visible {
+  display: block;
+  opacity: 1;
+}
+
+.schedule-heading {
+  font-size: 2.8em;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 2px;
+}
+
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%; /* Ensure full width */
+}
+
+.schedule-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.schedule-switch-btn {
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.schedule-switch-btn:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.schedule-switch-btn.active {
+  background: #6a3093;
+  box-shadow: 0 4px 10px rgba(106, 48, 147, 0.3);
+}
+
+.schedule-section {
+  display: none;
+}
+
+.schedule-section.active {
+  display: block;
+}
+
+/* Calendar Styles */
+#calendar-container {
+  height: 70vh;
+  margin-bottom: 20px;
+}
+
+.fc {
+  font-family: "Georgia", serif;
+}
+
+.fc-toolbar-title {
+  font-family: "Georgia", serif;
+  font-size: 1.5em;
+  color: #2c3e50;
+}
+
+.fc-button {
+  background-color: #3498db !important;
+  border-color: #3498db !important;
+  color: white !important;
+  transition: all 0.3s ease;
+}
+
+.fc-button:hover {
+  background-color: #2980b9 !important;
+  border-color: #2980b9 !important;
+}
+
+.fc-daygrid-day-number {
+  color: #2c3e50;
+}
+
+.fc-daygrid-day.fc-day-today {
+  background-color: rgba(52, 152, 219, 0.1) !important;
+}
+
+.fc-event {
+  background-color: #3498db !important;
+  border-color: #3498db !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fc-event:hover {
+  background-color: #2980b9 !important;
+  border-color: #2980b9 !important;
+}
+
+/* Timetable Styles */
+.timetable-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.timetable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.timetable th, .timetable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.timetable th {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+}
+
+.timetable td {
+  background-color: white;
+  height: 60px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.timetable td.time-cell {
+  background-color: #f1f3f5;
+  font-weight: bold;
+}
+
+.timetable td.empty-cell {
+  background-color: #f9f9f9;
+}
+
+.timetable td.has-event {
+  background-color: rgba(52, 152, 219, 0.1);
+  cursor: pointer;
+}
+
+.timetable td.has-event:hover {
+  background-color: rgba(52, 152, 219, 0.2);
+}
+
+.timetable-event {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 0.9em;
+  padding: 2px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.timetable-event:hover {
+  background-color: #2980b9;
+  transform: scale(1.02);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Event Modal Styles */
+.event-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.event-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #7f8c8d;
+  transition: color 0.3s ease;
+}
+
+.event-modal-close:hover {
+  color: #e74c3c;
+}
+
+.event-modal-title {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.event-form-group {
+  margin-bottom: 20px;
+}
+
+.event-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.event-form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: "Georgia", serif;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+.event-form-control:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.event-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.event-form-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Georgia", serif;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.event-form-btn-save {
+  background-color: #3498db;
+  color: white;
+}
+
+.event-form-btn-save:hover {
+  background-color: #2980b9;
+}
+
+.event-form-btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.event-form-btn-delete:hover {
+  background-color: #c0392b;
+}
+
+.event-form-btn-cancel {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.event-form-btn-cancel:hover {
+  background-color: #7f8c8d;
+}
+
+/* Add Event Button */
+.add-event-btn {
+  display: block;
+  padding: 12px 25px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-family: "Georgia", serif;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+  position: relative;
+  z-index: 100;
+  margin: 20px auto 40px;
+}
+
+.add-event-btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* Week Navigation */
+.week-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.week-title {
+  font-size: 1.5em;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.week-nav-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.week-nav-btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* USTC Timetable styles */
+#ustc-timetable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: "Georgia", serif;
+}
+  
+#ustc-timetable th, #ustc-timetable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  position: relative;
+}
+  
+#ustc-timetable th {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+}
+  
+#ustc-timetable td {
+  background-color: white;
+  height: 50px;
+  vertical-align: middle;
+}
+  
+#ustc-timetable .period-header {
+  background-color: #f1f3f5;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  width: 80px;
+}
+  
+#ustc-timetable td.has-class {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+  
+/* Event overlay styling */
+.ustc-event-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  background: rgba(52, 152, 219, 0.15);
+  border-radius: 4px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+  
+.ustc-event-overlay:hover {
+  background: rgba(52, 152, 219, 0.25);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+}
+  
+.course-name {
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-bottom: 2px;
+  color: #2c3e50;
+}
+  
+.instructor {
+  font-size: 0.8em;
+  font-style: italic;
+  color: #34495e;
+}
+  
+/* USTC Classes Table */
+.ustc-classes-container {
+  margin-top: 30px;
+}
+  
+.ustc-classes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+  
+.ustc-classes-table th, .ustc-classes-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+  
+.ustc-classes-table th {
+  background-color: #3498db;
+  color: white;
+}
+  
+.days-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+  
+.days-container label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+  
+/* Schedule page container optimization */
+#schedule .container {
+  max-width: 95%; /* Wider container */
+  width: 100%;
+  padding: 30px 15px;
+}
+  
+/* USTC timetable styling optimization */
+.ustc-class-cell {
+  position: relative;
+  height: 100%;
+}
+  
+.ustc-class-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+}
+  
+/* Time information styling */
+.time-info {
+  position: absolute;
+  font-size: 0.7em;
+  padding: 2px;
+  z-index: 0;
+  background: transparent;
+}
+  
+.start-info {
+  top: 2px;
+  left: 2px;
+}
+  
+.end-info {
+  bottom: 2px;
+  right: 2px;
+}
+  
+/* Advanced event cell styling */
+.event-cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+  
+.event-cell:hover {
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.1);
+  transform: scale(1.01);
+}
+  
+.event-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
+  transition: all 0.3s ease;
+}
+  
+.event-cell:hover::before {
+  height: 5px;
+}
+  
+/* Fix cell merging issues in USTC Timetable */
+.ustc-timetable-cell {
+  position: relative;
+  height: 50px;
+}
+  
+.ustc-course-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  z-index: 5;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 4px;
+}
+  
+.ustc-course-info:hover {
+  background: rgba(52, 152, 219, 0.2);
+}
+  
+/* Merged cell styling */
+.merged-cell {
+  border: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  height: 0 !important;
+}
+  
+.course-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+  
+/* Period number styling */
+.period-number {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  border-right: 1px solid #ddd;
+}
+  
+/* Overlapping course container styling */
+.overlap-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+  
+.overlap-course {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 0;
+  overflow: hidden;
+}
+
+/* Weeks selection styling */
+.weeks-container {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+  
+.weeks-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+  
+.weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+  
+.week-checkbox {
+  display: flex;
+  align-items: center;
+}
+  
+.week-checkbox label {
+  margin-left: 5px;
+  font-size: 0.9em;
+}
+  
+.week-display {
+  font-size: 0.85em;
+  color: #7f8c8d;
+  margin-top: 5px;
+  min-height: 20px;
+}
+  
+/* My Timetable Styles */
+.semester-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+  
+.semester-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+}
+  
+.semester-dropdown-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+}
+  
+.semester-dropdown-btn:hover {
+  background-color: #2980b9;
+}
+  
+.semester-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+  
+.semester-dropdown-content a {
+  color: #2c3e50;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s;
+}
+  
+.semester-dropdown-content a:hover {
+  background-color: #3498db;
+  color: white;
+}
+  
+.semester-dropdown:hover .semester-dropdown-content {
+  display: block;
+}
+  
+.semester-dropdown:hover .semester-dropdown-btn {
+  background-color: #2980b9;
+}
+  
+/* Semester timetable container */
+.semester-timetable-container {
+  display: none;
+  margin-top: 20px;
+}
+  
+.semester-timetable-container.active {
+  display: block;
+}
+  
+.semester-title {
+  text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-family: "Georgia", serif;
+}
+
+/* Dark mode schedule page */
+body.dark-mode #schedule {
+  background: #121212;
+}
+
+body.dark-mode .schedule-heading {
+  color: #ffffff;
+}
+
+body.dark-mode .schedule-switch-btn {
+  background: #6a3093;
+}
+
+body.dark-mode .schedule-switch-btn:hover {
+  background: #4a148c;
+}
+
+body.dark-mode .schedule-switch-btn.active {
+  background: #3498db;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+body.dark-mode .fc-toolbar-title {
+  color: #ffffff;
+}
+
+body.dark-mode .fc-button {
+  background-color: #6a3093 !important;
+  border-color: #6a3093 !important;
+}
+
+body.dark-mode .fc-button:hover {
+  background-color: #4a148c !important;
+  border-color: #4a148c !important;
+}
+
+body.dark-mode .fc-daygrid-day-number {
+  color: #ffffff;
+}
+
+body.dark-mode .fc-daygrid-day.fc-day-today {
+  background-color: rgba(106, 48, 147, 0.1) !important;
+}
+
+body.dark-mode .fc-event {
+  background-color: #6a3093 !important;
+  border-color: #6a3093 !important;
+}
+
+body.dark-mode .fc-event:hover {
+  background-color: #4a148c !important;
+  border-color: #4a148c !important;
+}
+
+body.dark-mode .timetable th {
+  background-color: #6a3093;
+}
+
+body.dark-mode .timetable td {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #ffffff;
+}
+
+body.dark-mode .timetable td.time-cell {
+  background-color: #3d3d3d;
+}
+
+body.dark-mode .timetable td.empty-cell {
+  background-color: #333;
+}
+
+body.dark-mode .timetable td.has-event {
+  background-color: rgba(106, 48, 147, 0.1);
+}
+
+body.dark-mode .timetable td.has-event:hover {
+  background-color: rgba(106, 48, 147, 0.2);
+}
+
+body.dark-mode .timetable-event {
+  background-color: #6a3093;
+}
+
+body.dark-mode .timetable-event:hover {
+  background-color: #4a148c;
+}
+
+body.dark-mode .event-modal-content {
+  background-color: #2d2d2d;
+}
+
+body.dark-mode .event-form-group label {
+  color: #cccccc;
+}
+
+body.dark-mode .event-form-control {
+  background-color: #3d3d3d;
+  border-color: #555;
+  color: #ffffff;
+}
+
+body.dark-mode .event-form-control:focus {
+  border-color: #6a3093;
+  box-shadow: 0 0 0 2px rgba(106, 48, 147, 0.2);
+}
+
+body.dark-mode .event-form-btn-save {
+  background-color: #6a3093;
+}
+
+body.dark-mode .event-form-btn-save:hover {
+  background-color: #4a148c;
+}
+
+body.dark-mode .add-event-btn {
+  background-color: #6a3093;
+  box-shadow: 0 4px 10px rgba(106, 48, 147, 0.3);
+}
+
+body.dark-mode .add-event-btn:hover {
+  background-color: #4a148c;
+  box-shadow: 0 6px 15px rgba(106, 48, 147, 0.4);
+}
+
+body.dark-mode .week-title {
+  color: #ffffff;
+}
+
+body.dark-mode .week-nav-btn {
+  background-color: #6a3093;
+}
+
+body.dark-mode .week-nav-btn:hover {
+  background-color: #4a148c;
+}
+
+/* Dark mode USTC Timetable */
+body.dark-mode #ustc-timetable th {
+  background-color: #6a3093;
+  border-color: #444;
+}
+  
+body.dark-mode #ustc-timetable td {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #ffffff;
+}
+  
+body.dark-mode #ustc-timetable .period-header {
+  background-color: #3d3d3d;
+  color: #ffffff;
+}
+  
+body.dark-mode #ustc-timetable td.has-class {
+  background-color: rgba(106, 48, 147, 0.1);
+}
+  
+body.dark-mode .course-name {
+  color: #ffffff;
+}
+  
+body.dark-mode .instructor {
+  color: #cccccc;
+}
+  
+body.dark-mode .ustc-event-overlay {
+  background: rgba(106, 48, 147, 0.15);
+}
+  
+body.dark-mode .ustc-event-overlay:hover {
+  background: rgba(106, 48, 147, 0.25);
+}
+  
+body.dark-mode .ustc-classes-table th {
+  background-color: #6a3093;
+}
+  
+body.dark-mode .ustc-classes-table td {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #cccccc;
+}
+
+body.dark-mode .time-info {
+  color: #ccc;
+}
+
+body.dark-mode .event-cell::before {
+  background: linear-gradient(90deg, #6a3093, #9b59b6);
+}
+
+body.dark-mode .ustc-course-info {
+  background: rgba(106, 48, 147, 0.1);
+}
+  
+body.dark-mode .ustc-course-info:hover {
+  background: rgba(106, 48, 147, 0.2);
+}
+
+body.dark-mode .period-number {
+  background-color: #3d3d3d;
+  border-color: #555;
+}
+
+body.dark-mode .weeks-title {
+  color: #ffffff;
+}
+
+body.dark-mode .week-display {
+  color: #bdc3c7;
+}
+
+body.dark-mode .semester-dropdown-content {
+  background-color: #2d2d2d;
+}
+  
+body.dark-mode .semester-dropdown-content a {
+  color: #cccccc;
+}
+  
+body.dark-mode .semester-dropdown-content a:hover {
+  background-color: #6a3093;
+  color: white;
+}
+
+body.dark-mode .semester-title {
+  color: #ffffff;
+}
+
+/* Clock initial state */
+.clock-toggle {
+  display: none; /* Hidden by default */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .schedule-switcher {
+    flex-direction: column;
+    align-items: center;
+  }
+    
+  .timetable {
+    font-size: 0.9em;
+  }
+    
+  .timetable th, .timetable td {
+    padding: 8px;
+  }
+    
+  .event-modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,294 @@
+/* Toolkit page specific styles */
+#toolkit {
+  position: relative;
+  z-index: 1;
+  display: none;
+  padding: 40px 20px;
+  background: linear-gradient(
+      rgba(241, 243, 245, 0.9),
+      rgba(241, 243, 245, 0.9)
+    ),
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  min-height: 100vh;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+  
+#toolkit.visible {
+  display: block;
+  opacity: 1;
+}
+
+.toolkit-heading {
+  font-size: 2.8em;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 2px;
+}
+
+/* Category filter styling */
+.toolkit-filter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  background: #f1f3f5;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+}
+
+.filter-btn:hover {
+  background: #e1e3e5;
+}
+
+.filter-btn.active {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+/* Search box styling */
+.toolkit-search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  padding-left: 45px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+}
+
+/* Category grid layout */
+.category-section {
+  margin-bottom: 40px;
+}
+
+.category-title {
+  font-size: 1.8em;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #3498db;
+  font-family: "Georgia", serif;
+}
+
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.toolkit-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 180px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.toolkit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.toolkit-icon {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: white;
+  transition: all 0.3s ease;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #3498db, #9b59b6);
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+.toolkit-card:hover .toolkit-icon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+}
+
+.toolkit-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolkit-link {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #3498db, #9b59b6);
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  font-size: 0.9em;
+}
+
+.toolkit-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+.toolkit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
+  transition: all 0.3s ease;
+}
+
+.toolkit-card:hover::before {
+  height: 6px;
+}
+
+/* Special icons colors - Light mode */
+.toolkit-icon.ustc-icon { background: linear-gradient(135deg, #b30000, #d40000); }
+.toolkit-icon.jw-icon { background: linear-gradient(135deg, #0056b3, #0066cc); }
+/* ... (其他图标样式) ... */
+.toolkit-icon.ustc-hanhai-icon { background: linear-gradient(135deg, #00838f, #006064); }
+
+/* No results message */
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #7f8c8d;
+  font-size: 1.2em;
+  grid-column: 1 / -1;
+}
+
+/* Dark mode toolkit page */
+body.dark-mode #toolkit {
+  background: #121212;
+}
+
+body.dark-mode .toolkit-heading {
+  color: #ffffff;
+}
+
+body.dark-mode .filter-btn {
+  background: #2d2d2d;
+  border-color: #444;
+  color: #ccc;
+}
+
+body.dark-mode .filter-btn:hover {
+  background: #3d3d3d;
+}
+
+body.dark-mode .filter-btn.active {
+  background: #6a3093;
+  border-color: #6a3093;
+  color: white;
+}
+
+body.dark-mode .search-input {
+  background: #2d2d2d;
+  border-color: #555;
+  color: #ffffff;
+}
+
+body.dark-mode .search-input:focus {
+  border-color: #6a3093;
+  box-shadow: 0 0 0 2px rgba(106, 48, 147, 0.2);
+}
+
+body.dark-mode .search-icon {
+  color: #bdc3c7;
+}
+
+body.dark-mode .category-title {
+  color: #ffffff;
+  border-bottom-color: #6a3093;
+}
+
+body.dark-mode .toolkit-card {
+  background: #2d2d2d;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .toolkit-card::before {
+  background: linear-gradient(90deg, #6a3093, #9b59b6);
+}
+
+body.dark-mode .toolkit-link {
+  background: linear-gradient(135deg, #6a3093, #9b59b6);
+  box-shadow: 0 4px 10px rgba(106, 48, 147, 0.3);
+}
+
+body.dark-mode .toolkit-link:hover {
+  box-shadow: 0 5px 15px rgba(106, 48, 147, 0.4);
+}
+
+body.dark-mode .toolkit-title {
+  color: #ffffff;
+}
+
+/* Dark mode icon colors*/
+body.dark-mode .toolkit-icon.ustc-icon { background: linear-gradient(135deg, #8b0000, #a50000); }
+/* ... (其他暗色模式图标样式) ... */
+body.dark-mode .toolkit-icon.ustc-hanhai-icon { background: linear-gradient(135deg, #006064, #004d4f); }
+
+body.dark-mode .no-results {
+  color: #bdc3c7;
+}

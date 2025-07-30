@@ -1,0 +1,164 @@
+/* Resume content styling */
+#resume {
+  position: relative;
+  z-index: 1;
+  display: none;
+  padding: 40px 20px;
+  background: linear-gradient(
+      rgba(241, 243, 245, 0.9),
+      rgba(241, 243, 245, 0.9)
+    ),
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  min-height: 100vh;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+  
+#resume.visible {
+  display: block;
+  opacity: 1;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-top: 1px solid #000;
+}
+  
+.resume-heading {
+  font-size: 2.8em;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+  
+.contact-info {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #34495e;
+}
+  
+h2 {
+  font-variant: small-caps;
+  color: #2c3e50;
+  font-size: 1.4em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #000;
+}
+  
+.section {
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+  
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+  
+.subheading {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05em;
+  margin-bottom: 8px;
+}
+  
+.subheading-title {
+  font-weight: bold;
+  color: #3498db;
+}
+  
+.subsubheading {
+  font-style: italic;
+  font-size: 0.95em;
+  color: #34495e;
+}
+  
+ul {
+  padding-left: 20px;
+  margin: 0;
+  list-style-type: disc;
+}
+  
+li {
+  font-size: 1em;
+  color: #34495e;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+  
+ul li::marker {
+  font-size: 0.6em;
+}
+  
+.highlight {
+  color: #3498db;
+  font-weight: bold;
+}
+  
+a.download-link {
+  color: #3498db;
+  text-decoration: none;
+  font-size: 0.95em;
+  margin-top: 8px;
+  display: inline-block;
+}
+  
+a.download-link:hover {
+  text-decoration: underline;
+}
+  
+.email + .email {
+  margin-left: 20px;
+}
+
+/* Dark mode styling */
+body.dark-mode #resume {
+  background: #121212;
+}
+  
+body.dark-mode .container {
+  background: #1e1e1e;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  border-top: 1px solid #444;
+}
+  
+body.dark-mode .subheading-title {
+  color: #3498db;
+}
+  
+body.dark-mode h2,
+body.dark-mode .resume-heading {
+  color: #ffffff;
+}
+  
+body.dark-mode h2 {
+  border-bottom: 1px solid #666;
+}
+  
+body.dark-mode li,
+body.dark-mode .subsubheading,
+body.dark-mode .contact-info {
+  color: #cccccc;
+}
+  
+body.dark-mode a.download-link {
+  color: #90caf9;
+}
+  
+body.dark-mode .section {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+  
+body.dark-mode .section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
