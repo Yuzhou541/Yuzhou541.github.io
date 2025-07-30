@@ -1,5 +1,5 @@
 document.write(`
-<div id="schedule">
+  <div id="schedule">
     <button id="toggle-btn-schedule">
       <span><i class="fas fa-sun"></i></span>
     </button>
