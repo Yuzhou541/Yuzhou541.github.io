@@ -1,3 +1,5 @@
+<img width="2482" height="1505" alt="屏幕截图 2025-07-31 064738" src="https://github.com/user-attachments/assets/6c77dc40-b634-4423-a980-e970e96f3f4f" />
+
 # Stardust Portfolio
 
 **Live Demo**: [https://stardust-math.github.io/](https://stardust-math.github.io/)
@@ -38,14 +40,20 @@ The `index.html` file is a single-page application divided into four main sectio
      - Publications (currently empty, to be updated).
      - Additional skills (e.g., programming proficiency in Python, LaTeX; languages; hobbies).
      - Downloadable resources (e.g., *Reference Answer of "Probability Theory and Mathematical Statistics"* and *Stardust Meditations*).
+    
+<img width="2446" height="1530" alt="image" src="https://github.com/user-attachments/assets/70d349d5-1317-4a53-9aa8-a83b11b23b3a" />
 
 2. **Social Section**:
    - **Purpose**: Links to my social media profiles and content platforms.
    - **Content**: Includes links to YouTube, TikTok (Chinese), REDnote, Quora, X (Twitter), Bilibili, and GitHub, each with a brief description and profile/channel links.
+  
+<img width="2454" height="1524" alt="image" src="https://github.com/user-attachments/assets/10494ee9-c036-4a05-a77f-818ffb8827b4" />
 
 3. **Toolkit Section**:
    - **Purpose**: Provides a curated list of tools and services I use for academic and creative work.
    - **Content**: Categorized links to tools in Development, Communication, Media & Video, Music, Knowledge, Productivity, Document and Management, and USTC Services. Each tool includes a “Visit” link for easy access.
+
+<img width="2451" height="1525" alt="image" src="https://github.com/user-attachments/assets/8faa5cc3-9cb4-4a4e-8ac9-fd96dec701f4" />
 
 4. **Schedule Section**:
    - **Purpose**: Displays my academic and personal schedule, including a calendar and timetable.
@@ -57,7 +65,11 @@ The `index.html` file is a single-page application divided into four main sectio
 
 The HTML structure leverages Bootstrap for responsive design and Font Awesome for icons, ensuring a polished and professional appearance. The layout is organized using a combination of flexbox and grid systems, with a sticky navigation bar for seamless section transitions.
 
+<img width="2456" height="1524" alt="image" src="https://github.com/user-attachments/assets/3c1b1345-caf1-4e8f-ae78-ed4facce7b66" />
+
 ### JavaScript Functionality (`epic-transition.js`)
+
+<img width="2477" height="1498" alt="image" src="https://github.com/user-attachments/assets/5b42cc3b-83ee-4f2f-a08f-e04cfc068a30" />
 
 The `epic-transition.js` file is an optional enhancement that introduces an interactive animation sequence triggered by clicking the avatar image in the About section. This feature is designed to create a memorable user experience through a narrative-driven interface. Key functionalities include:
 
