@@ -148,7 +148,6 @@
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  background: linear-gradient(135deg, #3498db, #9b59b6);
   box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
 }
 
@@ -202,10 +201,192 @@
 }
 
 /* Special icons colors - Light mode */
-.toolkit-icon.ustc-icon { background: linear-gradient(135deg, #b30000, #d40000); }
-.toolkit-icon.jw-icon { background: linear-gradient(135deg, #0056b3, #0066cc); }
-/* ... (其他图标样式) ... */
-.toolkit-icon.ustc-hanhai-icon { background: linear-gradient(135deg, #00838f, #006064); }
+/* Development */
+.toolkit-icon.github-icon { 
+  background: linear-gradient(135deg, #181717, #4a4a4a);
+}
+.toolkit-icon.maple-icon { 
+  background: linear-gradient(135deg, #d71f27, #a51c22);
+}
+.toolkit-icon.deepseek-icon { 
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+}
+.toolkit-icon.chatgpt-icon { 
+  background: linear-gradient(135deg, #74aa9c, #5d8c7f);
+}
+.toolkit-icon.grok-icon { 
+  background: linear-gradient(135deg, #ea4335, #c5221f);
+}
+.toolkit-icon.deepl-icon { 
+  background: linear-gradient(135deg, #0f2b46, #0d253d);
+}
+.toolkit-icon.overleaf-icon { 
+  background: linear-gradient(135deg, #47a141, #3a8235);
+}
+.toolkit-icon.jupyter-icon { 
+  background: linear-gradient(135deg, #f37726, #d16621);
+}
+.toolkit-icon.wolfram-icon { 
+  background: linear-gradient(135deg, #dd1100, #bb0e00);
+}
+.toolkit-icon.gitlab-icon { 
+  background: linear-gradient(135deg, #e24329, #6d4b41);
+}
+.toolkit-icon.codesandbox-icon { 
+  background: linear-gradient(135deg, #000000, #3d3d3d);
+}
+.toolkit-icon.leetcode-icon { 
+  background: linear-gradient(135deg, #ffa116, #ff7b00);
+}
+.toolkit-icon.tableau-icon { 
+  background: linear-gradient(135deg, #5c6bc0, #3f51b5);
+}
+.toolkit-icon.colab-icon { 
+  background: linear-gradient(135deg, #4285f4, #34a853);
+}
+
+/* Communication */
+.toolkit-icon.gmail-icon { 
+  background: linear-gradient(135deg, #ea4335, #c5221f);
+}
+.toolkit-icon.qqmail-icon { 
+  background: linear-gradient(135deg, #12b7f5, #0e9bd4);
+}
+.toolkit-icon.neteasemail-icon { 
+  background: linear-gradient(135deg, #e60012, #c4000f);
+}
+.toolkit-icon.quora-icon { 
+  background: linear-gradient(135deg, #b92b27, #9a2420);
+}
+.toolkit-icon.twitter-icon { 
+  background: linear-gradient(135deg, #000000, #3d3d3d);
+}
+
+/* Media */
+.toolkit-icon.youtube-icon { 
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+.toolkit-icon.tiktok-icon { 
+  background: linear-gradient(135deg, #000000, #3d3d3d);
+}
+.toolkit-icon.rednote-icon { 
+  background: linear-gradient(135deg, #ff2442, #d11c36);
+}
+.toolkit-icon.bilibili-icon { 
+  background: linear-gradient(135deg, #00a1d6, #0087b1);
+}
+.toolkit-icon.iqiyi-icon { 
+  background: linear-gradient(135deg, #00be06, #00a005);
+}
+.toolkit-icon.tencent-icon { 
+  background: linear-gradient(135deg, #0081ff, #006bd6);
+}
+
+/* Music */
+.toolkit-icon.qqmusic-icon { 
+  background: linear-gradient(135deg, #31c27c, #27a064);
+}
+.toolkit-icon.neteasemusic-icon { 
+  background: linear-gradient(135deg, #e60026, #c40020);
+}
+.toolkit-icon.kugou-icon { 
+  background: linear-gradient(135deg, #3c8ce7, #2f76c4);
+}
+.toolkit-icon.spotify-icon { 
+  background: linear-gradient(135deg, #1db954, #189e46);
+}
+
+/* Knowledge */
+.toolkit-icon.wikipedia-icon { 
+  background: linear-gradient(135deg, #636466, #4d4e50);
+}
+.toolkit-icon.scholar-icon { 
+  background: linear-gradient(135deg, #4885ed, #3a74d6);
+}
+.toolkit-icon.zlib-icon { 
+  background: linear-gradient(135deg, #1e7b85, #18646c);
+}
+.toolkit-icon.cnki-icon { 
+  background: linear-gradient(135deg, #ca0928, #a80721);
+}
+.toolkit-icon.sciencedirect-icon { 
+  background: linear-gradient(135deg, #ff6c0c, #e65c0a);
+}
+.toolkit-icon.webofscience-icon { 
+  background: linear-gradient(135deg, #0064a8, #00518c);
+}
+.toolkit-icon.mathoverflow-icon { 
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+.toolkit-icon.oeis-icon { 
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+/* Productivity */
+.toolkit-icon.notion-icon { 
+  background: linear-gradient(135deg, #000000, #3d3d3d);
+}
+.toolkit-icon.obsidian-icon { 
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+}
+.toolkit-icon.tencentdocs-icon { 
+  background: linear-gradient(135deg, #0081ff, #006bd6);
+}
+.toolkit-icon.typora-icon { 
+  background: linear-gradient(135deg, #999999, #777777);
+}
+.toolkit-icon.yuque-icon { 
+  background: linear-gradient(135deg, #00b0ff, #0081cb);
+}
+.toolkit-icon.canva-icon { 
+  background: linear-gradient(135deg, #00c4cc, #00a2ff);
+}
+.toolkit-icon.removebg-icon { 
+  background: linear-gradient(135deg, #5c6bc0, #3949ab);
+}
+.toolkit-icon.tinypng-icon { 
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+/* Reference */
+.toolkit-icon.endnote-icon { 
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+}
+.toolkit-icon.zotero-icon { 
+  background: linear-gradient(135deg, #5c6bc0, #3949ab);
+}
+.toolkit-icon.mendeley-icon { 
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+.toolkit-icon.academia-icon { 
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+/* USTC Services */
+.toolkit-icon.ustc-blackboard-icon { 
+  background: linear-gradient(135deg, #b30000, #8a0000);
+}
+.toolkit-icon.ustc-mail-icon { 
+  background: linear-gradient(135deg, #0056b3, #004899);
+}
+.toolkit-icon.ustc-flyer-icon { 
+  background: linear-gradient(135deg, #4a86e8, #3a75d6);
+}
+.toolkit-icon.ustc-website-icon { 
+  background: linear-gradient(135deg, #cc0000, #a30000);
+}
+.toolkit-icon.ustc-jw-icon { 
+  background: linear-gradient(135deg, #3d85c6, #3270a8);
+}
+.toolkit-icon.ustc-icourse-icon { 
+  background: linear-gradient(135deg, #6aa84f, #5a8d3f);
+}
+.toolkit-icon.ustc-software-icon { 
+  background: linear-gradient(135deg, #674ea7, #554188);
+}
+.toolkit-icon.ustc-hanhai-icon { 
+  background: linear-gradient(135deg, #00838f, #006064);
+}
 
 /* No results message */
 .no-results {
@@ -284,10 +465,193 @@ body.dark-mode .toolkit-title {
   color: #ffffff;
 }
 
-/* Dark mode icon colors*/
-body.dark-mode .toolkit-icon.ustc-icon { background: linear-gradient(135deg, #8b0000, #a50000); }
-/* ... (其他暗色模式图标样式) ... */
-body.dark-mode .toolkit-icon.ustc-hanhai-icon { background: linear-gradient(135deg, #006064, #004d4f); }
+/* Dark mode icon colors */
+/* Development */
+body.dark-mode .toolkit-icon.github-icon { 
+  background: linear-gradient(135deg, #0d1117, #30363d);
+}
+body.dark-mode .toolkit-icon.maple-icon { 
+  background: linear-gradient(135deg, #a51c22, #7d151a);
+}
+body.dark-mode .toolkit-icon.deepseek-icon { 
+  background: linear-gradient(135deg, #0b5ed7, #094db1);
+}
+body.dark-mode .toolkit-icon.chatgpt-icon { 
+  background: linear-gradient(135deg, #5d8c7f, #4a6e64);
+}
+body.dark-mode .toolkit-icon.grok-icon { 
+  background: linear-gradient(135deg, #c5221f, #a11b19);
+}
+body.dark-mode .toolkit-icon.deepl-icon { 
+  background: linear-gradient(135deg, #0d253d, #0a1d30);
+}
+body.dark-mode .toolkit-icon.overleaf-icon { 
+  background: linear-gradient(135deg, #3a8235, #2d6529);
+}
+body.dark-mode .toolkit-icon.jupyter-icon { 
+  background: linear-gradient(135deg, #d16621, #a8521a);
+}
+body.dark-mode .toolkit-icon.wolfram-icon { 
+  background: linear-gradient(135deg, #bb0e00, #8a0a00);
+}
+body.dark-mode .toolkit-icon.gitlab-icon { 
+  background: linear-gradient(135deg, #6d4b41, #553a32);
+}
+body.dark-mode .toolkit-icon.codesandbox-icon { 
+  background: linear-gradient(135deg, #1a1a1a, #333333);
+}
+body.dark-mode .toolkit-icon.leetcode-icon { 
+  background: linear-gradient(135deg, #ff7b00, #cc6200);
+}
+body.dark-mode .toolkit-icon.tableau-icon { 
+  background: linear-gradient(135deg, #3f51b5, #323f8f);
+}
+body.dark-mode .toolkit-icon.colab-icon { 
+  background: linear-gradient(135deg, #34a853, #2a8742);
+}
+
+/* Communication */
+body.dark-mode .toolkit-icon.gmail-icon { 
+  background: linear-gradient(135deg, #c5221f, #9e1b19);
+}
+body.dark-mode .toolkit-icon.qqmail-icon { 
+  background: linear-gradient(135deg, #0e9bd4, #0b7cab);
+}
+body.dark-mode .toolkit-icon.neteasemail-icon { 
+  background: linear-gradient(135deg, #c4000f, #9b000c);
+}
+body.dark-mode .toolkit-icon.quora-icon { 
+  background: linear-gradient(135deg, #9a2420, #7a1d1a);
+}
+body.dark-mode .toolkit-icon.twitter-icon { 
+  background: linear-gradient(135deg, #1a1a1a, #333333);
+}
+
+/* Media */
+body.dark-mode .toolkit-icon.youtube-icon { 
+  background: linear-gradient(135deg, #cc0000, #990000);
+}
+body.dark-mode .toolkit-icon.tiktok-icon { 
+  background: linear-gradient(135deg, #1a1a1a, #333333);
+}
+body.dark-mode .toolkit-icon.rednote-icon { 
+  background: linear-gradient(135deg, #d11c36, #a8162b);
+}
+body.dark-mode .toolkit-icon.bilibili-icon { 
+  background: linear-gradient(135deg, #0087b1, #006c8d);
+}
+body.dark-mode .toolkit-icon.iqiyi-icon { 
+  background: linear-gradient(135deg, #00a005, #008004);
+}
+body.dark-mode .toolkit-icon.tencent-icon { 
+  background: linear-gradient(135deg, #006bd6, #0055ab);
+}
+
+/* Music */
+body.dark-mode .toolkit-icon.qqmusic-icon { 
+  background: linear-gradient(135deg, #27a064, #1f804f);
+}
+body.dark-mode .toolkit-icon.neteasemusic-icon { 
+  background: linear-gradient(135deg, #c40020, #9b0019);
+}
+body.dark-mode .toolkit-icon.kugou-icon { 
+  background: linear-gradient(135deg, #2f76c4, #255e9d);
+}
+body.dark-mode .toolkit-icon.spotify-icon { 
+  background: linear-gradient(135deg, #189e46, #137d38);
+}
+
+/* Knowledge */
+body.dark-mode .toolkit-icon.wikipedia-icon { 
+  background: linear-gradient(135deg, #4d4e50, #3a3b3d);
+}
+body.dark-mode .toolkit-icon.scholar-icon { 
+  background: linear-gradient(135deg, #3a74d6, #2e5dab);
+}
+body.dark-mode .toolkit-icon.zlib-icon { 
+  background: linear-gradient(135deg, #18646c, #134d54);
+}
+body.dark-mode .toolkit-icon.cnki-icon { 
+  background: linear-gradient(135deg, #a80721, #86051a);
+}
+body.dark-mode .toolkit-icon.sciencedirect-icon { 
+  background: linear-gradient(135deg, #e65c0a, #b74908);
+}
+body.dark-mode .toolkit-icon.webofscience-icon { 
+  background: linear-gradient(135deg, #00518c, #003f6b);
+}
+body.dark-mode .toolkit-icon.mathoverflow-icon { 
+  background: linear-gradient(135deg, #e67e22, #b8651b);
+}
+body.dark-mode .toolkit-icon.oeis-icon { 
+  background: linear-gradient(135deg, #2ecc71, #25a35a);
+}
+
+/* Productivity */
+body.dark-mode .toolkit-icon.notion-icon { 
+  background: linear-gradient(135deg, #1a1a1a, #333333);
+}
+body.dark-mode .toolkit-icon.obsidian-icon { 
+  background: linear-gradient(135deg, #6d28d9, #5520ab);
+}
+body.dark-mode .toolkit-icon.tencentdocs-icon { 
+  background: linear-gradient(135deg, #006bd6, #0055ab);
+}
+body.dark-mode .toolkit-icon.typora-icon { 
+  background: linear-gradient(135deg, #777777, #5e5e5e);
+}
+body.dark-mode .toolkit-icon.yuque-icon { 
+  background: linear-gradient(135deg, #0081cb, #0067a3);
+}
+body.dark-mode .toolkit-icon.canva-icon { 
+  background: linear-gradient(135deg, #00a2ff, #0082cc);
+}
+body.dark-mode .toolkit-icon.removebg-icon { 
+  background: linear-gradient(135deg, #3949ab, #2d3a86);
+}
+body.dark-mode .toolkit-icon.tinypng-icon { 
+  background: linear-gradient(135deg, #27ae60, #1f8b4c);
+}
+
+/* Reference */
+body.dark-mode .toolkit-icon.endnote-icon { 
+  background: linear-gradient(135deg, #34495e, #2a3b4b);
+}
+body.dark-mode .toolkit-icon.zotero-icon { 
+  background: linear-gradient(135deg, #3949ab, #2d3a86);
+}
+body.dark-mode .toolkit-icon.mendeley-icon { 
+  background: linear-gradient(135deg, #c0392b, #992d22);
+}
+body.dark-mode .toolkit-icon.academia-icon { 
+  background: linear-gradient(135deg, #2980b9, #216895);
+}
+
+/* USTC Services */
+body.dark-mode .toolkit-icon.ustc-blackboard-icon { 
+  background: linear-gradient(135deg, #8a0000, #6a0000);
+}
+body.dark-mode .toolkit-icon.ustc-mail-icon { 
+  background: linear-gradient(135deg, #004899, #003877);
+}
+body.dark-mode .toolkit-icon.ustc-flyer-icon { 
+  background: linear-gradient(135deg, #3a75d6, #2e5dab);
+}
+body.dark-mode .toolkit-icon.ustc-website-icon { 
+  background: linear-gradient(135deg, #a30000, #820000);
+}
+body.dark-mode .toolkit-icon.ustc-jw-icon { 
+  background: linear-gradient(135deg, #3270a8, #285a89);
+}
+body.dark-mode .toolkit-icon.ustc-icourse-icon { 
+  background: linear-gradient(135deg, #5a8d3f, #486f32);
+}
+body.dark-mode .toolkit-icon.ustc-software-icon { 
+  background: linear-gradient(135deg, #554188, #44346d);
+}
+body.dark-mode .toolkit-icon.ustc-hanhai-icon { 
+  background: linear-gradient(135deg, #006064, #004d4f);
+}
 
 body.dark-mode .no-results {
   color: #bdc3c7;
