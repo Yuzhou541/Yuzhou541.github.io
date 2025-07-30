@@ -115,7 +115,7 @@ document.write(`
 
           <!-- GitLab -->
           <div class="toolkit-card" data-title="gitlab" data-categories="development">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#e24329,#6d4b41)">
+            <div class="toolkit-icon gitlab-icon">
               <i class="fab fa-gitlab"></i>
             </div>
             <div class="toolkit-title">GitLab</div>
@@ -124,7 +124,7 @@ document.write(`
 
           <!-- CodeSandbox -->
           <div class="toolkit-card" data-title="codesandbox" data-categories="development">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#000000,#3d3d3d)">
+            <div class="toolkit-icon codesandbox-icon">
               <i class="fas fa-laptop-code"></i>
             </div>
             <div class="toolkit-title">CodeSandbox</div>
@@ -133,7 +133,7 @@ document.write(`
 
           <!-- LeetCode -->
           <div class="toolkit-card" data-title="leetcode" data-categories="development">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#ffa116,#ff7b00)">
+            <div class="toolkit-icon leetcode-icon">
               <i class="fas fa-code"></i>
             </div>
             <div class="toolkit-title">LeetCode</div>
@@ -142,7 +142,7 @@ document.write(`
 
           <!-- Tableau -->
           <div class="toolkit-card" data-title="tableau" data-categories="datascience">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3f51b5)">
+            <div class="toolkit-icon tableau-icon">
               <i class="fas fa-chart-bar"></i>
             </div>
             <div class="toolkit-title">Tableau Public</div>
@@ -151,7 +151,7 @@ document.write(`
     
           <!-- Colab -->
           <div class="toolkit-card" data-title="colab" data-categories="datascience">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#4285f4,#34a853)">
+            <div class="toolkit-icon colab-icon">
               <i class="fas fa-brain"></i>
             </div>
             <div class="toolkit-title">Colab</div>
@@ -377,7 +377,7 @@ document.write(`
 
           <!-- MathOverflow -->
           <div class="toolkit-card" data-title="mathoverflow" data-categories="knowledge">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#f39c12,#e67e22)">
+            <div class="toolkit-icon mathoverflow-icon">
               <i class="fas fa-square-root-alt"></i>
             </div>
             <div class="toolkit-title">MathOverflow</div>
@@ -386,7 +386,7 @@ document.write(`
 
           <!-- OEIS -->
           <div class="toolkit-card" data-title="oeis" data-categories="knowledge">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#27ae60,#2ecc71)">
+            <div class="toolkit-icon oeis-icon">
               <i class="fas fa-list-ol"></i>
             </div>
             <div class="toolkit-title">OEIS</div>
@@ -428,7 +428,7 @@ document.write(`
 
           <!-- Typora -->
           <div class="toolkit-card" data-title="typora" data-categories="productivity">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#333333,#666666)">
+            <div class="toolkit-icon typora-icon">
               <i class="fas fa-edit"></i>
             </div>
             <div class="toolkit-title">Typora</div>
@@ -437,7 +437,7 @@ document.write(`
 
           <!-- Yuque -->
           <div class="toolkit-card" data-title="yuque" data-categories="productivity">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#00b0ff,#0081cb)">
+            <div class="toolkit-icon yuque-icon">
               <i class="fas fa-feather-alt"></i>
             </div>
             <div class="toolkit-title">Yuque</div>
@@ -446,7 +446,7 @@ document.write(`
 
           <!-- Canva -->
           <div class="toolkit-card" data-title="canva" data-categories="productivity">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#00c4cc,#00a2ff)">
+            <div class="toolkit-icon canva-icon">
               <i class="fas fa-palette"></i>
             </div>
             <div class="toolkit-title">Canva</div>
@@ -455,7 +455,7 @@ document.write(`
 
           <!-- Remove.bg -->
           <div class="toolkit-card" data-title="removebg" data-categories="productivity">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3949ab)">
+            <div class="toolkit-icon removebg-icon">
               <i class="fas fa-image"></i>
             </div>
             <div class="toolkit-title">Remove.bg</div>
@@ -464,7 +464,7 @@ document.write(`
 
           <!-- TinyPNG -->
           <div class="toolkit-card" data-title="tinypng" data-categories="productivity">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#2ecc71,#27ae60)">
+            <div class="toolkit-icon tinypng-icon">
               <i class="fas fa-compress-alt"></i>
             </div>
             <div class="toolkit-title">TinyPNG</div>
@@ -479,7 +479,7 @@ document.write(`
         <div class="toolkit-grid">
           <!-- EndNote -->
           <div class="toolkit-card" data-title="endnote" data-categories="reference">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#2c3e50,#34495e)">
+            <div class="toolkit-icon endnote-icon">
               <i class="fas fa-quote-right"></i>
             </div>
             <div class="toolkit-title">EndNote</div>
@@ -488,7 +488,7 @@ document.write(`
     
           <!-- Zotero -->
           <div class="toolkit-card" data-title="zotero" data-categories="reference">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#5c6bc0,#3949ab)">
+            <div class="toolkit-icon zotero-icon">
               <i class="fas fa-book"></i>
             </div>
             <div class="toolkit-title">Zotero</div>
@@ -497,7 +497,7 @@ document.write(`
     
           <!-- Mendeley -->
           <div class="toolkit-card" data-title="mendeley" data-categories="reference">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">
+            <div class="toolkit-icon mendeley-icon">
               <i class="fas fa-file-alt"></i>
             </div>
             <div class="toolkit-title">Mendeley</div>
@@ -506,7 +506,7 @@ document.write(`
     
           <!-- Academia -->
           <div class="toolkit-card" data-title="academia" data-categories="reference">
-            <div class="toolkit-icon" style="background:linear-gradient(135deg,#3498db,#2980b9)">
+            <div class="toolkit-icon academia-icon">
               <i class="fas fa-graduation-cap"></i>
             </div>
             <div class="toolkit-title">Academia</div>
