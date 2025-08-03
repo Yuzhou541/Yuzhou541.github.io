@@ -48,21 +48,21 @@ document.write(`
           <span class="subheading-title"></span>
           <span>September 2024 – Present</span>
         </div>
-        <div class="subsubheading">Cooperating with </div>
+        <div class="subsubheading">Cooperating with Xiaobei Shen, Jiancheng Lv and Qi Cheng</div>
         <ul><li></li></ul>
         
         <div class="subheading">
           <span class="subheading-title"></span>
           <span>July 2025 – Present</span>
         </div>
-        <div class="subsubheading">Cooperating with </div>
+        <div class="subsubheading">Cooperating with Yimin Yu and Qian Wang</div>
         <ul><li></li></ul>
         
         <div class="subheading">
           <span class="subheading-title"></span>
           <span>July 2025 – Present</span>
         </div>
-        <div class="subsubheading">Cooperating with </div>
+        <div class="subsubheading">Cooperating with Yimin Yu and Qian Wang</div>
         <ul><li></li></ul>
       </div>
       
@@ -87,3 +87,4 @@ document.write(`
     </a>
   </div>
 `);
+
