@@ -131,7 +131,8 @@
 
 .timetable {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-top: 20px;
   border-radius: 12px; /* Added curvature */
   overflow: hidden; /* Contain rounded corners */
@@ -378,7 +379,8 @@
 /* USTC Timetable styles */
 #ustc-timetable {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-top: 20px;
   font-family: "Georgia", serif;
   border-radius: 12px; /* Added curvature */
@@ -452,7 +454,8 @@
   
 .ustc-classes-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-top: 10px;
   border-radius: 12px; /* Added curvature */
   overflow: hidden; /* Contain rounded corners */
@@ -799,28 +802,33 @@ body.dark-mode .fc-event:hover {
 
 body.dark-mode .timetable th {
   background-color: rgba(120, 70, 170, 0.95); /* Brighter crystal accent */
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
 
 body.dark-mode .timetable td {
   background-color: rgba(45, 50, 60, 0.97); /* Deeper crystal */
-  border-color: rgba(90, 100, 120, 0.45);
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
   color: rgba(245, 250, 255, 0.97); /* Brighter moonlight */
 }
 
 body.dark-mode .timetable td.time-cell {
   background-color: rgba(55, 60, 70, 0.97); /* Frosted crystal */
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
 
 body.dark-mode .timetable td.empty-cell {
   background-color: rgba(50, 55, 65, 0.97); /* Deep frost */
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
 
 body.dark-mode .timetable td.has-event {
   background-color: rgba(120, 70, 170, 0.2); /* Brighter frost accent */
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
 
 body.dark-mode .timetable td.has-event:hover {
   background-color: rgba(120, 70, 170, 0.3); /* Enhanced frost */
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
 
 body.dark-mode .timetable-event {
@@ -883,22 +891,24 @@ body.dark-mode .week-nav-btn:hover {
 /* Dark mode USTC Timetable */
 body.dark-mode #ustc-timetable th {
   background-color: rgba(120, 70, 170, 0.95); /* Brighter crystal accent */
-  border-color: rgba(90, 100, 120, 0.45);
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
   
 body.dark-mode #ustc-timetable td {
   background-color: rgba(45, 50, 60, 0.97); /* Deeper crystal */
-  border-color: rgba(90, 100, 120, 0.45);
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
   color: rgba(245, 250, 255, 0.97); /* Brighter moonlight */
 }
   
 body.dark-mode #ustc-timetable .period-header {
   background-color: rgba(55, 60, 70, 0.97); /* Frosted crystal */
   color: rgba(245, 250, 255, 0.97); /* Brighter moonlight */
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
   
 body.dark-mode #ustc-timetable td.has-class {
   background-color: rgba(120, 70, 170, 0.2); /* Brighter frost accent */
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
   
 body.dark-mode .course-name {
@@ -919,6 +929,7 @@ body.dark-mode .ustc-event-overlay:hover {
   
 body.dark-mode .ustc-classes-table th {
   background-color: rgba(120, 70, 170, 0.95); /* Brighter crystal accent */
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
 
 body.dark-mode .time-info {
@@ -939,7 +950,7 @@ body.dark-mode .ustc-course-info:hover {
 
 body.dark-mode .period-number {
   background-color: rgba(55, 60, 70, 0.97); /* Frosted crystal */
-  border-color: rgba(90, 100, 120, 0.45);
+  border-color: rgba(90, 100, 120, 0.45); /* Unified border color */
 }
 
 body.dark-mode .weeks-title {
