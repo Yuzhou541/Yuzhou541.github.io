@@ -428,6 +428,9 @@ function initSchedulePage() {
   // Set My Timetable as default view
   viewSwitchers.forEach(b => b.classList.remove('active'));
   document.querySelector('.schedule-switch-btn[data-view="my-timetable"]').classList.add('active');
+  calendarSection.classList.remove('active');
+  timetableSection.classList.remove('active');
+  ustcTimetableSection.classList.remove('active');
   myTimetableSection.classList.add('active');
       
   viewSwitchers.forEach(btn => {
@@ -443,6 +446,8 @@ function initSchedulePage() {
           
       if (view === 'calendar') {
         calendarSection.classList.add('active');
+        // Ensure calendar always shows day view when activated
+        calendar.changeView('dayGridDay');
       } else if (view === 'timetable') {
         timetableSection.classList.add('active');
         updateTimetable();
@@ -572,7 +577,7 @@ function initCalendar() {
   const calendarEl = document.getElementById('calendar-container');
       
   calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridDay',  // Changed from 'dayGridMonth' to 'dayGridDay'
+    initialView: 'dayGridDay',  // Default to day view
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
