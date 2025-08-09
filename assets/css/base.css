@@ -1,0 +1,39 @@
+/*
+  Image Loading Optimization:
+  Ensures proper rendering and transition effects for profile avatar
+*/
+#avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background-color: rgba(241, 243, 245, 0.9); /* Semi-transparent */
+  transition: opacity 0.5s ease;
+}
+        
+/* Preloading technique for critical images */
+.preload-images {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+    
+/* Base document styling */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Georgia", serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  background-color: rgba(241, 243, 245, 0.95); /* Enhanced clarity */
+  color: rgba(0, 0, 0, 0.92); /* Softer black */
+}
+
+@font-face {
+  font-family: 'CygnetRound';
+  src: url('./assets/fonts/CygnetRound.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,166 @@
+/* Resume content styling */
+#resume {
+  position: relative;
+  z-index: 1;
+  display: none;
+  padding: 40px 20px;
+  background: linear-gradient(
+      rgba(241, 243, 245, 0.92),
+      rgba(241, 243, 245, 0.92)
+    ),
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  min-height: 100vh;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+  
+#resume.visible {
+  display: block;
+  opacity: 1;
+}
+
+.container {
+  max-width: 95%; /* Match schedule width */
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95); /* Increased transparency */
+  padding: 30px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08); /* Refined shadow */
+  border-top: 1px solid rgba(0, 0, 0, 0.1); /* Softer border */
+  border-radius: 16px; /* Smooth rounded corners */
+}
+  
+.resume-heading {
+  font-size: 2.8em;
+  text-align: center;
+  color: rgba(44, 62, 80, 0.95); /* Crystalline effect */
+  margin-bottom: 10px;
+}
+  
+.contact-info {
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgba(52, 73, 94, 0.9); /* Enhanced transparency */
+}
+  
+h2 {
+  font-variant: small-caps;
+  color: rgba(44, 62, 80, 0.95);
+  font-size: 1.4em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+}
+  
+.section {
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06); /* Refined shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px; /* Smooth edges */
+}
+  
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Enhanced depth */
+}
+  
+.subheading {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05em;
+  margin-bottom: 8px;
+}
+  
+.subheading-title {
+  font-weight: bold;
+  color: rgba(52, 152, 219, 0.95); /* Crystalline blue */
+}
+  
+.subsubheading {
+  font-style: italic;
+  font-size: 0.95em;
+  color: rgba(52, 73, 94, 0.85); /* Enhanced transparency */
+}
+  
+ul {
+  padding-left: 20px;
+  margin: 0;
+  list-style-type: disc;
+}
+  
+li {
+  font-size: 1em;
+  color: rgba(52, 73, 94, 0.9);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+  
+ul li::marker {
+  font-size: 0.6em;
+}
+  
+.highlight {
+  color: rgba(52, 152, 219, 0.95);
+  font-weight: bold;
+}
+  
+a.download-link {
+  color: rgba(52, 152, 219, 0.95);
+  text-decoration: none;
+  font-size: 0.95em;
+  margin-top: 8px;
+  display: inline-block;
+}
+  
+a.download-link:hover {
+  text-decoration: underline;
+}
+  
+.email + .email {
+  margin-left: 20px;
+}
+
+/* Dark mode styling */
+body.dark-mode #resume {
+  background: rgba(18, 18, 18, 0.95);
+}
+  
+body.dark-mode .container {
+  background: rgba(30, 30, 30, 0.95);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+  border-top: 1px solid rgba(68, 68, 68, 0.3);
+}
+  
+body.dark-mode .subheading-title {
+  color: rgba(52, 152, 219, 0.95);
+}
+  
+body.dark-mode h2,
+body.dark-mode .resume-heading {
+  color: rgba(255, 255, 255, 0.92);
+}
+  
+body.dark-mode h2 {
+  border-bottom: 1px solid rgba(102, 102, 102, 0.3);
+}
+  
+body.dark-mode li,
+body.dark-mode .subsubheading,
+body.dark-mode .contact-info {
+  color: rgba(204, 204, 204, 0.85);
+}
+  
+body.dark-mode a.download-link {
+  color: rgba(144, 202, 249, 0.95);
+}
+  
+body.dark-mode .section {
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+}
+  
+body.dark-mode .section:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
