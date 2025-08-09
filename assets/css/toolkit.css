@@ -1,0 +1,658 @@
+/* Toolkit page specific styles */
+#toolkit {
+  position: relative;
+  z-index: 1;
+  display: none;
+  padding: 40px 20px;
+  background: linear-gradient(
+      rgba(252, 253, 255, 0.96),
+      rgba(252, 253, 255, 0.96)
+    ),
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  min-height: 100vh;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+  
+#toolkit.visible {
+  display: block;
+  opacity: 1;
+}
+
+.toolkit-heading {
+  font-size: 2.8em;
+  text-align: center;
+  color: #3c506e;
+  margin-bottom: 30px;
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 2px;
+}
+
+/* Category filter styling */
+.toolkit-filter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  background: #f4f6f8;
+  border: 1px solid #e1e5e9;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+}
+
+.filter-btn:hover {
+  background: #e6e9ed;
+}
+
+.filter-btn.active {
+  background: #4a8fd6;
+  color: white;
+  border-color: #4a8fd6;
+}
+
+/* Search box styling */
+.toolkit-search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  padding-left: 45px;
+  border: 1px solid #e1e5e9;
+  border-radius: 30px;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4a8fd6;
+  box-shadow: 0 0 0 2px rgba(74, 143, 214, 0.25);
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8c9aa8;
+}
+
+/* Category grid layout */
+.category-section {
+  margin-bottom: 40px;
+}
+
+.category-title {
+  font-size: 1.8em;
+  color: #3c506e;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #4a8fd6;
+  font-family: "Georgia", serif;
+}
+
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.toolkit-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(120, 170, 230, 0.18); /* Brighter shadow */
+  transition: all 0.3s ease;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 180px;
+  border: 1px solid rgba(210, 225, 240, 0.45); /* Brighter border */
+}
+
+.toolkit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(120, 170, 230, 0.3); /* Enhanced glow */
+}
+
+.toolkit-icon {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: white;
+  transition: all 0.3s ease;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(74, 143, 214, 0.4); /* Brighter glow */
+}
+
+.toolkit-card:hover .toolkit-icon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(74, 143, 214, 0.5); /* Enhanced glow */
+}
+
+.toolkit-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #3c506e;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolkit-link {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #4a8fd6, #a45dc9);
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  font-size: 0.9em;
+}
+
+.toolkit-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(74, 143, 214, 0.5); /* Brighter glow */
+}
+
+.toolkit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #4a8fd6, #a45dc9);
+  transition: all 0.3s ease;
+}
+
+.toolkit-card:hover::before {
+  height: 6px;
+}
+
+/* Special icons colors - Light mode */
+/* Development */
+.toolkit-icon.github-icon { 
+  background: linear-gradient(135deg, #252525, #5a5a5a);
+}
+.toolkit-icon.maple-icon { 
+  background: linear-gradient(135deg, #e12f37, #c52229);
+}
+.toolkit-icon.deepseek-icon { 
+  background: linear-gradient(135deg, #1d7df0, #0f6bd9);
+}
+.toolkit-icon.chatgpt-icon { 
+  background: linear-gradient(135deg, #85b6a5, #6a9c8d);
+}
+.toolkit-icon.grok-icon { 
+  background: linear-gradient(135deg, #f04a42, #e03a32);
+}
+.toolkit-icon.deepl-icon { 
+  background: linear-gradient(135deg, #1f3d68, #142c4d);
+}
+.toolkit-icon.overleaf-icon { 
+  background: linear-gradient(135deg, #58b152, #4a9c44);
+}
+.toolkit-icon.jupyter-icon { 
+  background: linear-gradient(135deg, #f78a36, #e67a26);
+}
+.toolkit-icon.wolfram-icon { 
+  background: linear-gradient(135deg, #f01d0c, #d01506);
+}
+.toolkit-icon.gitlab-icon { 
+  background: linear-gradient(135deg, #e9573d, #6d4b41);
+}
+.toolkit-icon.codesandbox-icon { 
+  background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+}
+.toolkit-icon.leetcode-icon { 
+  background: linear-gradient(135deg, #ffb340, #ff9b20);
+}
+.toolkit-icon.tableau-icon { 
+  background: linear-gradient(135deg, #6d7fd0, #4f61c0);
+}
+.toolkit-icon.colab-icon { 
+  background: linear-gradient(135deg, #4cb85f, #3a9d4b);
+}
+
+/* Communication */
+.toolkit-icon.gmail-icon { 
+  background: linear-gradient(135deg, #f04a42, #e03a32);
+}
+.toolkit-icon.qqmail-icon { 
+  background: linear-gradient(135deg, #1ac7ff, #0fb4e9);
+}
+.toolkit-icon.neteasemail-icon { 
+  background: linear-gradient(135deg, #f0151f, #d00d17);
+}
+.toolkit-icon.quora-icon { 
+  background: linear-gradient(135deg, #d02d29, #b02320);
+}
+.toolkit-icon.twitter-icon { 
+  background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+}
+
+/* Media */
+.toolkit-icon.youtube-icon { 
+  background: linear-gradient(135deg, #ff1a1a, #e00a0a);
+}
+.toolkit-icon.tiktok-icon { 
+  background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+}
+.toolkit-icon.rednote-icon { 
+  background: linear-gradient(135deg, #ff3654, #e02644);
+}
+.toolkit-icon.bilibili-icon { 
+  background: linear-gradient(135deg, #00b1e6, #0098cc);
+}
+.toolkit-icon.iqiyi-icon { 
+  background: linear-gradient(135deg, #00c90d, #00b00b);
+}
+.toolkit-icon.tencent-icon { 
+  background: linear-gradient(135deg, #1a9cff, #0d8ae9);
+}
+
+/* Music */
+.toolkit-icon.qqmusic-icon { 
+  background: linear-gradient(135deg, #3dcc7d, #2dbb6d);
+}
+.toolkit-icon.neteasemusic-icon { 
+  background: linear-gradient(135deg, #f0151f, #d00d17);
+}
+.toolkit-icon.kugou-icon { 
+  background: linear-gradient(135deg, #3f8fec, #2d7fdc);
+}
+.toolkit-icon.spotify-icon { 
+  background: linear-gradient(135deg, #2dcc5d, #1dbb4d);
+}
+
+/* Knowledge */
+.toolkit-icon.wikipedia-icon { 
+  background: linear-gradient(135deg, #6d6e70, #56575a);
+}
+.toolkit-icon.scholar-icon { 
+  background: linear-gradient(135deg, #5a8fed, #487fdd);
+}
+.toolkit-icon.zlib-icon { 
+  background: linear-gradient(135deg, #2a8d97, #1a7d87);
+}
+.toolkit-icon.cnki-icon { 
+  background: linear-gradient(135deg, #e01f32, #c00f22);
+}
+.toolkit-icon.sciencedirect-icon { 
+  background: linear-gradient(135deg, #ff8c2c, #e97c1c);
+}
+.toolkit-icon.webofscience-icon { 
+  background: linear-gradient(135deg, #1a7cbf, #0d6caf);
+}
+.toolkit-icon.mathoverflow-icon { 
+  background: linear-gradient(135deg, #f5a623, #e59613);
+}
+.toolkit-icon.oeis-icon { 
+  background: linear-gradient(135deg, #3dcc7d, #2dbb6d);
+}
+
+/* Productivity */
+.toolkit-icon.notion-icon { 
+  background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+}
+.toolkit-icon.obsidian-icon { 
+  background: linear-gradient(135deg, #8d4df5, #7d3de5);
+}
+.toolkit-icon.tencentdocs-icon { 
+  background: linear-gradient(135deg, #1a9cff, #0d8ae9);
+}
+.toolkit-icon.typora-icon { 
+  background: linear-gradient(135deg, #9d9d9d, #7d7d7d);
+}
+.toolkit-icon.yuque-icon { 
+  background: linear-gradient(135deg, #1ab0ff, #0da0e9);
+}
+.toolkit-icon.canva-icon { 
+  background: linear-gradient(135deg, #1ac2ff, #0db2e9);
+}
+.toolkit-icon.removebg-icon { 
+  background: linear-gradient(135deg, #6d7fd0, #4f61c0);
+}
+.toolkit-icon.tinypng-icon { 
+  background: linear-gradient(135deg, #3dcc7d, #2dbb6d);
+}
+
+/* Reference */
+.toolkit-icon.endnote-icon { 
+  background: linear-gradient(135deg, #4a5c7d, #3a4c6d);
+}
+.toolkit-icon.zotero-icon { 
+  background: linear-gradient(135deg, #6d7fd0, #4f61c0);
+}
+.toolkit-icon.mendeley-icon { 
+  background: linear-gradient(135deg, #e9573d, #d9472d);
+}
+.toolkit-icon.academia-icon { 
+  background: linear-gradient(135deg, #4a8fd6, #3a7fc6);
+}
+
+/* USTC Services */
+.toolkit-icon.ustc-blackboard-icon { 
+  background: linear-gradient(135deg, #d00a0a, #b00a0a);
+}
+.toolkit-icon.ustc-mail-icon { 
+  background: linear-gradient(135deg, #1a7cbf, #0d6caf);
+}
+.toolkit-icon.ustc-flyer-icon { 
+  background: linear-gradient(135deg, #5a8fed, #487fdd);
+}
+.toolkit-icon.ustc-website-icon { 
+  background: linear-gradient(135deg, #e01f32, #c00f22);
+}
+.toolkit-icon.ustc-jw-icon { 
+  background: linear-gradient(135deg, #4a8fd6, #3a7fc6);
+}
+.toolkit-icon.ustc-icourse-icon { 
+  background: linear-gradient(135deg, #6dbb5a, #5dab4a);
+}
+.toolkit-icon.ustc-software-icon { 
+  background: linear-gradient(135deg, #7d5dc9, #6d4db9);
+}
+.toolkit-icon.ustc-hanhai-icon { 
+  background: linear-gradient(135deg, #1a8d97, #0d7d87);
+}
+
+/* No results message */
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #8c9aa8;
+  font-size: 1.2em;
+  grid-column: 1 / -1;
+}
+
+/* Dark mode toolkit page */
+body.dark-mode #toolkit {
+  background: #1a1e28;
+}
+
+body.dark-mode .toolkit-heading {
+  color: #f0f5ff;
+}
+
+body.dark-mode .filter-btn {
+  background: #3a3f4d;
+  border-color: #555b6d;
+  color: #d0d5e0;
+}
+
+body.dark-mode .filter-btn:hover {
+  background: #4a4f5d;
+}
+
+body.dark-mode .filter-btn.active {
+  background: #7a4fa9;
+  border-color: #7a4fa9;
+  color: white;
+}
+
+body.dark-mode .search-input {
+  background: #3a3f4d;
+  border-color: #555b6d;
+  color: #f0f5ff;
+}
+
+body.dark-mode .search-input:focus {
+  border-color: #7a4fa9;
+  box-shadow: 0 0 0 2px rgba(122, 79, 169, 0.3);
+}
+
+body.dark-mode .search-icon {
+  color: #b0b5c0;
+}
+
+body.dark-mode .category-title {
+  color: #f0f5ff;
+  border-bottom-color: #7a4fa9;
+}
+
+body.dark-mode .toolkit-card {
+  background: #3a3f4d;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .toolkit-card::before {
+  background: linear-gradient(90deg, #7a4fa9, #a45dc9);
+}
+
+body.dark-mode .toolkit-link {
+  background: linear-gradient(135deg, #7a4fa9, #a45dc9);
+  box-shadow: 0 4px 10px rgba(122, 79, 169, 0.35);
+}
+
+body.dark-mode .toolkit-link:hover {
+  box-shadow: 0 5px 15px rgba(122, 79, 169, 0.45);
+}
+
+body.dark-mode .toolkit-title {
+  color: #f0f5ff;
+}
+
+/* Dark mode icon colors */
+/* Development */
+body.dark-mode .toolkit-icon.github-icon { 
+  background: linear-gradient(135deg, #1a1f29, #3a3f4d);
+}
+body.dark-mode .toolkit-icon.maple-icon { 
+  background: linear-gradient(135deg, #c52229, #a51a21);
+}
+body.dark-mode .toolkit-icon.deepseek-icon { 
+  background: linear-gradient(135deg, #1d6bd0, #0f5bc0);
+}
+body.dark-mode .toolkit-icon.chatgpt-icon { 
+  background: linear-gradient(135deg, #6a9c8d, #5a8c7d);
+}
+body.dark-mode .toolkit-icon.grok-icon { 
+  background: linear-gradient(135deg, #e03a32, #c02a22);
+}
+body.dark-mode .toolkit-icon.deepl-icon { 
+  background: linear-gradient(135deg, #142c4d, #0a1c3d);
+}
+body.dark-mode .toolkit-icon.overleaf-icon { 
+  background: linear-gradient(135deg, #4a9c44, #3a8c34);
+}
+body.dark-mode .toolkit-icon.jupyter-icon { 
+  background: linear-gradient(135deg, #e67a26, #c66a16);
+}
+body.dark-mode .toolkit-icon.wolfram-icon { 
+  background: linear-gradient(135deg, #d01506, #b00500);
+}
+body.dark-mode .toolkit-icon.gitlab-icon { 
+  background: linear-gradient(135deg, #6d4b41, #553a32);
+}
+body.dark-mode .toolkit-icon.codesandbox-icon { 
+  background: linear-gradient(135deg, #2a2a2a, #4a4a4a);
+}
+body.dark-mode .toolkit-icon.leetcode-icon { 
+  background: linear-gradient(135deg, #ff9b20, #e98b10);
+}
+body.dark-mode .toolkit-icon.tableau-icon { 
+  background: linear-gradient(135deg, #4f61c0, #3a51b0);
+}
+body.dark-mode .toolkit-icon.colab-icon { 
+  background: linear-gradient(135deg, #3a9d4b, #2a8d3b);
+}
+
+/* Communication */
+body.dark-mode .toolkit-icon.gmail-icon { 
+  background: linear-gradient(135deg, #e03a32, #c02a22);
+}
+body.dark-mode .toolkit-icon.qqmail-icon { 
+  background: linear-gradient(135deg, #0fb4e9, #0da4d9);
+}
+body.dark-mode .toolkit-icon.neteasemail-icon { 
+  background: linear-gradient(135deg, #d00d17, #b00d17);
+}
+body.dark-mode .toolkit-icon.quora-icon { 
+  background: linear-gradient(135deg, #b02320, #90131a);
+}
+body.dark-mode .toolkit-icon.twitter-icon { 
+  background: linear-gradient(135deg, #2a2a2a, #4a4a4a);
+}
+
+/* Media */
+body.dark-mode .toolkit-icon.youtube-icon { 
+  background: linear-gradient(135deg, #e00a0a, #c00a0a);
+}
+body.dark-mode .toolkit-icon.tiktok-icon { 
+  background: linear-gradient(135deg, #2a2a2a, #4a4a4a);
+}
+body.dark-mode .toolkit-icon.rednote-icon { 
+  background: linear-gradient(135deg, #e02644, #c01634);
+}
+body.dark-mode .toolkit-icon.bilibili-icon { 
+  background: linear-gradient(135deg, #0098cc, #0088bc);
+}
+body.dark-mode .toolkit-icon.iqiyi-icon { 
+  background: linear-gradient(135deg, #00b00b, #00a00b);
+}
+body.dark-mode .toolkit-icon.tencent-icon { 
+  background: linear-gradient(135deg, #0d8ae9, #0d7ad9);
+}
+
+/* Music */
+body.dark-mode .toolkit-icon.qqmusic-icon { 
+  background: linear-gradient(135deg, #2dbb6d, #1dab5d);
+}
+body.dark-mode .toolkit-icon.neteasemusic-icon { 
+  background: linear-gradient(135deg, #d00d17, #b00d17);
+}
+body.dark-mode .toolkit-icon.kugou-icon { 
+  background: linear-gradient(135deg, #2d7fdc, #1d6fcc);
+}
+body.dark-mode .toolkit-icon.spotify-icon { 
+  background: linear-gradient(135deg, #1dbb4d, #0dab3d);
+}
+
+/* Knowledge */
+body.dark-mode .toolkit-icon.wikipedia-icon { 
+  background: linear-gradient(135deg, #56575a, #3a3b3d);
+}
+body.dark-mode .toolkit-icon.scholar-icon { 
+  background: linear-gradient(135deg, #487fdd, #376fcd);
+}
+body.dark-mode .toolkit-icon.zlib-icon { 
+  background: linear-gradient(135deg, #1a7d87, #0a6d77);
+}
+body.dark-mode .toolkit-icon.cnki-icon { 
+  background: linear-gradient(135deg, #c00f22, #a00f22);
+}
+body.dark-mode .toolkit-icon.sciencedirect-icon { 
+  background: linear-gradient(135deg, #e97c1c, #c96c0c);
+}
+body.dark-mode .toolkit-icon.webofscience-icon { 
+  background: linear-gradient(135deg, #0d6caf, #0d5c9f);
+}
+body.dark-mode .toolkit-icon.mathoverflow-icon { 
+  background: linear-gradient(135deg, #e59613, #c58603);
+}
+body.dark-mode .toolkit-icon.oeis-icon { 
+  background: linear-gradient(135deg, #2dbb6d, #1dab5d);
+}
+
+/* Productivity */
+body.dark-mode .toolkit-icon.notion-icon { 
+  background: linear-gradient(135deg, #2a2a2a, #4a4a4a);
+}
+body.dark-mode .toolkit-icon.obsidian-icon { 
+  background: linear-gradient(135deg, #7d3de5, #6d2dd5);
+}
+body.dark-mode .toolkit-icon.tencentdocs-icon { 
+  background: linear-gradient(135deg, #0d8ae9, #0d7ad9);
+}
+body.dark-mode .toolkit-icon.typora-icon { 
+  background: linear-gradient(135deg, #7d7d7d, #5d5d5d);
+}
+body.dark-mode .toolkit-icon.yuque-icon { 
+  background: linear-gradient(135deg, #0da0e9, #0d90d9);
+}
+body.dark-mode .toolkit-icon.canva-icon { 
+  background: linear-gradient(135deg, #0db2e9, #0da2d9);
+}
+body.dark-mode .toolkit-icon.removebg-icon { 
+  background: linear-gradient(135deg, #4f61c0, #3a51b0);
+}
+body.dark-mode .toolkit-icon.tinypng-icon { 
+  background: linear-gradient(135deg, #2dbb6d, #1dab5d);
+}
+
+/* Reference */
+body.dark-mode .toolkit-icon.endnote-icon { 
+  background: linear-gradient(135deg, #3a4c6d, #2a3c5d);
+}
+body.dark-mode .toolkit-icon.zotero-icon { 
+  background: linear-gradient(135deg, #4f61c0, #3a51b0);
+}
+body.dark-mode .toolkit-icon.mendeley-icon { 
+  background: linear-gradient(135deg, #d9472d, #b9371d);
+}
+body.dark-mode .toolkit-icon.academia-icon { 
+  background: linear-gradient(135deg, #3a7fc6, #2a6fb6);
+}
+
+/* USTC Services */
+body.dark-mode .toolkit-icon.ustc-blackboard-icon { 
+  background: linear-gradient(135deg, #b00a0a, #900a0a);
+}
+body.dark-mode .toolkit-icon.ustc-mail-icon { 
+  background: linear-gradient(135deg, #0d6caf, #0d5c9f);
+}
+body.dark-mode .toolkit-icon.ustc-flyer-icon { 
+  background: linear-gradient(135deg, #487fdd, #376fcd);
+}
+body.dark-mode .toolkit-icon.ustc-website-icon { 
+  background: linear-gradient(135deg, #c00f22, #a00f22);
+}
+body.dark-mode .toolkit-icon.ustc-jw-icon { 
+  background: linear-gradient(135deg, #3a7fc6, #2a6fb6);
+}
+body.dark-mode .toolkit-icon.ustc-icourse-icon { 
+  background: linear-gradient(135deg, #5dab4a, #4d9b3a);
+}
+body.dark-mode .toolkit-icon.ustc-software-icon { 
+  background: linear-gradient(135deg, #6d4db9, #5d3da9);
+}
+body.dark-mode .toolkit-icon.ustc-hanhai-icon { 
+  background: linear-gradient(135deg, #0d7d87, #0d6d77);
+}
+
+body.dark-mode .no-results {
+  color: #c0c5d0;
+}

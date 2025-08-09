@@ -1,0 +1,47 @@
+/* Dark mode base styling */
+body.dark-mode {
+  background-color: rgba(20, 25, 35, 0.97); /* Enhanced crystal night */
+  color: rgba(245, 250, 255, 0.97); /* Brighter moonlight */
+}
+
+/* Dark mode common components */
+body.dark-mode #toggle-btn, 
+body.dark-mode #toggle-btn-social, 
+body.dark-mode #toggle-btn-toolkit, 
+body.dark-mode #toggle-btn-schedule {
+  background: linear-gradient(145deg, rgba(130, 80, 180, 0.95), rgba(100, 50, 170, 0.92));
+  box-shadow: 0 4px 20px rgba(130, 80, 180, 0.35); /* Brighter glow */
+  border-radius: 24px; /* Enhanced curvature */
+}
+
+body.dark-mode #toggle-btn::before, 
+body.dark-mode #toggle-btn-social::before, 
+body.dark-mode #toggle-btn-toolkit::before, 
+body.dark-mode #toggle-btn-schedule::before {
+  background: linear-gradient(145deg, rgba(100, 50, 170, 0.92), rgba(130, 80, 180, 0.95));
+}
+
+body.dark-mode #clock, 
+body.dark-mode #clock-social, 
+body.dark-mode #clock-toolkit, 
+body.dark-mode #clock-schedule {
+  background: rgba(130, 80, 180, 0.95); /* Enhanced crystal night */
+  box-shadow: 0 4px 18px rgba(130, 80, 180, 0.35); /* Brighter shadow */
+  border-radius: 28px; /* Smoother edges */
+}
+
+body.dark-mode .clock-toggle {
+  background: rgba(130, 80, 180, 0.95);
+  box-shadow: 0 4px 18px rgba(130, 80, 180, 0.35);
+  border-radius: 24px; /* Consistent curvature */
+}
+
+body.dark-mode .back-btn {
+  background: rgba(130, 80, 180, 0.95);
+  box-shadow: 0 5px 20px rgba(130, 80, 180, 0.45); /* Brighter glow */
+  border-radius: 32px; /* Enhanced rounding */
+}
+
+body.dark-mode .back-btn:hover {
+  background: rgba(100, 50, 170, 0.95);
+}
