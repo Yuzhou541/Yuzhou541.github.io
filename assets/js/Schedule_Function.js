@@ -425,6 +425,11 @@ function initSchedulePage() {
   const ustcTimetableSection = document.getElementById('ustc-timetable-section');
   const myTimetableSection = document.getElementById('my-timetable-section');
       
+  // Set My Timetable as default view
+  viewSwitchers.forEach(b => b.classList.remove('active'));
+  document.querySelector('.schedule-switch-btn[data-view="my-timetable"]').classList.add('active');
+  myTimetableSection.classList.add('active');
+      
   viewSwitchers.forEach(btn => {
     btn.addEventListener('click', () => {
       viewSwitchers.forEach(b => b.classList.remove('active'));
@@ -567,7 +572,7 @@ function initCalendar() {
   const calendarEl = document.getElementById('calendar-container');
       
   calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
+    initialView: 'dayGridDay',  // Changed from 'dayGridMonth' to 'dayGridDay'
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
