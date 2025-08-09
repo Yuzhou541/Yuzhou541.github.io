@@ -1,80 +1,26 @@
-/* Custom cursor implementation */
-* {
-  cursor: none !important;
-}
-  
-.custom-cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition:
-    transform 0.15s ease,
-    width 0.2s ease,
-    height 0.2s ease;
-}
-  
-.cursor-outer {
-  display: none;
-  border: 2px solid #333;
-  background-color: transparent;
-  width: 30px;
-  height: 30px;
-}
-  
-.cursor-inner {
-  background-color: #333;
-}
-  
-/* Dark mode cursor styling */
-body.dark-mode .cursor-inner {
-  background-color: #f8f9fa;
-}
-  
-/* Cursor interaction states */
-.custom-cursor.click {
-  transform: translate(-50%, -50%) scale(0.8);
-}
-  
-.custom-cursor.hover {
-  width: 40px;
-  height: 40px;
-}
-  
-/* Ripple effect animation */
-.ripple {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: rgba(52, 152, 219, 0.5);
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%) scale(0);
-  animation: ripple 0.6s ease-out;
-}
-  
-body.dark-mode .ripple {
-  background-color: rgba(106, 48, 147, 0.5);
-}
-  
-@keyframes ripple {
-  to {
-    transform: translate(-50%, -50%) scale(4);
-    opacity: 0;
-  }
-}
-  
-/* Touch device compatibility */
+/* ./assets/css/cursor.css
+   Keep this file minimal. Native OS cursors will be used via the JS loader.
+   Do not reference .cur files from this CSS file to avoid relative-path issues.
+*/
+
+/* If legacy custom-cursor elements exist in the DOM, hide them quietly. */
+.custom-cursor { display: none !important; }
+
+/* Provide a safe fallback for touch devices and small-screens. */
 @media (hover: none) {
-  .custom-cursor {
-    display: none;
-  }
-    
-  * {
-    cursor: auto !important;
-  }
+  * { cursor: auto !important; }
+}
+
+/* Optional: lightweight visual feedback for clicks (pure CSS fallback).
+   This is unrelated to .cur files and doesn't attempt to recreate the old cursor. */
+.cursor-click-feedback {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: cf 0.5s ease-out;
+}
+@keyframes cf {
+  from { opacity: 0.9; transform: translate(-50%, -50%) scale(0.6); }
+  to   { opacity: 0; transform: translate(-50%, -50%) scale(2.2); }
 }
