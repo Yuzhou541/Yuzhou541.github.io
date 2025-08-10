@@ -28,7 +28,7 @@ document.write(`
           <li>National Scholarship of China (2024)</li>
           <li>Science and Technology Innovation Scholarship (2024)</li>
           <li>Academic Excellence Scholarship (2024)</li>
-          <li>Provincial First Prize & National Second Prize, National Undergraduate Mathematics Competition (CMC) — A Group (2023 & 2024)</li>
+          <li>Provincial First Prize & National Second Prize, National Undergraduate Mathematics Competition (CMC) — Professional Group (2023 & 2024)</li>
         </ul>
       </div>
       
@@ -41,7 +41,7 @@ document.write(`
         <div class="subsubheading">"Algorithms in C++" and "Basic Data Structure and Algorithm in Java"</div>
         <p>
           Repositories:
-          <a class="download-link" href="https://github.com/Yuzhou541/Algorithm_competition" target="_blank" rel="noopener">Algorithm_competition</a>
+          <a class="download-link" href="https://github.com/Yuzhou541/Algorithm_competition" target="_blank" rel="noopener">Algorithm_competition (C++)</a>
           &nbsp;|&nbsp;
           <a class="download-link" href="https://github.com/Yuzhou541/Data-Structure-and-Algorithms-Dalian-University-of-Technology-" target="_blank" rel="noopener">Data-Structure-and-Algorithms (Java)</a>
         </p>
@@ -103,12 +103,6 @@ document.write(`
             <a href="https://github.com/Yuzhou541/functional_basis" target="_blank" rel="noopener">GitHub</a>
           </li>
         </ul>
-        
-        <div class="subheading">
-          <span class="subheading-title">Other Collaborations</span>
-          <span>2024 – Present</span>
-        </div>
-        <div class="subsubheading">Collaborators include Xiaobei Shen, Jiancheng Lv, Qi Cheng, Yimin Yu, and Qian Wang</div>
       </div>
       
       <div class="section">
