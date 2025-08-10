@@ -35,7 +35,7 @@ document.write(`
       <div class="section">
         <h2>Work Experience</h2>
         <div class="subheading">
-          <span class="subheading-title">ICPC Team Captain / Vice President, Algorithm Competition Association (PD·AC)</span>
+          <span class="subheading-title">ICPC Team Captain / Vice President, DP·AC Algorithm Competition Association </span>
           <span>September 2024 – Present</span>
         </div>
         <div class="subsubheading">"Algorithms in C++" and "Basic Data Structure and Algorithm in Java"</div>
