@@ -13,47 +13,47 @@ document.write(`
           <div class="social-icon"><i class="fab fa-youtube"></i></div>
           <div class="social-title">YouTube</div>
           <div class="social-description">My video content and playlists</div>
-          <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
-            <a href="https://www.youtube.com/channel/UCemKYMAMJk8FggZ5NI36i1Q" class="social-link" target="_blank">Channel</a>
-            <span class="social-divider">/</span>
-            <a href="https://www.youtube.com/@JinghaoChen-Stardust" class="social-link" target="_blank">Handle</a>
-          </div>
+          <a href="https://www.youtube.com/@YuzhouZhu-n2c" class="social-link" target="_blank" rel="noopener">Channel</a>
         </div>
         
-        <!-- TikTok card -->
+        <!-- X (Twitter) card -->
         <div class="social-card">
-          <div class="social-icon"><i class="fab fa-tiktok"></i></div>
-          <div class="social-title">TikTok (Chinese)</div>
-          <div class="social-description">Short-form videos in Chinese</div>
-          <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
-            <a href="https://www.douyin.com/user/MS4wLjABAAAAqb9M45SaGeb8yI28lL3lDFHm48c4kl32Xq7BfRk3I24" class="social-link" target="_blank">Link 1</a>
-            <span class="social-divider">/</span>
-            <a href="https://v.douyin.com/PzIS6mSXJGY/" class="social-link" target="_blank">Link 2</a>
-          </div>
+          <div class="social-icon"><i class="fab fa-twitter"></i></div>
+          <div class="social-title">X (Twitter)</div>
+          <div class="social-description">Notes and sharing</div>
+          <a href="https://x.com/YuzhouZhu17649" class="social-link" target="_blank" rel="noopener">Profile</a>
         </div>
-        
-        <!-- REDnote (Xiaohongshu) card -->
-        <div class="social-card">
-          <div class="social-icon"><i class="fas fa-book"></i></div>
-          <div class="social-title">REDnote</div>
-          <div class="social-description">Chinese lifestyle and knowledge sharing</div>
-          <a href="https://www.xiaohongshu.com/user/profile/64c696da000000000b005093" class="social-link" target="_blank">Profile</a>
-        </div>
-        
+
         <!-- Quora card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-quora"></i></div>
           <div class="social-title">Quora</div>
           <div class="social-description">Various questions and answers</div>
-          <a href="https://www.quora.com/profile/Jinghao-Chen-11/" class="social-link" target="_blank">Profile</a>
+          <a href="https://www.quora.com/profile/Yuzhou-Zhu-6" class="social-link" target="_blank" rel="noopener">Profile</a>
         </div>
-        
-        <!-- Twitter/X card -->
+
+        <!-- Douyin (抖音) card -->
         <div class="social-card">
-          <div class="social-icon"><i class="fab fa-twitter"></i></div>
-          <div class="social-title">X (Twitter)</div>
-          <div class="social-description">Notes and sharing</div>
-          <a href="https://x.com/stardust_math" class="social-link" target="_blank">Profile</a>
+          <div class="social-icon"><i class="fab fa-tiktok"></i></div>
+          <div class="social-title">Douyin (抖音)</div>
+          <div class="social-description">Short-form videos in Chinese</div>
+          <div style="display:flex; gap:5px; justify-content:center; align-items:center;">
+            <span class="social-description">ID: 24694347362</span>
+            <span class="social-divider">/</span>
+            <a href="https://www.douyin.com/search/24694347362" class="social-link" target="_blank" rel="noopener">Web Search</a>
+          </div>
+        </div>
+
+        <!-- Xiaohongshu (RED) card -->
+        <div class="social-card">
+          <div class="social-icon"><i class="fas fa-book"></i></div>
+          <div class="social-title">Xiaohongshu (RED)</div>
+          <div class="social-description">Chinese lifestyle and knowledge sharing</div>
+          <div style="display:flex; gap:5px; justify-content:center; align-items:center;">
+            <span class="social-description">ID: 1475135042</span>
+            <span class="social-divider">/</span>
+            <a href="https://www.xiaohongshu.com/search_result?keyword=1475135042" class="social-link" target="_blank" rel="noopener">Web Search</a>
+          </div>
         </div>
         
         <!-- Bilibili card -->
@@ -65,7 +65,7 @@ document.write(`
           </svg>
           <div class="social-title">Bilibili</div>
           <div class="social-description">Chinese video platform for my content</div>
-          <a href="https://space.bilibili.com/470364718" class="social-link" target="_blank">Channel</a>
+          <a href="https://space.bilibili.com/3546624085199380" class="social-link" target="_blank" rel="noopener">Channel</a>
         </div>
 
         <!-- GitHub card -->
@@ -73,7 +73,7 @@ document.write(`
           <div class="social-icon"><i class="fab fa-github"></i></div>
           <div class="social-title">GitHub</div>
           <div class="social-description">My code repositories and projects</div>
-          <a href="https://github.com/Stardust-math" class="social-link" target="_blank">Profile</a>
+          <a href="https://github.com/Yuzhou541" class="social-link" target="_blank" rel="noopener">Profile</a>
         </div>
       </div>
     </div>
