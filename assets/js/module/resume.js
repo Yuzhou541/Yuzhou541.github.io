@@ -134,12 +134,9 @@ document.write(`
       <div class="section">
         <h2>Additional Skills/Information</h2>
         <ul>
-          <li><strong>Computer Skills:</strong> Mathematica (Proficient), Python (4 yr), C (2 yr), LaTeX (Proficient)</li>
-          <li><strong>Languages:</strong> Chinese (Native), English (Fluent — TOEFL: R 22 / L 21 / S 24 / W 24)</li>
-          <li><strong>Hobbies:</strong> Bamboo flute, swimming, singing</li>
-          <li><strong>Reflections and Essays:</strong> "Stardust Meditations" —
-            <a class="download-link" href="./assets/pdf/Stardust_Meditations.pdf" download>Click to download</a>
-          </li>
+          <li><strong>Computer Skills:</strong> Python, C, C++, Java, Matlab, LaTeX</li>
+          <li><strong>Languages:</strong> Chinese (Native), English (Fluent — TOEFL: )</li>
+          <li><strong>Hobbies:</strong> Climbing, swimming, singing, Table Tennis</li>
         </ul>
       </div>
     </div>
