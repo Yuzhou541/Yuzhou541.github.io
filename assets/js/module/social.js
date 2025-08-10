@@ -32,10 +32,10 @@ document.write(`
           <a href="https://www.quora.com/profile/Yuzhou-Zhu-6" class="social-link" target="_blank" rel="noopener">Profile</a>
         </div>
 
-        <!-- Douyin (抖音) card -->
+        <!-- Tiktok card -->
         <div class="social-card">
           <div class="social-icon"><i class="fab fa-tiktok"></i></div>
-          <div class="social-title">Douyin (抖音)</div>
+          <div class="social-title">Tiktok</div>
           <div class="social-description">Short-form videos in Chinese</div>
           <div style="display:flex; gap:5px; justify-content:center; align-items:center;">
             <span class="social-description">ID: 24694347362</span>
@@ -44,10 +44,10 @@ document.write(`
           </div>
         </div>
 
-        <!-- Xiaohongshu (RED) card -->
+        <!-- Rednote card -->
         <div class="social-card">
           <div class="social-icon"><i class="fas fa-book"></i></div>
-          <div class="social-title">Xiaohongshu (RED)</div>
+          <div class="social-title">Rednote</div>
           <div class="social-description">Chinese lifestyle and knowledge sharing</div>
           <div style="display:flex; gap:5px; justify-content:center; align-items:center;">
             <span class="social-description">ID: 1475135042</span>
