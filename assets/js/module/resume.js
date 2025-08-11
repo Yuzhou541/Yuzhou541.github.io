@@ -40,54 +40,79 @@ document.write(`
       <div class="section">
         <h2>Honors and Awards</h2>
         <ul>
-          <!-- (3) Each award with links; images or PDFs as requested -->
           <li>
-            National Scholarship of China (2024)
-            <span class="links">
-              [
-              <a href="assets/images/guojiang1.jpg" target="_blank" rel="noopener">img1</a>,
-              <a href="assets/images/guojiang2.jpg" target="_blank" rel="noopener">img2</a>,
-              <a href="assets/images/guojiang3.jpg" target="_blank" rel="noopener">img3</a>
-              ]
-            </span>
+            <div class="honor-title">National Scholarship of China (2024)</div>
+            <details class="collapsible" style="margin-top:6px;">
+              <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+              <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+                <a href="assets/images/guojiang1.jpg" target="_blank" rel="noopener">
+                  <img src="assets/images/guojiang1.jpg" alt="National Scholarship 2024 — 1" style="height:80px; border-radius:6px;">
+                </a>
+                <a href="assets/images/guojiang2.jpg" target="_blank" rel="noopener">
+                  <img src="assets/images/guojiang2.jpg" alt="National Scholarship 2024 — 2" style="height:80px; border-radius:6px;">
+                </a>
+                <a href="assets/images/guojiang3.jpg" target="_blank" rel="noopener">
+                  <img src="assets/images/guojiang3.jpg" alt="National Scholarship 2024 — 3" style="height:80px; border-radius:6px;">
+                </a>
+              </div>
+            </details>
           </li>
+
           <li>
-            Science and Technology Innovation Scholarship (2024)
-            <span class="links">
-              [
-              <a href="assets/images/scie1.jpg" target="_blank" rel="noopener">img1</a>,
-              <a href="assets/images/scie2.jpg" target="_blank" rel="noopener">img2</a>
-              ]
-            </span>
+            <div class="honor-title">Science and Technology Innovation Scholarship (2024)</div>
+            <details class="collapsible" style="margin-top:6px;">
+              <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+              <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+                <a href="assets/images/scie1.jpg" target="_blank" rel="noopener">
+                  <img src="assets/images/scie1.jpg" alt="STI Scholarship 2024 — 1" style="height:80px; border-radius:6px;">
+                </a>
+                <a href="assets/images/scie2.jpg" target="_blank" rel="noopener">
+                  <img src="assets/images/scie2.jpg" alt="STI Scholarship 2024 — 2" style="height:80px; border-radius:6px;">
+                </a>
+              </div>
+            </details>
           </li>
+
           <li>
-            Academic Excellence Scholarship (2024)
-            <span class="links">
-              [
-              <a href="assets/pdf/GPA.pdf" target="_blank" rel="noopener">pdf</a>
-              ]
-            </span>
+            <div class="honor-title">Academic Excellence Scholarship (2024)</div>
+            <details class="collapsible" style="margin-top:6px;">
+              <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+              <div style="margin-top:8px;">
+                <a href="assets/pdf/GPA.pdf" target="_blank" rel="noopener">View certificate (PDF)</a>
+              </div>
+            </details>
           </li>
+
           <li>
-            Provincial First Prize & National Second Prize, National Undergraduate Mathematics Competition (CMC) — Professional Group (2023 & 2024)
-            <span class="links">
-              [
-              <a href="assets/images/ma1.jpg" target="_blank" rel="noopener">2023-1</a>,
-              <a href="assets/images/ma2.jpg" target="_blank" rel="noopener">2023-2</a>,
-              <a href="assets/images/ma3.jpg" target="_blank" rel="noopener">2024-1</a>
-              ]
-            </span>
+            <div class="honor-title">Provincial First Prize & National Second Prize, National Undergraduate Mathematics Competition (CMC) — Professional Group (2023 & 2024)</div>
+            <details class="collapsible" style="margin-top:6px;">
+              <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+              <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+                <a href="assets/images/ma1.jpg" target="_blank" rel="noopener">
+                  <img src="assets/images/ma1.jpg" alt="CMC 2023 — 1" style="height:80px; border-radius:6px;">
+                </a>
+                <a href="assets/images/ma2.jpg" target="_blank" rel="noopener">
+                  <img src="assets/images/ma2.jpg" alt="CMC 2023 — 2" style="height:80px; border-radius:6px;">
+                </a>
+                <a href="assets/images/ma3.jpg" target="_blank" rel="noopener">
+                  <img src="assets/images/ma3.jpg" alt="CMC 2024 — 1" style="height:80px; border-radius:6px;">
+                </a>
+              </div>
+            </details>
           </li>
+
           <li>
-            Honorable Mention, Mathematical Contest in Modeling<sup>&reg;</sup> (MCM), Problem C, 2025
-            <span class="links">
-              [
-              <a href="assets/pdf/mcm.pdf" target="_blank" rel="noopener">pdf</a>
-              ]
-            </span>
+            <div class="honor-title">Honorable Mention, Mathematical Contest in Modeling&reg; (MCM), Problem C, 2025</div>
+            <details class="collapsible" style="margin-top:6px;">
+              <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+              <div style="margin-top:8px;">
+                <a href="assets/pdf/mcm.pdf" target="_blank" rel="noopener">View certificate (PDF)</a>
+              </div>
+            </details>
           </li>
         </ul>
       </div>
+
       
       <div class="section">
         <h2>Work Experience</h2>
@@ -132,7 +157,7 @@ document.write(`
             <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv:2407.21300</a> |
             <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">GitHub</a>
             <!-- (5) Extra PDF for acceptance/camera-ready -->
-            | <a href="assets/pdf/2509_Invitation Letter.pdf" target="_blank" rel="noopener">pdf</a>
+            | <a href="assets/pdf/2509_Invitation Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
           </li>
         </ul>
         
@@ -182,7 +207,7 @@ document.write(`
             <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv</a> |
             <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">code</a>
             <!-- (5) Publications: add the PDF link on the first item -->
-            | <a href="assets/pdf/2509_Invitation Letter.pdf" target="_blank" rel="noopener">pdf</a>
+            | <a href="assets/pdf/2509_Invitation Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
           </li>
           <li><strong>Yuzhou Zhu</strong>, et al. SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms. Under review at <em>AAAI 2026</em>.
             <a href="https://arxiv.org/abs/2505.06275" target="_blank" rel="noopener">arXiv</a> |
