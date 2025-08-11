@@ -230,7 +230,7 @@ document.write(`
           <span class="subheading-title"> 6.30 Google IO Extended(Hangzhou)</span>
           <span>June 2024</span>
         </div>
-        <div class="subsubheading">Attended GDC Extended (Hangzhou) in June 2024</div>
+        <div class="subsubheading">Attended GDG Extended (Hangzhou) in June 2024</div>
         <details class="collapsible" style="margin-top:8px;">
           <summary style="cursor:pointer;"><em>Click to expand</em></summary>
           <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
