@@ -46,7 +46,7 @@ document.write(`
           <a class="download-link" href="https://github.com/Yuzhou541/Data-Structure-and-Algorithms-Dalian-University-of-Technology-" target="_blank" rel="noopener">Data-Structure-and-Algorithms (Java)</a>
         </p>
         <p>
-          PDF:
+          My "book" for school ICPC competition teams PDF:
           <a class="download-link" href="assets/pdf/algorithm(First Edition)Always.pdf" target="_blank" rel="noopener">Algorithm (First Edition)</a>
         </p>
       </div>
