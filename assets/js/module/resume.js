@@ -29,7 +29,8 @@ document.write(`
           <li>Science and Technology Innovation Scholarship (2024)</li>
           <li>Academic Excellence Scholarship (2024)</li>
           <li>Provincial First Prize & National Second Prize, National Undergraduate Mathematics Competition (CMC) — Professional Group (2023 & 2024)</li>
-        </ul>
+          <li>Honorable Mention, Mathematical Contest in Modeling<sup>&reg;</sup> (MCM), Problem C, 2025</li>
+          </ul>
       </div>
       
       <div class="section">
