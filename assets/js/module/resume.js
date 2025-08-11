@@ -150,7 +150,9 @@ document.write(`
           <span class="subheading-title">SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering</span>
           <span>2024 – 2025</span>
         </div>
-        <div class="subsubheading">Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor: Prof. David P. Woodruff (CMU)</div>
+        <div class="subsubheading">Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor: 
+          <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">
+        Prof. David P. Woodruff (Carnegie Mellon University)</div>
         <ul>
           <li>Streaming RAG with heavy-hitter filtering + online k-means; reproducible code and ablations.</li>
           <li>Links:
@@ -252,7 +254,16 @@ document.write(`
           <span class="subheading-title">Top-notch Innovative Talent Training Program (Shanghai Jiao Tong University)</span>
           <span>July 2024 – August 2024</span>
         </div>
-        <div class="subsubheading">The first ICIC paper is an outcome of this project; Advisor: David Woodruff</div>
+        <div class="subsubheading">
+          The paper
+          <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">
+            “SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering”
+          </a>
+          is an outcome of this project; Advisor:
+          <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">
+            David Woodruff
+          </a>
+        </div>
         <details class="collapsible" style="margin-top:8px;">
           <summary style="cursor:pointer;"><em>Click to expand</em></summary>
           <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
@@ -263,6 +274,7 @@ document.write(`
           </div>
         </details>
       </div>
+
       
       <div class="section">
         <h2>Additional Skills/Information</h2>
