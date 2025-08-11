@@ -150,18 +150,20 @@ document.write(`
           <span class="subheading-title">SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering</span>
           <span>2024 – 2025</span>
         </div>
-        <div class="subsubheading">Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor: 
-          <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">
-        Prof. David P. Woodruff (Carnegie Mellon University)</div>
+        <div class="subsubheading">
+          Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor:
+          <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">Prof. David P. Woodruff</a>
+          (Carnegie Mellon University)
+        </div>
         <ul>
           <li>Streaming RAG with heavy-hitter filtering + online k-means; reproducible code and ablations.</li>
           <li>Links:
             <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv:2407.21300</a> |
-            <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">GitHub</a>
-            <!-- (5) Extra PDF for acceptance/camera-ready -->
-            | <a href="assets/pdf/2509_Invitation Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
+            <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">GitHub</a> |
+            <a href="assets/pdf/2509_Invitation%20Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
           </li>
         </ul>
+
         
         <div class="subheading">
           <span class="subheading-title">SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms</span>
