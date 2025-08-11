@@ -88,6 +88,7 @@ document.write(`
         <ul>
           <li>Real-time KB updates with bounded state-change complexity; multi-vector screening + online clustering.</li>
           <li>Link:
+            <a href="https://arxiv.org/abs/2508.05662" target="_blank" rel="noopener">arXiv:2508.05662</a> |
             <a href="https://github.com/Yuzhou541/Streaming_RAG" target="_blank" rel="noopener">GitHub</a>
           </li>
         </ul>
@@ -117,6 +118,7 @@ document.write(`
             <a href="https://github.com/Yuzhou541/SinBasis" target="_blank" rel="noopener">code</a>
           </li>
           <li><strong>Yuzhou Zhu</strong>, et al. From Static to Dynamic: A Streaming RAG Approach to Real-time Knowledge Base. Under review at <em>AAAI 2026</em>.
+            <a href="https://arxiv.org/abs/2508.05662" target="_blank" rel="noopener">arXiv</a> |
             <a href="https://github.com/Yuzhou541/Streaming_RAG" target="_blank" rel="noopener">code</a>
           </li>
           <li><strong>Yuzhou Zhu</strong>, et al. Functional-Basis Neural Layers: Learning Adaptive Weight Functions for Universal Approximation. In preparation (Target: <em>ICLR 2026</em>).
