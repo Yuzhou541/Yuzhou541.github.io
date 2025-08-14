@@ -313,6 +313,10 @@ document.write(`
         <ul>
           <li>
             <div class="honor-title">National Scholarship of China (2024)</div>
+            <p class="honor-desc" style="margin:6px 0 0;">
+              The highest-level undergraduate scholarship in China, awarded by the Ministry of Education for outstanding academic achievement,
+              research potential, and comprehensive excellence.
+            </p>
             <details class="collapsible" style="margin-top:6px;">
               <summary style="cursor:pointer;"><em>Click to expand</em></summary>
               <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
@@ -331,14 +335,18 @@ document.write(`
 
           <li>
             <div class="honor-title">Science and Technology Innovation Scholarship (2024)</div>
+            <p class="honor-desc" style="margin:6px 0 0;">
+              University-level award recognizing demonstrated innovation and research potential—typically based on projects, publications,
+              competitions, and contributions to science and engineering practice.
+            </p>
             <details class="collapsible" style="margin-top:6px;">
               <summary style="cursor:pointer;"><em>Click to expand</em></summary>
               <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
                 <a href="assets/images/scie1.jpg" target="_blank" rel="noopener">
-                  <img src="assets/images/scie1.jpg" alt="STI Scholarship 2024 — 1" style="height:80px; border-radius:6px;">
+                  <img src="assets/images/scie1.jpg" alt="Science & Technology Innovation 2024 — 1" style="height:80px; border-radius:6px;">
                 </a>
                 <a href="assets/images/scie2.jpg" target="_blank" rel="noopener">
-                  <img src="assets/images/scie2.jpg" alt="STI Scholarship 2024 — 2" style="height:80px; border-radius:6px;">
+                  <img src="assets/images/scie2.jpg" alt="Science & Technology Innovation 2024 — 2" style="height:80px; border-radius:6px;">
                 </a>
               </div>
             </details>
@@ -346,6 +354,9 @@ document.write(`
 
           <li>
             <div class="honor-title">Academic Excellence Scholarship (2024)</div>
+            <p class="honor-desc" style="margin:6px 0 0;">
+              Awarded for top academic performance across core coursework and overall GPA standing within the program.
+            </p>
             <details class="collapsible" style="margin-top:6px;">
               <summary style="cursor:pointer;"><em>Click to expand</em></summary>
               <div style="margin-top:8px;">
@@ -356,6 +367,10 @@ document.write(`
 
           <li>
             <div class="honor-title">Provincial First Prize & National Second Prize, National Undergraduate Mathematics Competition (CMC) — Professional Group (2023 & 2024)</div>
+            <p class="honor-desc" style="margin:6px 0 0;">
+              One of China’s largest undergraduate mathematics competitions organized by the Chinese Mathematical Society; the Professional Group
+              emphasizes advanced problem solving in analysis, algebra, and geometry. Awards reflect strong proof skills and speed under pressure.
+            </p>
             <details class="collapsible" style="margin-top:6px;">
               <summary style="cursor:pointer;"><em>Click to expand</em></summary>
               <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
@@ -374,6 +389,10 @@ document.write(`
 
           <li>
             <div class="honor-title">Honorable Mention, Mathematical Contest in Modeling&reg; (MCM), Problem C, 2025</div>
+            <p class="honor-desc" style="margin:6px 0 0;">
+              International 96-hour team modeling contest run by COMAP. Teams build mathematical models, implement simulations, and write a
+              professional report; Problem C focuses on data-driven analysis and empirical modeling.
+            </p>
             <details class="collapsible" style="margin-top:6px;">
               <summary style="cursor:pointer;"><em>Click to expand</em></summary>
               <div style="margin-top:8px;">
@@ -383,6 +402,7 @@ document.write(`
           </li>
         </ul>
       </div>
+
 
       
       <div class="section">
