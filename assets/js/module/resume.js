@@ -60,103 +60,124 @@ document.write(`
         </ul>
       </div>
 
-                <div class="section">
-      <h2>Research Projects</h2>
+      <div class="section">
+        <h2>Research Projects</h2>
 
-      <!-- SAKR -->
-      <div class="subheading">
-        <span class="subheading-title">SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering</span>
-        <span>2024 – 2025</span>
-      </div>
-      <div class="subsubheading">
-        Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor:
-        <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">Prof. David P. Woodruff</a>
-        (Carnegie Mellon University)
-      </div>
-      <ul>
-        <li>Streaming RAG with heavy-hitter filtering + online k-means; reproducible code and ablations.</li>
-        <li>Links:
-          <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv:2407.21300</a> |
-          <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">GitHub</a> |
-          <a href="assets/pdf/2509_Invitation%20Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
-        </li>
-      </ul>
-      <details class="collapsible" style="margin-top:8px;">
-        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-        <ul style="margin-top:8px;">
-          <li><strong>Accuracy–memory tradeoff:</strong> avg accuracy <strong>0.640</strong> on a news stream with only <strong>10%</strong> of naïve RAG’s memory.</li>
-          <li><strong>Retrieval speed:</strong> pre-clustered search reduces complexity from <code>O(N·n log n)</code> to <code>O(N·m log m)</code> for large corpora.</li>
-          <li><strong>Role:</strong> built the full codebase and ran <strong>all experiments</strong>.</li>
+        <!-- SAKR -->
+        <div class="subheading">
+          <span class="subheading-title">SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering</span>
+          <span>2024 – 2025</span>
+        </div>
+        <div class="subsubheading">
+          Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor:
+          <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">Prof. David P. Woodruff</a>
+          (Carnegie Mellon University)
+        </div>
+        <ul>
+          <li>Streaming RAG with heavy-hitter filtering + online k-means; reproducible code and ablations.</li>
+          <li>Links:
+            <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv:2407.21300</a> |
+            <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">GitHub</a> |
+            <a href="assets/pdf/2509_Invitation%20Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
+          </li>
         </ul>
-      </details>
+        <details class="collapsible" style="margin-top:8px;">
+          <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+          <div style="margin-top:8px;">
+            <p>
+              SAKR proposes a streaming RAG pipeline that combines heavy-hitter filtering with online k-means to keep retrieval fresh under tight memory and latency budgets. By pre-clustering the corpus and screening candidates with compact multi-vector summaries, the search cost shifts from
+              <code>O(N · n log n)</code> to <code>O(N · m log m)</code> on large collections, making real-time updates feasible without expensive full re-indexes.
+            </p>
+            <p>
+              In evaluation on a news stream, the system delivers an average accuracy of <strong>0.640</strong> while using only <strong>10%</strong> of the memory of a naïve RAG baseline—about a <strong>90%</strong> reduction—demonstrating a strong accuracy–efficiency trade-off. I built the entire codebase and executed
+              all experiments end-to-end, including ablations, parameter studies, and reproducibility tooling (Tools: PyTorch, FAISS).
+            </p>
+          </div>
+        </details>
 
-      <!-- SinBasis Networks -->
-      <div class="subheading" style="margin-top:16px;">
-        <span class="subheading-title">SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms</span>
-        <span>2025 – Present</span>
-      </div>
-      <div class="subsubheading">Under review (AAAI 2026)</div>
-      <ul>
-        <li>Sinusoidal-basis reparameterization to inject periodic priors with matrix-equivalent forms.</li>
-        <li>Links:
-          <a href="https://arxiv.org/abs/2505.06275" target="_blank" rel="noopener">arXiv:2505.06275</a> |
-          <a href="https://github.com/Yuzhou541/SinBasis" target="_blank" rel="noopener">GitHub</a>
-        </li>
-      </ul>
-      <details class="collapsible" style="margin-top:8px;">
-        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-        <ul style="margin-top:8px;">
-          <li><strong>Idea:</strong> apply elementwise <code>sin(·)</code> to weight matrices to encode global periodicity while remaining lightweight.</li>
-          <li><strong>Eval:</strong> tested on <strong>80,000</strong> synthetic attosecond spectrograms and diverse optical/audio datasets; improved reconstruction accuracy, translational robustness, and zero-shot transfer.</li>
-          <li><strong>Stability:</strong> the transform is 1-Lipschitz; integrates with CNN/ViT/Capsule backbones.</li>
-          <li><strong>Role:</strong> sole author — theory, implementation, and experiments end-to-end.</li>
+        <!-- SinBasis Networks -->
+        <div class="subheading" style="margin-top:16px;">
+          <span class="subheading-title">SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms</span>
+          <span>2025 – Present</span>
+        </div>
+        <div class="subsubheading">Under review (AAAI 2026)</div>
+        <ul>
+          <li>Sinusoidal-basis reparameterization to inject periodic priors with matrix-equivalent forms.</li>
+          <li>Links:
+            <a href="https://arxiv.org/abs/2505.06275" target="_blank" rel="noopener">arXiv:2505.06275</a> |
+            <a href="https://github.com/Yuzhou541/SinBasis" target="_blank" rel="noopener">GitHub</a>
+          </li>
         </ul>
-      </details>
+        <details class="collapsible" style="margin-top:8px;">
+          <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+          <div style="margin-top:8px;">
+            <p>
+              SinBasis introduces a matrix-equivalent sinusoidal reparameterization that embeds periodic priors directly into common backbones with minimal overhead. The transformation is 1-Lipschitz and plugs into CNN/ViT/Capsule architectures to improve sensitivity to harmonic structure without destabilizing training.
+            </p>
+            <p>
+              I evaluated SinBasis on <strong>80,000</strong> synthetic attosecond spectrograms and multiple optical/audio datasets, where it improves reconstruction fidelity, translational robustness, and zero-shot cross-domain transfer. I designed the method, implemented the layers, and ran the full suite of experiments (Tools: PyTorch, NumPy).
+            </p>
+          </div>
+        </details>
 
-      <!-- Streaming RAG -->
-      <div class="subheading" style="margin-top:16px;">
-        <span class="subheading-title">From Static to Dynamic: A Streaming RAG Approach to Real-time Knowledge Base</span>
-        <span>2025 – Present</span>
-      </div>
-      <div class="subsubheading">Under review (AAAI 2026)</div>
-      <ul>
-        <li>Real-time KB updates with bounded state-change complexity; multi-vector screening + online clustering.</li>
-        <li>Link:
-          <a href="https://arxiv.org/abs/2508.05662" target="_blank" rel="noopener">arXiv:2508.05662</a> |
-          <a href="https://github.com/Yuzhou541/Streaming_RAG" target="_blank" rel="noopener">GitHub</a>
-        </li>
-      </ul>
-      <details class="collapsible" style="margin-top:8px;">
-        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-        <ul style="margin-top:8px;">
-          <li><strong>Retrieval quality:</strong> up to <strong>+3</strong> points Recall@10 (<em>p</em> &lt; 0.01); sub-15&nbsp;ms end-to-end latency; &gt;<strong>900 docs/s</strong> throughput under a <strong>150&nbsp;MB</strong> budget.</li>
-          <li><strong>Pipeline:</strong> multi-vector cosine pre-filter → mini-batch clustering → heavy-hitter counter → incremental index upserts.</li>
-          <li><strong>Theory:</strong> approximation bound <em>E[R(K<sub>t</sub>)] ≥ R* − LΔ</em> links retrieval quality to clustering variance.</li>
-          <li><strong>Role:</strong> sole author — pipeline design and FastAPI service implementation.</li>
+        <!-- Streaming RAG (Dynamic KB) -->
+        <div class="subheading" style="margin-top:16px;">
+          <span class="subheading-title">From Static to Dynamic: A Streaming RAG Approach to Real-time Knowledge Base</span>
+          <span>2025 – Present</span>
+        </div>
+        <div class="subsubheading">Under review (AAAI 2026)</div>
+        <ul>
+          <li>Real-time KB updates with bounded state-change complexity; multi-vector screening + online clustering.</li>
+          <li>Link:
+            <a href="https://arxiv.org/abs/2508.05662" target="_blank" rel="noopener">arXiv:2508.05662</a> |
+            <a href="https://github.com/Yuzhou541/Streaming_RAG" target="_blank" rel="noopener">GitHub</a>
+          </li>
         </ul>
-      </details>
+        <details class="collapsible" style="margin-top:8px;">
+          <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+          <div style="margin-top:8px;">
+            <p>
+              This project converts a static, periodically rebuilt knowledge base into a streaming system that ingests updates continuously.
+              The pipeline performs multi-vector cosine pre-filtering, mini-batch clustering to maintain topical locality, and heavy-hitter
+              counting to prioritize admissions, followed by incremental FAISS upserts.
+            </p>
+            <p>
+              Under a <strong>150&nbsp;MB</strong> memory budget, the system achieves sub-<strong>15&nbsp;ms</strong> end-to-end latency and
+              &gt;<strong>900 docs/s</strong> throughput, while improving retrieval quality by up to <strong>+3</strong> points Recall@10
+              (<em>p</em> &lt; 0.01). I am the sole author responsible for the design, implementation, and deployment prototype, exposing the service via FastAPI (Tools: Python, FastAPI).
+            </p>
+          </div>
+        </details>
 
-      <!-- Functional-Basis Layers -->
-      <div class="subheading" style="margin-top:16px;">
-        <span class="subheading-title">Functional-Basis Neural Layers: Learning Adaptive Weight Functions for Universal Approximation</span>
-        <span>2025 – Present</span>
-      </div>
-      <div class="subsubheading">In preparation (Target: ICLR 2026)</div>
-      <ul>
-        <li>Trainable basis-weight layers; functional Stone–Weierstrass style proof and constructive case studies.</li>
-        <li>Link:
-          <a href="https://github.com/Yuzhou541/functional_basis" target="_blank" rel="noopener">GitHub</a>
-        </li>
-      </ul>
-      <details class="collapsible" style="margin-top:8px;">
-        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-        <ul style="margin-top:8px;">
-          <li><strong>Theory:</strong> universal approximation via a functional Stone–Weierstrass argument; error and convergence bounds.</li>
-          <li><strong>Results (examples):</strong> ImageNet Top-1 <strong>76.4%</strong> → <strong>77.6%</strong> by replacing FC layers; WikiText-103 perplexity <strong>17.8</strong> → <strong>16.9</strong>; 512×512 Navier–Stokes MSE <strong>8.5e-4</strong> → <strong>7.9e-4</strong>.</li>
-          <li><strong>Role:</strong> sole author — proposed layer, proved theory, implemented and ran experiments.</li>
+        <!-- Functional-Basis Layers -->
+        <div class="subheading" style="margin-top:16px;">
+          <span class="subheading-title">Functional-Basis Neural Layers: Learning Adaptive Weight Functions for Universal Approximation</span>
+          <span>2025 – Present</span>
+        </div>
+        <div class="subsubheading">In preparation (Target: ICLR 2026)</div>
+        <ul>
+          <li>Trainable basis-weight layers; functional Stone–Weierstrass style proof and constructive case studies.</li>
+          <li>Link:
+            <a href="https://github.com/Yuzhou541/functional_basis" target="_blank" rel="noopener">GitHub</a>
+          </li>
         </ul>
-      </details>
-    </div>
+        <details class="collapsible" style="margin-top:8px;">
+          <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+          <div style="margin-top:8px;">
+            <p>
+              I propose a functional-basis layer that replaces fixed weight matrices with learned combinations of basis functions, unifying
+              MLPs and kernel expansions under a single abstraction. A functional Stone–Weierstrass argument provides universal approximation
+              with explicit error and convergence bounds, guiding regularization and basis selection.
+            </p>
+            <p>
+              In preliminary studies, swapping FC layers for the functional-basis layer improves ImageNet Top-1 from <strong>76.4%</strong> to
+              <strong>77.6%</strong>, reduces WikiText-103 perplexity from <strong>17.8</strong> to <strong>16.9</strong>, and lowers
+              512×512 Navier–Stokes MSE from <strong>8.5e-4</strong> to <strong>7.9e-4</strong>. I led theory, implementation, and all
+              experiments (Tools: PyTorch, NumPy).
+            </p>
+          </div>
+        </details>
+      </div>
 
       <!-- (7) New section: Summer Research -->
       <div class="section">
