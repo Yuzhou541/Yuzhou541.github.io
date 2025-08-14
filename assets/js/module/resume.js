@@ -38,6 +38,155 @@ document.write(`
       </div>
       
       <div class="section">
+        <h2>Publications</h2>
+        <ul>
+          <li><strong>Yuzhou Zhu</strong>, et al. SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering. In <em>ICIC 2025</em>. (Accepted 2025-06-26).
+            <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv</a> |
+            <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">code</a>
+            <!-- (5) Publications: add the PDF link on the first item -->
+            | <a href="assets/pdf/2509_Invitation Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
+          </li>
+          <li><strong>Yuzhou Zhu</strong>, et al. SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms. Under review at <em>AAAI 2026</em>.
+            <a href="https://arxiv.org/abs/2505.06275" target="_blank" rel="noopener">arXiv</a> |
+            <a href="https://github.com/Yuzhou541/SinBasis" target="_blank" rel="noopener">code</a>
+          </li>
+          <li><strong>Yuzhou Zhu</strong>, et al. From Static to Dynamic: A Streaming RAG Approach to Real-time Knowledge Base. Under review at <em>AAAI 2026</em>.
+            <a href="https://arxiv.org/abs/2508.05662" target="_blank" rel="noopener">arXiv</a> |
+            <a href="https://github.com/Yuzhou541/Streaming_RAG" target="_blank" rel="noopener">code</a>
+          </li>
+          <li><strong>Yuzhou Zhu</strong>, et al. Functional-Basis Neural Layers: Learning Adaptive Weight Functions for Universal Approximation. In preparation (Target: <em>ICLR 2026</em>).
+            <a href="https://github.com/Yuzhou541/functional_basis" target="_blank" rel="noopener">code</a>
+          </li>
+        </ul>
+      </div>
+
+                <div class="section">
+      <h2>Research Projects</h2>
+
+      <!-- SAKR -->
+      <div class="subheading">
+        <span class="subheading-title">SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering</span>
+        <span>2024 – 2025</span>
+      </div>
+      <div class="subsubheading">
+        Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor:
+        <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">Prof. David P. Woodruff</a>
+        (Carnegie Mellon University)
+      </div>
+      <ul>
+        <li>Streaming RAG with heavy-hitter filtering + online k-means; reproducible code and ablations.</li>
+        <li>Links:
+          <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv:2407.21300</a> |
+          <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">GitHub</a> |
+          <a href="assets/pdf/2509_Invitation%20Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
+        </li>
+      </ul>
+      <details class="collapsible" style="margin-top:8px;">
+        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+        <ul style="margin-top:8px;">
+          <li><strong>Accuracy–memory tradeoff:</strong> avg accuracy <strong>0.640</strong> on a news stream with only <strong>10%</strong> of naïve RAG’s memory.</li>
+          <li><strong>Retrieval speed:</strong> pre-clustered search reduces complexity from <code>O(N·n log n)</code> to <code>O(N·m log m)</code> for large corpora.</li>
+          <li><strong>Role:</strong> built the full codebase and ran <strong>all experiments</strong>.</li>
+        </ul>
+      </details>
+
+      <!-- SinBasis Networks -->
+      <div class="subheading" style="margin-top:16px;">
+        <span class="subheading-title">SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms</span>
+        <span>2025 – Present</span>
+      </div>
+      <div class="subsubheading">Under review (AAAI 2026)</div>
+      <ul>
+        <li>Sinusoidal-basis reparameterization to inject periodic priors with matrix-equivalent forms.</li>
+        <li>Links:
+          <a href="https://arxiv.org/abs/2505.06275" target="_blank" rel="noopener">arXiv:2505.06275</a> |
+          <a href="https://github.com/Yuzhou541/SinBasis" target="_blank" rel="noopener">GitHub</a>
+        </li>
+      </ul>
+      <details class="collapsible" style="margin-top:8px;">
+        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+        <ul style="margin-top:8px;">
+          <li><strong>Idea:</strong> apply elementwise <code>sin(·)</code> to weight matrices to encode global periodicity while remaining lightweight.</li>
+          <li><strong>Eval:</strong> tested on <strong>80,000</strong> synthetic attosecond spectrograms and diverse optical/audio datasets; improved reconstruction accuracy, translational robustness, and zero-shot transfer.</li>
+          <li><strong>Stability:</strong> the transform is 1-Lipschitz; integrates with CNN/ViT/Capsule backbones.</li>
+          <li><strong>Role:</strong> sole author — theory, implementation, and experiments end-to-end.</li>
+        </ul>
+      </details>
+
+      <!-- Streaming RAG -->
+      <div class="subheading" style="margin-top:16px;">
+        <span class="subheading-title">From Static to Dynamic: A Streaming RAG Approach to Real-time Knowledge Base</span>
+        <span>2025 – Present</span>
+      </div>
+      <div class="subsubheading">Under review (AAAI 2026)</div>
+      <ul>
+        <li>Real-time KB updates with bounded state-change complexity; multi-vector screening + online clustering.</li>
+        <li>Link:
+          <a href="https://arxiv.org/abs/2508.05662" target="_blank" rel="noopener">arXiv:2508.05662</a> |
+          <a href="https://github.com/Yuzhou541/Streaming_RAG" target="_blank" rel="noopener">GitHub</a>
+        </li>
+      </ul>
+      <details class="collapsible" style="margin-top:8px;">
+        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+        <ul style="margin-top:8px;">
+          <li><strong>Retrieval quality:</strong> up to <strong>+3</strong> points Recall@10 (<em>p</em> &lt; 0.01); sub-15&nbsp;ms end-to-end latency; &gt;<strong>900 docs/s</strong> throughput under a <strong>150&nbsp;MB</strong> budget.</li>
+          <li><strong>Pipeline:</strong> multi-vector cosine pre-filter → mini-batch clustering → heavy-hitter counter → incremental index upserts.</li>
+          <li><strong>Theory:</strong> approximation bound <em>E[R(K<sub>t</sub>)] ≥ R* − LΔ</em> links retrieval quality to clustering variance.</li>
+          <li><strong>Role:</strong> sole author — pipeline design and FastAPI service implementation.</li>
+        </ul>
+      </details>
+
+      <!-- Functional-Basis Layers -->
+      <div class="subheading" style="margin-top:16px;">
+        <span class="subheading-title">Functional-Basis Neural Layers: Learning Adaptive Weight Functions for Universal Approximation</span>
+        <span>2025 – Present</span>
+      </div>
+      <div class="subsubheading">In preparation (Target: ICLR 2026)</div>
+      <ul>
+        <li>Trainable basis-weight layers; functional Stone–Weierstrass style proof and constructive case studies.</li>
+        <li>Link:
+          <a href="https://github.com/Yuzhou541/functional_basis" target="_blank" rel="noopener">GitHub</a>
+        </li>
+      </ul>
+      <details class="collapsible" style="margin-top:8px;">
+        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+        <ul style="margin-top:8px;">
+          <li><strong>Theory:</strong> universal approximation via a functional Stone–Weierstrass argument; error and convergence bounds.</li>
+          <li><strong>Results (examples):</strong> ImageNet Top-1 <strong>76.4%</strong> → <strong>77.6%</strong> by replacing FC layers; WikiText-103 perplexity <strong>17.8</strong> → <strong>16.9</strong>; 512×512 Navier–Stokes MSE <strong>8.5e-4</strong> → <strong>7.9e-4</strong>.</li>
+          <li><strong>Role:</strong> sole author — proposed layer, proved theory, implemented and ran experiments.</li>
+        </ul>
+      </details>
+    </div>
+
+      <!-- (7) New section: Summer Research -->
+      <div class="section">
+        <h2>Summer Research</h2>
+        <div class="subheading">
+          <span class="subheading-title">Top-notch Innovative Talent Training Program (Shanghai Jiao Tong University)</span>
+          <span>July 2024 – August 2024</span>
+        </div>
+        <div class="subsubheading">
+          The paper
+          <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">
+            “SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering”
+          </a>
+          is an outcome of this project; Advisor:
+          <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">
+            David Woodruff
+          </a>
+        </div>
+        <details class="collapsible" style="margin-top:8px;">
+          <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+          <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+            <a href="assets/images/s1.jpg" target="_blank" rel="noopener"><img src="assets/images/s1.jpg" alt="sjtu-1" style="height:80px; border-radius:6px;"></a>
+            <a href="assets/images/s2.jpg" target="_blank" rel="noopener"><img src="assets/images/s2.jpg" alt="sjtu-2" style="height:80px; border-radius:6px;"></a>
+            <a href="assets/images/s3.jpg" target="_blank" rel="noopener"><img src="assets/images/s3.jpg" alt="sjtu-3" style="height:80px; border-radius:6px;"></a>
+            <a href="assets/images/s4.jpg" target="_blank" rel="noopener"><img src="assets/images/s4.jpg" alt="sjtu-4" style="height:80px; border-radius:6px;"></a>
+          </div>
+        </details>
+      </div>
+
+      <div class="section">
         <h2>Honors and Awards</h2>
         <ul>
           <li>
@@ -143,127 +292,9 @@ document.write(`
         </details>
       </div>
       
-          <div class="section">
-      <h2>Research Projects</h2>
 
-      <!-- SAKR -->
-      <div class="subheading">
-        <span class="subheading-title">SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering</span>
-        <span>2024 – 2025</span>
-      </div>
-      <div class="subsubheading">
-        Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor:
-        <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">Prof. David P. Woodruff</a>
-        (Carnegie Mellon University)
-      </div>
-      <ul>
-        <li>Streaming RAG with heavy-hitter filtering + online k-means; reproducible code and ablations.</li>
-        <li>Links:
-          <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv:2407.21300</a> |
-          <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">GitHub</a> |
-          <a href="assets/pdf/2509_Invitation%20Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
-        </li>
-      </ul>
-      <details class="collapsible" style="margin-top:8px;">
-        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-        <ul style="margin-top:8px;">
-          <li><strong>Accuracy–memory tradeoff:</strong> avg accuracy <strong>0.640</strong> on a news stream with only <strong>10%</strong> of naïve RAG’s memory.</li>
-          <li><strong>Retrieval speed:</strong> pre-clustered search reduces complexity from <code>O(N·n log n)</code> to <code>O(N·m log m)</code> for large corpora.</li>
-          <li><strong>Role:</strong> built the full codebase and ran <strong>all experiments</strong>.</li>
-        </ul>
-      </details>
-
-      <!-- SinBasis Networks -->
-      <div class="subheading" style="margin-top:16px;">
-        <span class="subheading-title">SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms</span>
-        <span>2025 – Present</span>
-      </div>
-      <div class="subsubheading">Under review (AAAI 2026)</div>
-      <ul>
-        <li>Sinusoidal-basis reparameterization to inject periodic priors with matrix-equivalent forms.</li>
-        <li>Links:
-          <a href="https://arxiv.org/abs/2505.06275" target="_blank" rel="noopener">arXiv:2505.06275</a> |
-          <a href="https://github.com/Yuzhou541/SinBasis" target="_blank" rel="noopener">GitHub</a>
-        </li>
-      </ul>
-      <details class="collapsible" style="margin-top:8px;">
-        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-        <ul style="margin-top:8px;">
-          <li><strong>Idea:</strong> apply elementwise <code>sin(·)</code> to weight matrices to encode global periodicity while remaining lightweight.</li>
-          <li><strong>Eval:</strong> tested on <strong>80,000</strong> synthetic attosecond spectrograms and diverse optical/audio datasets; improved reconstruction accuracy, translational robustness, and zero-shot transfer.</li>
-          <li><strong>Stability:</strong> the transform is 1-Lipschitz; integrates with CNN/ViT/Capsule backbones.</li>
-          <li><strong>Role:</strong> sole author — theory, implementation, and experiments end-to-end.</li>
-        </ul>
-      </details>
-
-      <!-- Streaming RAG -->
-      <div class="subheading" style="margin-top:16px;">
-        <span class="subheading-title">From Static to Dynamic: A Streaming RAG Approach to Real-time Knowledge Base</span>
-        <span>2025 – Present</span>
-      </div>
-      <div class="subsubheading">Under review (AAAI 2026)</div>
-      <ul>
-        <li>Real-time KB updates with bounded state-change complexity; multi-vector screening + online clustering.</li>
-        <li>Link:
-          <a href="https://arxiv.org/abs/2508.05662" target="_blank" rel="noopener">arXiv:2508.05662</a> |
-          <a href="https://github.com/Yuzhou541/Streaming_RAG" target="_blank" rel="noopener">GitHub</a>
-        </li>
-      </ul>
-      <details class="collapsible" style="margin-top:8px;">
-        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-        <ul style="margin-top:8px;">
-          <li><strong>Retrieval quality:</strong> up to <strong>+3</strong> points Recall@10 (<em>p</em> &lt; 0.01); sub-15&nbsp;ms end-to-end latency; &gt;<strong>900 docs/s</strong> throughput under a <strong>150&nbsp;MB</strong> budget.</li>
-          <li><strong>Pipeline:</strong> multi-vector cosine pre-filter → mini-batch clustering → heavy-hitter counter → incremental index upserts.</li>
-          <li><strong>Theory:</strong> approximation bound <em>E[R(K<sub>t</sub>)] ≥ R* − LΔ</em> links retrieval quality to clustering variance.</li>
-          <li><strong>Role:</strong> sole author — pipeline design and FastAPI service implementation.</li>
-        </ul>
-      </details>
-
-      <!-- Functional-Basis Layers -->
-      <div class="subheading" style="margin-top:16px;">
-        <span class="subheading-title">Functional-Basis Neural Layers: Learning Adaptive Weight Functions for Universal Approximation</span>
-        <span>2025 – Present</span>
-      </div>
-      <div class="subsubheading">In preparation (Target: ICLR 2026)</div>
-      <ul>
-        <li>Trainable basis-weight layers; functional Stone–Weierstrass style proof and constructive case studies.</li>
-        <li>Link:
-          <a href="https://github.com/Yuzhou541/functional_basis" target="_blank" rel="noopener">GitHub</a>
-        </li>
-      </ul>
-      <details class="collapsible" style="margin-top:8px;">
-        <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-        <ul style="margin-top:8px;">
-          <li><strong>Theory:</strong> universal approximation via a functional Stone–Weierstrass argument; error and convergence bounds.</li>
-          <li><strong>Results (examples):</strong> ImageNet Top-1 <strong>76.4%</strong> → <strong>77.6%</strong> by replacing FC layers; WikiText-103 perplexity <strong>17.8</strong> → <strong>16.9</strong>; 512×512 Navier–Stokes MSE <strong>8.5e-4</strong> → <strong>7.9e-4</strong>.</li>
-          <li><strong>Role:</strong> sole author — proposed layer, proved theory, implemented and ran experiments.</li>
-        </ul>
-      </details>
-    </div>
 
       
-      <div class="section">
-        <h2>Publications</h2>
-        <ul>
-          <li><strong>Yuzhou Zhu</strong>, et al. SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering. In <em>ICIC 2025</em>. (Accepted 2025-06-26).
-            <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">arXiv</a> |
-            <a href="https://github.com/Yuzhou541/SAKR" target="_blank" rel="noopener">code</a>
-            <!-- (5) Publications: add the PDF link on the first item -->
-            | <a href="assets/pdf/2509_Invitation Letter.pdf" target="_blank" rel="noopener">Invitation Letter</a>
-          </li>
-          <li><strong>Yuzhou Zhu</strong>, et al. SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms. Under review at <em>AAAI 2026</em>.
-            <a href="https://arxiv.org/abs/2505.06275" target="_blank" rel="noopener">arXiv</a> |
-            <a href="https://github.com/Yuzhou541/SinBasis" target="_blank" rel="noopener">code</a>
-          </li>
-          <li><strong>Yuzhou Zhu</strong>, et al. From Static to Dynamic: A Streaming RAG Approach to Real-time Knowledge Base. Under review at <em>AAAI 2026</em>.
-            <a href="https://arxiv.org/abs/2508.05662" target="_blank" rel="noopener">arXiv</a> |
-            <a href="https://github.com/Yuzhou541/Streaming_RAG" target="_blank" rel="noopener">code</a>
-          </li>
-          <li><strong>Yuzhou Zhu</strong>, et al. Functional-Basis Neural Layers: Learning Adaptive Weight Functions for Universal Approximation. In preparation (Target: <em>ICLR 2026</em>).
-            <a href="https://github.com/Yuzhou541/functional_basis" target="_blank" rel="noopener">code</a>
-          </li>
-        </ul>
-      </div>
 
       <!-- (6) New section: Industry Internship & Tech Exchange -->
       <div class="section">
@@ -287,33 +318,7 @@ document.write(`
         </details>
       </div>
 
-      <!-- (7) New section: Summer Research -->
-      <div class="section">
-        <h2>Summer Research</h2>
-        <div class="subheading">
-          <span class="subheading-title">Top-notch Innovative Talent Training Program (Shanghai Jiao Tong University)</span>
-          <span>July 2024 – August 2024</span>
-        </div>
-        <div class="subsubheading">
-          The paper
-          <a href="https://arxiv.org/abs/2407.21300" target="_blank" rel="noopener">
-            “SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering”
-          </a>
-          is an outcome of this project; Advisor:
-          <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">
-            David Woodruff
-          </a>
-        </div>
-        <details class="collapsible" style="margin-top:8px;">
-          <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-          <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
-            <a href="assets/images/s1.jpg" target="_blank" rel="noopener"><img src="assets/images/s1.jpg" alt="sjtu-1" style="height:80px; border-radius:6px;"></a>
-            <a href="assets/images/s2.jpg" target="_blank" rel="noopener"><img src="assets/images/s2.jpg" alt="sjtu-2" style="height:80px; border-radius:6px;"></a>
-            <a href="assets/images/s3.jpg" target="_blank" rel="noopener"><img src="assets/images/s3.jpg" alt="sjtu-3" style="height:80px; border-radius:6px;"></a>
-            <a href="assets/images/s4.jpg" target="_blank" rel="noopener"><img src="assets/images/s4.jpg" alt="sjtu-4" style="height:80px; border-radius:6px;"></a>
-          </div>
-        </details>
-      </div>
+
 
       
       <div class="section">
