@@ -17,25 +17,104 @@ document.write(`
       </p>
 
       <div class="section">
-        <h2>Education</h2>
-        <div class="subheading">
-          <span class="subheading-title">Dalian University of Technology</span>
-          <span>Expected June 2027</span>
-        </div>
-        <div class="subsubheading">Bachelor of Science in Mathematics</div>
+  <h2>Education</h2>
 
-        <!-- (2) Collapsible GPA + transcript -->
-        <details class="collapsible" style="margin-top:8px;">
-          <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-          <div style="margin-top:8px;">
-            <p><strong>GPA:</strong> 93.1/100</p>
-            <p>
-              Transcript (PDF):
-              <a class="download-link" href="assets/pdf/GPA.pdf" target="_blank" rel="noopener">transcript.pdf</a>
-            </p>
-          </div>
-        </details>
+  <!-- Dalian University of Technology -->
+  <div class="subheading">
+    <span class="subheading-title">Dalian University of Technology</span>
+    <span>September 2023 – June 2027 (Expected)</span>
+  </div>
+  <div class="subsubheading">Bachelor of Science in Foundations of Mathematical Science</div>
+  <details class="collapsible" style="margin-top:8px;">
+    <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+    <div style="margin-top:10px;">
+      <p>
+        <strong>GPA:</strong> 93.1/100 &nbsp;|&nbsp;
+        <strong>Major GPA:</strong> 98.15/100 &nbsp;|&nbsp;
+        Transcript (PDF):
+        <a class="download-link" href="assets/pdf/GPA.pdf" target="_blank" rel="noopener">DUT transcript</a>
+      </p>
+
+      <div class="table-wrap" style="overflow:auto; margin-top:8px;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+          <thead>
+            <tr>
+              <th style="text-align:left; padding:6px 8px; border-bottom:1px solid #ccc;">Course</th>
+              <th style="text-align:right; padding:6px 8px; border-bottom:1px solid #ccc; white-space:nowrap;">Credit</th>
+              <th style="text-align:right; padding:6px 8px; border-bottom:1px solid #ccc; white-space:nowrap;">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:6px 8px;">Introduction to Mathematical Science</td><td style="text-align:right; padding:6px 8px;">3</td><td style="text-align:right; padding:6px 8px;">92</td></tr>
+            <tr><td style="padding:6px 8px;">Analytic Geometry</td><td style="text-align:right; padding:6px 8px;">4</td><td style="text-align:right; padding:6px 8px;">100</td></tr>
+            <tr><td style="padding:6px 8px;">Intro to Computing and Programming</td><td style="text-align:right; padding:6px 8px;">5</td><td style="text-align:right; padding:6px 8px;">99</td></tr>
+            <tr><td style="padding:6px 8px;">Probability</td><td style="text-align:right; padding:6px 8px;">4</td><td style="text-align:right; padding:6px 8px;">100</td></tr>
+            <tr><td style="padding:6px 8px;">Data Structures and Algorithms</td><td style="text-align:right; padding:6px 8px;">4</td><td style="text-align:right; padding:6px 8px;">100</td></tr>
+            <tr><td style="padding:6px 8px;">Higher Algebra I</td><td style="text-align:right; padding:6px 8px;">4</td><td style="text-align:right; padding:6px 8px;">99</td></tr>
+            <tr><td style="padding:6px 8px;">Mathematical Analysis I</td><td style="text-align:right; padding:6px 8px;">5</td><td style="text-align:right; padding:6px 8px;">98</td></tr>
+            <tr><td style="padding:6px 8px;">Introductory Statistics</td><td style="text-align:right; padding:6px 8px;">4</td><td style="text-align:right; padding:6px 8px;">98</td></tr>
+            <tr><td style="padding:6px 8px;">Advanced Algebra II</td><td style="text-align:right; padding:6px 8px;">4</td><td style="text-align:right; padding:6px 8px;">99</td></tr>
+            <tr><td style="padding:6px 8px;">General Physics A1</td><td style="text-align:right; padding:6px 8px;">4</td><td style="text-align:right; padding:6px 8px;">95</td></tr>
+            <tr><td style="padding:6px 8px;">Mathematical Analysis II</td><td style="text-align:right; padding:6px 8px;">5</td><td style="text-align:right; padding:6px 8px;">98</td></tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2" style="text-align:right; padding:6px 8px;"><strong>Major GPA</strong></td>
+              <td style="text-align:right; padding:6px 8px;"><strong>98.15 / 100</strong></td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
+    </div>
+  </details>
+
+  <!-- University of Leicester -->
+  <div class="subheading" style="margin-top:16px;">
+    <span class="subheading-title">University of Leicester</span>
+    <span>September 2023 – June 2027</span>
+  </div>
+  <div class="subsubheading">Bachelor of Science in Mathematics</div>
+  <details class="collapsible" style="margin-top:8px;">
+    <summary style="cursor:pointer;"><em>Click to expand</em></summary>
+    <div style="margin-top:10px;">
+      <p>
+        <strong>GPA:</strong> 86.64/100 &nbsp;|&nbsp;
+        <strong>Major GPA:</strong> 92.64/100 &nbsp;|&nbsp;
+        Transcript (PDF):
+        <a class="download-link" href="assets/images/GPA_UoL.png" target="_blank" rel="noopener">Leicester transcript</a>
+      </p>
+
+      <div class="table-wrap" style="overflow:auto; margin-top:8px;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+          <thead>
+            <tr>
+              <th style="text-align:left; padding:6px 8px; border-bottom:1px solid #ccc;">Course</th>
+              <th style="text-align:right; padding:6px 8px; border-bottom:1px solid #ccc; white-space:nowrap;">Credit</th>
+              <th style="text-align:right; padding:6px 8px; border-bottom:1px solid #ccc; white-space:nowrap;">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:6px 8px;">Introduction to Mathematical Science</td><td style="text-align:right; padding:6px 8px;">15</td><td style="text-align:right; padding:6px 8px;">79.70</td></tr>
+            <tr><td style="padding:6px 8px;">Analytic Geometry</td><td style="text-align:right; padding:6px 8px;">15</td><td style="text-align:right; padding:6px 8px;">97.50</td></tr>
+            <tr><td style="padding:6px 8px;">Introduction to Computer Programming</td><td style="text-align:right; padding:6px 8px;">30</td><td style="text-align:right; padding:6px 8px;">92.38</td></tr>
+            <tr><td style="padding:6px 8px;">Algorithms, Data Structures and Advanced Programming</td><td style="text-align:right; padding:6px 8px;">15</td><td style="text-align:right; padding:6px 8px;">96.71</td></tr>
+            <tr><td style="padding:6px 8px;">Probability</td><td style="text-align:right; padding:6px 8px;">15</td><td style="text-align:right; padding:6px 8px;">97.00</td></tr>
+            <tr><td style="padding:6px 8px;">Introductory Statistics</td><td style="text-align:right; padding:6px 8px;">15</td><td style="text-align:right; padding:6px 8px;">91.40</td></tr>
+            <tr><td style="padding:6px 8px;">Calculus and Analysis</td><td style="text-align:right; padding:6px 8px;">30</td><td style="text-align:right; padding:6px 8px;">90.20</td></tr>
+            <tr><td style="padding:6px 8px;">Linear Algebra</td><td style="text-align:right; padding:6px 8px;">30</td><td style="text-align:right; padding:6px 8px;">95.80</td></tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2" style="text-align:right; padding:6px 8px;"><strong>Major GPA</strong></td>
+              <td style="text-align:right; padding:6px 8px;"><strong>92.64 / 100</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </details>
+</div>
+
       
       <div class="section">
         <h2>Publications</h2>
