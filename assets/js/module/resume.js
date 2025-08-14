@@ -66,7 +66,7 @@ document.write(`
         <!-- SAKR -->
         <div class="subheading">
           <span class="subheading-title">SAKR: Enhancing Retrieval-Augmented Generation via Streaming Algorithm and K-Means Clustering</span>
-          <span>2024 – 2025</span>
+          <span>July 2024 – April 2025</span>
         </div>
         <div class="subsubheading">
           Accepted to ICIC 2025 (accepted on 2025-06-26). Advisor:
@@ -98,7 +98,7 @@ document.write(`
         <!-- SinBasis Networks -->
         <div class="subheading" style="margin-top:16px;">
           <span class="subheading-title">SinBasis Networks: Matrix-Equivalent Feature Extraction for Wave-Like Optical Spectrograms</span>
-          <span>2025 – Present</span>
+          <span>August 2024 – June 2025</span>
         </div>
         <div class="subsubheading">Under review (AAAI 2026)</div>
         <ul>
@@ -123,7 +123,7 @@ document.write(`
         <!-- Streaming RAG (Dynamic KB) -->
         <div class="subheading" style="margin-top:16px;">
           <span class="subheading-title">From Static to Dynamic: A Streaming RAG Approach to Real-time Knowledge Base</span>
-          <span>2025 – Present</span>
+          <span>March 2025 – July 2025</span>
         </div>
         <div class="subsubheading">Under review (AAAI 2026)</div>
         <ul>
@@ -152,7 +152,7 @@ document.write(`
         <!-- Functional-Basis Layers -->
         <div class="subheading" style="margin-top:16px;">
           <span class="subheading-title">Functional-Basis Neural Layers: Learning Adaptive Weight Functions for Universal Approximation</span>
-          <span>2025 – Present</span>
+          <span>May 2025 – Present</span>
         </div>
         <div class="subsubheading">In preparation (Target: ICLR 2026)</div>
         <ul>
