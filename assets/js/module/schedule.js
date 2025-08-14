@@ -60,349 +60,190 @@ document.write(`
                   <tr>
                     <td rowspan="5" class="period-header">Morning</td>
                     <td class="period-number">1</td>
+                    <!-- Mon -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">7:50</div>
                       <div class="time-info end-info">9:25</div>
                       <div class="course-container">
-                        <div class="course-name">英语读写Ⅰ</div>
-                        <div class="instructor">斯骏</div>
-                        <div class="location">2409</div>
-                        <div class="weeks">2-4, 6-18 week(s)</div>
+                        <div class="course-name">大学英语1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">—</div>
+                        <div class="weeks">15–18周</div>
                       </div>
                     </td>
+                    <!-- Tue -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">7:50</div>
                       <div class="time-info end-info">9:25</div>
                       <div class="course-container">
-                        <div class="course-name">代数学基础</div>
-                        <div class="instructor">马立明</div>
-                        <div class="location">5202</div>
-                        <div class="weeks">2-4, 6-15, 17-18 week(s)</div>
+                        <div class="course-name">大学英语1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">—</div>
+                        <div class="weeks">7–18周</div>
                       </div>
                     </td>
+                    <!-- Wed -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">大学英语1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">—</div>
+                        <div class="weeks">7–18周</div>
+                      </div>
+                    </td>
+                    <!-- Thu -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">大学英语1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">—</div>
+                        <div class="weeks">7–18周</div>
+                      </div>
+                    </td>
+                    <!-- Fri -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">大学英语1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">—</div>
+                        <div class="weeks">7–18周</div>
+                      </div>
+                    </td>
+                    <!-- Sat -->
                     <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">几何学基础</div>
-                        <div class="instructor">赵晨</div>
-                        <div class="location">5202</div>
-                        <div class="weeks">2-4, 6-17 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">英语交流Ⅰ</div>
-                        <div class="instructor">汪滔</div>
-                        <div class="location">2304</div>
-                        <div class="weeks">2-3, 6-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">英语读写Ⅰ</div>
-                        <div class="instructor">斯骏</div>
-                        <div class="location">2409</div>
-                        <div class="weeks">5 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">英语交流Ⅰ</div>
-                        <div class="instructor">汪滔</div>
-                        <div class="location">2304</div>
-                        <div class="weeks">6 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Sun -->
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
+                    <!-- only Sat/Sun cells since others rowspan from period 1 -->
+                    <td></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A1)</div>
-                        <div class="instructor">任广斌</div>
-                        <div class="location">5102</div>
-                        <div class="weeks">2-4, 6-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">几何学基础</div>
-                        <div class="instructor">赵晨</div>
-                        <div class="location">5202</div>
-                        <div class="weeks">2-4, 6-17 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A1)</div>
-                        <div class="instructor">任广斌</div>
-                        <div class="location">5102</div>
-                        <div class="weeks">2, 4, 6, 7-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">代数学基础</div>
-                        <div class="instructor">马立明</div>
-                        <div class="location">5202</div>
-                        <div class="weeks">2-4, 6-17 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A1)</div>
-                        <div class="instructor">任广斌</div>
-                        <div class="location">5102</div>
-                        <div class="weeks">2-3, 6-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A1)</div>
-                        <div class="instructor">任广斌</div>
-                        <div class="location">5102</div>
-                        <div class="weeks">5 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A1)</div>
-                        <div class="instructor">任广斌</div>
-                        <div class="location">5102</div>
-                        <div class="weeks">6 week(s)</div>
-                      </div>
-                    </td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Afternoon Section -->
                   <tr>
                     <td rowspan="5" class="period-header">Afternoon</td>
                     <td class="period-number">6</td>
+                    <!-- Mon: overlap 6–8 (思想道德与法治 6–7 + 大学英语1 7–8) -->
+                    <td class="has-class event-cell" rowspan="3">
+                      <div class="time-info start-info">14:00</div>
+                      <div class="time-info end-info">16:40</div>
+                      <div class="overlap-container">
+                        <div class="overlap-course">
+                          <div class="course-name">思想道德与法治</div>
+                          <div class="instructor">—</div>
+                          <div class="location">N304</div>
+                          <div class="weeks">4–19周</div>
+                        </div>
+                        <div class="overlap-course">
+                          <div class="course-name">大学英语1</div>
+                          <div class="instructor">—</div>
+                          <div class="location">—</div>
+                          <div class="weeks">1, 7–18周</div>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- Tue -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">14:00</div>
                       <div class="time-info end-info">15:35</div>
                       <div class="course-container">
-                        <div class="course-name">基础体育</div>
-                        <div class="instructor">唐莉</div>
-                        <div class="location">东区操场</div>
-                        <div class="weeks">2-4, 6-18 week(s)</div>
+                        <div class="course-name">体育1（武术/田径）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">B01-2层武术教室</div>
+                        <div class="weeks">4–19周</div>
                       </div>
                     </td>
+                    <!-- Wed -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:00</div>
+                      <div class="time-info end-info">15:35</div>
+                      <div class="course-container">
+                        <div class="course-name">体育1（田径）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">B01西区田径场</div>
+                        <div class="weeks">4–19周</div>
+                      </div>
+                    </td>
+                    <!-- Thu -->
                     <td></td>
+                    <!-- Fri -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">14:00</div>
                       <div class="time-info end-info">15:35</div>
                       <div class="course-container">
-                        <div class="course-name">计算机程序设计A</div>
-                        <div class="instructor">司虎</div>
-                        <div class="location">1101</div>
-                        <div class="weeks">2-4, 6-16 week(s)</div>
+                        <div class="course-name">大学生心理健康教育</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N105 / W201</div>
+                        <div class="weeks">4–18周</div>
                       </div>
                     </td>
+                    <!-- Sat -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">14:00</div>
                       <div class="time-info end-info">15:35</div>
                       <div class="course-container">
-                        <div class="course-name">数学强基讨论班</div>
-                        <div class="instructor">李沐西</div>
-                        <div class="location">5406</div>
-                        <div class="weeks">2-4, 6-18 week(s)</div>
+                        <div class="course-name">数学科学导论</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N203 / N403</div>
+                        <div class="weeks">4–12周</div>
                       </div>
                     </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">14:00</div>
-                      <div class="time-info end-info">15:35</div>
-                      <div class="course-container">
-                        <div class="course-name">计算机程序设计A</div>
-                        <div class="instructor">司虎</div>
-                        <div class="location">1101</div>
-                        <div class="weeks">2-3, 6-16 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">14:00</div>
-                      <div class="time-info end-info">15:35</div>
-                      <div class="course-container">
-                        <div class="course-name">基础体育</div>
-                        <div class="instructor">唐莉</div>
-                        <div class="location">东区操场</div>
-                        <div class="weeks">5 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">14:00</div>
-                      <div class="time-info end-info">15:35</div>
-                      <div class="course-container">
-                        <div class="course-name">计算机程序设计A</div>
-                        <div class="instructor">司虎</div>
-                        <div class="location">1101</div>
-                        <div class="weeks">6 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Sun -->
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
+                    <!-- only Thu/Sun appear; others are rowspanned -->
+                    <td></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">思想道德与法治</div>
-                        <div class="instructor">刘海龙, 韩笑</div>
-                        <div class="location">1302</div>
-                        <div class="weeks">2-4, 6-17 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">习近平新时代中国特色社会主义思想概论</div>
-                        <div class="instructor">李金龙</div>
-                        <div class="location">5104</div>
-                        <div class="weeks">2-4, 6-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A1)</div>
-                        <div class="instructor">任广斌</div>
-                        <div class="location">5201</div>
-                        <div class="weeks">3 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">大学生心理学</div>
-                        <div class="instructor">张效初, 查汝晶</div>
-                        <div class="location">3C202</div>
-                        <div class="weeks">2-3, 6-15 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">思想道德与法治</div>
-                        <div class="instructor">刘海龙, 韩笑</div>
-                        <div class="location">1302</div>
-                        <div class="weeks">5 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">大学生心理学</div>
-                        <div class="instructor">张效初</div>
-                        <div class="location">3C202</div>
-                        <div class="weeks">6 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- all columns empty; Mon/Tue/Wed/Fri/Sat are skip due to rowspan -->
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Evening Section -->
                   <tr>
                     <td rowspan="3" class="period-header">Evening</td>
                     <td class="period-number">11</td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:05</div>
-                      <div class="course-container">
-                        <div class="course-name">"科学与社会"研讨课</div>
-                        <div class="instructor">麻希南</div>
-                        <div class="location">1101</div>
-                        <div class="weeks">2 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:55</div>
-                      <div class="course-container">
-                        <div class="course-name">计算机程序设计A</div>
-                        <div class="instructor">司虎</div>
-                        <div class="location">西活二楼机房</div>
-                        <div class="weeks">6-16 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">12</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                 </tbody>
               </table>
@@ -432,403 +273,208 @@ document.write(`
                   <tr>
                     <td rowspan="5" class="period-header">Morning</td>
                     <td class="period-number">1</td>
+                    <!-- Mon -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">7:50</div>
                       <div class="time-info end-info">9:25</div>
                       <div class="course-container">
-                        <div class="course-name">英语读写Ⅱ</div>
-                        <div class="instructor">陈澄</div>
-                        <div class="location">2404</div>
-                        <div class="weeks">1-15, 17-18 week(s)</div>
+                        <div class="course-name">中国近现代史纲要</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N304</div>
+                        <div class="weeks">1–16周</div>
                       </div>
                     </td>
+                    <!-- Tue -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">7:50</div>
                       <div class="time-info end-info">9:25</div>
                       <div class="course-container">
-                        <div class="course-name">线性代数(A1)</div>
-                        <div class="instructor">陈发来</div>
-                        <div class="location">5402</div>
-                        <div class="weeks">1-18 week(s)</div>
+                        <div class="course-name">解析几何</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N102</div>
+                        <div class="weeks">1–16周</div>
                       </div>
                     </td>
+                    <!-- Wed -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">7:50</div>
                       <div class="time-info end-info">9:25</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">力学B</div>
-                          <div class="instructor">卢荣德, 李毅</div>
-                          <div class="location">3C102</div>
-                          <div class="weeks">1-9, 11-12 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">热学B</div>
-                          <div class="instructor">卢荣德, 李毅</div>
-                          <div class="location">3C102</div>
-                          <div class="weeks">13-18 week(s)</div>
-                        </div>
+                      <div class="course-container">
+                        <div class="course-name">程序设计与算法语言</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N303</div>
+                        <div class="weeks">1–8周</div>
                       </div>
                     </td>
+                    <!-- Thu -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">解析几何</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N102</div>
+                        <div class="weeks">1–16周</div>
+                      </div>
+                    </td>
+                    <!-- Fri -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">学术英语</div>
+                        <div class="instructor">—</div>
+                        <div class="location">—</div>
+                        <div class="weeks">3–13周</div>
+                      </div>
+                    </td>
+                    <!-- Sat -->
                     <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">英语交流Ⅱ</div>
-                        <div class="instructor">汪滔</div>
-                        <div class="location">2303</div>
-                        <div class="weeks">1-5, 7-9, 11-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">力学B</div>
-                        <div class="instructor">卢荣德, 李毅</div>
-                        <div class="location">3C102</div>
-                        <div class="weeks">11 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">英语交流Ⅱ</div>
-                        <div class="instructor">汪滔</div>
-                        <div class="location">2303</div>
-                        <div class="weeks">7 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Sun -->
+                    <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
-                    <td></td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A2)</div>
-                        <div class="instructor">罗罗</div>
-                        <div class="location">5201</div>
-                        <div class="weeks">1-15, 17-18 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Tue -->
                     <td></td>
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">9:45</div>
                       <div class="time-info end-info">11:20</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">数学分析(A2)</div>
-                          <div class="instructor">罗罗</div>
-                          <div class="location">1301</div>
-                          <div class="weeks">16-17 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">数学分析(A2)</div>
-                          <div class="instructor">罗罗</div>
-                          <div class="location">5201</div>
-                          <div class="weeks">1-9, 11-15, 18 week(s)</div>
-                        </div>
+                      <div class="course-container">
+                        <div class="course-name">学术英语</div>
+                        <div class="instructor">—</div>
+                        <div class="location">—</div>
+                        <div class="weeks">3–13周</div>
                       </div>
                     </td>
+                    <!-- Wed -->
+                    <td></td>
+                    <!-- Thu -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">9:45</div>
                       <div class="time-info end-info">11:20</div>
                       <div class="course-container">
-                        <div class="course-name">线性代数(A1)</div>
-                        <div class="instructor">陈发来</div>
-                        <div class="location">5402</div>
-                        <div class="weeks">1-5, 7-9, 11-18 week(s)</div>
+                        <div class="course-name">学术英语</div>
+                        <div class="instructor">—</div>
+                        <div class="location">—</div>
+                        <div class="weeks">3–13周</div>
                       </div>
                     </td>
+                    <!-- Fri -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">9:45</div>
                       <div class="time-info end-info">11:20</div>
                       <div class="course-container">
-                        <div class="course-name">数学分析(A2)</div>
-                        <div class="instructor">罗罗</div>
-                        <div class="location">5201</div>
-                        <div class="weeks">1-5, 7-9, 11-18 week(s)</div>
+                        <div class="course-name">中国近现代史纲要</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N304</div>
+                        <div class="weeks">13–16周</div>
                       </div>
                     </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A2)</div>
-                        <div class="instructor">罗罗</div>
-                        <div class="location">5201</div>
-                        <div class="weeks">11 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">线性代数(A1)</div>
-                          <div class="instructor">陈发来</div>
-                          <div class="location">5402</div>
-                          <div class="weeks">10 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">数学分析(A2)</div>
-                          <div class="instructor">罗罗</div>
-                          <div class="location">5201</div>
-                          <div class="weeks">7 week(s)</div>
-                        </div>
-                      </div>
-                    </td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
-                    <td></td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-class event-cell">
-                      <div class="time-info start-info">11:25</div>
-                      <div class="time-info end-info">12:10</div>
-                      <div class="course-container">
-                        <div class="course-name">线性代数(A1)</div>
-                        <div class="instructor">陈发来</div>
-                        <div class="location">5402</div>
-                        <div class="weeks">1-5, 7-9, 11-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-class event-cell">
-                      <div class="time-info start-info">11:25</div>
-                      <div class="time-info end-info">12:10</div>
-                      <div class="course-container">
-                        <div class="course-name">线性代数(A1)</div>
-                        <div class="instructor">陈发来</div>
-                        <div class="location">5402</div>
-                        <div class="weeks">10 week(s)</div>
-                      </div>
-                    </td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Afternoon Section -->
                   <tr>
                     <td rowspan="5" class="period-header">Afternoon</td>
                     <td class="period-number">6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">14:00</div>
-                      <div class="time-info end-info">15:35</div>
-                      <div class="course-container">
-                        <div class="course-name">散打Ⅰ</div>
-                        <div class="instructor">李达</div>
-                        <div class="location">中区体育馆</div>
-                        <div class="weeks">1-5, 7-9, 11-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">14:00</div>
-                      <div class="time-info end-info">15:35</div>
-                      <div class="course-container">
-                        <div class="course-name">散打Ⅰ</div>
-                        <div class="instructor">李达</div>
-                        <div class="location">中区体育馆</div>
-                        <div class="weeks">10 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Mon+Tue overlaps handled starting at period 8 below; period 6 no class -->
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="course-container">
-                        <div class="course-name">英语口语沟通(基础)</div>
-                        <div class="instructor">Thomas Yifang Xiao</div>
-                        <div class="location">2204</div>
-                        <div class="weeks">1-8 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
+                    <!-- Mon: overlap 8–10 (程序设 8–9 + 军事理论 9–10) -->
                     <td class="has-class event-cell" rowspan="3">
                       <div class="time-info start-info">15:55</div>
                       <div class="time-info end-info">18:20</div>
+                      <div class="overlap-container">
+                        <div class="overlap-course">
+                          <div class="course-name">程序设计与算法语言</div>
+                          <div class="instructor">—</div>
+                          <div class="location">N303</div>
+                          <div class="weeks">1–16周</div>
+                        </div>
+                        <div class="overlap-course">
+                          <div class="course-name">军事理论</div>
+                          <div class="instructor">—</div>
+                          <div class="location">N205</div>
+                          <div class="weeks">1–16周</div>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- Tue: overlap 8–10 (体育2 8–9 + 程序设实验 9–10) -->
+                    <td class="has-class event-cell" rowspan="3">
+                      <div class="time-info start-info">15:55</div>
+                      <div class="time-info end-info">18:20</div>
+                      <div class="overlap-container">
+                        <div class="overlap-course">
+                          <div class="course-name">体育2（武术）</div>
+                          <div class="instructor">—</div>
+                          <div class="location">B01-2层武术教室</div>
+                          <div class="weeks">1–16周</div>
+                        </div>
+                        <div class="overlap-course">
+                          <div class="course-name">程序设计与算法语言（实验）</div>
+                          <div class="instructor">—</div>
+                          <div class="location">S101 / S201</div>
+                          <div class="weeks">1–16周</div>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- Wed: 体育2（田径）8–9 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">15:55</div>
+                      <div class="time-info end-info">17:30</div>
                       <div class="course-container">
-                        <div class="course-name">中国近现代史纲要</div>
-                        <div class="instructor">樊桂敏</div>
-                        <div class="location">1101</div>
-                        <div class="weeks">1-5, 7-9, 11-16 week(s)</div>
+                        <div class="course-name">体育2（田径）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">B01西区田径场</div>
+                        <div class="weeks">1–16周</div>
                       </div>
                     </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">力学B</div>
-                          <div class="instructor">卢荣德, 李毅</div>
-                          <div class="location">3C102</div>
-                          <div class="weeks">1-5, 7-9, 11-12 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">热学B</div>
-                          <div class="instructor">卢荣德, 李毅</div>
-                          <div class="location">3C102</div>
-                          <div class="weeks">13-18 week(s)</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">力学B</div>
-                          <div class="instructor">卢荣德, 李毅</div>
-                          <div class="location">3C102</div>
-                          <div class="weeks">7 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">中国近现代史纲要</div>
-                          <div class="instructor">樊桂敏</div>
-                          <div class="location">1101</div>
-                          <div class="weeks">10 week(s)</div>
-                        </div>
-                      </div>
-                    </td>
+                    <!-- Thu/Fri/Sat/Sun -->
+                    <td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <!-- Thu/Fri/Sat/Sun -->
+                    <td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-class event-cell">
-                      <div class="time-info start-info">17:35</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">热学B</div>
-                        <div class="instructor">卢荣德, 李毅</div>
-                        <div class="location">3C102</div>
-                        <div class="weeks">13-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td class="has-class event-cell">
-                      <div class="time-info start-info">17:35</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">中国近现代史纲要</div>
-                        <div class="instructor">樊桂敏</div>
-                        <div class="location">1101</div>
-                        <div class="weeks">10 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Wed finishes; others part of overlaps -->
+                    <td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Evening Section -->
                   <tr>
                     <td rowspan="3" class="period-header">Evening</td>
                     <td class="period-number">11</td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:05</div>
-                      <div class="course-container">
-                        <div class="course-name">气象与摄影</div>
-                        <div class="instructor">傅云飞</div>
-                        <div class="location">5201</div>
-                        <div class="weeks">2-9, 11, 13 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:55</div>
-                      <div class="course-container">
-                        <div class="course-name">大学物理-基础实验B</div>
-                        <div class="instructor">……</div>
-                        <div class="location">一教</div>
-                        <div class="weeks">3-5, 7-9, 11-16 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:55</div>
-                      <div class="course-container">
-                        <div class="course-name">数学强基讨论班Ⅱ</div>
-                        <div class="instructor">李沐西</div>
-                        <div class="location">5307</div>
-                        <div class="weeks">2-4, 7-9, 11-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:05</div>
-                      <div class="course-container">
-                        <div class="course-name">气象与摄影</div>
-                        <div class="instructor">傅云飞</div>
-                        <div class="location">5201</div>
-                        <div class="weeks">11 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:55</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">大学物理-基础实验B</div>
-                          <div class="instructor">……</div>
-                          <div class="location">一教</div>
-                          <div class="weeks">10 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">数学强基讨论班Ⅱ</div>
-                          <div class="instructor">李沐西</div>
-                          <div class="location">5307</div>
-                          <div class="weeks">7 week(s)</div>
-                        </div>
-                      </div>
-                    </td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">12</td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                 </tbody>
               </table>
@@ -858,310 +504,171 @@ document.write(`
                   <tr>
                     <td rowspan="5" class="period-header">Morning</td>
                     <td class="period-number">1</td>
-                    <td class="has-class event-cell" rowspan="2">
+                    <!-- Mon 数学分析1（集中）1–4 -->
+                    <td class="has-class event-cell" rowspan="4">
                       <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
+                      <div class="time-info end-info">11:20</div>
                       <div class="course-container">
-                        <div class="course-name">线性代数(A2)</div>
-                        <div class="instructor">陈发来</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">1-2, 4-5, 7-18 week(s)</div>
+                        <div class="course-name">数学分析1（集中）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N203</div>
+                        <div class="weeks">7–8周</div>
                       </div>
                     </td>
+                    <!-- Tue -->
                     <td></td>
+                    <!-- Wed -->
                     <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A3)</div>
-                        <div class="instructor">左达峰</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">1-4, 6-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">电磁学B</div>
-                        <div class="instructor">徐春凯</div>
-                        <div class="location">5303</div>
-                        <div class="weeks">1-4, 6-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">线性代数(A2)</div>
-                        <div class="instructor">陈发来</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">2 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Thu -->
                     <td></td>
+                    <!-- Fri 数学分析1（集中）1–2 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析1（集中）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N203</div>
+                        <div class="weeks">7–8周</div>
+                      </div>
+                    </td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">微分方程引论</div>
-                        <div class="instructor">赵立丰</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">1-2, 4-5, 7-15, 17-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A3)</div>
-                        <div class="instructor">左达峰</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">1-2, 4, 6, 7-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">线性代数(A2)</div>
-                        <div class="instructor">陈发来</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">1-4, 6-17 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">12:10</div>
-                      <div class="course-container">
-                        <div class="course-name">概率论与数理统计</div>
-                        <div class="instructor">张曙光</div>
-                        <div class="location">5102</div>
-                        <div class="weeks">1-4, 6-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">线性代数(A2)</div>
-                          <div class="instructor">陈发来</div>
-                          <div class="location">5302</div>
-                          <div class="weeks">6 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">微分方程引论</div>
-                          <div class="instructor">赵立丰</div>
-                          <div class="location">5302</div>
-                          <div class="weeks">2 week(s)</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">数学分析(A3)</div>
-                        <div class="instructor">左达峰</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">5 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Tue 微分拓展1?（本学期上午3–5无课） -->
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td class="has-class event-cell">
-                      <div class="time-info start-info">11:25</div>
-                      <div class="time-info end-info">12:10</div>
-                      <div class="course-container">
-                        <div class="course-name">微分方程引论</div>
-                        <div class="instructor">赵立丰</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">14 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
-                  
+
                   <!-- Afternoon Section -->
                   <tr>
                     <td rowspan="5" class="period-header">Afternoon</td>
                     <td class="period-number">6</td>
-                    <td></td>
-                    <td></td>
+                    <!-- Mon: overlap 6–8 (概率论 6–7 + 数据结构与算法 7–8) -->
+                    <td class="has-class event-cell" rowspan="3">
+                      <div class="time-info start-info">14:00</div>
+                      <div class="time-info end-info">16:40</div>
+                      <div class="overlap-container">
+                        <div class="overlap-course">
+                          <div class="course-name">概率论</div>
+                          <div class="instructor">—</div>
+                          <div class="location">N303</div>
+                          <div class="weeks">1–16周</div>
+                        </div>
+                        <div class="overlap-course">
+                          <div class="course-name">数据结构与算法</div>
+                          <div class="instructor">—</div>
+                          <div class="location">S301</div>
+                          <div class="weeks">1–16周</div>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- Tue 高等代数1 6–7 -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">14:00</div>
                       <div class="time-info end-info">15:35</div>
                       <div class="course-container">
-                        <div class="course-name">电磁学B</div>
-                        <div class="instructor">徐春凯</div>
-                        <div class="location">5303</div>
-                        <div class="weeks">1-4, 6-17 week(s)</div>
+                        <div class="course-name">高等代数1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">S305 / N203,N302</div>
+                        <div class="weeks">1, 8–10, 12, 16周</div>
                       </div>
                     </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">14:00</div>
-                      <div class="time-info end-info">15:35</div>
-                      <div class="course-container">
-                        <div class="course-name">微分方程引论</div>
-                        <div class="instructor">赵立丰</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">1-4, 6-8, 10-18 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Wed -->
                     <td></td>
+                    <!-- Thu 马克思原理 6–7 -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">14:00</div>
                       <div class="time-info end-info">15:35</div>
                       <div class="course-container">
-                        <div class="course-name">电磁学B</div>
-                        <div class="instructor">徐春凯</div>
-                        <div class="location">5303</div>
-                        <div class="weeks">6 week(s)</div>
+                        <div class="course-name">马克思主义基本原理</div>
+                        <div class="instructor">—</div>
+                        <div class="location">W608</div>
+                        <div class="weeks">1–12周</div>
                       </div>
                     </td>
+                    <!-- Fri 概率论（分班） 6–7 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:00</div>
+                      <div class="time-info end-info">15:35</div>
+                      <div class="course-container">
+                        <div class="course-name">概率论（分班）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">A405/N104/N102/N204/S301/N302</div>
+                        <div class="weeks">1–16周</div>
+                      </div>
+                    </td>
+                    <!-- Sat -->
+                    <td></td>
+                    <!-- Sun -->
                     <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <!-- Tue/Thu/Fri rowspans continue -->
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
-                    <td class="has-class event-cell" rowspan="2">
+                    <!-- Tue 数学分析拓展1（单节） 8–8 -->
+                    <td class="has-class event-cell">
                       <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
+                      <div class="time-info end-info">16:40</div>
                       <div class="course-container">
-                        <div class="course-name">游泳</div>
-                        <div class="instructor">曾文</div>
-                        <div class="location">中区游泳馆</div>
-                        <div class="weeks">1-2, 4-5, 7-18 week(s)</div>
+                        <div class="course-name">数学分析拓展1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N103</div>
+                        <div class="weeks">7–8周</div>
                       </div>
                     </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">符号计算软件</div>
-                        <div class="instructor">张娜</div>
-                        <div class="location">5102</div>
-                        <div class="weeks">1-2, 4, 6, 7-14 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">马克思主义基本原理</div>
-                        <div class="instructor">张旭</div>
-                        <div class="location">5302</div>
-                        <div class="weeks">1-4, 6-16 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="course-container">
-                        <div class="course-name">游泳</div>
-                        <div class="instructor">曾文</div>
-                        <div class="location">中区游泳馆</div>
-                        <div class="weeks">2 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">符号计算软件</div>
-                        <div class="instructor">张娜</div>
-                        <div class="location">5102</div>
-                        <div class="weeks">5 week(s)</div>
-                      </div>
-                    </td>
+                    <td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
+                    <!-- Tue 数据结构与算法（实践） 9–10 -->
                     <td></td>
-                    <td></td>
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">16:45</div>
+                      <div class="time-info end-info">18:20</div>
+                      <div class="course-container">
+                        <div class="course-name">数据结构与算法（实践）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">S201 / S205</div>
+                        <div class="weeks">3–14周</div>
+                      </div>
+                    </td>
+                    <td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
-                  
+
                   <!-- Evening Section -->
                   <tr>
                     <td rowspan="3" class="period-header">Evening</td>
                     <td class="period-number">11</td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:55</div>
-                      <div class="course-container">
-                        <div class="course-name">大学物理-综合实验B</div>
-                        <div class="instructor">……</div>
-                        <div class="location">一教</div>
-                        <div class="weeks">4, 6, 7-18 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">19:30</div>
-                      <div class="time-info end-info">21:55</div>
-                      <div class="course-container">
-                        <div class="course-name">大学物理-综合实验B</div>
-                        <div class="instructor">……</div>
-                        <div class="location">一教</div>
-                        <div class="weeks">5 week(s)</div>
-                      </div>
-                    </td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">12</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                 </tbody>
               </table>
@@ -1192,317 +699,184 @@ document.write(`
                     <td rowspan="5" class="period-header">Morning</td>
                     <td class="period-number">1</td>
                     <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">复分析</div>
-                        <div class="instructor">李思敏</div>
-                        <div class="location">5401</div>
-                        <div class="weeks">1-15 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="course-container">
-                        <div class="course-name">实分析(H)</div>
-                        <div class="instructor">任广斌</div>
-                        <div class="location">5404</div>
-                        <div class="weeks">1-16 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">7:50</div>
-                      <div class="time-info end-info">9:25</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">光学B</div>
-                          <div class="instructor">姚培军</div>
-                          <div class="location">5306</div>
-                          <div class="weeks">1-8 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">原子物理B</div>
-                          <div class="instructor">姚培军</div>
-                          <div class="location">5306</div>
-                          <div class="weeks">9, 11, 12-16 week(s)</div>
-                        </div>
-                      </div>
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">12:10</div>
-                      <div class="course-container">
-                        <div class="course-name">实分析(H)</div>
-                        <div class="instructor">任广斌</div>
-                        <div class="location">5404</div>
-                        <div class="weeks">1-10, 12-14, 16 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">12:10</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">光学B</div>
-                          <div class="instructor">姚培军</div>
-                          <div class="location">5306</div>
-                          <div class="weeks">1-8 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">原子物理B</div>
-                          <div class="instructor">姚培军</div>
-                          <div class="location">5306</div>
-                          <div class="weeks">9-16 week(s)</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="3">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">12:10</div>
-                      <div class="course-container">
-                        <div class="course-name">概率论</div>
-                        <div class="instructor">刘党政</div>
-                        <div class="location">5401</div>
-                        <div class="weeks">1-12 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">9:45</div>
-                      <div class="time-info end-info">11:20</div>
-                      <div class="course-container">
-                        <div class="course-name">复分析</div>
-                        <div class="instructor">李思敏</div>
-                        <div class="location">5401</div>
-                        <div class="weeks">1-9, 11-15 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Afternoon Section -->
                   <tr>
                     <td rowspan="5" class="period-header">Afternoon</td>
                     <td class="period-number">6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <!-- Mon 高等代数2 -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">14:00</div>
                       <div class="time-info end-info">15:35</div>
                       <div class="course-container">
-                        <div class="course-name">数据结构A</div>
-                        <div class="instructor">徐小华</div>
-                        <div class="location">3B101</div>
-                        <div class="weeks">1-9, 11-16 week(s)</div>
+                        <div class="course-name">高等代数2</div>
+                        <div class="instructor">—</div>
+                        <div class="location">S305</div>
+                        <div class="weeks">1–16周</div>
                       </div>
                     </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">14:00</div>
-                      <div class="time-info end-info">15:35</div>
-                      <div class="course-container">
-                        <div class="course-name">概率论</div>
-                        <div class="instructor">刘党政</div>
-                        <div class="location">5401</div>
-                        <div class="weeks">1-5, 7-9, 11-12 week(s)</div>
-                      </div>
-                    </td>
+                    <!-- Tue -->
                     <td></td>
+                    <!-- Wed 高等代数2 -->
                     <td class="has-class event-cell" rowspan="2">
                       <div class="time-info start-info">14:00</div>
                       <div class="time-info end-info">15:35</div>
                       <div class="course-container">
-                        <div class="course-name">概率论</div>
-                        <div class="instructor">刘党政</div>
-                        <div class="location">5401</div>
-                        <div class="weeks">10 week(s)</div>
+                        <div class="course-name">高等代数2</div>
+                        <div class="instructor">—</div>
+                        <div class="location">S305</div>
+                        <div class="weeks">8–10等</div>
                       </div>
                     </td>
+                    <!-- Thu 普通物理A1 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:00</div>
+                      <div class="time-info end-info">15:35</div>
+                      <div class="course-container">
+                        <div class="course-name">普通物理A1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N303</div>
+                        <div class="weeks">1–16周</div>
+                      </div>
+                    </td>
+                    <!-- Fri -->
+                    <td></td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="course-container">
-                        <div class="course-name">计算机导论</div>
-                        <div class="instructor">孙广中</div>
-                        <div class="location">2121</div>
-                        <div class="weeks">1-10 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">毛泽东思想和中国特色社会主义理论体系概论</div>
-                          <div class="instructor">王冬青</div>
-                          <div class="location">2121</div>
-                          <div class="weeks">1-16 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">数据结构A</div>
-                          <div class="instructor">徐小华</div>
-                          <div class="location">3B101</div>
-                          <div class="weeks">1-16 week(s)</div>
-                        </div>
-                      </div>
-                    </td>
+                    <!-- Wed 数理统计1 7–8（在上一行开始，故此行继续占位；这里开始另一门在周四） -->
                     <td></td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="course-container">
-                        <div class="course-name">社交媒体分析</div>
-                        <div class="instructor">沈晓蓓, 程琪</div>
-                        <div class="location">2306</div>
-                        <div class="weeks">1-9, 11-16 week(s)</div>
-                      </div>
-                    </td>
-                    <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
-                      <div class="time-info end-info">17:30</div>
-                      <div class="course-container">
-                        <div class="course-name">拓展训练Ⅱ</div>
-                        <div class="instructor">王永</div>
-                        <div class="location">东区操场</div>
-                        <div class="weeks">1-5, 7-9, 11-16 week(s)</div>
-                      </div>
-                    </td>
                     <td></td>
+                    <!-- Wed 数理统计1 7–8 -->
                     <td class="has-class event-cell" rowspan="2">
-                      <div class="time-info start-info">15:55</div>
+                      <div class="time-info start-info">14:50</div>
                       <div class="time-info end-info">17:30</div>
-                      <div class="overlap-container">
-                        <div class="overlap-course">
-                          <div class="course-name">拓展训练Ⅱ</div>
-                          <div class="instructor">王永</div>
-                          <div class="location">东区操场</div>
-                          <div class="weeks">10 week(s)</div>
-                        </div>
-                        <div class="overlap-course">
-                          <div class="course-name">复分析</div>
-                          <div class="instructor">李思敏</div>
-                          <div class="location">5401</div>
-                          <div class="weeks">1-6, 8-9, 12-14 week(s)</div>
-                        </div>
+                      <div class="course-container">
+                        <div class="course-name">数理统计1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N202</div>
+                        <div class="weeks">8, 11周</div>
                       </div>
                     </td>
+                    <!-- Thu 高级英语1 7–8 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:50</div>
+                      <div class="time-info end-info">17:30</div>
+                      <div class="course-container">
+                        <div class="course-name">高级英语1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">C07-110A</div>
+                        <div class="weeks">4–13周</div>
+                      </div>
+                    </td>
+                    <!-- Fri 数理统计1 7–8 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:50</div>
+                      <div class="time-info end-info">17:30</div>
+                      <div class="course-container">
+                        <div class="course-name">数理统计1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N202</div>
+                        <div class="weeks">7–8, 11周</div>
+                      </div>
+                    </td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
-                    <td></td>
-                    <td></td>
+                    <!-- Mon 数理统计1 9–10（第10周） -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">16:45</div>
+                      <div class="time-info end-info">18:20</div>
+                      <div class="course-container">
+                        <div class="course-name">数理统计1</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N202</div>
+                        <div class="weeks">10周</div>
+                      </div>
+                    </td>
+                    <!-- Tue 数学分析拓展2 9–10 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">16:45</div>
+                      <div class="time-info end-info">18:20</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析拓展2</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N103</div>
+                        <div class="weeks">7–16周</div>
+                      </div>
+                    </td>
+                    <!-- Wed/Thu (上一行已放) -->
+                    <!-- Thu 另有 数学分析拓展2（第14周独占） -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">16:45</div>
+                      <div class="time-info end-info">18:20</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析拓展2</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N103</div>
+                        <div class="weeks">14周</div>
+                      </div>
+                    </td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td class="has-class event-cell">
-                      <div class="time-info start-info">17:35</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">毛泽东思想和中国特色社会主义理论体系概论</div>
-                        <div class="instructor">王冬青</div>
-                        <div class="location">2121</div>
-                        <div class="weeks">1-16 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td class="has-class event-cell">
-                      <div class="time-info start-info">17:35</div>
-                      <div class="time-info end-info">18:20</div>
-                      <div class="course-container">
-                        <div class="course-name">社交媒体分析</div>
-                        <div class="instructor">沈晓蓓, 程琪</div>
-                        <div class="location">2306</div>
-                        <div class="weeks">1-15单 week(s)</div>
-                      </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Evening Section -->
                   <tr>
                     <td rowspan="3" class="period-header">Evening</td>
                     <td class="period-number">11</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">12</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          
+
           <!-- Junior Year - First Semester -->
           <div class="semester-timetable-container" id="junior-first">
             <h3 class="semester-title">Junior Year - First Semester</h3>
             <div class="timetable-container">
               <table class="timetable" id="junior-first-timetable">
-                <!-- Empty timetable structure same as freshman-second -->
                 <thead>
                   <tr>
                     <th>Period</th>
@@ -1521,106 +895,209 @@ document.write(`
                   <tr>
                     <td rowspan="5" class="period-header">Morning</td>
                     <td class="period-number">1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <!-- Mon 普通物理A2与物理实验 1–2 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">普通物理A2与物理实验</div>
+                        <div class="instructor">—</div>
+                        <div class="location">W608</div>
+                        <div class="weeks">1–4, 7–18周</div>
+                      </div>
+                    </td>
+                    <!-- Tue 优化方法 1–2 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">优化方法</div>
+                        <div class="instructor">—</div>
+                        <div class="location">S305</div>
+                        <div class="weeks">1–12周</div>
+                      </div>
+                    </td>
+                    <!-- Wed 普通物理A2与物理实验 1–2 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">普通物理A2与物理实验</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N404</div>
+                        <div class="weeks">1–?周</div>
+                      </div>
+                    </td>
+                    <!-- Thu 优化方法 1–2 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">优化方法</div>
+                        <div class="instructor">—</div>
+                        <div class="location">S305</div>
+                        <div class="weeks">1–12周</div>
+                      </div>
+                    </td>
+                    <!-- Fri 数学分析3 1–2 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">7:50</div>
+                      <div class="time-info end-info">9:25</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析3</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N202</div>
+                        <div class="weeks">9–12周</div>
+                      </div>
+                    </td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <!-- Mon 高等代数3 3–4 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">9:45</div>
+                      <div class="time-info end-info">11:20</div>
+                      <div class="course-container">
+                        <div class="course-name">高等代数3</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N202</div>
+                        <div class="weeks">1–?周</div>
+                      </div>
+                    </td>
+                    <!-- Tue 数学分析拓展3 3–4 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">9:45</div>
+                      <div class="time-info end-info">11:20</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析拓展3</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N204</div>
+                        <div class="weeks">9–14周</div>
+                      </div>
+                    </td>
+                    <!-- Wed 数学分析3 3–4 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">9:45</div>
+                      <div class="time-info end-info">11:20</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析3</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N203 / N204</div>
+                        <div class="weeks">9–14周</div>
+                      </div>
+                    </td>
+                    <!-- Thu 数学分析（辅） 3–4 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">9:45</div>
+                      <div class="time-info end-info">11:20</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析（辅）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N203</div>
+                        <div class="weeks">—</div>
+                      </div>
+                    </td>
+                    <!-- Fri 习思想概论（专题） 3–4 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">9:45</div>
+                      <div class="time-info end-info">11:20</div>
+                      <div class="course-container">
+                        <div class="course-name">习思想概论（专题）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N204</div>
+                        <div class="weeks">10–11周</div>
+                      </div>
+                    </td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Afternoon Section -->
                   <tr>
                     <td rowspan="5" class="period-header">Afternoon</td>
                     <td class="period-number">6</td>
+                    <!-- Mon 习思想概论 6–7 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:00</div>
+                      <div class="time-info end-info">15:35</div>
+                      <div class="course-container">
+                        <div class="course-name">习思想概论</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N404</div>
+                        <div class="weeks">10–12周</div>
+                      </div>
+                    </td>
+                    <!-- Tue -->
                     <td></td>
+                    <!-- Wed -->
                     <td></td>
+                    <!-- Thu 数学分析拓展3（讨论班） 6–7 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:00</div>
+                      <div class="time-info end-info">15:35</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析拓展3（讨论班）</div>
+                        <div class="instructor">—</div>
+                        <div class="location">S503</div>
+                        <div class="weeks">1–8周</div>
+                      </div>
+                    </td>
+                    <!-- Fri -->
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
+                    <!-- Wed 数学分析3 7–8 -->
                     <td></td>
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:50</div>
+                      <div class="time-info end-info">16:40</div>
+                      <div class="course-container">
+                        <div class="course-name">数学分析3</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N203 / N204</div>
+                        <div class="weeks">9–14周</div>
+                      </div>
+                    </td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <!-- Fri 人工智能与机器学习的数学基础 7–8 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">14:50</div>
+                      <div class="time-info end-info">16:40</div>
+                      <div class="course-container">
+                        <div class="course-name">人工智能与机器学习的数学基础</div>
+                        <div class="instructor">—</div>
+                        <div class="location">W606 / S201</div>
+                        <div class="weeks">1–14周</div>
+                      </div>
+                    </td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <!-- Tue 高等代数3（晚） 9–10 放到 Evening 区域更合适；此处空 -->
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Evening Section -->
@@ -1631,29 +1108,40 @@ document.write(`
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <!-- Fri 人工智能与机器学习的数学基础 11–12 -->
+                    <td class="has-class event-cell" rowspan="2">
+                      <div class="time-info start-info">19:30</div>
+                      <div class="time-info end-info">21:05</div>
+                      <div class="course-container">
+                        <div class="course-name">人工智能与机器学习的数学基础</div>
+                        <div class="instructor">—</div>
+                        <div class="location">S201</div>
+                        <div class="weeks">4–14周</div>
+                      </div>
+                    </td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">12</td>
+                    <!-- Tue 高等代数3 9–10（晚） -->
+                    <td></td>
+                    <td class="has-class event-cell">
+                      <div class="time-info start-info">16:45</div>
+                      <div class="time-info end-info">18:20</div>
+                      <div class="course-container">
+                        <div class="course-name">高等代数3</div>
+                        <div class="instructor">—</div>
+                        <div class="location">N103</div>
+                        <div class="weeks">11周</div>
+                      </div>
+                    </td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                 </tbody>
               </table>
@@ -1684,139 +1172,61 @@ document.write(`
                   <tr>
                     <td rowspan="5" class="period-header">Morning</td>
                     <td class="period-number">1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Afternoon Section -->
                   <tr>
                     <td rowspan="5" class="period-header">Afternoon</td>
                     <td class="period-number">6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Evening Section -->
                   <tr>
                     <td rowspan="3" class="period-header">Evening</td>
                     <td class="period-number">11</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">12</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                 </tbody>
               </table>
@@ -1847,139 +1257,61 @@ document.write(`
                   <tr>
                     <td rowspan="5" class="period-header">Morning</td>
                     <td class="period-number">1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Afternoon Section -->
                   <tr>
                     <td rowspan="5" class="period-header">Afternoon</td>
                     <td class="period-number">6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Evening Section -->
                   <tr>
                     <td rowspan="3" class="period-header">Evening</td>
                     <td class="period-number">11</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">12</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                 </tbody>
               </table>
@@ -2010,139 +1342,61 @@ document.write(`
                   <tr>
                     <td rowspan="5" class="period-header">Morning</td>
                     <td class="period-number">1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Afternoon Section -->
                   <tr>
                     <td rowspan="5" class="period-header">Afternoon</td>
                     <td class="period-number">6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   
                   <!-- Evening Section -->
                   <tr>
                     <td rowspan="3" class="period-header">Evening</td>
                     <td class="period-number">11</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">12</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                   <tr>
                     <td class="period-number">13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                   </tr>
                 </tbody>
               </table>
