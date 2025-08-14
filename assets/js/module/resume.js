@@ -80,7 +80,7 @@ document.write(`
       <p>
         <strong>GPA:</strong> 86.64/100 &nbsp;|&nbsp;
         <strong>Major GPA:</strong> 92.64/100 &nbsp;|&nbsp;
-        Transcript (PDF):
+        Transcript :
         <a class="download-link" href="assets/images/GPA_UoL.png" target="_blank" rel="noopener">Leicester transcript</a>
       </p>
 
