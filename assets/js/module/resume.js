@@ -195,14 +195,38 @@ document.write(`
           <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">
             David Woodruff
           </a>
+          <!-- Optional: add a hosted PDF of your evaluation letter -->
+          &nbsp;|&nbsp;<a href="assets/pdf/woodruff_evaluation.pdf" target="_blank" rel="noopener">Evaluation (PDF)</a>
         </div>
+
         <details class="collapsible" style="margin-top:8px;">
           <summary style="cursor:pointer;"><em>Click to expand</em></summary>
-          <div class="gallery" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
-            <a href="assets/images/s1.jpg" target="_blank" rel="noopener"><img src="assets/images/s1.jpg" alt="sjtu-1" style="height:80px; border-radius:6px;"></a>
-            <a href="assets/images/s2.jpg" target="_blank" rel="noopener"><img src="assets/images/s2.jpg" alt="sjtu-2" style="height:80px; border-radius:6px;"></a>
-            <a href="assets/images/s3.jpg" target="_blank" rel="noopener"><img src="assets/images/s3.jpg" alt="sjtu-3" style="height:80px; border-radius:6px;"></a>
-            <a href="assets/images/s4.jpg" target="_blank" rel="noopener"><img src="assets/images/s4.jpg" alt="sjtu-4" style="height:80px; border-radius:6px;"></a>
+          <div style="margin-top:8px;">
+            <p>
+              This two-phase program emphasized inquiry-driven research across disciplinary boundaries. In the foundational
+              phase I studied advanced algorithms, data structures, and machine learning: zero-sum game theory and minimax
+              strategies; linear programming (simplex, ellipsoid, Karmarkar) with duality and backward analysis; and modern
+              deep learning with attention and transformers. The training framed techniques in the context of real systems and
+              applications.
+            </p>
+            <p>
+              In the research phase I focused on streaming algorithms for RAG, targeting the memory–accuracy trade-off when
+              retrieving from evolving news streams. I combined multi-vector screening with online clustering so that the KB can
+              be updated incrementally, enabling low-latency retrieval under tight memory budgets. This work crystallized as
+              the SAKR project, aligning theory with an actionable pipeline and culminating in an ICIC 2025 acceptance.
+            </p>
+            <p>
+              I actively participated in lectures and TA sessions, contributed ideas during discussions, and collaborated
+              closely with peers. My mentors noted strong preparation, independent thinking, and clear communication; overall
+              performance was assessed at the A level. (Tools: Python, PyTorch, FAISS)
+            </p>
+
+            <div class="gallery" style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a href="assets/images/s1.jpg" target="_blank" rel="noopener"><img src="assets/images/s1.jpg" alt="SJTU — photo 1" style="height:80px; border-radius:6px;"></a>
+              <a href="assets/images/s2.jpg" target="_blank" rel="noopener"><img src="assets/images/s2.jpg" alt="SJTU — photo 2" style="height:80px; border-radius:6px;"></a>
+              <a href="assets/images/s3.jpg" target="_blank" rel="noopener"><img src="assets/images/s3.jpg" alt="SJTU — photo 3" style="height:80px; border-radius:6px;"></a>
+              <a href="assets/images/s4.jpg" target="_blank" rel="noopener"><img src="assets/images/s4.jpg" alt="SJTU — photo 4" style="height:80px; border-radius:6px;"></a>
+            </div>
           </div>
         </details>
       </div>
