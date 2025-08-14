@@ -195,8 +195,6 @@ document.write(`
           <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">
             David Woodruff
           </a>
-          <!-- Optional: add a hosted PDF of your evaluation letter -->
-          &nbsp;|&nbsp;<a href="assets/pdf/woodruff_evaluation.pdf" target="_blank" rel="noopener">Evaluation (PDF)</a>
         </div>
 
         <details class="collapsible" style="margin-top:8px;">
