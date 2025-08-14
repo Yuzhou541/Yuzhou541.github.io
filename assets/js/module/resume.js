@@ -39,7 +39,7 @@ document.write(`
         <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
           <thead>
             <tr>
-              <th style="text-align:left; padding:6px 8px; border-bottom:1px solid #ccc;">Course</th>
+              <th style="text-align:left; padding:6px 8px; border-bottom:1px solid #ccc;">Major Course</th>
               <th style="text-align:right; padding:6px 8px; border-bottom:1px solid #ccc; white-space:nowrap;">Credit</th>
               <th style="text-align:right; padding:6px 8px; border-bottom:1px solid #ccc; white-space:nowrap;">Grade</th>
             </tr>
@@ -88,7 +88,7 @@ document.write(`
         <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
           <thead>
             <tr>
-              <th style="text-align:left; padding:6px 8px; border-bottom:1px solid #ccc;">Course</th>
+              <th style="text-align:left; padding:6px 8px; border-bottom:1px solid #ccc;">Major Course</th>
               <th style="text-align:right; padding:6px 8px; border-bottom:1px solid #ccc; white-space:nowrap;">Credit</th>
               <th style="text-align:right; padding:6px 8px; border-bottom:1px solid #ccc; white-space:nowrap;">Grade</th>
             </tr>
