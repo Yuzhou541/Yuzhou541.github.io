@@ -272,7 +272,7 @@ document.write(`
           </a>
           is an outcome of this project; Advisor:
           <a href="https://csd.cmu.edu/people/faculty/david-woodruff" target="_blank" rel="noopener">
-            David Woodruff
+            Prof.David Woodruff
           </a>
         </div>
 
