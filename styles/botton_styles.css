@@ -1,0 +1,168 @@
+.theme-toggle.theme-toggle--reversed .theme-toggle__expand {
+    transform: scale(-1, 1)
+}
+
+.theme-toggle {
+    --theme-toggle__expand--duration: 1000ms
+}
+
+.theme-toggle__expand g circle,
+.theme-toggle__expand g path {
+    transform-origin: center;
+    transition: transform calc(var(--theme-toggle__expand--duration) * .65) cubic-bezier(0, 0, 0, 1.25) calc(var(--theme-toggle__expand--duration) * .35)
+}
+
+.theme-toggle__expand :first-child path {
+    transition-property: transform, d;
+    transition-duration: calc(var(--theme-toggle__expand--duration) * .6);
+    transition-timing-function: cubic-bezier(0, 0, 0.5, 1)
+}
+
+.theme-toggle input[type=checkbox]:checked~.theme-toggle__expand g circle,
+.theme-toggle--toggled:not(label).theme-toggle .theme-toggle__expand g circle {
+    transform: scale(1.4);
+    transition-delay: 0s
+}
+
+.theme-toggle input[type=checkbox]:checked~.theme-toggle__expand g path,
+.theme-toggle--toggled:not(label).theme-toggle .theme-toggle__expand g path {
+    transform: scale(.75);
+    transition-delay: 0s
+}
+
+.theme-toggle input[type=checkbox]:checked~.theme-toggle__expand :first-child path,
+.theme-toggle--toggled:not(label).theme-toggle .theme-toggle__expand :first-child path {
+    d: path("M-9 3h25a1 1 0 0017 13v30H0Z");
+    transition-delay: calc(var(--theme-toggle__expand--duration) * 0.4);
+    transition-timing-function: cubic-bezier(0, 0, 0, 1.25)
+}
+
+@supports not (d:path("")) {
+
+    .theme-toggle input[type=checkbox]:checked~.theme-toggle__expand :first-child path,
+    .theme-toggle--toggled:not(label).theme-toggle .theme-toggle__expand :first-child path {
+        transform: translate3d(-9px, 14px, 0)
+    }
+}
+
+.theme-toggle {
+    border: none;
+    background: 0 0;
+    cursor: pointer
+}
+
+.theme-toggle input[type=checkbox] {
+    display: none
+}
+
+.theme-toggle .theme-toggle-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0
+}
+
+@media (prefers-reduced-motion:reduce) {
+    .theme-toggle:not(.theme-toggle--force-motion) * {
+        transition: none !important
+    }
+}
+
+
+
+
+/* Wrapper for the theme toggle button */
+.theme-toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    /* Horizontally center */
+    align-items: center;
+    /* Vertically center */
+    padding: 10px;
+}
+
+/* Add some styles for the button itself */
+.theme-toggle {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    width: 30px;
+    /* Set button width */
+    height: auto;
+    /* Set button height */
+    /* Adjust padding if needed */
+}
+
+/* Default color for the SVG (light mode) */
+.theme-toggle svg {
+    fill: rgb(163, 163, 163);
+    /* Default icon color for light mode */
+    width: 100%;
+    height: 100%;
+}
+
+body:not(.dark) .theme-toggle:hover svg {
+    animation: spin 5s linear infinite; /* Continuous rotation */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg); /* Start position */
+    }
+    to {
+        transform: rotate(360deg); /* Full rotation */
+    }
+}
+
+/* Dark mode styles */
+body.dark .theme-toggle svg {
+    fill: rgb(224, 244, 255);
+    /* Change icon color to white in dark mode */
+}
+
+/* Hover for when the body IS in dark mode */
+body.dark .theme-toggle:hover svg {
+    animation: color-change 10s linear infinite; /* Continuous smooth color change */
+}
+
+/* Keyframes for color change */
+@keyframes color-change {
+    0% {
+        fill: #b599d4; /* Start color */
+    }
+    33% {
+        fill: #976080; /* Intermediate color */
+    }
+    66% {
+        fill: #7686c2; /* Another intermediate color */
+    }
+    100% {
+        fill: #b599d4; /* Back to the start color */
+    }
+}
+
+
+
+/* Smaller font size for medium screens (e.g., tablets) */
+@media screen and (max-width: 768px) {
+
+    .theme-toggle {
+        width: 32px;
+    }
+
+}
+
+/* Even smaller font size for small screens (e.g., phones) */
+@media screen and (max-width: 480px) {
+
+    .theme-toggle {
+        width: 34px;
+    }
+
+}

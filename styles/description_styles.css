@@ -1,0 +1,148 @@
+/* Styling for contact and profile links */
+.name {
+    padding-top: 20px;
+    margin: 0;
+    font-family: 'Candara', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Dark Mode */
+body.dark .name {
+    color: #FCEE09;
+    font-family: 'Inlanders', 'BlenderPro', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 42px;
+}
+
+
+.contact-links {
+    font-family: 'Hind Madurai', 'EB Garamond', 'Lato', Verdana, Helvetica, sans-serif;
+}
+
+body.dark .contact-links {
+    color: #00F0FF;
+    /* color: #ff9900; */
+}
+
+body.dark .contact-links:hover {
+    color: #001eff;
+}
+
+
+
+
+
+.footer-text {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 14px;
+    color: #555;
+    font-family: 'EB Garamond', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+}
+
+body.dark .footer-text {
+    color: #a2a2a2;
+    font-family: 'Play', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+}
+
+
+
+
+.highlight-link {
+    color: #9500ff;
+    /* Replace with your desired color */
+    text-decoration: none;
+    /* Optional: Removes underline */
+}
+
+.highlight-link:hover {
+    color: #ffcc00;
+    /* Optional: Color change on hover */
+    text-decoration: underline;
+    /* Optional: Adds underline on hover */
+}
+
+.highlight-link2 {
+    color: #ffaa00;
+    text-decoration: none;
+}
+
+.highlight-link2:hover {
+    color: #8fd600;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+/* Dark Mode */
+body.dark .highlight-link {
+    /* color: #ff80ff; */
+    color: #f22a6d;
+}
+
+body.dark .highlight-link:hover {
+    color: #ff1111;
+    text-decoration: underline;
+}
+
+body.dark .highlight-link2 {
+    color: #1efb4d;
+    /* Replace with your desired color */
+    text-decoration: none;
+    /* Optional: Removes underline */
+}
+
+body.dark .highlight-link2:hover {
+    color: #fb0cfc;
+    /* Optional: Color change on hover */
+    text-decoration: underline;
+    /* Optional: Adds underline on hover */
+}
+
+
+
+
+
+
+
+.section-title {
+    font-family: 'Candara', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+}
+
+
+body.dark .section-title {
+    font-weight: bold;
+    font-family: 'BlenderPro', 'Candara', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+}
+
+
+
+/* Smaller font size for medium screens (e.g., tablets) */
+@media screen and (max-width: 768px) {
+    .name {
+        font-size: 30px;
+    }
+
+    body.dark .name {
+        font-size: 38px;
+    }
+
+}
+
+/* Even smaller font size for small screens (e.g., phones) */
+@media screen and (max-width: 480px) {
+    .name {
+        font-size: 24px;
+        padding-top: 30px;
+    }
+
+    body.dark .name {
+        font-size: 32px;
+    }
+}

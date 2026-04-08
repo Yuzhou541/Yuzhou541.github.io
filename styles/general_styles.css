@@ -1,0 +1,153 @@
+a {
+  color: #1772d0;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  color: #f09228;
+  text-decoration: none;
+}
+
+body,
+td,
+th,
+tr,
+p,
+a {
+  font-family: 'Lato', 'Hind Madurai', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+strong {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+h2 {
+  margin: 0;
+  font-weight: normal;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 22px;
+}
+
+body.dark h2 {
+  font-size: 26px;
+  color: #FCEE09;
+}
+
+
+
+
+.one {
+  width: 160px;
+  height: 160px;
+  position: relative;
+}
+
+.two {
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+.fade {
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+span.highlight {
+  background-color: #ffffd0;
+}
+
+
+
+
+/* Dark Theme */
+body.dark {
+  background-color: #050A0E;
+  /* background-image: linear-gradient(to right, #fc5c7d, #6a82fb); */
+  /* background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d); */
+  /* background-image: linear-gradient(to right, #3f004d, #350455, #2a085c, #200c64, #15106b, #0b1473, #00187a); */
+  /* background-image: linear-gradient(to right, #361c0e, #570211, #7e3110, #004540, #032c4d #360825); */
+  /* Dark theme background */
+  color: #FAFAFA;
+  /* Dark theme text color */
+}
+
+body.dark,
+body.dark td,
+body.dark th,
+body.dark tr,
+body.dark p,
+body.dark a {
+  font-family: 'Play', 'Hind Madurai', Verdana, Helvetica, sans-serif;
+}
+
+
+
+
+
+/* Smaller font size for medium screens (e.g., tablets) */
+@media screen and (max-width: 768px) {
+
+  body {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+
+  body,
+  td,
+  th,
+  tr,
+  p,
+  a,
+  strong {
+    font-size: 13px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+  
+  body.dark h2 {
+    font-size: 22px;
+  }
+
+}
+
+/* Even smaller font size for small screens (e.g., phones) */
+@media screen and (max-width: 480px) {
+
+  body {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+
+  body,
+  td,
+  th,
+  tr,
+  p,
+  a,
+  strong {
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 14px;
+  }
+
+    
+  body.dark h2 {
+    font-size: 18px;
+  }
+
+
+}

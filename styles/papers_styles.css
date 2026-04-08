@@ -1,0 +1,145 @@
+.paper-table {
+    position: relative;
+    padding-left: 40px;
+    padding-right: 35%;
+}
+
+.paper-splitter {
+    position: absolute;
+    top: 0;
+    left: 2.5%;
+    height: 90%;
+    border-left: 3px solid;
+    /* Leave the color undefined */
+}
+
+
+
+.papertitle {
+    font-family: 'Candara', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 15px;
+    /* Adjust font size here */
+    font-weight: 700;
+    color: black;
+}
+
+.papertitle:hover {
+    color: #007acc;
+}
+
+/* Dark Mode */
+body.dark .papertitle {
+    color: white !important;
+    /* color: #ff9900 !important; */
+    /* color: #00F0FF !important; */
+    font-family: 'BlenderPro', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+    /* Ensure white in dark mode */
+    font-size: 17px;
+}
+
+body.dark .papertitle:hover {
+    /* color: #ff9900 !important; */
+    color: #ff3d00 !important;
+    /* Dark mode hover color */
+}
+
+
+/* Dark Mode */
+body.dark .papertitle-highlight {
+    color: #ff9900 !important;
+    font-family: 'BlenderPro', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 17px;
+}
+
+body.dark .papertitle-highlight:hover {
+    color: #FF003C !important;
+    /* Dark mode hover color */
+}
+
+
+
+
+
+
+.paper_links {
+    font-family: 'Candara', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.paper_links_splitter {
+    font-family: 'Candara', 'Hind Madurai', 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+
+:root {
+    --splitter-colors-light: #c7f9cc, #90f1ef, #ffd6e0, #ffe978, #faf0ff, #edf4ff, #fff1d9, #c1fba4, ;
+    --splitter-colors-dark: #ff0677, #b000ff, #fd00ff, #8900ff, #4d0009, #2b007c, #001b64;
+}
+
+
+/* For iPad Pro in Portrait mode */
+@media screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+    /* Styles specific to iPad Pro in portrait mode */
+    .paper-table {
+        padding-left: 40px;
+        padding-right: 35%;
+    }
+}
+
+/* For iPad Pro in Landscape mode */
+@media screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+    /* Styles specific to iPad Pro in landscape mode */
+    .paper-table {
+        padding-left: 40px;
+        padding-right: 20%;
+    }
+}
+
+
+
+/* Smaller font size for medium screens (e.g., tablets) */
+@media screen and (max-width: 768px) {
+
+    .papertitle {
+        font-size: 14px;
+    }
+
+    .paper_links,
+    .paper_links_splitter {
+        font-size: 11px;
+    }
+
+    .paper-table {
+        padding-left: 40px;
+        padding-right: 0%;
+    }
+
+    body.dark .papertitle {
+        font-size: 16px;
+    }
+
+}
+
+/* Even smaller font size for small screens (e.g., phones) */
+@media screen and (max-width: 480px) {
+
+    .papertitle {
+        font-size: 13px;
+    }
+
+    .paper_links,
+    .paper_links_splitter {
+        font-size: 10px;
+    }
+
+    .paper-table {
+        padding-left: 25px;
+        padding-right: 5%;
+    }
+
+    body.dark .papertitle {
+        font-size: 15px;
+    }
+
+}

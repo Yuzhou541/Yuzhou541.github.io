@@ -1,0 +1,11 @@
+table {
+    border-spacing: 0 10px;
+    /* Adds 10px vertical space between rows */
+    border-collapse: separate;
+    /* Ensures border-spacing works */
+}
+
+td {
+    padding-bottom: 10px;
+    /* Adds space below each row */
+}

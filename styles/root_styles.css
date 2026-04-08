@@ -1,0 +1,9 @@
+:root {
+    --theme-transition-duration: 0.3s;
+}
+
+/* Apply transitions explicitly to text and background elements */
+html, body {
+    transition: background-color var(--theme-transition-duration) ease,
+                color var(--theme-transition-duration) ease;
+}
