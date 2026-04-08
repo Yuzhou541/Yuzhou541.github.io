@@ -5,7 +5,7 @@ function setFaviconBasedOnTheme() {
   const favicon = document.getElementById('favicon');
   if (favicon) {
     // console.log('Favicon link element found.');
-    favicon.href = theme === 'dark' ? './pics/avatar/favicon_dark.ico' : './pics/avatar/favicon_light.ico';
+    favicon.href = theme === 'dark' ? './pics/avatar/favicon.JPG' : './pics/avatar/favicon.JPG';
     // console.log(`Favicon updated to: ${favicon.href}`); // Log the new favicon URL
   } else {
     console.error('Favicon link element not found.');
